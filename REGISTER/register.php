@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rupantara - Login</title>
-    <!-- Menggunakan Font Poppins untuk tampilan modern -->
+    <title>Rupantara - Daftar Akun</title>
+    <!-- Menggunakan Font Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Reset CSS dasar */
@@ -20,28 +20,25 @@
             display: flex;
             flex-direction: column;
             background-color: #eef3f9;
-            background-image: url('background_login.png');
+            background-image: url('../GAMBAR_GAMBAR/background_login_register.png');
             background-repeat: no-repeat;
             background-attachment: fixed;
-            
-            /* Menggunakan cover dan left center agar proporsional */
             background-size: cover;
             background-position: left center;
-            
             color: #1a365d;
         }
 
         /* --- HEADER NAVBAR FIXED --- */
         header {
-            position: fixed; /* Header tetap berada di atas saat halaman di-scroll */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 80px;
             display: flex;
-            justify-content: space-between; /* Mendorong logo ke kiri, dan menu navigasi ke kanan */
+            justify-content: space-between;
             align-items: center;
-            padding: 0 4%; /* Diperkecil menjadi 4% agar logo berada di pojok kiri atas */
+            padding: 0 4%;
             background-color: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -54,18 +51,16 @@
             align-items: center;
         }
 
-        /* Gaya logo pada header (diperbesar sesuai desain) */
         .brand-logo {
             height: 55px; 
             width: auto;
             object-fit: contain;
         }
 
-        /* Wadah untuk mengelompokkan navigasi dan profil di sebelah kanan */
         .navigation-group {
             display: flex;
             align-items: center;
-            gap: 40px; /* Jarak antara menu navigasi dan profil */
+            gap: 40px;
         }
 
         nav {
@@ -154,28 +149,28 @@
             flex: 1;
             justify-content: space-between;
             align-items: center;
-            padding: 40px 4%; /* Disesuaikan menjadi 4% agar sejajar dengan header */
+            padding: 40px 4%; 
             gap: 50px;
             margin-top: 80px; 
         }
 
-        /* Spacer kiri untuk menyeimbangkan posisi kartu login di kanan */
+        /* Spacer kiri untuk menyeimbangkan posisi kartu register di kanan */
         .left-spacer {
             flex: 1.2;
         }
 
-        /* Bagian Kanan: Kartu Login */
-        .login-card-wrapper {
+        /* Bagian Kanan: Kartu Register */
+        .register-card-wrapper {
             flex: 1;
             display: flex;
             justify-content: flex-end;
         }
 
-        .login-card {
+        .register-card {
             background-color: rgba(255, 255, 255, 0.95);
             width: 100%;
-            max-width: 450px;
-            padding: 40px;
+            max-width: 460px;
+            padding: 35px;
             border-radius: 24px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
@@ -184,55 +179,51 @@
             text-align: center;
         }
 
-        /* Logo di dalam Card */
         .card-logo {
             display: inline-flex;
             justify-content: center;
             align-items: center;
             width: 100%;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
-        /* Gaya logo di dalam kartu login */
         .card-brand-logo {
-            height: 75px; 
+            height: 70px; 
             width: auto;
             object-fit: contain;
-            margin-bottom: 15px;
         }
 
-        /* Teks Judul Formulir */
-        .login-card h3 {
-            font-size: 19px;
+        .register-card h3 {
+            font-size: 20px;
             font-weight: 700;
             color: #0d3b66;
             margin-bottom: 4px;
         }
 
-        .login-card .sub-info {
+        .register-card .sub-info {
             font-size: 11px;
             color: #64748b;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         /* Gaya Input Form */
         .form-group {
             text-align: left;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
         }
 
         .form-group label {
             display: block;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             color: #1e3a8a;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
-        .form-group input {
+        .form-group input, .form-group select {
             width: 100%;
-            padding: 12px 16px;
-            font-size: 14px;
+            padding: 11px 16px;
+            font-size: 13px;
             border: 1.5px solid #cbd5e1;
             border-radius: 8px;
             outline: none;
@@ -241,12 +232,22 @@
             transition: all 0.3s ease;
         }
 
-        .form-group input:focus {
+        .form-group input:focus, .form-group select:focus {
             border-color: #3b82f6;
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
         }
 
-        /* --- CSS TAMBAHAN UNTUK ICON MATA PASSWORD --- */
+        /* Tampilan khusus pilihan select modern */
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Password Wrapper & Toggle Eye */
         .password-wrapper {
             position: relative;
             width: 100%;
@@ -269,8 +270,8 @@
         }
 
         .toggle-password svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             fill: currentColor;
             transition: color 0.2s;
         }
@@ -279,23 +280,30 @@
             color: #1d4ed8;
         }
 
-        /* Tautan Tambahan */
-        .form-links {
-            text-align: left;
-            margin-bottom: 25px;
+        /* Pesan Kecocokan Password */
+        .match-message {
+            font-size: 11px;
+            margin-top: 4px;
+            font-weight: 500;
+            display: none;
         }
 
-        .form-links a {
-            display: block;
-            font-size: 13px;
+        /* Footer Tautan */
+        .form-footer {
+            margin-top: 15px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .form-footer a {
             color: #1d4ed8;
             text-decoration: none;
-            font-weight: 500;
-            margin-bottom: 8px;
+            font-weight: 600;
             transition: color 0.2s;
         }
 
-        .form-links a:hover {
+        .form-footer a:hover {
             color: #1e40af;
             text-decoration: underline;
         }
@@ -306,13 +314,12 @@
             background-color: #0b2545;
             color: #ffffff;
             border: none;
-            padding: 14px;
+            padding: 12px;
             font-size: 14px;
             font-weight: 700;
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.1s;
-            margin-bottom: 20px;
             letter-spacing: 1px;
         }
 
@@ -324,17 +331,17 @@
             transform: scale(0.98);
         }
 
-        /* Opsi Login Sosial */
+        /* Opsi Register Sosial */
         .social-login {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .social-btn {
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -351,8 +358,8 @@
         }
 
         .social-btn svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
         }
 
         /* --- MEDIA QUERIES UNTUK LAYAR TABLET --- */
@@ -362,11 +369,10 @@
             }
             
             .navigation-group {
-                display: none; /* Menyembunyikan menu navigasi kanan di tablet/HP agar tidak menumpuk */
+                display: none;
             }
             
             body {
-                background-size: cover;
                 background-position: center center;
             }
 
@@ -374,14 +380,14 @@
                 flex-direction: column;
                 padding: 30px 4%;
                 justify-content: center;
-                gap: 20px;
+                gap: 30px;
             }
             
             .left-spacer {
-                display: none; 
+                display: none;
             }
             
-            .login-card-wrapper {
+            .register-card-wrapper {
                 justify-content: center;
                 width: 100%;
             }
@@ -394,11 +400,11 @@
             }
 
             .brand-logo {
-                height: 40px; /* Ukuran logo lebih kecil di layar HP */
+                height: 40px;
             }
 
-            .login-card {
-                padding: 30px 20px;
+            .register-card {
+                padding: 25px 20px;
                 border-radius: 16px;
             }
         }
@@ -406,14 +412,12 @@
 </head>
 <body>
 
-    <!-- Header / Navbar (Sticky / Fixed) -->
+    <!-- Header / Navbar (Fixed) -->
     <header>
-        <!-- Logo di pojok kiri atas -->
         <div class="logo-container">
             <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Logo Rupantara" class="brand-logo">
         </div>
         
-        <!-- Kelompok navigasi dan profil di sebelah kanan -->
         <div class="navigation-group">
             <nav>
                 <a href="#">Beranda</a>
@@ -421,16 +425,14 @@
                 <a href="#">Fitur</a>
                 <a href="#">Edukasi</a>
                 <span class="divider">|</span>
-                <a href="#" class="btn-login-nav">Login</a>
+                <a href="../LOGIN/login.php" class="btn-login-nav">Login</a>
             </nav>
             <div class="header-right">
-                <!-- Ikon Notifikasi -->
                 <div class="bell-icon" title="Notifikasi">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
                         <path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/>
                     </svg>
                 </div>
-                <!-- Profil Pengguna -->
                 <div class="user-profile">
                     <div class="user-avatar">
                         <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px">
@@ -447,31 +449,36 @@
 
     <!-- Konten Utama -->
     <main class="main-container">
-        <!-- Spacer Kiri -->
+        <!-- Spacer Kiri (Mengandalkan desain teks bawaan dari background gambar) -->
         <div class="left-spacer"></div>
 
-        <!-- Bagian Kanan (Formulir Login) -->
-        <section class="login-card-wrapper">
-            <div class="login-card">
-                <!-- Memuat logo asli di dalam Card -->
+        <!-- Bagian Kanan (Formulir Register) -->
+        <section class="register-card-wrapper">
+            <div class="register-card">
+                <!-- Logo Brand -->
                 <div class="card-logo">
                     <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Logo Rupantara" class="card-brand-logo">
                 </div>
 
-                <h3>Masuk ke akun anda</h3>
+                <h3>Daftar dulu disini !</h3>
                 <p class="sub-info">Isi data di bawah untuk membuat akun baru</p>
 
-                <!-- Form Login (Mengarah ke proses_login.php) -->
-                <form action="proses_login.php" method="POST">
+                <!-- Form Register -->
+                <form action="proses_register.php" method="POST" id="registerForm">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" id="username" name="username" placeholder="Masukkan username Anda" required autocomplete="username">
                     </div>
 
                     <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Masukkan alamat email Anda" required autocomplete="email">
+                    </div>
+
+                    <div class="form-group">
                         <label for="password">Password</label>
                         <div class="password-wrapper">
-                            <input type="password" id="password" name="password" placeholder="Masukkan password Anda" required autocomplete="current-password">
+                            <input type="password" id="password" name="password" placeholder="Buat password baru" required>
                             <span class="toggle-password" id="togglePassword">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
                                     <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q56-140 176-221.5T480-803q146 0 266 81.5T920-500q-56 140-176 221.5T480-200Z"/>
@@ -480,24 +487,46 @@
                         </div>
                     </div>
 
-                    <div class="form-links">
-                        <a href="../REGISTER/register.php">Belum punya akun? daftar dulu!</a>
-                        <a href="#">Lupa password</a>
+                    <div class="form-group">
+                        <label for="konfirmasi_password">Konfirmasi Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="konfirmasi_password" name="konfirmasi_password" placeholder="Ulangi password Anda" required>
+                            <span class="toggle-password" id="toggleConfirmPassword">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                    <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q56-140 176-221.5T480-803q146 0 266 81.5T920-500q-56 140-176 221.5T480-200Z"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="match-message" id="matchMessage"></div>
                     </div>
 
-                    <button type="submit" name="submit" class="btn-submit">MULAI!</button>
+                    <div class="form-group">
+                        <label for="status_pengguna">Status Pengguna</label>
+                        <select id="status_pengguna" name="status_pengguna" required>
+                            <option value="" disabled selected>Pilih status Anda</option>
+                            <option value="Siswa">Siswa (SD/SMP/SMA)</option>
+                            <option value="Mahasiswa">Mahasiswa</option>
+                            <option value="Umum">Umum / Profesional</option>
+                            <option value="Guru">Guru / Tenaga Pendidik</option>
+                        </select>
+                    </div>
+
+                    <div class="form-footer">
+                        Sudah punya akun? <a href="../LOGIN/login.php">Masuk</a>
+                    </div>
+
+                    <!-- Mengubah teks tombol pendaftaran menjadi lebih sesuai -->
+                    <button type="submit" name="register" class="btn-submit" id="submitBtn">DAFTAR SEKARANG!</button>
                 </form>
 
-                <!-- Opsi Login Sosial -->
+                <!-- Opsi Register Sosial -->
                 <div class="social-login">
-                    <!-- Facebook Button -->
-                    <button class="social-btn" title="Login dengan Facebook">
+                    <button class="social-btn" title="Daftar dengan Facebook">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1877F2">
                             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                         </svg>
                     </button>
-                    <!-- Google Button -->
-                    <button class="social-btn" title="Login dengan Google">
+                    <button class="social-btn" title="Daftar dengan Google">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.859-3.578-7.859-8s3.53-8 7.859-8c2.46 0 4.105 1.025 5.047 1.926l3.245-3.125C18.29 1.55 15.492 0 12.24 0 5.58 0 0 5.37 0 12s5.58 12 12.24 12c6.96 0 11.57-4.89 11.57-11.79 0-.795-.085-1.4-.195-1.925H12.24z"/>
                         </svg>
@@ -507,28 +536,61 @@
         </section>
     </main>
 
+    <!-- Script Interaktif Show/Hide Password & Real-time Matching Validasi -->
     <script>
-        const togglePassword = document.querySelector('#togglePassword');
         const passwordInput = document.querySelector('#password');
+        const confirmPasswordInput = document.querySelector('#konfirmasi_password');
+        const togglePassword = document.querySelector('#togglePassword');
+        const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
+        const matchMessage = document.querySelector('#matchMessage');
+        const submitBtn = document.querySelector('#submitBtn');
 
+        // SVG Icons
+        const eyeIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q56-140 176-221.5T480-803q146 0 266 81.5T920-500q-56 140-176 221.5T480-200Z"/></svg>`;
+        const eyeOffIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m644-428-58-58q9-47-27-83t-83-27l-58-58q11-2 22-2 75 0 127.5 52.5T620-500q0 11-2 22Zm120 120-54-54q28-30 49-65.5T792-500q-51-111-152.5-175.5T512-740q-48 0-93.5 12T332-694l-54-54q41-26 88-41t96-15q162 0 292.5 91.5T892-500q-21 53-52 100t-76 80ZM480-340q-66 0-113-47t-47-113q0-11 2-22l-58-58q-9 20-11.5 41.5T250-500q0 104 73 177t177 73q21-1 41.5-3.5T583-264l-58-58q-11 2-22 2Zm24 240L332-272l-54 54q-56-38-100-90.5T108-416q51-111 152.5-175.5T388-656l-58-58Q197-695 91.5-598T-20-416q33 53 71.5 99T138-234l-54 54 44 44L724 38l44-44Z"/></svg>`;
+
+        // Toggle Password Utama
         togglePassword.addEventListener('click', function () {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-            
-            if (type === 'password') {
-                this.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-                        <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q56-140 176-221.5T480-803q146 0 266 81.5T920-500q-56 140-176 221.5T480-200Z"/>
-                    </svg>
-                `;
-            } else {
-                this.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-                        <path d="m644-428-58-58q9-47-27-83t-83-27l-58-58q11-2 22-2 75 0 127.5 52.5T620-500q0 11-2 22Zm120 120-54-54q28-30 49-65.5T792-500q-51-111-152.5-175.5T512-740q-48 0-93.5 12T332-694l-54-54q41-26 88-41t96-15q162 0 292.5 91.5T892-500q-21 53-52 100t-76 80ZM480-340q-66 0-113-47t-47-113q0-11 2-22l-58-58q-9 20-11.5 41.5T250-500q0 104 73 177t177 73q21-1 41.5-3.5T583-264l-58-58q-11 2-22 2Zm24 240L332-272l-54 54q-56-38-100-90.5T108-416q51-111 152.5-175.5T388-656l-58-58Q197-695 91.5-598T-20-416q33 53 71.5 99T138-234l-54 54 44 44L724 38l44-44Z"/>
-                    </svg>
-                `;
-            }
+            this.innerHTML = type === 'password' ? eyeIcon : eyeOffIcon;
         });
+
+        // Toggle Konfirmasi Password
+        toggleConfirmPassword.addEventListener('click', function () {
+            const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPasswordInput.setAttribute('type', type);
+            this.innerHTML = type === 'password' ? eyeIcon : eyeOffIcon;
+        });
+
+        // Validasi Kecocokan Password Secara Real-Time
+        function checkPasswordMatch() {
+            const val1 = passwordInput.value;
+            const val2 = confirmPasswordInput.value;
+
+            if (val2 === "") {
+                matchMessage.style.display = "none";
+                submitBtn.disabled = false;
+                return;
+            }
+
+            matchMessage.style.display = "block";
+
+            if (val1 === val2) {
+                matchMessage.textContent = "✓ Password cocok";
+                matchMessage.style.color = "#16a34a"; 
+                confirmPasswordInput.style.borderColor = "#16a34a";
+                submitBtn.disabled = false;
+            } else {
+                matchMessage.textContent = "✗ Password belum cocok";
+                matchMessage.style.color = "#dc2626"; 
+                confirmPasswordInput.style.borderColor = "#dc2626";
+                submitBtn.disabled = true; 
+            }
+        }
+
+        passwordInput.addEventListener('input', checkPasswordMatch);
+        confirmPasswordInput.addEventListener('input', checkPasswordMatch);
     </script>
 </body>
 </html>
