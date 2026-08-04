@@ -246,6 +246,39 @@
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
         }
 
+        /* --- CSS TAMBAHAN UNTUK ICON MATA PASSWORD --- */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-wrapper input {
+            padding-right: 45px !important;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: #64748b;
+            user-select: none;
+        }
+
+        .toggle-password svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: color 0.2s;
+        }
+
+        .toggle-password:hover {
+            color: #1d4ed8;
+        }
+
         /* Tautan Tambahan */
         .form-links {
             text-align: left;
@@ -428,24 +461,31 @@
                 <h3>Masuk ke akun anda</h3>
                 <p class="sub-info">Isi data di bawah untuk membuat akun baru</p>
 
-                <!-- Form Login -->
-                <form action="#" method="POST" onsubmit="event.preventDefault();">
+                <!-- Form Login (Mengarah ke proses_login.php) -->
+                <form action="proses_login.php" method="POST">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" id="username" placeholder="Masukkan username Anda" required autocomplete="username">
+                        <input type="text" id="username" name="username" placeholder="Masukkan username Anda" required autocomplete="username">
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Masukkan password Anda" required autocomplete="current-password">
+                        <div class="password-wrapper">
+                            <input type="password" id="password" name="password" placeholder="Masukkan password Anda" required autocomplete="current-password">
+                            <span class="toggle-password" id="togglePassword">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                    <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q56-140 176-221.5T480-803q146 0 266 81.5T920-500q-56 140-176 221.5T480-200Z"/>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
 
                     <div class="form-links">
-                        <a href="#">Belum punya akun? daftar dulu!</a>
+                        <a href="../REGISTER/register.php">Belum punya akun? daftar dulu!</a>
                         <a href="#">Lupa password</a>
                     </div>
 
-                    <button type="submit" class="btn-submit">MULAI!</button>
+                    <button type="submit" name="submit" class="btn-submit">MULAI!</button>
                 </form>
 
                 <!-- Opsi Login Sosial -->
@@ -467,5 +507,28 @@
         </section>
     </main>
 
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const passwordInput = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            if (type === 'password') {
+                this.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                        <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q56-140 176-221.5T480-803q146 0 266 81.5T920-500q-56 140-176 221.5T480-200Z"/>
+                    </svg>
+                `;
+            } else {
+                this.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                        <path d="m644-428-58-58q9-47-27-83t-83-27l-58-58q11-2 22-2 75 0 127.5 52.5T620-500q0 11-2 22Zm120 120-54-54q28-30 49-65.5T792-500q-51-111-152.5-175.5T512-740q-48 0-93.5 12T332-694l-54-54q41-26 88-41t96-15q162 0 292.5 91.5T892-500q-21 53-52 100t-76 80ZM480-340q-66 0-113-47t-47-113q0-11 2-22l-58-58q-9 20-11.5 41.5T250-500q0 104 73 177t177 73q21-1 41.5-3.5T583-264l-58-58q-11 2-22 2Zm24 240L332-272l-54 54q-56-38-100-90.5T108-416q51-111 152.5-175.5T388-656l-58-58Q197-695 91.5-598T-20-416q33 53 71.5 99T138-234l-54 54 44 44L724 38l44-44Z"/>
+                    </svg>
+                `;
+            }
+        });
+    </script>
 </body>
 </html>
