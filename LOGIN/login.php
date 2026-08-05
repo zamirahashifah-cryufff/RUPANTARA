@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rupantara - Login</title>
-    <!-- Menggunakan Font Poppins untuk tampilan modern -->
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Menggunakan Font Poppins untuk tampilan kartu login yang modern -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* Reset CSS dasar */
+        /* Reset CSS dasar untuk area di luar navbar */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
 
         body {
@@ -23,129 +30,15 @@
             background-image: url('background_login.png');
             background-repeat: no-repeat;
             background-attachment: fixed;
-            
-            /* Menggunakan cover dan left center agar proporsional */
             background-size: cover;
             background-position: left center;
-            
             color: #1a365d;
         }
 
-        /* --- HEADER NAVBAR FIXED --- */
-        header {
-            position: fixed; /* Header tetap berada di atas saat halaman di-scroll */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            display: flex;
-            justify-content: space-between; /* Mendorong logo ke kiri, dan menu navigasi ke kanan */
-            align-items: center;
-            padding: 0 4%; /* Diperkecil menjadi 4% agar logo berada di pojok kiri atas */
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            z-index: 1000;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        /* Gaya logo pada header (diperbesar sesuai desain) */
-        .brand-logo {
-            height: 55px; 
-            width: auto;
-            object-fit: contain;
-        }
-
-        /* Wadah untuk mengelompokkan navigasi dan profil di sebelah kanan */
-        .navigation-group {
-            display: flex;
-            align-items: center;
-            gap: 40px; /* Jarak antara menu navigasi dan profil */
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #1a365d;
-            font-weight: 500;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #2563eb;
-        }
-
-        .btn-login-nav {
-            background-color: #1d4ed8;
-            color: #ffffff;
-            padding: 8px 24px;
-            border-radius: 20px;
-            font-weight: 600;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .btn-login-nav:hover {
-            background-color: #1e40af;
-            transform: translateY(-1px);
-        }
-
-        .divider {
-            color: #cbd5e1;
-            margin: 0 5px;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .bell-icon {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-        }
-
-        .bell-icon svg {
-            fill: #475569;
-            transition: fill 0.3s;
-        }
-
-        .bell-icon:hover svg {
-            fill: #1e40af;
-        }
-
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 2px solid #cbd5e1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .user-info {
-            font-size: 11px;
-            color: #64748b;
+        /* --- STYLING KHUSUS LOGIN CARD (Menggunakan Font Poppins) --- */
+        .login-font-family, 
+        .login-font-family * {
+            font-family: 'Poppins', sans-serif;
         }
 
         /* --- KONTEN UTAMA --- */
@@ -154,9 +47,8 @@
             flex: 1;
             justify-content: space-between;
             align-items: center;
-            padding: 40px 4%; /* Disesuaikan menjadi 4% agar sejajar dengan header */
+            padding: 40px 4%;
             gap: 50px;
-            margin-top: 80px; 
         }
 
         /* Spacer kiri untuk menyeimbangkan posisi kartu login di kanan */
@@ -246,7 +138,7 @@
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
         }
 
-        /* --- CSS TAMBAHAN UNTUK ICON MATA PASSWORD --- */
+        /* --- CSS ICON MATA PASSWORD --- */
         .password-wrapper {
             position: relative;
             width: 100%;
@@ -357,14 +249,6 @@
 
         /* --- MEDIA QUERIES UNTUK LAYAR TABLET --- */
         @media (max-width: 992px) {
-            header {
-                padding: 0 4%;
-            }
-            
-            .navigation-group {
-                display: none; /* Menyembunyikan menu navigasi kanan di tablet/HP agar tidak menumpuk */
-            }
-            
             body {
                 background-size: cover;
                 background-position: center center;
@@ -389,14 +273,6 @@
 
         /* --- MEDIA QUERIES UNTUK LAYAR HP --- */
         @media (max-width: 576px) {
-            header {
-                padding: 0 4%;
-            }
-
-            .brand-logo {
-                height: 40px; /* Ukuran logo lebih kecil di layar HP */
-            }
-
             .login-card {
                 padding: 30px 20px;
                 border-radius: 16px;
@@ -406,47 +282,41 @@
 </head>
 <body>
 
-    <!-- Header / Navbar (Sticky / Fixed) -->
-    <header>
-        <!-- Logo di pojok kiri atas -->
-        <div class="logo-container">
-            <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Logo Rupantara" class="brand-logo">
-        </div>
-        
-        <!-- Kelompok navigasi dan profil di sebelah kanan -->
-        <div class="navigation-group">
-            <nav>
-                <a href="#">Beranda</a>
-                <a href="#">Tentang kami</a>
-                <a href="#">Fitur</a>
-                <a href="#">Edukasi</a>
-                <span class="divider">|</span>
-                <a href="#" class="btn-login-nav">Login</a>
-            </nav>
-            <div class="header-right">
-                <!-- Ikon Notifikasi -->
-                <div class="bell-icon" title="Notifikasi">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-                        <path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/>
-                    </svg>
-                </div>
-                <!-- Profil Pengguna -->
-                <div class="user-profile">
-                    <div class="user-avatar">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px">
-                            <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-240v-32q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q30 15 47 43.5t17 62.5v32H160Z"/>
-                        </svg>
-                    </div>
-                    <div class="user-info">
-                        <strong>Hallo, User</strong>
-                    </div>
-                </div>
+    <!-- NAVBAR (Tanpa Button Login) -->
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-blue-50 py-3 px-6 md:px-12 flex justify-between items-center w-full">
+        <!-- Logo & Brand Name -->
+        <div class="flex items-center gap-3">
+            <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Rupantara Logo" class="h-14 md:h-16 w-auto object-contain onerror-fallback">
+            <div class="flex items-center text-xl md:text-2xl tracking-wider uppercase font-black select-none">
+                <span class="text-[#0D3268]">RUP</span><span class="text-[#4FA1E4] font-semibold">ANTARA</span>
             </div>
         </div>
-    </header>
+        
+        <!-- Menu Items (Tombol Login Dihilangkan) -->
+        <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+            <a href="#" class="hover:text-blue-600 transition-colors">Beranda</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Tentang kami</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Fitur</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Edukasi</a>
+        </div>
+        
+        <!-- Icons & User Info -->
+        <div class="flex items-center gap-4">
+            <button class="text-slate-500 hover:text-blue-600 relative">
+                <i class="fa-regular fa-bell text-lg"></i>
+                <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+            </button>
+            <div class="flex items-center gap-2 border-l pl-4 border-slate-200">
+                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+                <span class="text-xs font-semibold text-slate-500 hidden sm:inline">Halo, User</span>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Konten Utama -->
-    <main class="main-container">
+    <!-- Konten Utama (Login Form) -->
+    <main class="main-container login-font-family">
         <!-- Spacer Kiri -->
         <div class="left-spacer"></div>
 
@@ -461,7 +331,7 @@
                 <h3>Masuk ke akun anda</h3>
                 <p class="sub-info">Isi data di bawah untuk membuat akun baru</p>
 
-                <!-- Form Login (Mengarah ke proses_login.php) -->
+                <!-- Form Login -->
                 <form action="proses_login.php" method="POST">
                     <div class="form-group">
                         <label for="username">Username</label>
@@ -508,6 +378,7 @@
     </main>
 
     <script>
+        // Toggle view/hide password
         const togglePassword = document.querySelector('#togglePassword');
         const passwordInput = document.querySelector('#password');
 
@@ -528,6 +399,13 @@
                     </svg>
                 `;
             }
+        });
+
+        // Error Image Fallback
+        document.querySelectorAll('.onerror-fallback').forEach(img => {
+            img.onerror = function() {
+                this.style.display = 'none';
+            };
         });
     </script>
 </body>
