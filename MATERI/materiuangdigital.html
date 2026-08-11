@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rupiah Digital: Masa Depan Kedaulatan Ekonomi - RUPANTARA</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for modern icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B3564',      // Deep Blue
+                            primary: '#004DB3',   // Accent Blue
+                            light: '#EBF3FC',     // Light Background Blue
+                            slate: '#5A6E85'      // Soft gray text
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-blue-50 py-3 px-6 md:px-12 flex justify-between items-center shadow-sm">
+        <!-- Logo & Brand Name -->
+        <div class="flex items-center gap-3">
+            <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Rupantara Logo" class="h-14 md:h-16 w-auto object-contain onerror-fallback">
+            <div class="flex items-center text-xl md:text-2xl tracking-wider uppercase font-black select-none">
+                <span class="text-[#0D3268]">RUP</span><span class="text-[#4FA1E4] font-semibold">ANTARA</span>
+            </div>
+        </div>
+        
+        <!-- Menu Navigasi Tengah -->
+        <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+            <a href="#" class="hover:text-blue-600 transition-colors">Beranda</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Tentang Rupiah</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Fitur</a>
+            <a href="#" class="text-blue-600 transition-colors font-bold border-b-2 border-blue-600 pb-1">Edukasi</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Scan</a>
+        </div>
+        
+        <!-- Notifikasi & User Profil Kanan -->
+        <div class="flex items-center gap-4">
+            <!-- Tombol Login -->
+            <a href="../LOGIN/login.php" class="bg-brand-dark hover:bg-brand-primary text-white text-sm font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 custom-transition">
+                Login
+            </a>
+            
+            <button class="text-slate-500 hover:text-blue-600 relative">
+                <i class="fa-regular fa-bell text-lg"></i>
+                <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+            </button>
+            <div class="flex items-center gap-2 border-l pl-4 border-slate-200">
+                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+                <span class="text-xs font-semibold text-slate-500 hidden sm:inline">Halo, User</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="max-w-7xl mx-auto px-6 lg:px-12 pt-10">
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Left Info Content -->
+            <div class="lg:col-span-7 space-y-4">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-brand-light text-brand-primary">
+                    <i class="fa-solid fa-graduation-cap"></i> Evolusi Mata Uang
+                </span>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-dark leading-tight">
+                    Rupiah Digital: Masa Depan Kedaulatan Ekonomi
+                </h1>
+                <p class="text-brand-slate text-base sm:text-lg max-w-xl leading-relaxed">
+                    Mengenal Central Bank Digital Currency (CBDC) Indonesia sebagai bentuk transformasi digital mata uang nasional yang aman, efisien, dan inklusif.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <button class="bg-brand-dark hover:bg-brand-primary text-white text-sm font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transform hover:-translate-y-0.5 custom-transition">
+                        Mulai Belajar
+                    </button>
+                    <button class="bg-white hover:bg-slate-50 border border-slate-200 text-brand-dark text-sm font-semibold px-6 py-3 rounded-xl shadow-sm custom-transition">
+                        Whitepaper
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Visual Image -->
+            <div class="lg:col-span-5 flex justify-center lg:justify-end">
+                <div class="relative w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 p-3 transform hover:scale-[1.02] custom-transition">
+                    <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-brand-dark to-blue-500 opacity-60"></div>
+                        <div class="z-10 text-center space-y-4 px-6">
+                            <div class="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mx-auto border border-white/20">
+                                <i class="fa-solid fa-microchip text-4xl text-blue-300"></i>
+                            </div>
+                            <span class="block text-white font-extrabold text-lg tracking-wide">CBDC Digital Rupiah</span>
+                            <span class="block text-blue-200 text-xs">Transformasi Finansial Terintegrasi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <!-- MAIN LAYOUT: SIDEBAR + CONTENT -->
+    <main class="max-w-7xl mx-auto px-6 lg:px-12 py-16 flex-grow w-full">
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left Sidebar -->
+            <aside class="lg:col-span-3">
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 sticky top-24">
+                    <h3 class="text-lg font-bold text-brand-dark mb-1">Materi</h3>
+                    <p class="text-xs text-brand-slate mb-6">Cara Merawat Rupiah Dengan Metode 5J</p>
+
+                    <nav class="space-y-2">
+                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
+                            <i class="fa-solid fa-circle-info w-5"></i>
+                            <span>Mengenal Rupiah</span>
+                        </button>
+                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
+                            <i class="fa-solid fa-building-columns w-5"></i>
+                            <span>Bank Indonesia</span>
+                        </button>
+                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
+                            <i class="fa-solid fa-shield-halved w-5"></i>
+                            <span>Ciri Keamanan Rupiah</span>
+                        </button>
+                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
+                            <i class="fa-solid fa-clock-rotate-left w-5"></i>
+                            <span>Menelusuri jejak sejarah rupiah</span>
+                        </button>
+                        <!-- Menu Rupiah Digital Aktif Disorot -->
+                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-brand-light text-brand-primary custom-transition text-left">
+                            <i class="fa-solid fa-mobile-screen-button w-5"></i>
+                            <span>Rupiah Digital: Masa Depan Kedaulatan Ekonomi</span>
+                        </button>
+                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
+                            <i class="fa-solid fa-hand-holding-heart w-5"></i>
+                            <span>Cara Merawat Rupiah Dengan Metode 5J</span>
+                        </button>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Right Content Area -->
+            <div class="lg:col-span-9 space-y-12">
+                
+                <!-- Memahami Ekosistem Digital -->
+                <div class="space-y-8">
+                    <div class="space-y-2">
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-dark">Memahami Ekosistem Digital</h2>
+                        <p class="text-brand-slate text-sm leading-relaxed">
+                            Pelajari bagaimana Rupiah Digital akan mengubah cara kita berinteraksi dengan nilai dan aset di era Web 3.0.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Apa itu CBDC? -->
+                        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-md custom-transition">
+                            <div class="space-y-4">
+                                <div class="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand-primary">
+                                    <i class="fa-solid fa-circle-info text-lg"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-brand-dark">Apa itu CBDC?</h3>
+                                <p class="text-brand-slate text-xs sm:text-sm leading-relaxed">
+                                    Central Bank Digital Currency adalah representasi digital dari mata uang fiat negara yang diterbitkan dan diatur oleh Bank Sentral. Berbeda dengan kripto, CBDC memiliki nilai yang stabil dan jaminan hukum penuh.
+                                </p>
+                            </div>
+                            <a href="#" class="inline-flex items-center gap-2 text-xs font-bold text-brand-primary hover:gap-3 pt-4 custom-transition">
+                                Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+
+                        <!-- Manfaat Rupiah Digital -->
+                        <div class="bg-[#2563EB] text-white rounded-3xl p-6 shadow-sm hover:shadow-md custom-transition flex flex-col justify-between">
+                            <div class="space-y-4">
+                                <div class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                                    <i class="fa-solid fa-bolt text-lg"></i>
+                                </div>
+                                <h3 class="text-lg font-bold">Manfaat Rupiah Digital!</h3>
+                                <ul class="space-y-3 text-xs sm:text-sm text-blue-50/90">
+                                    <li class="flex items-center gap-3">
+                                        <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-[10px]"><i class="fa-solid fa-check"></i></span>
+                                        Efisiensi Pembayaran Real-time
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-[10px]"><i class="fa-solid fa-check"></i></span>
+                                        Pengurangan Biaya Cetak
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-[10px]"><i class="fa-solid fa-check"></i></span>
+                                        Inklusi Keuangan Nasional
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-[10px]"><i class="fa-solid fa-check"></i></span>
+                                        Keamanan Transaksi Tinggi
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="border-t border-white/10 pt-4 mt-6 flex justify-between items-center text-xs text-blue-200">
+                                <span>Rupiah Digital CBDC</span>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Masa Depan Pembayaran -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md custom-transition grid grid-cols-1 md:grid-cols-12">
+                    <div class="p-8 md:col-span-7 flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-brand-dark">Masa Depan Pembayaran</h3>
+                            <p class="text-brand-slate text-xs sm:text-sm leading-relaxed">
+                                Bayangkan dunia di mana transaksi lintas batas terjadi dalam hitungan detik tanpa perantara yang mahal. Rupiah Digital menjadi fondasi bagi ekonomi terprogram (programmable money) yang mendukung smart contracts dan otomatisasi keuangan.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-brand-light text-brand-primary text-xs px-3 py-1 rounded-full font-semibold">Smart Contracts</span>
+                            <span class="bg-brand-light text-brand-primary text-xs px-3 py-1 rounded-full font-semibold">Programmable Money</span>
+                            <span class="bg-brand-light text-brand-primary text-xs px-3 py-1 rounded-full font-semibold">Web 3.0</span>
+                        </div>
+                    </div>
+                    <div class="md:col-span-5 relative min-h-[160px] bg-slate-900 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-l from-blue-600/30 to-brand-dark/90"></div>
+                        <div class="z-10 text-center px-4 space-y-2">
+                            <i class="fa-solid fa-city text-3xl text-blue-300"></i>
+                            <span class="block text-white font-extrabold text-xs tracking-wide">Infrastruktur Ekonomi Modern</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pro-Tip & Alur Kerja -->
+                <div class="space-y-6">
+                    <!-- Pro-Tip Box -->
+                    <div class="bg-brand-light border-l-4 border-brand-primary rounded-r-2xl p-5 shadow-sm">
+                        <div class="flex gap-3.5 items-start">
+                            <span class="text-brand-primary text-lg mt-0.5"><i class="fa-regular fa-lightbulb"></i></span>
+                            <div>
+                                <span class="text-brand-primary font-bold text-xs uppercase tracking-wider block mb-1">Pro-Tip Pendidikan</span>
+                                <p class="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">
+                                    Rupiah Digital bukan sekadar pengganti uang kertas, melainkan infrastruktur baru untuk inovasi finansial di Indonesia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alur Kerja -->
+                    <div class="space-y-3">
+                        <h3 class="text-xl font-bold text-brand-dark">Alur Kerja Digital</h3>
+                        <p class="text-brand-slate text-xs sm:text-sm leading-relaxed">
+                            Implementasi Rupiah Digital dilakukan melalui tiga pilar utama: desain fungsional, teknologi platform, dan integrasi ekosistem. Bank Indonesia bertindak sebagai otoritas tunggal yang menjamin ketersediaan dan keamanan aset tersebut.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- TOMBOL NAVIGASI DUAL (Sesuai Gambar Acuan Baru) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8 border-t border-slate-200">
+                    <!-- Sebelumnya -->
+                    <a href="#" class="flex items-center gap-4 p-6 bg-white border border-slate-200 rounded-2xl hover:border-brand-primary/40 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 custom-transition group">
+                        <span class="text-blue-600 text-lg group-hover:-translate-x-1 custom-transition">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </span>
+                        <div class="text-left">
+                            <span class="text-xs text-slate-400 uppercase font-bold tracking-wider block mb-1">Sebelumnya</span>
+                            <span class="text-base font-extrabold text-[#004DB3] group-hover:text-blue-700 custom-transition">Menelusuri Jejak Sejarah Rupiah</span>
+                        </div>
+                    </a>
+
+                    <!-- Selanjutnya -->
+                    <a href="#" class="flex items-center justify-between p-6 bg-white border border-slate-200 rounded-2xl hover:border-brand-primary/40 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 custom-transition group">
+                        <div class="text-left">
+                            <span class="text-xs text-slate-400 uppercase font-bold tracking-wider block mb-1">Selanjutnya</span>
+                            <span class="text-base font-extrabold text-[#004DB3] group-hover:text-blue-700 custom-transition">Cara Merawat Rupiah Dengan Metode 5J </span>
+                        </div>
+                        <span class="text-blue-600 text-lg group-hover:translate-x-1 custom-transition">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#E9ECF0] py-14 mt-16 text-slate-600 text-sm">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+                <!-- Sisi Kiri (Brand, Slogan, dan Hak Cipta) -->
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <h4 class="text-base font-extrabold text-[#0B3564] tracking-wider uppercase">RUPANTARA</h4>
+                        <p class="text-slate-500 font-medium">Platform Edukasi Literasi Keuangan Masa Depan</p>
+                    </div>
+                    <p class="text-slate-500 text-xs pt-4">
+                        &copy; 2024 RUPANTARA Educational Platform. All rights reserved.
+                    </p>
+                </div>
+                
+                <!-- Sisi Kanan (Navigasi Link Horizontal) -->
+                <div class="flex flex-wrap gap-x-8 gap-y-4 pt-1">
+                    <a href="#" class="hover:text-blue-600 font-medium text-slate-700 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-blue-600 font-medium text-slate-700 transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-blue-600 font-medium text-slate-700 transition-colors">Help Center</a>
+                    <a href="#" class="hover:text-blue-600 font-medium text-slate-700 transition-colors">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        document.querySelectorAll('.onerror-fallback').forEach(img => {
+            img.onerror = function() {
+                this.style.display = 'none';
+            };
+        });
+    </script>
+</body>
+</html>
