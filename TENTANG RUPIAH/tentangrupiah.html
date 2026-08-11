@@ -54,27 +54,33 @@
 </head>
 <body class="text-[#1E293B]">
 
-    <!-- NAVBAR -->
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-blue-50 py-3 px-6 md:px-12 flex justify-between items-center">
-        <!-- Logo & Brand Name (Disesuaikan dengan Desain) -->
+    <!-- NAVBAR (Disesuaikan persis dengan gambar acuan) -->
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-blue-50 py-3 px-6 md:px-12 flex justify-between items-center shadow-sm">
+        <!-- Logo & Brand Name -->
         <div class="flex items-center gap-3">
-            <!-- Ukuran Logo Diperbesar -->
             <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Rupantara Logo" class="h-14 md:h-16 w-auto object-contain onerror-fallback">
-            <!-- Warna Teks RUPANTARA Disamakan dengan Desain -->
             <div class="flex items-center text-xl md:text-2xl tracking-wider uppercase font-black select-none">
                 <span class="text-[#0D3268]">RUP</span><span class="text-[#4FA1E4] font-semibold">ANTARA</span>
             </div>
         </div>
         
+        <!-- Jajaran Navigasi Menu Tengah -->
         <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
             <a href="#" class="hover:text-blue-600 transition-colors">Beranda</a>
-            <a href="#" class="hover:text-blue-600 transition-colors">Tentang kami</a>
+            <!-- Garis bawah diaktifkan pada Tentang Rupiah -->
+            <a href="#" class="text-blue-600 transition-colors font-bold border-b-2 border-blue-600 pb-1">Tentang Rupiah</a>
             <a href="#" class="hover:text-blue-600 transition-colors">Fitur</a>
-            <a href="#" class="text-blue-600 transition-colors font-bold border-b-2 border-blue-600 pb-1">Edukasi</a>
-            <a href="#" class="bg-blue-900 text-white px-5 py-1.5 rounded-full hover:bg-blue-800 transition-colors">Login</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Edukasi</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Scan</a>
         </div>
         
+        <!-- Bagian Aksi Kanan (Tombol Login, Lonceng, & Profil User) -->
         <div class="flex items-center gap-4">
+            <!-- Tombol Login -->
+            <a href="../LOGIN/login.php" class="bg-[#0B3564] hover:bg-[#004DB3] text-white text-sm font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300">
+                Login
+            </a>
+            
             <button class="text-slate-500 hover:text-blue-600 relative">
                 <i class="fa-regular fa-bell text-lg"></i>
                 <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
@@ -521,9 +527,30 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-blue-950 text-white/80 py-8 px-6 text-center border-t border-blue-900">
-        <p class="text-xs">&copy; 2024 RUPANTARA. Hak Cipta Dilindungi Undang-Undang.</p>
+    <!-- FOOTER (Disamakan juga agar konsisten secara desain) -->
+    <footer class="bg-[#E9ECF0] py-14 mt-16 text-slate-600 text-sm">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+                <!-- Sisi Kiri (Brand, Slogan, dan Hak Cipta) -->
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <h4 class="text-base font-extrabold text-[#0B3564] tracking-wider uppercase">RUPANTARA</h4>
+                        <p class="text-slate-500 font-medium">Platform Edukasi Literasi Keuangan Masa Depan</p>
+                    </div>
+                    <p class="text-slate-500 text-xs pt-4">
+                        &copy; 2024 RUPANTARA Educational Platform. All rights reserved.
+                    </p>
+                </div>
+                
+                <!-- Sisi Kanan (Navigasi Link Horizontal) -->
+                <div class="flex flex-wrap gap-x-8 gap-y-4 pt-1">
+                    <a href="#" class="hover:text-blue-600 font-medium text-slate-700 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-blue-600 font-medium text-slate-700 transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-blue-600 font-medium text-slate-700 transition-colors">Help Center</a>
+                    <a href="#" class="hover:text-blue-600 font-medium text-slate-700 transition-colors">Contact Us</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- JAVASCRIPT FOR ACCORDION INTERACTIVITY -->
