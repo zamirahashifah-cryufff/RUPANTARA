@@ -54,26 +54,25 @@
 </head>
 <body class="text-[#1E293B]">
 
-    <!-- NAVBAR (Disesuaikan dengan relative path dari folder MATERI ke SCANNER) -->
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-blue-50 py-3 px-6 md:px-12 flex justify-between items-center shadow-sm">
+    <!-- NAVBAR (Sticky, Responsif, dengan jajaran font presisi tinggi) -->
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-blue-50 py-4 px-6 md:px-12 flex justify-between items-center shadow-sm relative">
         <!-- Logo & Brand Name -->
         <div class="flex items-center gap-3">
-            <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Rupantara Logo" class="h-14 md:h-16 w-auto object-contain onerror-fallback">
+            <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Rupantara Logo" class="h-12 md:h-14 w-auto object-contain onerror-fallback">
             <div class="flex items-center text-xl md:text-2xl tracking-wider uppercase font-black select-none">
                 <span class="text-[#0D3268]">RUP</span><span class="text-[#4FA1E4] font-semibold">ANTARA</span>
             </div>
         </div>
         
-        <!-- Jajaran Navigasi Menu Tengah -->
-        <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-            <a href="../SCANNER/index.html" class="hover:text-blue-600 transition-colors">Beranda</a>
-            <!-- Garis bawah diaktifkan pada Tentang Rupiah -->
-            <a href="#" class="text-blue-600 transition-colors font-bold border-b-2 border-blue-600 pb-1">Tentang Rupiah</a>
-            <a href="../SCANNER/index.html#scannerInputSection" class="hover:text-blue-600 transition-colors">Fitur</a>
-            <a href="materimenjagauang.html" class="hover:text-blue-600 transition-colors">Edukasi</a>
-            <a href="../SCANNER/index.html" class="hover:text-blue-600 transition-colors">Scan</a>
-        </div>
-        
+        <!-- Menu Navigasi Tengah (Hidden on Mobile/Tablet, Flex on Desktop) -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+          <a href="#" class="hover:text-blue-600 transition-colors">Beranda</a>
+          <a href="../TENTANG RUPIAH/tentangrupiah.html" class="text-blue-600 transition-colors font-bold border-b-2 border-blue-600 pb-1">Tentang Rupiah</a>
+          <a href="#" class="hover:text-blue-600 transition-colors">Fitur</a>
+          <a href="../MATERI/materimenjagauang.html" class="hover:text-blue-600 transition-colors">Edukasi</a>
+          <a href="../SCANNER/index.html" class="hover:text-blue-600 transition-colors">Scan</a>
+      </div>
+
         <!-- Bagian Aksi Kanan (Tombol Login, Lonceng, & Profil User) -->
         <div class="flex items-center gap-4">
             <!-- Tombol Login -->
@@ -527,27 +526,71 @@
         </div>
     </main>
 
-    <!-- FOOTER (Disamakan juga agar konsisten secara desain) -->
-    <footer class="bg-[#E9ECF0] py-14 mt-16 text-slate-600 text-sm">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-            <div class="flex flex-col md:flex-row justify-between items-start gap-8">
-                <!-- Sisi Kiri (Brand, Slogan, dan Hak Cipta) -->
-                <div class="space-y-6">
-                    <div class="space-y-2">
-                        <h4 class="text-base font-extrabold text-[#0B3564] tracking-wider uppercase">RUPANTARA</h4>
-                        <p class="text-slate-500 font-medium">Platform Edukasi Literasi Keuangan Masa Depan</p>
-                    </div>
-                    <p class="text-slate-500 text-xs pt-4">
-                        &copy; 2024 RUPANTARA Educational Platform. All rights reserved.
+    <!-- REDESIGNED FOOTER (Logo diperbesar secara signifikan, wadah putih solid, dan responsive) -->
+    <footer class="bg-[#0B3564] text-slate-100 py-16 mt-20 relative overflow-hidden" id="tentang">
+        <!-- Ornamen Dekorasi Background -->
+        <div class="absolute top-0 right-0 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-12 border-b border-blue-900/60">
+                
+                <!-- Kolom Info Utama Brand -->
+                <div class="md:col-span-5 space-y-6">
+                    <a href="../SCANNER/index.html" class="flex items-center gap-4 group" aria-label="Logo Footer RUPANTARA">
+                        <!-- Wadah Putih Solid yang Diperbesar agar Terlihat Sangat Jelas & Jernih -->
+                        <div class="bg-white p-3 rounded-2xl flex items-center justify-center shadow-lg w-24 h-24 sm:w-28 sm:h-28 transition-transform group-hover:scale-105 flex-shrink-0">
+                            <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Rupantara Logo" class="h-16 sm:h-20 w-auto object-contain onerror-fallback">
+                        </div>
+                        <div class="flex items-center text-2xl md:text-3xl tracking-wider uppercase font-black select-none">
+                            <span class="text-white">RUP</span><span class="text-[#4FA1E4] font-semibold">ANTARA</span>
+                        </div>
+                    </a>
+                    <p class="text-slate-300 text-sm leading-relaxed max-w-sm">
+                        Ruang Pintar Nusantara (RUPANTARA) adalah platform edukasi keuangan masa depan yang membantu masyarakat memahami nilai, sejarah, dan fitur keamanan mata uang Rupiah secara interaktif menggunakan teknologi pemindaian cerdas.
                     </p>
                 </div>
-                
-                <!-- Sisi Kanan (Navigasi Link Horizontal) -->
-                <div class="flex flex-wrap gap-x-8 gap-y-4 pt-1">
-                    <a href="#" class="hover:text-blue-600 font-medium text-slate-700 transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-blue-600 font-medium text-slate-700 transition-colors">Terms of Service</a>
-                    <a href="#" class="hover:text-blue-600 font-medium text-slate-700 transition-colors">Help Center</a>
-                    <a href="#" class="hover:text-blue-600 font-medium text-slate-700 transition-colors">Contact Us</a>
+
+                <!-- Kolom Tautan Navigasi (Edukasi diarahkan ke materimenjagauang.html) -->
+                <div class="md:col-span-3 md:col-start-7 space-y-4">
+                    <h4 class="text-white font-extrabold text-sm tracking-wider uppercase border-b border-blue-900/60 pb-2">NAVIGASI</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="../SCANNER/index.html" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Beranda</a></li>
+                        <li><a href="tentangrupiah.html" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Tentang Rupiah</a></li>
+                        <li><a href="../SCANNER/index.html#scannerInputSection" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Fitur</a></li>
+                        <li><a href="materimenjagauang.html" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Edukasi</a></li>
+                        <li><a href="../SCANNER/index.html" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Scan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kolom Hubungi Kami / Bantuan -->
+                <div class="md:col-span-3 space-y-4">
+                    <h4 class="text-white font-extrabold text-sm tracking-wider uppercase border-b border-blue-900/60 pb-2">HUBUNGI KAMI</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-300">
+                        <li class="flex items-center gap-3">
+                            <span class="text-blue-400"><i class="fa-solid fa-envelope"></i></span>
+                            <span>info@rupantara.org</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-blue-400"><i class="fa-solid fa-phone"></i></span>
+                            <span>+62 823-4095-0845</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-blue-400"><i class="fa-solid fa-location-dot"></i></span>
+                            <span>Purwokerto, Indonesia</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom Footer Bar (Copyright & Kebijakan) -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 text-xs text-slate-400">
+                <p>&copy; 2024 RUPANTARA Educational Platform. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Help Center</a>
                 </div>
             </div>
         </div>
