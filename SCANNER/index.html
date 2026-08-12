@@ -14,11 +14,39 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+      tailwind.config = {
+          theme: {
+              extend: {
+                  colors: {
+                      brand: {
+                          dark: '#0B3564',      // Deep Blue
+                          primary: '#004DB3',   // Accent Blue
+                          light: '#EBF3FC',     // Light Background Blue
+                          slate: '#5A6E85'      // Soft gray text
+                      }
+                  },
+                  fontFamily: {
+                      sans: ['Plus Jakarta Sans', 'sans-serif'],
+                  }
+              }
+          }
+      }
+  </script>
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/sections.css">
   <link rel="stylesheet" href="style.css">
+
+  <style>
+      .custom-transition {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+  </style>
 </head>
 <body>
 
@@ -30,59 +58,71 @@
     <div class="glowing-orb orb-2"></div>
   </div>
 
-  <!-- NAVBAR HEADER (Presisi Sesuai Mockup Referensi RUPANTARA) -->
-  <header class="navbar-header" id="navbar">
-    <div class="container navbar-container">
-      <a href="#beranda" class="brand-logo" id="logoHomeLink" aria-label="Halaman Utama RUPANTARA">
-        <div class="logo-icon">
-          <i class="fa-solid fa-rupiah-sign"></i>
-          <span class="pixel-dot p1"></span>
-          <span class="pixel-dot p2"></span>
-          <span class="pixel-dot p3"></span>
-        </div>
-        <div class="brand-text">
-          <span class="brand-name">RUPA<span class="brand-highlight">NTARA</span></span>
-        </div>
-      </a>
-
-      <nav class="nav-menu" id="navMenu">
-        <ul class="nav-links">
-          <li><a href="#beranda" class="nav-link active">Beranda</a></li>
-          <li><a href="#tentang" class="nav-link">Tentang kami</a></li>
-          <li><a href="#scannerInputSection" class="nav-link">Fitur</a></li>
-          <li><a href="#edukasi" class="nav-link">Edukasi</a></li>
-        </ul>
-      </nav>
-
-      <div class="nav-actions">
-        <button type="button" class="icon-btn notif-btn" aria-label="Notifikasi">
-          <i class="fa-regular fa-bell"></i>
-          <span class="notif-badge">3</span>
-        </button>
-
-        <div class="user-profile-badge">
-          <div class="user-avatar">
-            <i class="fa-regular fa-user"></i>
+  <!-- NAVBAR HEADER (Sticky, Responsif, dengan Hamburger Menu untuk Mobile) -->
+  <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-blue-50 py-3 px-6 md:px-12 flex justify-between items-center shadow-sm relative">
+      <!-- Logo & Brand Name -->
+      <div class="flex items-center gap-3">
+          <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Rupantara Logo" class="h-12 md:h-16 w-auto object-contain onerror-fallback">
+          <div class="flex items-center text-xl md:text-2xl tracking-wider uppercase font-black select-none">
+              <span class="text-[#0D3268]">RUP</span><span class="text-[#4FA1E4] font-semibold">ANTARA</span>
           </div>
-          <span class="user-greeting">Halo, <strong>User</strong></span>
-        </div>
-
-        <button type="button" class="btn btn-primary-sm login-btn">Login</button>
-        <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
-          <i class="fa-solid fa-bars"></i>
-        </button>
       </div>
-    </div>
-  </header>
+      
+      <!-- Menu Navigasi Tengah (Hidden on Mobile/Tablet, Flex on Desktop) -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+          <a href="#beranda" class="hover:text-blue-600 transition-colors">Beranda</a>
+          <a href="#tentang" class="hover:text-blue-600 transition-colors">Tentang Rupiah</a>
+          <a href="#scannerInputSection" class="hover:text-blue-600 transition-colors">Fitur</a>
+          <a href="../MATERI/materimenjagauang.html" class="hover:text-blue-600 transition-colors">Edukasi</a>
+          <a href="#scannerInputSection" class="text-blue-600 transition-colors font-bold border-b-2 border-blue-600 pb-1">Scan</a>
+      </div>
+      
+      <!-- Notifikasi, User Profil & Hamburger Button -->
+      <div class="flex items-center gap-4">
+          <!-- Tombol Login (Hidden on Mobile) -->
+          <a href="../LOGIN/login.php" class="hidden sm:inline-block bg-brand-dark hover:bg-brand-primary text-white text-sm font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 custom-transition">
+              Login
+          </a>
+          
+          <button class="text-slate-500 hover:text-blue-600 relative">
+              <i class="fa-regular fa-bell text-lg"></i>
+              <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+          </button>
+          
+          <div class="flex items-center gap-2 border-l pl-4 border-slate-200">
+              <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700">
+                  <i class="fa-regular fa-user"></i>
+              </div>
+              <span class="text-xs font-semibold text-slate-500 hidden lg:inline">Halo, User</span>
+          </div>
+
+          <!-- Hamburger Toggle Button (Hanya tampil di Mobile/Tablet) -->
+          <button onclick="toggleMobileMenu()" class="block md:hidden text-slate-600 hover:text-blue-600 focus:outline-none" aria-label="Toggle Menu">
+              <i class="fa-solid fa-bars text-2xl"></i>
+          </button>
+      </div>
+
+      <!-- Dropdown Menu Mobile -->
+      <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-b border-blue-50 px-6 py-4 space-y-3 font-semibold text-slate-600 shadow-lg absolute top-full left-0 w-full transition-all duration-300 z-40">
+          <a href="#beranda" onclick="toggleMobileMenu()" class="block hover:text-blue-600 py-1 transition-colors">Beranda</a>
+          <a href="#tentang" onclick="toggleMobileMenu()" class="block hover:text-blue-600 py-1 transition-colors">Tentang Rupiah</a>
+          <a href="#scannerInputSection" onclick="toggleMobileMenu()" class="block hover:text-blue-600 py-1 transition-colors">Fitur</a>
+          <a href="../MATERI/materimenjagauang.html" class="block hover:text-blue-600 py-1 transition-colors">Edukasi</a>
+          <a href="#scannerInputSection" onclick="toggleMobileMenu()" class="block text-blue-600 font-bold py-1 transition-colors">Scan</a>
+          <a href="../LOGIN/login.php" class="block sm:hidden bg-brand-dark hover:bg-brand-primary text-white text-center text-sm font-semibold py-2 rounded-xl custom-transition mt-2">
+              Login
+          </a>
+      </div>
+  </nav>
 
   <!-- CENTER SUB-HEADER TITLE -->
   <div class="center-sub-header" id="beranda">
     <h2 class="sub-brand-title">RUPANTARA</h2>
-    <p class="sub-brand-tagline">Cinta • Bangga • Rupiah</p>
+    <p class="sub-brand-tagline">Cinta • Bangga • Paham • Rupiah</p>
   </div>
 
   <main class="scanner-page-main">
-    <div class="container">
+    <div class="container px-4">
 
       <!-- ===================================================================
            VIEW 1: CONTAINER SCANNER ("SCAN DISINI !")
@@ -117,7 +157,7 @@
 
           <!-- KONTROL SCANNER & PILIHAN SAMPEL -->
           <div class="scanner-controls-panel">
-            <div class="control-buttons">
+            <div class="control-buttons flex flex-wrap gap-4 justify-center">
               <button type="button" class="btn btn-primary-sm" id="captureBtn" title="Jepret untuk memindai" aria-label="Jepret">
                 <i class="fa-solid fa-camera"></i> Jepret
               </button>
@@ -136,34 +176,34 @@
       <section class="hasil-scan-page-section" id="hasilScanSection">
         
         <!-- Header Hasil Scan -->
-        <div class="hasil-scan-header-bar">
+        <div class="hasil-scan-header-bar flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h1 class="hasil-scan-title">Hasil Scan</h1>
             <p class="hasil-scan-subtitle">Berikut informasi dari uang yang kamu scan</p>
           </div>
-          <button type="button" class="btn btn-outline btn-sm rescan-btn" id="rescanBtn">
+          <button type="button" class="btn btn-outline btn-sm rescan-btn w-full sm:w-auto" id="rescanBtn">
             <i class="fa-solid fa-arrow-left"></i> Pindai Uang Lain
           </button>
         </div>
 
-        <!-- 1. HERO SCAN RESULT CARD (TOP BIG CARD) -->
-        <div class="hasil-hero-card">
-          <div class="hasil-banknote-container">
-            <img src="https://images.unsplash.com/photo-1596489375836-7c093a5a782b?auto=format&fit=crop&w=800&q=80" alt="Hasil Scan Banknote" id="resBanknoteImg" class="hasil-banknote-img">
+        <!-- 1. HERO SCAN RESULT CARD (TOP BIG CARD - RESPONSIVE) -->
+        <div class="hasil-hero-card flex flex-col md:flex-row items-center gap-6">
+          <div class="hasil-banknote-container w-full md:w-1/2">
+            <img src="https://images.unsplash.com/photo-1596489375836-7c093a5a782b?auto=format&fit=crop&w=800&q=80" alt="Hasil Scan Banknote" id="resBanknoteImg" class="hasil-banknote-img w-full h-auto">
           </div>
 
-          <div class="hasil-banknote-info">
-            <div class="scan-success-badge">
-              <i class="fa-solid fa-circle-check"></i> Scan Berhasil !
+          <div class="hasil-banknote-info w-full md:w-1/2 text-center md:text-left">
+            <div class="scan-success-badge inline-flex justify-center md:justify-start">
+              <i class="fa-solid fa-circle-check mr-2"></i> Scan Berhasil !
             </div>
-            <p class="recognized-label">Uang berhasil dikenali sebagai</p>
+            <p class="recognized-label mt-3">Uang berhasil dikenali sebagai</p>
             <h2 class="giant-nominal-text" id="resNominalGiant">Rp2.000</h2>
-            <div class="banknote-type-tag" id="resJenisTag">Rupiah Kertas</div>
+            <div class="banknote-type-tag inline-block" id="resJenisTag">Rupiah Kertas</div>
           </div>
         </div>
 
-        <!-- 2. MIDDLE ROW 1: MAKNA VISUAL & SEJARAH TOKOH -->
-        <div class="grid grid-2 gap-md mt-md">
+        <!-- 2. MIDDLE ROW 1: MAKNA VISUAL & SEJARAH TOKOH (Responsive Grid) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
           
           <!-- MAKNA VISUAL UANG -->
           <div class="hasil-sub-card">
@@ -176,12 +216,12 @@
           <!-- SEJARAH TOKOH -->
           <div class="hasil-sub-card">
             <h3 class="card-italic-title">Sejarah Tokoh</h3>
-            <div class="sejarah-tokoh-box">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Mohammad_Husni_Thamrin.jpg/220px-Mohammad_Husni_Thamrin.jpg" alt="Foto Pahlawan" id="resHeroPhoto" class="hero-round-avatar">
-              <div class="sejarah-tokoh-text">
+            <div class="sejarah-tokoh-box flex flex-col sm:flex-row items-center sm:items-start gap-4">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Mohammad_Husni_Thamrin.jpg/220px-Mohammad_Husni_Thamrin.jpg" alt="Foto Pahlawan" id="resHeroPhoto" class="hero-round-avatar flex-shrink-0">
+              <div class="sejarah-tokoh-text text-center sm:text-left">
                 <h4 id="resHeroNameTitle">Mohammad Husni Thamrin</h4>
                 <p class="hero-ttl" id="resHeroTtl">(16 Februari 1894 – 11 Januari 1941)</p>
-                <p class="hero-bio-p" id="resHeroBioText">
+                <p class="hero-bio-p mt-2" id="resHeroBioText">
                   Mohammad Husni Thamrin adalah Pahlawan Nasional asal Batavia yang memperjuangkan hak-hak rakyat Indonesia melalui Volksraad. Atas jasa-jasanya, beliau diabadikan pada uang Rupiah pecahan Rp2.000.
                 </p>
               </div>
@@ -190,8 +230,8 @@
 
         </div>
 
-        <!-- 3. MIDDLE ROW 2: FAKTA MENARIK & CIRI KEASLIAN RUPIAH -->
-        <div class="grid grid-2 gap-md mt-md">
+        <!-- 3. MIDDLE ROW 2: FAKTA MENARIK & CIRI KEASLIAN RUPIAH (Responsive Grid) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
 
           <!-- FAKTA MENARIK -->
           <div class="hasil-sub-card">
@@ -211,44 +251,44 @@
 
         </div>
 
-        <!-- 4. BOTTOM CARD: CARA MERAWAT RUPIAH (5 CIRCLE ICONS) -->
-        <div class="hasil-sub-card mt-md text-center" id="edukasi">
+        <!-- 4. BOTTOM CARD: CARA MERAWAT RUPIAH (5 Responsive Circle Items) -->
+        <div class="hasil-sub-card mt-6 text-center" id="edukasi">
           <h3 class="card-italic-title text-center">Cara merawat Rupiah</h3>
           
-          <div class="care-5-circles-row">
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 mt-6 justify-items-center">
             <div class="care-circle-item">
-              <div class="circle-icon-box">
+              <div class="circle-icon-box mx-auto">
                 <i class="fa-solid fa-house-chimney-crack"></i>
               </div>
-              <p>Jangan simpan<br>di tempat<br>Lembab</p>
+              <p class="mt-2 text-xs sm:text-sm">Jangan simpan<br>di tempat<br>Lembab</p>
             </div>
 
             <div class="care-circle-item">
-              <div class="circle-icon-box">
+              <div class="circle-icon-box mx-auto">
                 <i class="fa-solid fa-receipt"></i>
               </div>
-              <p>Jangan melipat<br>Uang</p>
+              <p class="mt-2 text-xs sm:text-sm">Jangan melipat<br>Uang</p>
             </div>
 
             <div class="care-circle-item">
-              <div class="circle-icon-box">
+              <div class="circle-icon-box mx-auto">
                 <i class="fa-solid fa-pen-line"></i>
               </div>
-              <p>Jangan<br>Mencoret Uang</p>
+              <p class="mt-2 text-xs sm:text-sm">Jangan<br>Mencoret Uang</p>
             </div>
 
             <div class="care-circle-item">
-              <div class="circle-icon-box">
+              <div class="circle-icon-box mx-auto">
                 <i class="fa-solid fa-sun"></i>
               </div>
-              <p>Jangan Terkena<br>sinar Matahari<br>langsung</p>
+              <p class="mt-2 text-xs sm:text-sm">Jangan Terkena<br>sinar Matahari<br>langsung</p>
             </div>
 
             <div class="care-circle-item">
-              <div class="circle-icon-box">
+              <div class="circle-icon-box mx-auto">
                 <i class="fa-solid fa-wallet"></i>
               </div>
-              <p>Simpan di<br>tempat aman<br>dan bersih</p>
+              <p class="mt-2 text-xs sm:text-sm">Simpan di<br>tempat aman<br>dan bersih</p>
             </div>
           </div>
         </div>
@@ -258,47 +298,74 @@
     </div>
   </main>
 
-  <!-- FOOTER (PLEK JIPLEK MOCKUP REFERENSI RUPANTARA) -->
-  <footer class="site-footer" id="tentang">
-    <div class="container footer-container">
-      <div class="footer-brand-col">
-        <a href="#beranda" class="brand-logo footer-logo" aria-label="Logo Footer RUPANTARA">
-          <div class="logo-icon">
-            <i class="fa-solid fa-rupiah-sign"></i>
+  <!-- REDESIGNED FOOTER (Logo diperbesar secara signifikan dan diatur agar responsif) -->
+  <footer class="bg-[#0B3564] text-slate-100 py-16 mt-20 relative overflow-hidden" id="tentang">
+      <!-- Ornamen Dekorasi Background -->
+      <div class="absolute top-0 right-0 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-12 border-b border-blue-900/60">
+              
+              <!-- Kolom Info Utama Brand -->
+              <div class="md:col-span-5 space-y-6">
+                  <a href="#beranda" class="flex items-center gap-4 group" aria-label="Logo Footer RUPANTARA">
+                      <!-- Wadah Putih Solid yang Diperbesar agar Terlihat Sangat Jelas & Jernih -->
+                      <div class="bg-white p-3 rounded-2xl flex items-center justify-center shadow-lg w-24 h-24 sm:w-28 sm:h-28 transition-transform group-hover:scale-105 flex-shrink-0">
+                          <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Rupantara Logo" class="h-16 sm:h-20 w-auto object-contain onerror-fallback">
+                      </div>
+                      <div class="flex items-center text-2xl md:text-3xl tracking-wider uppercase font-black select-none">
+                          <span class="text-white">RUP</span><span class="text-[#4FA1E4] font-semibold">ANTARA</span>
+                      </div>
+                  </a>
+                  <p class="text-slate-300 text-sm leading-relaxed max-w-sm">
+                      Ruang Pintar Nusantara (RUPANTARA) adalah platform edukasi keuangan masa depan yang membantu masyarakat memahami nilai, sejarah, dan fitur keamanan mata uang Rupiah secara interaktif menggunakan teknologi pemindaian cerdas.
+                  </p>
+              </div>
+
+              <!-- Kolom Tautan Navigasi (Edukasi diarahkan ke materimenjagauang.html) -->
+              <div class="md:col-span-2 space-y-4">
+                  <h4 class="text-white font-extrabold text-sm tracking-wider uppercase border-b border-blue-900/60 pb-2">NAVIGASI</h4>
+                  <ul class="space-y-2.5 text-sm">
+                      <li><a href="#beranda" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Beranda</a></li>
+                      <li><a href="#tentang" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Tentang Rupiah</a></li>
+                      <li><a href="#scannerInputSection" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Fitur</a></li>
+                      <li><a href="../MATERI/materimenjagauang.html" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Edukasi</a></li>
+                      <li><a href="../SCANNER/index.html" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Scan</a></li>
+                  </ul>
+              </div>
+
+              <!-- Kolom Hubungi Kami / Bantuan -->
+              <div class="md:col-span-3 space-y-4">
+                  <h4 class="text-white font-extrabold text-sm tracking-wider uppercase border-b border-blue-900/60 pb-2">HUBUNGI KAMI</h4>
+                  <ul class="space-y-2.5 text-sm text-slate-300">
+                      <li class="flex items-center gap-3">
+                          <span class="text-blue-400"><i class="fa-solid fa-envelope"></i></span>
+                          <span>info@rupantara.org</span>
+                      </li>
+                      <li class="flex items-center gap-3">
+                          <span class="text-blue-400"><i class="fa-solid fa-phone"></i></span>
+                          <span>+62 823-4095-0845</span>
+                      </li>
+                      <li class="flex items-center gap-3">
+                          <span class="text-blue-400"><i class="fa-solid fa-location-dot"></i></span>
+                          <span>Purwokerto, Indonesia</span>
+                      </li>
+                  </ul>
+              </div>
+
           </div>
-          <div class="brand-text">
-            <span class="brand-name">RUPA<span class="brand-highlight">NTARA</span></span>
+
+          <!-- Bottom Footer Bar (Copyright & Kebijakan) -->
+          <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 text-xs text-slate-400">
+              <p>&copy; 2024 RUPANTARA Educational Platform. All rights reserved.</p>
+              <div class="flex gap-6">
+                  <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                  <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                  <a href="#" class="hover:text-white transition-colors">Help Center</a>
+              </div>
           </div>
-        </a>
-        <p class="footer-desc">Ruang Pintar Nusantara adalah platform edukasi keuangan masa depan yang membantu masyarakat memahami nilai dan fitur keamanan mata uang Rupiah secara interaktif.</p>
-        <p class="copyright-text"> 2024 RUPANTARA. Ruang Pintar Nusantara untuk Pendidikan Keuangan.</p>
       </div>
-
-      <div class="footer-links-col">
-        <h4>NAVIGASI</h4>
-        <ul>
-          <li><a href="#beranda">Beranda</a></li>
-          <li><a href="#tentang">Tentang Rupiah</a></li>
-          <li><a href="#scannerInputSection">Fitur</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-links-col">
-        <h4>EDUKASI</h4>
-        <ul>
-          <li><a href="#edukasi">Materi</a></li>
-          <li><a href="#scannerInputSection">Scan</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-links-col">
-        <h4>BANTUAN</h4>
-        <ul>
-          <li><a href="#tentang">FAQ</a></li>
-          <li><a href="#tentang">Kontak</a></li>
-        </ul>
-      </div>
-    </div>
   </footer>
 
   <!-- Scripts -->
@@ -307,5 +374,20 @@
   <script src="js/app.js"></script>
   <script src="js/scanner.js"></script>
 
+  <!-- Fallback Error Handling Script & Responsivitas Mobile Menu -->
+  <script>
+      // Fallback Pemuatan Gambar Logo
+      document.querySelectorAll('.onerror-fallback').forEach(img => {
+          img.onerror = function() {
+              this.style.display = 'none';
+          };
+      });
+
+      // Fungsi Toggle Menu Mobile Navigasi
+      function toggleMobileMenu() {
+          const menu = document.getElementById('mobileMenu');
+          menu.classList.toggle('hidden');
+      }
+  </script>
 </body>
 </html>
