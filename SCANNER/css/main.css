@@ -1,0 +1,164 @@
+/* ==========================================================================
+   RUPANTARA - MAIN DESIGN SYSTEM & VARIABLES
+   ========================================================================== */
+
+:root {
+  /* Color Palette (Rupantara Sky & Cyan Theme) */
+  --primary-50: #f0f9ff;
+  --primary-100: #e0f2fe;
+  --primary-200: #bae6fd;
+  --primary-300: #7dd3fc;
+  --primary-400: #38bdf8;
+  --primary-500: #0ea5e9;
+  --primary-600: #0284c7;
+  --primary-700: #0369a1;
+  --primary-800: #075985;
+  --primary-900: #0c4a6e;
+
+  /* Accent Colors */
+  --accent-gold: #f59e0b;
+  --accent-crimson: #ef4444;
+  --accent-emerald: #10b981;
+  --accent-purple: #8b5cf6;
+
+  /* Neutral Shades */
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748b;
+  --slate-400: #94a3b8;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+  --white-pure: #ffffff;
+
+  /* Glassmorphism Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-bg-hover: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(14, 165, 233, 0.25);
+  --glass-shadow: 0 20px 40px -15px rgba(2, 132, 199, 0.12);
+  --glass-blur: blur(16px);
+
+  /* Typography */
+  --font-primary: 'Plus Jakarta Sans', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--primary-50);
+  color: var(--slate-800);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Background Visual Layer with Monas Silhouette */
+.sky-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  background: linear-gradient(145deg, #e0f2fe 0%, #f0f9ff 45%, #e0e7ff 100%);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.monas-silhouette {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600" opacity="0.12"><path fill="%230284C7" d="M1200,600 L1200,350 L1215,350 L1215,200 L1225,200 L1225,120 L1228,120 L1228,80 L1230,50 L1232,80 L1232,120 L1235,120 L1235,200 L1245,200 L1245,350 L1260,350 L1260,600 Z M900,600 L900,300 L950,300 L950,600 Z M1000,600 L1000,220 L1040,220 L1040,600 Z M700,600 L700,380 L740,380 L740,600 Z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: cover;
+}
+
+.digital-dots-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(14, 165, 233, 0.18) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  opacity: 0.6;
+}
+
+.glowing-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+}
+
+.orb-1 {
+  top: -100px;
+  right: -100px;
+  width: 450px;
+  height: 450px;
+  background: var(--primary-300);
+}
+
+.orb-2 {
+  bottom: -150px;
+  left: -150px;
+  width: 550px;
+  height: 550px;
+  background: #c7d2fe;
+}
+
+/* Layout Container */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-padding {
+  padding: 5rem 0;
+}
+
+.text-center { text-align: center; }
+.mt-xs { margin-top: 0.5rem; }
+.mt-sm { margin-top: 1rem; }
+.mt-md { margin-top: 1.5rem; }
+.mt-lg { margin-top: 2.5rem; }
+
+.text-primary { color: var(--primary-600); }
+.text-gold { color: var(--accent-gold); }
+.text-danger { color: var(--accent-crimson); }
+.text-success { color: var(--accent-emerald); }
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-500) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hidden-element {
+  display: none !important;
+}
+
+.hidden-input {
+  display: none;
+}

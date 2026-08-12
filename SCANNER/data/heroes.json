@@ -1,0 +1,72 @@
+[
+  {
+    "id": "soekarno-hatta",
+    "nama": "Dr. (H.C.) Ir. Soekarno & Drs. Mohammad Hatta",
+    "pecahan": "Rp 100.000",
+    "peran": "Proklamator Kemerdekaan & Presiden-Wapres Pertama RI",
+    "asal": "Blitar (Jawa Timur) & Bukittinggi (Sumatera Barat)",
+    "biografi": "Ir. Soekarno dan Drs. Mohammad Hatta adalah dwi-tunggal proklamator kemerdekaan Indonesia pada 17 Agustus 1945. Soekarno dikenal sebagai Orator Bangsa dan penggagas Pancasila, sedangkan Hatta adalah Bapak Koperasi Indonesia yang mengutamakan ekonomi kerakyatan.",
+    "kontribusi": "Merumuskan dasar negara, memproklamasikan kemerdekaan, memimpin perjuangan diplomasi dan fisik mempertahankan kedaulatan NKRI.",
+    "fakta": "Foto keduanya ditampilkan berdampingan pada pecahan uang terbesar Indonesia sebagai penghormatan tertinggi atas jasa kemerdekaan."
+  },
+  {
+    "id": "djuanda",
+    "nama": "Ir. H. Djuanda Kartawidjaja",
+    "pecahan": "Rp 50.000",
+    "peran": "Perdana Menteri ke-10 Indonesia & Tokoh Deklarasi Djuanda",
+    "asal": "Tasikmalaya, Jawa Barat",
+    "biografi": "Ir. H. Djuanda Kartawidjaja adalah negarawan yang mencetuskan 'Deklarasi Djuanda' pada 13 Desember 1957, yang menyatakan bahwa laut Indonesia di antara pulau-pulau adalah wilayah kedaulatan mutlak NKRI.",
+    "kontribusi": "Menyatukan daratan dan perairan Indonesia menjadi satu kesatuan wilayah Nusantara yang utuh (Wawasan Nusantara).",
+    "fakta": "Sebelum Deklarasi Djuanda, wilayah laut Indonesia hanya berjarak 3 mil dari garis pantai masing-masing pulau."
+  },
+  {
+    "id": "sam-ratulangi",
+    "nama": "Dr. G.S.S.J. Ratulangi (Sam Ratulangi)",
+    "pecahan": "Rp 20.000",
+    "peran": "Gubernur Pertama Sulawesi & Tokoh Pendidikan",
+    "asal": "Tondano, Sulawesi Utara",
+    "biografi": "Sam Ratulangi adalah ilmuwan, politisi, dan pahlawan nasional dari Minahasa. Beliau aktif dalam BPUPKI/PPKI dan dikenal gigih memperjuangkan kesetaraan hak pendidikan bagi rakyat pribumi.",
+    "kontribusi": "Filsafat hidupnya 'Si Tou Timou Tumou Tou' menjadi inspirasi kerukunan dan kemanusiaan di Indonesia.",
+    "fakta": "Merupakan doktor matematika dan fisika pertama dari Indonesia lulusan Universitas Zurich, Swiss."
+  },
+  {
+    "id": "frans-kaisiepo",
+    "nama": "Frans Kaisiepo",
+    "pecahan": "Rp 10.000",
+    "peran": "Gubernur Provinsi Irian Barat & Pahlawan Integrasi Papua",
+    "asal": "Biak, Papua",
+    "biografi": "Frans Kaisiepo adalah tokoh penting dalam penyatuan Papua ke dalam NKRI. Beliau mewakili Papua dalam Konferensi Malino 1946 dan menolak pembentukan Negara Indonesia Timur.",
+    "kontribusi": "Mendirikan Partai Indonesia Merdeka (PIM) di Biak dan mengobarkan semangat integrasi Papua ke Indonesia.",
+    "fakta": "Frans Kaisiepo mengusulkan akronim 'IRIAN' yang merupakan singkatan dari 'Ikut Republik Indonesia Anti Nederland'."
+  },
+  {
+    "id": "idham-chalid",
+    "nama": "Dr. K.H. Idham Chalid",
+    "pecahan": "Rp 5.000",
+    "peran": "Tokoh Nahdlatul Ulama & Ketua MPR/DPR RI",
+    "asal": "Satui, Kalimantan Selatan",
+    "biografi": "Dr. K.H. Idham Chalid merupakan tokoh ulama terkemuka, negarawan, dan politisi berpengaruh. Beliau menjabat Wakil Perdana Menteri dan memimpin berbagai kementerian.",
+    "kontribusi": "Menjaga stabilitas politik dan kebangsaan melalui pendidikan pesantren dan pengabdian di pemerintahan.",
+    "fakta": "Diabadikan sebagai Pahlawan Nasional pada tahun 2011 atas pengabdian seumur hidupnya untuk keagamaan dan negara."
+  },
+  {
+    "id": "mh-thamrin",
+    "nama": "Mohammad Hoesni Thamrin",
+    "pecahan": "Rp 2.000",
+    "peran": "Tokoh Pergerakan Betawi & Anggota Volksraad",
+    "asal": "Batavia (Jakarta)",
+    "biografi": "M.H. Thamrin adalah pahlawan nasional dari Batavia yang berjuang lewat jalur parlemen Hindia Belanda (Volksraad) untuk perbaikan perumahan, kesehatan, dan fasilitas masyarakat Betawi.",
+    "kontribusi": "Menyatukan fraksi-fraksi nasionalis di parlemen dan mempopulerkan istilah 'Indonesia' menggantikan 'Nederlandsch-Indie'.",
+    "fakta": "Namanya diabadikan menjadi salah satu jalan protokol utama dan museum di jantung kota Jakarta."
+  },
+  {
+    "id": "tjut-meutia",
+    "nama": "Tjut Meutia",
+    "pecahan": "Rp 1.000",
+    "peran": "Pejuang Wanita Perang Aceh",
+    "asal": "Keureutoe, Pirak, Aceh Utara",
+    "biografi": "Tjut Meutia adalah srikandi pejuang Aceh yang memimpin pasukan gerilya melawan pasukan kolonial Belanda di hutan Pasai pasca gugurnya suami beliau, Teuku Cik Tunong.",
+    "kontribusi": "Menunjukkan keberanian dan kepemimpinan strategi gerilya wanita dalam mempertahankan tanah air dari penjajahan.",
+    "fakta": "Dikenal sangat taktis dalam menerapkan taktik taktis 'hit and run' di hutan belantara Aceh."
+  }
+]
