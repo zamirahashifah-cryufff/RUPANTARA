@@ -1,0 +1,775 @@
+/* ==========================================================================
+   RUPANTARA - SECTIONS STYLING (NAVBAR, SUB-HEADER, SCANNER & HASIL SCAN)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. NAVBAR & HEADER (Disesuaikan Persis Sesuai Desain Acuan)
+   -------------------------------------------------------------------------- */
+.navbar-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.88);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+  padding: 1rem 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: var(--transition-normal);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-400) 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white-pure);
+  font-size: 1.3rem;
+  font-weight: 800;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.pixel-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--white-pure);
+  border-radius: 50%;
+}
+.pixel-dot.p1 { top: 6px; right: 6px; }
+.pixel-dot.p2 { bottom: 6px; left: 6px; }
+.pixel-dot.p3 { top: 8px; left: 8px; opacity: 0.6; }
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #0D3268; /* Warna RUP (Deep Blue) sesuai acuan */
+}
+
+.brand-highlight {
+  color: #4FA1E4; /* Warna ANTARA (Bright Blue) sesuai acuan */
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 15px; /* Ukuran font disesuaikan presisi tinggi */
+  color: #475569; /* Soft Slate Gray sesuai gambar acuan */
+  transition: var(--transition-fast);
+  position: relative;
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent; /* Baseline alignment agar tidak menggeser menu */
+}
+
+.nav-link:hover {
+  color: #2563eb;
+}
+
+.nav-link.active {
+  color: #2563eb; /* Warna aktif biru cerah sesuai desain referensi */
+  font-weight: 700;
+  border-bottom: 2px solid #2563eb; /* Garis bawah biru solid */
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.notif-btn {
+  position: relative;
+  background: var(--slate-100);
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--slate-700);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.notif-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: var(--accent-crimson);
+  color: var(--white-pure);
+  font-size: 0.65rem;
+  font-weight: 800;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--white-pure);
+}
+
+.user-profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--slate-100);
+  padding: 0.35rem 0.8rem 0.35rem 0.4rem;
+  border-radius: 30px;
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--primary-600);
+  color: var(--white-pure);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
+.user-greeting {
+  font-size: 0.825rem;
+  color: var(--slate-700);
+}
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--slate-800);
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   2. CENTER SUB-HEADER
+   -------------------------------------------------------------------------- */
+.center-sub-header {
+  padding-top: 7rem;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.sub-brand-title {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #1e3a8a;
+  line-height: 1.1;
+}
+
+.sub-brand-tagline {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary-600);
+  margin-top: 0.2rem;
+}
+
+/* --------------------------------------------------------------------------
+   3. VIEW 1: RUPIAH SCANNER CONTAINER ("SCAN DISINI !")
+   -------------------------------------------------------------------------- */
+.scanner-viewport-section {
+  padding-bottom: 4rem;
+}
+
+.rupantara-scanner-card {
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(14, 165, 233, 0.35);
+  border-radius: 36px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 30px 60px -15px rgba(2, 132, 199, 0.18);
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.scanner-card-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.scanner-main-title {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 1px;
+  color: var(--primary-700);
+  text-transform: uppercase;
+}
+
+.scanner-main-title span {
+  color: var(--slate-900);
+}
+
+.scanner-subtitle {
+  color: var(--slate-600);
+  font-size: 0.98rem;
+  margin-top: 0.4rem;
+}
+
+.scanner-viewport-box {
+  width: 100%;
+  max-width: 680px;
+  height: 360px;
+  margin: 0 auto 2rem auto;
+  border-radius: 20px;
+  background: var(--slate-900);
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.corner-reticle {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-color: #ffffff;
+  border-style: solid;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.corner-reticle.top-left { top: 20px; left: 20px; border-width: 4px 0 0 4px; }
+.corner-reticle.top-right { top: 20px; right: 20px; border-width: 4px 4px 0 0; }
+.corner-reticle.bottom-left { bottom: 20px; left: 20px; border-width: 0 0 4px 4px; }
+.corner-reticle.bottom-right { bottom: 20px; right: 20px; border-width: 0 4px 4px 0; }
+
+.laser-scanner-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #38bdf8, #ffffff, #38bdf8, transparent);
+  box-shadow: 0 0 15px #38bdf8, 0 0 25px #38bdf8;
+  z-index: 9;
+  animation: scanAnimation 3s ease-in-out infinite alternate;
+  display: none;
+}
+
+.laser-scanner-line.active { display: block; }
+
+@keyframes scanAnimation {
+  0% { top: 10%; }
+  100% { top: 90%; }
+}
+
+.viewport-media-area {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scanner-preview-img {
+  max-width: 88%;
+  max-height: 88%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.viewport-media-area video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-stream-hidden {
+  display: none;
+}
+
+.scanner-status-overlay {
+  position: absolute;
+  bottom: 15px;
+  background: rgba(15, 23, 42, 0.75);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: var(--white-pure);
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 11;
+}
+
+.scanner-status-overlay .status-dismiss {
+  margin-left: 0.6rem;
+  background: transparent;
+  border: none;
+  color: var(--white-pure);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.1rem 0.4rem;
+}
+
+.scanner-status-overlay.hidden {
+  display: none !important;
+}
+
+.scanner-controls-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quick-sample-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--slate-700);
+}
+
+.sample-chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sample-chip {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  background: var(--white-pure);
+  border: 1.5px solid var(--slate-300);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--slate-700);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.sample-chip.active-chip, .sample-chip:hover {
+  background: var(--primary-600);
+  color: var(--white-pure);
+  border-color: var(--primary-600);
+}
+
+/* --------------------------------------------------------------------------
+   4. VIEW 2: HALAMAN HASIL SCAN (PRESISI PLEK JIPLEK 5 MOCKUP GAMBAR USER)
+   -------------------------------------------------------------------------- */
+.hasil-scan-page-section {
+  padding-bottom: 5rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.hasil-scan-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.8rem;
+}
+
+.hasil-scan-title {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1.1;
+}
+
+.hasil-scan-subtitle {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-top: 0.2rem;
+}
+
+/* Top Hero Scan Card */
+.hasil-hero-card {
+  background: rgba(255, 255, 255, 0.88);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid #cbd5e1;
+  border-radius: 28px;
+  padding: 2.2rem 2.8rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  box-shadow: 0 20px 40px rgba(14, 165, 233, 0.08);
+}
+
+.hasil-banknote-container {
+  width: 380px;
+  height: 185px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  background: #f1f5f9;
+}
+
+.hasil-banknote-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hasil-banknote-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.scan-success-badge {
+  background: #ecfdf5;
+  border: 1.5px solid #10b981;
+  color: #047857;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 30px;
+  padding: 0.4rem 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recognized-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-top: 1rem;
+}
+
+.giant-nominal-text {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #1e3a8a;
+  line-height: 1;
+  margin: 0.3rem 0 1rem 0;
+}
+
+.banknote-type-tag {
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 700;
+  font-size: 0.925rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+/* Sub-Cards styling */
+.hasil-sub-card {
+  background: rgba(240, 247, 255, 0.9);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid #c7d2fe;
+  border-radius: 24px;
+  padding: 1.8rem 2.2rem;
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.05);
+}
+
+.card-italic-title {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: #2563eb;
+  margin-bottom: 1.2rem;
+}
+
+/* Makna Visual List */
+.makna-visual-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.makna-visual-list li {
+  font-size: 0.875rem;
+  color: #1e293b;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+/* Sejarah Tokoh Box */
+.sejarah-tokoh-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.hero-round-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #93c5fd;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sejarah-tokoh-text h4 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.hero-ttl {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+  margin: 0.2rem 0 0.6rem 0;
+}
+
+.hero-bio-p {
+  font-size: 0.85rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+/* Fakta Menarik & Ciri Keaslian Lists */
+.fakta-menarik-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fakta-menarik-list li {
+  font-size: 0.85rem;
+  color: #1e293b;
+  line-height: 1.5;
+}
+
+.ciri-keaslian-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.ciri-keaslian-list li {
+  font-size: 0.85rem;
+  color: #1e293b;
+  line-height: 1.4;
+}
+
+.ciri-keaslian-list strong {
+  color: #1e3a8a;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.ciri-keaslian-list p {
+  color: #475569;
+  font-size: 0.825rem;
+  margin-top: 0.15rem;
+}
+
+/* Cara Merawat 5 Circles */
+.care-5-circles-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.care-circle-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 140px;
+}
+
+.circle-icon-box {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 2px solid #1e293b;
+  background: var(--white-pure);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: #1e293b;
+  margin-bottom: 0.8rem;
+  transition: var(--transition-fast);
+}
+
+.care-circle-item:hover .circle-icon-box {
+  transform: scale(1.08);
+  border-color: #0284c7;
+  color: #0284c7;
+}
+
+.care-circle-item p {
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.3;
+}
+
+/* --------------------------------------------------------------------------
+   5. FOOTER (PLEK JIPLEK MOCKUP REFERENSI RUPANTARA)
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: rgba(240, 247, 255, 0.95);
+  border-top: 1px solid rgba(14, 165, 233, 0.15);
+  padding: 4rem 0 2rem 0;
+  margin-top: 5rem;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.footer-brand-col .footer-logo {
+  margin-bottom: 1rem;
+}
+
+.footer-desc {
+  font-size: 0.875rem;
+  color: var(--slate-600);
+  max-width: 340px;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.copyright-text {
+  font-size: 0.8rem;
+  color: var(--slate-500);
+}
+
+.footer-links-col h4 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.2rem;
+}
+
+.footer-links-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links-col a {
+  text-decoration: none;
+  color: var(--slate-600);
+  font-size: 0.875rem;
+  transition: var(--transition-fast);
+}
+
+.footer-links-col a:hover {
+  color: var(--primary-600);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (TABLETS & MOBILE)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .hasil-hero-card {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hasil-banknote-info {
+    align-items: center;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    background: var(--white-pure);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    transition: var(--transition-normal);
+  }
+
+  .nav-menu.active { left: 0; }
+  .mobile-toggle { display: block; }
+  .user-greeting { display: none; }
+
+  .grid-2 { grid-template-columns: 1fr; }
+  .hasil-banknote-container { width: 100%; height: auto; }
+  .sejarah-tokoh-box { flex-direction: column; align-items: center; text-align: center; }
+
+  .footer-container { grid-template-columns: 1fr; }
+}
