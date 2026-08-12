@@ -1,33 +1,55 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Tentang Rupiah - RUPANTARA</title>
-    <!-- Tailwind CSS CDN -->
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Plus Jakarta Sans -->
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #f5f9fc;
         }
-        /* Custom Accordion Transition */
+
+
+        /* =====================================================
+           ACCORDION
+        ===================================================== */
+
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+            transition:
+                max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.3s ease;
         }
+
         .accordion-content.open {
-            max-height: 2000px; 
+            max-height: 2000px;
         }
-        /* Fan Rotation for Banknotes in Accordion 3 */
+
+
+        /* =====================================================
+           FAN MONEY
+        ===================================================== */
+
         .fan-container {
             display: flex;
             justify-content: center;
@@ -35,600 +57,2398 @@
             height: 240px;
             padding-bottom: 20px;
         }
+
         .fan-note {
             width: 140px;
-            transition: transform 0.3s ease, z-index 0.3s ease;
+            transition:
+                transform 0.3s ease,
+                z-index 0.3s ease;
             margin-left: -40px;
             cursor: pointer;
             border-radius: 6px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow:
+                0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
+
         .fan-note:first-child {
             margin-left: 0;
         }
+
         .fan-note:hover {
-            transform: translateY(-20px) scale(1.1) rotate(0deg) !important;
+            transform:
+                translateY(-20px)
+                scale(1.1)
+                rotate(0deg) !important;
+
             z-index: 50 !important;
         }
+
+
+        /* =====================================================
+           SECURITY CARDS
+        ===================================================== */
+
+        .security-card {
+            cursor: pointer;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .security-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .security-card:active {
+            transform: scale(0.98);
+        }
+
+
+        /* =====================================================
+           SECURITY CARD ART
+        ===================================================== */
+
+        .card-art {
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           SECURITY DETAIL POPUP
+        ===================================================== */
+
+        #securityDetail {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: blur(6px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity 0.3s ease,
+                visibility 0.3s ease;
+
+            z-index: 1000;
+        }
+
+        #securityDetail.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .security-modal {
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+
+            background: white;
+            border-radius: 28px;
+
+            box-shadow:
+                0 25px 60px rgba(15, 23, 42, 0.25);
+
+            transform: translateY(20px) scale(0.97);
+
+            transition:
+                transform 0.3s ease;
+        }
+
+        #securityDetail.active .security-modal {
+            transform: translateY(0) scale(1);
+        }
+
+
+        /* =====================================================
+           DOT DIVIDER
+        ===================================================== */
+
+        .dot-divider {
+            border-top:
+                2px dotted #cbd5e1;
+        }
+
+
+        /* =====================================================
+           SECURITY VISUAL
+        ===================================================== */
+
+        #detailVisual img {
+            max-width: 100%;
+            max-height: 260px;
+            object-fit: contain;
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 640px) {
+
+            .fan-container {
+                transform: scale(0.75);
+                margin-left: -40px;
+                margin-right: -40px;
+            }
+
+            .security-modal {
+                border-radius: 20px;
+            }
+
+        }
+
     </style>
+
 </head>
+
+
 <body class="text-[#1E293B]">
 
-    <!-- NAVBAR (Sticky, Responsif, dengan jajaran font presisi tinggi) -->
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-blue-50 py-4 px-6 md:px-12 flex justify-between items-center shadow-sm relative">
-        <!-- Logo & Brand Name -->
+    <!-- NAVBAR -->
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-blue-50 py-3 px-6 md:px-12 flex justify-between items-center">
+        <!-- Logo & Brand Name (Disesuaikan dengan Desain) -->
         <div class="flex items-center gap-3">
-            <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Rupantara Logo" class="h-12 md:h-14 w-auto object-contain onerror-fallback">
+            <!-- Ukuran Logo Diperbesar -->
+            <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Rupantara Logo" class="h-14 md:h-16 w-auto object-contain onerror-fallback">
+            <!-- Warna Teks RUPANTARA Disamakan dengan Desain -->
             <div class="flex items-center text-xl md:text-2xl tracking-wider uppercase font-black select-none">
                 <span class="text-[#0D3268]">RUP</span><span class="text-[#4FA1E4] font-semibold">ANTARA</span>
             </div>
+
         </div>
         
-        <!-- Menu Navigasi Tengah (Hidden on Mobile/Tablet, Flex on Desktop) -->
-      <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-          <a href="#" class="hover:text-blue-600 transition-colors">Beranda</a>
-          <a href="../TENTANG RUPIAH/tentangrupiah.html" class="text-blue-600 transition-colors font-bold border-b-2 border-blue-600 pb-1">Tentang Rupiah</a>
-          <a href="#" class="hover:text-blue-600 transition-colors">Fitur</a>
-          <a href="../MATERI/materimenjagauang.html" class="hover:text-blue-600 transition-colors">Edukasi</a>
-          <a href="../SCANNER/index.html" class="hover:text-blue-600 transition-colors">Scan</a>
-      </div>
-
-        <!-- Bagian Aksi Kanan (Tombol Login, Lonceng, & Profil User) -->
+        <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+            <a href="#" class="hover:text-blue-600 transition-colors">Beranda</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Tentang kami</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Fitur</a>
+            <a href="#" class="text-blue-600 transition-colors font-bold border-b-2 border-blue-600 pb-1">Edukasi</a>
+            <a href="#" class="bg-blue-900 text-white px-5 py-1.5 rounded-full hover:bg-blue-800 transition-colors">Login</a>
+        </div>
+        
         <div class="flex items-center gap-4">
-            <!-- Tombol Login -->
-            <a href="../LOGIN/login.php" class="bg-[#0B3564] hover:bg-[#004DB3] text-white text-sm font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300">
-                Login
-            </a>
-            
             <button class="text-slate-500 hover:text-blue-600 relative">
                 <i class="fa-regular fa-bell text-lg"></i>
-                <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+
+                <span
+                    class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full">
+                </span>
+
             </button>
-            <div class="flex items-center gap-2 border-l pl-4 border-slate-200">
-                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700">
+
+
+            <div
+                class="flex items-center gap-2 border-l pl-4 border-slate-200">
+
+                <div
+                    class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700">
+
                     <i class="fa-regular fa-user"></i>
+
                 </div>
-                <span class="text-xs font-semibold text-slate-500 hidden sm:inline">Halo, User</span>
+
+                <span
+                    class="text-xs font-semibold text-slate-500 hidden sm:inline">
+                    Halo, User
+                </span>
+
             </div>
+
         </div>
+
     </nav>
 
-    <!-- HERO SECTION -->
-    <header class="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white pt-12 pb-24 px-6 md:px-12 lg:px-24">
+
+
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
+
+    <header
+        class="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white pt-12 pb-24 px-6 md:px-12 lg:px-24">
+
         <!-- Background Grid -->
-        <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <!-- Left Text Content -->
+        <div
+            class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]">
+        </div>
+
+
+        <div
+            class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+
+            <!-- LEFT -->
             <div class="lg:col-span-6 z-10">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-blue-950 leading-tight mb-4">
-                    TENTANG<br><span class="text-blue-600">RUPIAH</span>
+
+                <h1
+                    class="text-4xl md:text-5xl lg:text-6xl font-black text-blue-950 leading-tight mb-4">
+
+                    TENTANG
+                    <br>
+
+                    <span class="text-blue-600">
+                        RUPIAH
+                    </span>
+
                 </h1>
-                <p class="text-slate-600 text-base md:text-lg mb-8 max-w-lg leading-relaxed">
-                    Kenali sejarah, pecahan, dan unsur keamanan mata uang Indonesia secara interaktif.
+
+
+                <p
+                    class="text-slate-600 text-base md:text-lg mb-8 max-w-lg leading-relaxed">
+
+                    Kenali sejarah, pecahan, dan unsur keamanan
+                    mata uang Indonesia secara interaktif.
+
                 </p>
-                <a href="#belajar-section" class="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-blue-500/20 hover:shadow-xl transition-all duration-300">
-                    Jelajahi Pecahan <i class="fa-solid fa-arrow-right"></i>
+
+
+                <a
+                    href="#belajar-section"
+                    class="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-blue-500/20 hover:shadow-xl transition-all duration-300">
+
+                    Jelajahi Pecahan
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
                 </a>
+
             </div>
 
-            <!-- Right Banknote Stack -->
-            <div class="lg:col-span-6 flex justify-center lg:justify-end relative">
-                <!-- Background Glow -->
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-blue-400/10 rounded-full blur-3xl -z-10"></div>
-                
-                <!-- Container Tumpukan Uang yang Padat -->
-                <div class="relative w-full max-w-[380px] flex flex-col items-end pr-8 select-none">
-                    <!-- Uang 100.000 -->
-                    <img src="../GAMBAR_GAMBAR/uang_100000.jpg" alt="100 Ribu" 
-                         class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[-4deg] translate-x-[-15px] relative z-50 hover:scale-105 transition-transform duration-300">
-                    
-                    <!-- Uang 50.000 -->
-                    <img src="../GAMBAR_GAMBAR/uang_50000.jpg" alt="50 Ribu" 
-                         class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[-3deg] translate-x-[-5px] -mt-[110px] md:-mt-[125px] relative z-40 hover:scale-105 transition-transform duration-300">
-                    
-                    <!-- Uang 10.000 -->
-                    <img src="../GAMBAR_GAMBAR/uang_1000.jpg" onerror="this.src='../GAMBAR_GAMBAR/uang_10000.jpg'" alt="10 Ribu" 
-                         class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[-2deg] translate-x-[5px] -mt-[110px] md:-mt-[125px] relative z-30 hover:scale-105 transition-transform duration-300">
-                    
-                    <!-- Uang 5.000 -->
-                    <img src="../GAMBAR_GAMBAR/uang_5000.jpg" alt="5 Ribu" 
-                         class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[-1deg] translate-x-[15px] -mt-[110px] md:-mt-[125px] relative z-20 hover:scale-105 transition-transform duration-300">
-                    
-                    <!-- Uang 2.000 -->
-                    <img src="../GAMBAR_GAMBAR/uang_2000.jpg" alt="2 Ribu" 
-                         class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[0deg] translate-x-[25px] -mt-[110px] md:-mt-[125px] relative z-10 hover:scale-105 transition-transform duration-300">
+
+
+            <!-- RIGHT -->
+            <div
+                class="lg:col-span-6 flex justify-center lg:justify-end relative">
+
+                <div
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-blue-400/10 rounded-full blur-3xl -z-10">
                 </div>
+
+
+                <div
+                    class="relative w-full max-w-[380px] flex flex-col items-end pr-8 select-none">
+
+
+                    <img
+                        src="../GAMBAR_GAMBAR/uang_100000.jpg"
+                        alt="100 Ribu"
+                        class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[-4deg] translate-x-[-15px] relative z-50 hover:scale-105 transition-transform duration-300">
+
+
+                    <img
+                        src="../GAMBAR_GAMBAR/uang_50000.jpg"
+                        alt="50 Ribu"
+                        class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[-3deg] translate-x-[-5px] -mt-[110px] md:-mt-[125px] relative z-40 hover:scale-105 transition-transform duration-300">
+
+
+                    <img
+                        src="../GAMBAR_GAMBAR/uang_1000.jpg"
+                        onerror="this.src='../GAMBAR_GAMBAR/uang_10000.jpg'"
+                        alt="10 Ribu"
+                        class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[-2deg] translate-x-[5px] -mt-[110px] md:-mt-[125px] relative z-30 hover:scale-105 transition-transform duration-300">
+
+
+                    <img
+                        src="../GAMBAR_GAMBAR/uang_5000.jpg"
+                        alt="5 Ribu"
+                        class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[-1deg] translate-x-[15px] -mt-[110px] md:-mt-[125px] relative z-20 hover:scale-105 transition-transform duration-300">
+
+
+                    <img
+                        src="../GAMBAR_GAMBAR/uang_2000.jpg"
+                        alt="2 Ribu"
+                        class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[0deg] translate-x-[25px] -mt-[110px] md:-mt-[125px] relative z-10 hover:scale-105 transition-transform duration-300">
+
+                </div>
+
             </div>
+
         </div>
+
     </header>
 
-    <!-- CONTENT / ACCORDION SECTION -->
-    <main id="belajar-section" class="max-w-5xl mx-auto px-4 md:px-6 py-16">
-        
-        <!-- Badge & Heading -->
-        <div class="text-center mb-10">
-            <span class="inline-flex items-center gap-2 bg-blue-100 text-blue-800 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider mb-4">
-                <i class="fa-solid fa-book-open"></i> Apa Itu Rupiah?
-            </span>
-            <h2 class="text-3xl md:text-4xl font-extrabold text-blue-950 mb-3">Apa itu Rupiah?</h2>
-            <p class="text-slate-500 max-w-lg mx-auto text-sm md:text-base leading-relaxed">
-                Kenali Rupiah lebih dekat melalui informasi dasar berikut. <br>
-                <span class="font-medium text-blue-600">Klik salah satu kartu untuk membuka penjelasan.</span>
-            </p>
-        </div>
 
-        <!-- Info Tip Box -->
-        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 flex items-center gap-3 mb-8 max-w-2xl mx-auto shadow-sm">
-            <div class="text-blue-500">
-                <i class="fa-solid fa-circle-info text-lg"></i>
-            </div>
-            <p class="text-xs md:text-sm text-blue-800 font-medium">
-                Klik pada tombol panah di kanan setiap kartu untuk melihat isi detail informasi.
-            </p>
-        </div>
 
-        <!-- Accordion Container -->
-        <div class="space-y-4">
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
 
-            <!-- CARD 1: Apa itu Rupiah? -->
-            <div class="bg-white rounded-2xl border-l-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
-                <!-- Header -->
-                <div onclick="toggleAccordion('acc1')" class="p-6 flex justify-between items-center cursor-pointer select-none">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shadow-inner">
-                            <i class="fa-solid fa-shield-halved text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg text-blue-950">Apa itu Rupiah?</h3>
-                            <p class="text-xs text-slate-400">Mata uang resmi Republik Indonesia.</p>
-                        </div>
-                    </div>
-                    <button class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 hover:bg-blue-100 transition-colors transform duration-300" id="btn-acc1">
-                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300" id="icon-acc1"></i>
-                    </button>
-                </div>
-                <!-- Content Accordion 1 -->
-                <div id="content-acc1" class="accordion-content">
-                    <div class="p-6 border-t border-slate-100 bg-slate-50/50 space-y-6">
-                        <p class="text-slate-600 leading-relaxed text-sm md:text-base">
-                            Rupiah (Rp) adalah mata uang resmi Republik Indonesia yang diterbitkan dan dikelola oleh Bank Indonesia. Rupiah digunakan sebagai alat pembayaran yang sah di seluruh wilayah kedaulatan Indonesia.
-                        </p>
-                        
-                        <!-- Mini Cards Grid -->
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                            <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
-                                <span class="text-blue-600"><i class="fa-solid fa-shield-heart text-xl"></i></span>
-                                <div>
-                                    <h4 class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Mata Uang Resmi</h4>
-                                    <p class="text-xs font-bold text-slate-700">Republik Indonesia</p>
-                                </div>
-                            </div>
-                            <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
-                                <span class="text-blue-600"><i class="fa-solid fa-building-columns text-xl"></i></span>
-                                <div>
-                                    <h4 class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Diterbitkan Oleh</h4>
-                                    <p class="text-xs font-bold text-slate-700">Bank Indonesia</p>
-                                </div>
-                            </div>
-                            <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
-                                <span class="text-blue-600 font-extrabold text-lg">Rp</span>
-                                <div>
-                                    <h4 class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Simbol</h4>
-                                    <p class="text-xs font-bold text-slate-700">Rp</p>
-                                </div>
-                            </div>
-                            <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
-                                <span class="text-blue-600 font-extrabold text-sm">IDR</span>
-                                <div>
-                                    <h4 class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Kode Mata Uang</h4>
-                                    <p class="text-xs font-bold text-slate-700">IDR (Indonesian Rupiah)</p>
-                                </div>
-                            </div>
-                        </div>
+    <main
+        id="belajar-section"
+        class="max-w-5xl mx-auto px-4 md:px-6 py-16">
 
-                        <!-- Alert Box -->
-                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-3">
-                            <div class="text-amber-500 mt-1"><i class="fa-solid fa-lightbulb"></i></div>
-                            <p class="text-xs md:text-sm text-amber-800 leading-relaxed">
-                                Rupiah digunakan dalam setiap aktivitas ekonomi masyarakat Indonesia dan menjadi salah satu simbol utama kedaulatan negara.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+
+        <!-- =================================================
+             APA ITU RUPIAH
+        ================================================= -->
+
+        <section>
+
+            <!-- Heading -->
+            <div class="text-center mb-8">
+
+                <span
+                    class="inline-flex items-center gap-2 bg-blue-100 text-blue-800 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider mb-4">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    Apa Itu Rupiah?
+
+                </span>
+
+
+                <h2
+                    class="text-3xl md:text-4xl font-extrabold text-blue-950 mb-3">
+
+                    Apa itu Rupiah?
+
+                </h2>
+
+
+                <p
+                    class="text-slate-500 max-w-lg mx-auto text-sm md:text-base leading-relaxed">
+
+                    Kenali Rupiah lebih dekat melalui informasi dasar berikut.
+
+                </p>
+
             </div>
 
-            <!-- CARD 2: Siapa yang menerbitkan Rupiah? -->
-            <div class="bg-white rounded-2xl border-l-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
-                <!-- Header -->
-                <div onclick="toggleAccordion('acc2')" class="p-6 flex justify-between items-center cursor-pointer select-none">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shadow-inner">
-                            <i class="fa-solid fa-building-columns text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg text-blue-950">Siapa yang menerbitkan Rupiah?</h3>
-                            <p class="text-xs text-slate-400">Mengenal peran Bank Indonesia.</p>
-                        </div>
+
+
+            <!-- KOTAK INFO LANGSING -->
+            <div
+                class="max-w-3xl mx-auto mb-10">
+
+                <div
+                    class="bg-blue-50 border border-blue-200 rounded-xl px-5 py-4 flex items-center gap-4 shadow-sm">
+
+                    <div
+                        class="w-9 h-9 rounded-full bg-white flex items-center justify-center text-blue-600 shrink-0 shadow-sm">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
                     </div>
-                    <button class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 hover:bg-blue-100 transition-colors transform duration-300" id="btn-acc2">
-                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300" id="icon-acc2"></i>
-                    </button>
+
+
+                    <p
+                        class="text-xs md:text-sm text-blue-800 font-medium leading-relaxed">
+
+                        Rupiah memiliki peran penting sebagai mata uang
+                        resmi Republik Indonesia dan digunakan dalam
+                        berbagai aktivitas ekonomi masyarakat.
+
+                    </p>
+
                 </div>
-                <!-- Content Accordion 2 -->
-                <div id="content-acc2" class="accordion-content">
-                    <div class="p-6 border-t border-slate-100 bg-slate-50/50 space-y-6">
-                        <p class="text-slate-600 leading-relaxed text-sm md:text-base">
-                            Bank Indonesia (BI) adalah bank sentral Republik Indonesia yang memiliki kewenangan penuh untuk mengelola Rupiah — meliputi pengelolaan pengeluaran, pengedaran, pencabutan, dan penarikan Rupiah sebagai mata uang resmi. Kewenangan ini diberikan melalui amanah undang-undang negara.
-                        </p>
 
-                        <!-- UU Citation Box -->
-                        <div class="bg-blue-50/80 border border-blue-200 rounded-xl p-4">
-                            <div class="flex items-center gap-2 mb-2">
-                                <i class="fa-solid fa-gavel text-blue-700"></i>
-                                <h4 class="font-bold text-xs md:text-sm text-blue-900">Undang-Undang Nomor 7 Tahun 2011 — Pasal 11 ayat (3)</h4>
-                            </div>
-                            <p class="text-xs text-slate-600 italic">
-                                "Bank Indonesia merupakan satu-satunya lembaga yang berwenang melakukan pengeluaran, pengedaran, dan/atau pencabutan dan penarikan Rupiah."
-                            </p>
-                        </div>
 
-                        <!-- 4 Step Process Grid -->
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                            <!-- Step 1 -->
-                            <div class="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
-                                <div class="bg-blue-100 h-28 flex items-center justify-center text-blue-600 text-3xl">
-                                    <i class="fa-solid fa-print"></i>
-                                </div>
-                                <div class="p-3 text-center flex-grow flex flex-col justify-between">
-                                    <span class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold inline-flex items-center justify-center mx-auto -mt-6 border-2 border-white mb-2">1</span>
-                                    <p class="font-extrabold text-xs text-blue-950 uppercase tracking-tight">Menerbitkan Rupiah</p>
-                                </div>
-                            </div>
-                            <!-- Step 2 -->
-                            <div class="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
-                                <div class="bg-blue-100 h-28 flex items-center justify-center text-blue-600 text-3xl">
-                                    <i class="fa-solid fa-truck-ramp-box"></i>
-                                </div>
-                                <div class="p-3 text-center flex-grow flex flex-col justify-between">
-                                    <span class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold inline-flex items-center justify-center mx-auto -mt-6 border-2 border-white mb-2">2</span>
-                                    <p class="font-extrabold text-xs text-blue-950 uppercase tracking-tight">Pengedaran Uang</p>
-                                </div>
-                            </div>
-                            <!-- Step 3 -->
-                            <div class="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
-                                <div class="bg-blue-100 h-28 flex items-center justify-center text-blue-600 text-3xl">
-                                    <i class="fa-solid fa-hand-holding-dollar"></i>
-                                </div>
-                                <div class="p-3 text-center flex-grow flex flex-col justify-between">
-                                    <span class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold inline-flex items-center justify-center mx-auto -mt-6 border-2 border-white mb-2">3</span>
-                                    <p class="font-extrabold text-xs text-blue-950 uppercase tracking-tight">Menarik Uang Tidak Layak</p>
-                                </div>
-                            </div>
-                            <!-- Step 4 -->
-                            <div class="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
-                                <div class="bg-blue-100 h-28 flex items-center justify-center text-blue-600 text-3xl">
-                                    <i class="fa-solid fa-fire-burner"></i>
-                                </div>
-                                <div class="p-3 text-center flex-grow flex flex-col justify-between">
-                                    <span class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold inline-flex items-center justify-center mx-auto -mt-6 border-2 border-white mb-2">4</span>
-                                    <p class="font-extrabold text-xs text-blue-950 uppercase tracking-tight">Pemusnahan Sesuai Prosedur</p>
-                                </div>
-                            </div>
-                        </div>
+                <!-- DOTTED LINE -->
+                <div class="dot-divider mt-8"></div>
 
-                        <!-- Source Pill -->
-                        <div class="text-right">
-                            <span class="inline-block bg-slate-200 text-slate-600 font-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider">
-                                Sumber: Bank Indonesia
-                            </span>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <!-- CARD 3: Simbol & Kode Rupiah -->
-            <div class="bg-white rounded-2xl border-l-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
-                <!-- Header -->
-                <div onclick="toggleAccordion('acc3')" class="p-6 flex justify-between items-center cursor-pointer select-none">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shadow-inner">
-                            <span class="font-extrabold text-lg">Rp</span>
+
+
+            <!-- ACCORDIONS -->
+            <div class="space-y-4">
+
+
+                <!-- CARD 1 -->
+                <div
+                    class="bg-white rounded-2xl border-l-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+
+                    <div
+                        onclick="toggleAccordion('acc1')"
+                        class="p-6 flex justify-between items-center cursor-pointer select-none">
+
+                        <div class="flex items-center gap-4">
+
+                            <div
+                                class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shadow-inner">
+
+                                <i class="fa-solid fa-shield-halved text-xl"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3
+                                    class="font-bold text-lg text-blue-950">
+
+                                    Apa itu Rupiah?
+
+                                </h3>
+
+                                <p
+                                    class="text-xs text-slate-400">
+
+                                    Mata uang resmi Republik Indonesia.
+
+                                </p>
+
+                            </div>
+
                         </div>
-                        <div>
-                            <h3 class="font-bold text-lg text-blue-950">Simbol & Kode Rupiah</h3>
-                            <p class="text-xs text-slate-400">Arti simbol Rp dan kode IDR.</p>
-                        </div>
+
+
+                        <button
+                            class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 hover:bg-blue-100 transition-colors transform duration-300"
+                            id="btn-acc1">
+
+                            <i
+                                class="fa-solid fa-chevron-down text-sm transition-transform duration-300"
+                                id="icon-acc1">
+                            </i>
+
+                        </button>
+
                     </div>
-                    <button class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 hover:bg-blue-100 transition-colors transform duration-300" id="btn-acc3">
-                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300" id="icon-acc3"></i>
-                    </button>
-                </div>
-                <!-- Content Accordion 3 -->
-                <div id="content-acc3" class="accordion-content">
-                    <div class="p-6 border-t border-slate-100 bg-slate-50/50 space-y-6">
-                        
-                        <!-- Mini Header -->
-                        <div class="text-center">
-                            <h4 class="font-extrabold text-lg text-blue-950">Kenali seluruh pecahan Rupiah</h4>
-                        </div>
 
-                        <!-- Fanned Notes Visualizer -->
-                        <div class="fan-container">
-                            <img src="../GAMBAR_GAMBAR/uang_2000.jpg" alt="Rp 2.000" class="fan-note" style="transform: rotate(-16deg);">
-                            <img src="../GAMBAR_GAMBAR/uang_5000.jpg" alt="Rp 5.000" class="fan-note" style="transform: rotate(-8deg);">
-                            <img src="../GAMBAR_GAMBAR/uang_10000.jpg" alt="Rp 10.000" class="fan-note" style="transform: rotate(0deg);">
-                            <img src="../GAMBAR_GAMBAR/uang_50000.jpg" alt="Rp 50.000" class="fan-note" style="transform: rotate(8deg);">
-                            <img src="../GAMBAR_GAMBAR/uang_100000.jpg" alt="Rp 100.000" class="fan-note" style="transform: rotate(16deg);">
-                        </div>
 
-                        <!-- Info Banner Inside -->
-                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-3">
-                            <div class="text-amber-500 mt-1"><i class="fa-solid fa-lightbulb"></i></div>
-                            <p class="text-xs md:text-sm text-amber-800 leading-relaxed">
-                                Setiap pecahan Rupiah menggunakan simbol resmi <span class="font-bold">"Rp"</span>, sedangkan seluruh mata uang Indonesia memiliki kode standar internasional, yaitu <span class="font-bold">"IDR"</span>.
+                    <div
+                        id="content-acc1"
+                        class="accordion-content">
+
+                        <div
+                            class="p-6 border-t border-slate-100 bg-slate-50/50 space-y-6">
+
+                            <p
+                                class="text-slate-600 leading-relaxed text-sm md:text-base">
+
+                                Rupiah (Rp) adalah mata uang resmi Republik
+                                Indonesia yang diterbitkan dan dikelola oleh
+                                Bank Indonesia. Rupiah digunakan sebagai alat
+                                pembayaran yang sah di seluruh wilayah
+                                kedaulatan Indonesia.
+
                             </p>
+
+
+                            <div
+                                class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+
+
+                                <div
+                                    class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+
+                                    <span class="text-blue-600">
+                                        <i class="fa-solid fa-shield-heart text-xl"></i>
+                                    </span>
+
+                                    <div>
+
+                                        <h4
+                                            class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">
+
+                                            Mata Uang Resmi
+
+                                        </h4>
+
+                                        <p
+                                            class="text-xs font-bold text-slate-700">
+
+                                            Republik Indonesia
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div
+                                    class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+
+                                    <span class="text-blue-600">
+                                        <i class="fa-solid fa-building-columns text-xl"></i>
+                                    </span>
+
+                                    <div>
+
+                                        <h4
+                                            class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">
+
+                                            Diterbitkan Oleh
+
+                                        </h4>
+
+                                        <p
+                                            class="text-xs font-bold text-slate-700">
+
+                                            Bank Indonesia
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div
+                                    class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+
+                                    <span
+                                        class="text-blue-600 font-extrabold text-lg">
+
+                                        Rp
+
+                                    </span>
+
+                                    <div>
+
+                                        <h4
+                                            class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">
+
+                                            Simbol
+
+                                        </h4>
+
+                                        <p
+                                            class="text-xs font-bold text-slate-700">
+
+                                            Rp
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div
+                                    class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3">
+
+                                    <span
+                                        class="text-blue-600 font-extrabold text-sm">
+
+                                        IDR
+
+                                    </span>
+
+                                    <div>
+
+                                        <h4
+                                            class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">
+
+                                            Kode Mata Uang
+
+                                        </h4>
+
+                                        <p
+                                            class="text-xs font-bold text-slate-700">
+
+                                            IDR
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-3">
+
+                                <div class="text-amber-500 mt-1">
+                                    <i class="fa-solid fa-lightbulb"></i>
+                                </div>
+
+                                <p
+                                    class="text-xs md:text-sm text-amber-800 leading-relaxed">
+
+                                    Rupiah digunakan dalam setiap aktivitas
+                                    ekonomi masyarakat Indonesia dan menjadi
+                                    salah satu simbol utama kedaulatan negara.
+
+                                </p>
+
+                            </div>
+
                         </div>
 
-                        <!-- Columns Info Details -->
-                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                            
-                            <!-- Left: Simbol Card -->
-                            <div class="lg:col-span-5 bg-blue-50/30 border border-blue-200 rounded-2xl p-6 text-center">
-                                <h5 class="font-bold text-blue-950 mb-3 text-sm">Simbol Rupiah</h5>
-                                <div class="w-16 h-16 bg-white border-2 border-blue-500 rounded-full flex items-center justify-center font-bold text-2xl text-blue-600 mx-auto mb-4 shadow-sm">
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 2 -->
+                <div
+                    class="bg-white rounded-2xl border-l-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+
+                    <div
+                        onclick="toggleAccordion('acc2')"
+                        class="p-6 flex justify-between items-center cursor-pointer select-none">
+
+                        <div class="flex items-center gap-4">
+
+                            <div
+                                class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shadow-inner">
+
+                                <i class="fa-solid fa-building-columns text-xl"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3
+                                    class="font-bold text-lg text-blue-950">
+
+                                    Siapa yang menerbitkan Rupiah?
+
+                                </h3>
+
+                                <p
+                                    class="text-xs text-slate-400">
+
+                                    Mengenal peran Bank Indonesia.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 hover:bg-blue-100 transition-colors transform duration-300"
+                            id="btn-acc2">
+
+                            <i
+                                class="fa-solid fa-chevron-down text-sm transition-transform duration-300"
+                                id="icon-acc2">
+                            </i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="content-acc2"
+                        class="accordion-content">
+
+                        <div
+                            class="p-6 border-t border-slate-100 bg-slate-50/50 space-y-6">
+
+                            <p
+                                class="text-slate-600 leading-relaxed text-sm md:text-base">
+
+                                Bank Indonesia (BI) adalah bank sentral
+                                Republik Indonesia yang memiliki kewenangan
+                                penuh untuk mengelola Rupiah.
+
+                            </p>
+
+
+                            <div
+                                class="bg-blue-50/80 border border-blue-200 rounded-xl p-4">
+
+                                <div
+                                    class="flex items-center gap-2 mb-2">
+
+                                    <i
+                                        class="fa-solid fa-gavel text-blue-700">
+                                    </i>
+
+                                    <h4
+                                        class="font-bold text-xs md:text-sm text-blue-900">
+
+                                        Undang-Undang Nomor 7 Tahun 2011
+
+                                    </h4>
+
+                                </div>
+
+
+                                <p
+                                    class="text-xs text-slate-600 italic">
+
+                                    Bank Indonesia merupakan lembaga yang
+                                    berwenang melakukan pengeluaran,
+                                    pengedaran, pencabutan dan penarikan
+                                    Rupiah.
+
+                                </p>
+
+                            </div>
+
+
+                            <div
+                                class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+
+                                <div
+                                    class="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
+
+                                    <div
+                                        class="bg-blue-100 h-28 flex items-center justify-center text-blue-600 text-3xl">
+
+                                        <i class="fa-solid fa-print"></i>
+
+                                    </div>
+
+                                    <div class="p-3 text-center">
+
+                                        <span
+                                            class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold inline-flex items-center justify-center mb-2">
+
+                                            1
+
+                                        </span>
+
+                                        <p
+                                            class="font-extrabold text-xs text-blue-950 uppercase">
+
+                                            Menerbitkan Rupiah
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div
+                                    class="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
+
+                                    <div
+                                        class="bg-blue-100 h-28 flex items-center justify-center text-blue-600 text-3xl">
+
+                                        <i class="fa-solid fa-truck-ramp-box"></i>
+
+                                    </div>
+
+                                    <div class="p-3 text-center">
+
+                                        <span
+                                            class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold inline-flex items-center justify-center mb-2">
+
+                                            2
+
+                                        </span>
+
+                                        <p
+                                            class="font-extrabold text-xs text-blue-950 uppercase">
+
+                                            Pengedaran Uang
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div
+                                    class="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
+
+                                    <div
+                                        class="bg-blue-100 h-28 flex items-center justify-center text-blue-600 text-3xl">
+
+                                        <i class="fa-solid fa-hand-holding-dollar"></i>
+
+                                    </div>
+
+                                    <div class="p-3 text-center">
+
+                                        <span
+                                            class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold inline-flex items-center justify-center mb-2">
+
+                                            3
+
+                                        </span>
+
+                                        <p
+                                            class="font-extrabold text-xs text-blue-950 uppercase">
+
+                                            Menarik Uang Tidak Layak
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div
+                                    class="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
+
+                                    <div
+                                        class="bg-blue-100 h-28 flex items-center justify-center text-blue-600 text-3xl">
+
+                                        <i class="fa-solid fa-fire-burner"></i>
+
+                                    </div>
+
+                                    <div class="p-3 text-center">
+
+                                        <span
+                                            class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold inline-flex items-center justify-center mb-2">
+
+                                            4
+
+                                        </span>
+
+                                        <p
+                                            class="font-extrabold text-xs text-blue-950 uppercase">
+
+                                            Pemusnahan Sesuai Prosedur
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 3 -->
+                <div
+                    class="bg-white rounded-2xl border-l-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+
+                    <div
+                        onclick="toggleAccordion('acc3')"
+                        class="p-6 flex justify-between items-center cursor-pointer select-none">
+
+                        <div class="flex items-center gap-4">
+
+                            <div
+                                class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shadow-inner">
+
+                                <span class="font-extrabold text-lg">
                                     Rp
-                                </div>
-                                <p class="text-xs text-slate-500 mb-4">Digunakan dalam penulisan nominal mata uang di dalam negeri.</p>
-                                <div class="bg-blue-100 text-blue-800 text-xs font-bold py-2 rounded-lg inline-block px-4">
-                                    Contoh: Rp100.000
-                                </div>
+                                </span>
+
                             </div>
 
-                            <!-- Middle: Kode Mata Uang Card -->
-                            <div class="lg:col-span-5 bg-amber-50/30 border border-amber-200 rounded-2xl p-6 text-center">
-                                <h5 class="font-bold text-amber-950 mb-3 text-sm">Kode Mata Uang</h5>
-                                <div class="w-16 h-16 bg-white border-2 border-amber-400 rounded-full flex items-center justify-center font-bold text-xl text-amber-600 mx-auto mb-4 shadow-sm">
-                                    IDR
-                                </div>
-                                <p class="text-xs text-slate-500 mb-4">Digunakan pada transaksi internasional, perbankan, dan sistem keuangan global.</p>
-                                <div class="bg-amber-100 text-amber-800 text-xs font-bold py-2 rounded-lg inline-block px-4">
-                                    Contoh: IDR 100,000
-                                </div>
+                            <div>
+
+                                <h3
+                                    class="font-bold text-lg text-blue-950">
+
+                                    Simbol & Kode Rupiah
+
+                                </h3>
+
+                                <p
+                                    class="text-xs text-slate-400">
+
+                                    Arti simbol Rp dan kode IDR.
+
+                                </p>
+
                             </div>
 
-                            <!-- Right: Short bullet points -->
-                            <div class="lg:col-span-2 flex flex-col justify-center space-y-4">
-                                <div>
-                                    <h6 class="font-bold text-xs text-blue-950 mb-1">Simbol "Rp"</h6>
-                                    <p class="text-[11px] text-slate-500 leading-tight">Digunakan untuk menunjukkan nilai mata uang Indonesia dalam transaksi sehari-hari.</p>
-                                </div>
-                                <hr class="border-dashed border-slate-200">
-                                <div>
-                                    <h6 class="font-bold text-xs text-blue-950 mb-1">Nomor Seri</h6>
-                                    <p class="text-[11px] text-slate-500 leading-tight">Setiap lembar uang memiliki nomor seri yang unik sebagai pengaman.</p>
-                                </div>
-                            </div>
                         </div>
 
-                        <!-- Footer Fact Banner -->
-                        <div class="bg-slate-100 rounded-xl p-4 flex items-center gap-3">
-                            <span class="text-slate-500 text-lg"><i class="fa-solid fa-clipboard-list"></i></span>
-                            <p class="text-xs text-slate-600">
-                                <strong class="text-slate-800">Fakta Resmi:</strong> Kode mata uang Indonesia <strong class="text-blue-900">"IDR"</strong> ditetapkan berdasarkan standar internasional <strong class="text-slate-800">ISO 4217</strong>.
+
+                        <button
+                            class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 hover:bg-blue-100 transition-colors transform duration-300"
+                            id="btn-acc3">
+
+                            <i
+                                class="fa-solid fa-chevron-down text-sm transition-transform duration-300"
+                                id="icon-acc3">
+                            </i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="content-acc3"
+                        class="accordion-content">
+
+                        <div
+                            class="p-6 border-t border-slate-100 bg-slate-50/50 space-y-6">
+
+
+                            <div class="text-center">
+
+                                <h4
+                                    class="font-extrabold text-lg text-blue-950">
+
+                                    Kenali seluruh pecahan Rupiah
+
+                                </h4>
+
+                            </div>
+
+
+                            <div class="fan-container">
+
+                                <img
+                                    src="../GAMBAR_GAMBAR/uang_2000.jpg"
+                                    alt="Rp 2.000"
+                                    class="fan-note"
+                                    style="transform: rotate(-16deg);">
+
+                                <img
+                                    src="../GAMBAR_GAMBAR/uang_5000.jpg"
+                                    alt="Rp 5.000"
+                                    class="fan-note"
+                                    style="transform: rotate(-8deg);">
+
+                                <img
+                                    src="../GAMBAR_GAMBAR/uang_10000.jpg"
+                                    alt="Rp 10.000"
+                                    class="fan-note"
+                                    style="transform: rotate(0deg);">
+
+                                <img
+                                    src="../GAMBAR_GAMBAR/uang_50000.jpg"
+                                    alt="Rp 50.000"
+                                    class="fan-note"
+                                    style="transform: rotate(8deg);">
+
+                                <img
+                                    src="../GAMBAR_GAMBAR/uang_100000.jpg"
+                                    alt="Rp 100.000"
+                                    class="fan-note"
+                                    style="transform: rotate(16deg);">
+
+                            </div>
+
+
+                            <div
+                                class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-3">
+
+                                <div class="text-amber-500 mt-1">
+                                    <i class="fa-solid fa-lightbulb"></i>
+                                </div>
+
+                                <p
+                                    class="text-xs md:text-sm text-amber-800 leading-relaxed">
+
+                                    Setiap pecahan Rupiah menggunakan simbol
+                                    resmi <span class="font-bold">"Rp"</span>,
+                                    sedangkan mata uang Indonesia memiliki
+                                    kode standar internasional,
+                                    yaitu <span class="font-bold">"IDR"</span>.
+
+                                </p>
+
+                            </div>
+
+
+                            <div
+                                class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+
+                                <div
+                                    class="bg-blue-50/30 border border-blue-200 rounded-2xl p-6 text-center">
+
+                                    <h5
+                                        class="font-bold text-blue-950 mb-3 text-sm">
+
+                                        Simbol Rupiah
+
+                                    </h5>
+
+                                    <div
+                                        class="w-16 h-16 bg-white border-2 border-blue-500 rounded-full flex items-center justify-center font-bold text-2xl text-blue-600 mx-auto mb-4 shadow-sm">
+
+                                        Rp
+
+                                    </div>
+
+                                    <p
+                                        class="text-xs text-slate-500 mb-4">
+
+                                        Digunakan dalam penulisan nominal
+                                        mata uang di dalam negeri.
+
+                                    </p>
+
+                                    <div
+                                        class="bg-blue-100 text-blue-800 text-xs font-bold py-2 rounded-lg inline-block px-4">
+
+                                        Contoh: Rp100.000
+
+                                    </div>
+
+                                </div>
+
+
+                                <div
+                                    class="bg-amber-50/30 border border-amber-200 rounded-2xl p-6 text-center">
+
+                                    <h5
+                                        class="font-bold text-amber-950 mb-3 text-sm">
+
+                                        Kode Mata Uang
+
+                                    </h5>
+
+                                    <div
+                                        class="w-16 h-16 bg-white border-2 border-amber-400 rounded-full flex items-center justify-center font-bold text-xl text-amber-600 mx-auto mb-4 shadow-sm">
+
+                                        IDR
+
+                                    </div>
+
+                                    <p
+                                        class="text-xs text-slate-500 mb-4">
+
+                                        Digunakan dalam transaksi internasional,
+                                        perbankan, dan sistem keuangan global.
+
+                                    </p>
+
+                                    <div
+                                        class="bg-amber-100 text-amber-800 text-xs font-bold py-2 rounded-lg inline-block px-4">
+
+                                        Contoh: IDR 100,000
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="bg-slate-100 rounded-xl p-4 flex items-center gap-3">
+
+                                <span class="text-slate-500 text-lg">
+
+                                    <i class="fa-solid fa-clipboard-list"></i>
+
+                                </span>
+
+                                <p class="text-xs text-slate-600">
+
+                                    <strong class="text-slate-800">
+                                        Fakta Resmi:
+                                    </strong>
+
+                                    Kode mata uang Indonesia
+                                    <strong class="text-blue-900">
+                                        "IDR"
+                                    </strong>
+                                    ditetapkan berdasarkan standar
+                                    internasional
+                                    <strong class="text-slate-800">
+                                        ISO 4217
+                                    </strong>.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 4 -->
+                <div
+                    class="bg-white rounded-2xl border-l-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+
+                    <div
+                        onclick="toggleAccordion('acc4')"
+                        class="p-6 flex justify-between items-center cursor-pointer select-none">
+
+                        <div class="flex items-center gap-4">
+
+                            <div
+                                class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shadow-inner">
+
+                                <i class="fa-solid fa-globe text-xl"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3
+                                    class="font-bold text-lg text-blue-950">
+
+                                    Mengapa Rupiah penting?
+
+                                </h3>
+
+                                <p
+                                    class="text-xs text-slate-400">
+
+                                    Peran Rupiah dalam kehidupan sehari-hari.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 hover:bg-blue-100 transition-colors transform duration-300"
+                            id="btn-acc4">
+
+                            <i
+                                class="fa-solid fa-chevron-down text-sm transition-transform duration-300"
+                                id="icon-acc4">
+                            </i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="content-acc4"
+                        class="accordion-content">
+
+                        <div
+                            class="p-6 border-t border-slate-100 bg-slate-50/50 space-y-6">
+
+                            <p
+                                class="text-slate-600 leading-relaxed text-sm md:text-base">
+
+                                Lebih dari sekadar alat pembayaran,
+                                Rupiah memiliki peran penting dalam
+                                kehidupan sehari-hari dan mendorong
+                                berjalannya roda perekonomian nasional
+                                Indonesia.
+
                             </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- CARD 4: Mengapa Rupiah penting? -->
-            <div class="bg-white rounded-2xl border-l-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
-                <!-- Header -->
-                <div onclick="toggleAccordion('acc4')" class="p-6 flex justify-between items-center cursor-pointer select-none">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shadow-inner">
-                            <i class="fa-solid fa-globe text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg text-blue-950">Mengapa Rupiah penting?</h3>
-                            <p class="text-xs text-slate-400">Peran Rupiah dalam kehidupan sehari-hari.</p>
-                        </div>
-                    </div>
-                    <button class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 hover:bg-blue-100 transition-colors transform duration-300" id="btn-acc4">
-                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300" id="icon-acc4"></i>
-                    </button>
-                </div>
-                <!-- Content Accordion 4 -->
-                <div id="content-acc4" class="accordion-content">
-                    <div class="p-6 border-t border-slate-100 bg-slate-50/50 space-y-6">
-                        <p class="text-slate-600 leading-relaxed text-sm md:text-base">
-                            Lebih dari sekadar alat pembayaran, Rupiah memiliki peran penting dalam kehidupan sehari-hari dan mendorong berjalannya roda perekonomian nasional Indonesia.
-                        </p>
-                        
-                        <!-- Interactive Mind-Map / Nodes Diagram -->
-                        <div class="bg-gradient-to-r from-blue-50/50 to-indigo-50/50 border border-slate-100 rounded-2xl p-6 relative">
-                            <!-- Node Connection lines simulation using CSS grid & styled cards -->
-                            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 relative z-10">
-                                
-                                <!-- Node 1 -->
-                                <div class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+
+                            <div
+                                class="grid grid-cols-2 md:grid-cols-3 gap-4">
+
+
+                                <div
+                                    class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm">
+
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mb-3">
+
                                         <i class="fa-solid fa-cart-shopping"></i>
+
                                     </div>
-                                    <div>
-                                        <h5 class="font-bold text-xs text-slate-800">Belanja</h5>
-                                        <p class="text-[10px] text-slate-400">Kebutuhan Pokok</p>
-                                    </div>
+
+                                    <h5
+                                        class="font-bold text-xs text-slate-800">
+
+                                        Belanja
+
+                                    </h5>
+
+                                    <p
+                                        class="text-[10px] text-slate-400">
+
+                                        Kebutuhan Pokok
+
+                                    </p>
+
                                 </div>
 
-                                <!-- Node 2 -->
-                                <div class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+
+                                <div
+                                    class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm">
+
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-3">
+
                                         <i class="fa-solid fa-graduation-cap"></i>
+
                                     </div>
-                                    <div>
-                                        <h5 class="font-bold text-xs text-slate-800">Pendidikan</h5>
-                                        <p class="text-[10px] text-slate-400">Investasi Masa Depan</p>
-                                    </div>
+
+                                    <h5
+                                        class="font-bold text-xs text-slate-800">
+
+                                        Pendidikan
+
+                                    </h5>
+
+                                    <p
+                                        class="text-[10px] text-slate-400">
+
+                                        Investasi Masa Depan
+
+                                    </p>
+
                                 </div>
 
-                                <!-- Node 3 -->
-                                <div class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+
+                                <div
+                                    class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm">
+
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-3">
+
                                         <i class="fa-solid fa-heart-pulse"></i>
+
                                     </div>
-                                    <div>
-                                        <h5 class="font-bold text-xs text-slate-800">Kesehatan</h5>
-                                        <p class="text-[10px] text-slate-400">Jaminan Layanan</p>
-                                    </div>
+
+                                    <h5
+                                        class="font-bold text-xs text-slate-800">
+
+                                        Kesehatan
+
+                                    </h5>
+
+                                    <p
+                                        class="text-[10px] text-slate-400">
+
+                                        Jaminan Layanan
+
+                                    </p>
+
                                 </div>
 
-                                <!-- Node 4 -->
-                                <div class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">
+
+                                <div
+                                    class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm">
+
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mb-3">
+
                                         <i class="fa-solid fa-piggy-bank"></i>
+
                                     </div>
-                                    <div>
-                                        <h5 class="font-bold text-xs text-slate-800">Perbankan</h5>
-                                        <p class="text-[10px] text-slate-400">Tabungan & Investasi</p>
-                                    </div>
+
+                                    <h5
+                                        class="font-bold text-xs text-slate-800">
+
+                                        Perbankan
+
+                                    </h5>
+
+                                    <p
+                                        class="text-[10px] text-slate-400">
+
+                                        Tabungan & Investasi
+
+                                    </p>
+
                                 </div>
 
-                                <!-- Node 5 -->
-                                <div class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center shrink-0">
+
+                                <div
+                                    class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm">
+
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center mb-3">
+
                                         <i class="fa-solid fa-industry"></i>
+
                                     </div>
-                                    <div>
-                                        <h5 class="font-bold text-xs text-slate-800">Industri</h5>
-                                        <p class="text-[10px] text-slate-400">Manufaktur & Usaha</p>
-                                    </div>
+
+                                    <h5
+                                        class="font-bold text-xs text-slate-800">
+
+                                        Industri
+
+                                    </h5>
+
+                                    <p
+                                        class="text-[10px] text-slate-400">
+
+                                        Manufaktur & Usaha
+
+                                    </p>
+
                                 </div>
 
-                                <!-- Node 6 -->
-                                <div class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full bg-violet-100 text-violet-600 flex items-center justify-center shrink-0">
+
+                                <div
+                                    class="bg-white rounded-xl p-4 border border-blue-100 shadow-sm">
+
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-violet-100 text-violet-600 flex items-center justify-center mb-3">
+
                                         <i class="fa-solid fa-train"></i>
+
                                     </div>
-                                    <div>
-                                        <h5 class="font-bold text-xs text-slate-800">Transportasi</h5>
-                                        <p class="text-[10px] text-slate-400">Mobilitas Logistik</p>
-                                    </div>
+
+                                    <h5
+                                        class="font-bold text-xs text-slate-800">
+
+                                        Transportasi
+
+                                    </h5>
+
+                                    <p
+                                        class="text-[10px] text-slate-400">
+
+                                        Mobilitas Logistik
+
+                                    </p>
+
                                 </div>
 
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
 
-        </div>
+        </section>
+
+
+
+        <!-- =====================================================
+             DIVIDER
+        ===================================================== -->
+
+        <div class="dot-divider my-20"></div>
+
+
+
+        <!-- =====================================================
+             CIRi KEAMANAN RUPIAH
+        ===================================================== -->
+
+        <section id="keamanan-rupiah">
+
+
+            <!-- SECTION HEADER -->
+            <div class="text-center mb-10">
+
+                <span
+                    class="inline-flex items-center gap-2 bg-blue-100 text-blue-800 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider mb-4">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    Kenali Ciri Keamanan
+
+                </span>
+
+
+                <h2
+                    class="text-3xl md:text-4xl font-extrabold text-blue-950 mb-3">
+
+                    Ciri Keamanan Rupiah
+
+                </h2>
+
+
+                <p
+                    class="text-slate-500 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
+
+                    Rupiah memiliki unsur pengaman yang dapat diperiksa
+                    melalui penglihatan, penerawangan, dan perabaan.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- INFO BOX -->
+            <div
+                class="max-w-3xl mx-auto mb-10">
+
+                <div
+                    class="bg-blue-50 border border-blue-200 rounded-xl px-5 py-4 flex items-center gap-4 shadow-sm">
+
+                    <div
+                        class="w-9 h-9 rounded-full bg-white flex items-center justify-center text-blue-600 shrink-0">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                    </div>
+
+                    <p
+                        class="text-xs md:text-sm text-blue-800 font-medium leading-relaxed">
+
+                        Kenali beberapa ciri keamanan pada Rupiah
+                        untuk membantu membedakan uang Rupiah asli
+                        dengan lebih mudah.
+
+                    </p>
+
+                </div>
+
+
+                <div class="dot-divider mt-8"></div>
+
+            </div>
+
+
+
+            <!-- SECURITY CARDS -->
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+
+                <!-- CARD 01 -->
+                <div
+                    class="security-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
+                    data-detail="main-image">
+
+                    <div
+                        class="h-40 bg-blue-50 flex items-center justify-center card-art">
+
+                        <div
+                            class="w-36 h-20 bg-gradient-to-br from-blue-300 to-blue-500 rounded-lg shadow-lg flex items-center justify-center">
+
+                            <i
+                                class="fa-solid fa-image text-white text-3xl">
+                            </i>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="p-5">
+
+                        <span
+                            class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">
+
+                            01 — DILIHAT
+
+                        </span>
+
+
+                        <h3
+                            class="font-bold text-blue-950 mt-2">
+
+                            Gambar Utama
+
+                        </h3>
+
+
+                        <p
+                            class="text-xs text-slate-500 mt-2 leading-relaxed">
+
+                            Kenali karakteristik visual pada Rupiah.
+
+                        </p>
+
+
+                        <div
+                            class="mt-4 text-blue-600 text-xs font-bold flex items-center gap-2">
+
+                            Lihat detail
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 02 -->
+                <div
+                    class="security-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
+                    data-detail="watermark">
+
+                    <div
+                        class="h-40 bg-blue-50 flex items-center justify-center card-art">
+
+                        <div
+                            class="w-28 h-28 rounded-full border-4 border-dashed border-blue-400 flex items-center justify-center">
+
+                            <i
+                                class="fa-solid fa-sun text-blue-500 text-3xl">
+                            </i>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="p-5">
+
+                        <span
+                            class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">
+
+                            02 — DITERAWANG
+
+                        </span>
+
+
+                        <h3
+                            class="font-bold text-blue-950 mt-2">
+
+                            Tanda Air
+
+                        </h3>
+
+
+                        <p
+                            class="text-xs text-slate-500 mt-2 leading-relaxed">
+
+                            Terawang Rupiah ke arah sumber cahaya.
+
+                        </p>
+
+
+                        <div
+                            class="mt-4 text-blue-600 text-xs font-bold flex items-center gap-2">
+
+                            Lihat detail
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 03 -->
+                <div
+                    class="security-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
+                    data-detail="color">
+
+                    <div
+                        class="h-40 bg-blue-50 flex items-center justify-center card-art">
+
+                        <div
+                            class="w-32 h-20 rounded-lg bg-gradient-to-r from-blue-500 via-purple-400 to-blue-700 shadow-lg flex items-center justify-center">
+
+                            <i
+                                class="fa-solid fa-palette text-white text-2xl">
+                            </i>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="p-5">
+
+                        <span
+                            class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">
+
+                            03 — DILIHAT
+
+                        </span>
+
+
+                        <h3
+                            class="font-bold text-blue-950 mt-2">
+
+                            Perubahan Warna
+
+                        </h3>
+
+
+                        <p
+                            class="text-xs text-slate-500 mt-2 leading-relaxed">
+
+                            Perhatikan efek perubahan warna tertentu.
+
+                        </p>
+
+
+                        <div
+                            class="mt-4 text-blue-600 text-xs font-bold flex items-center gap-2">
+
+                            Lihat detail
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 04 -->
+                <div
+                    class="security-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
+                    data-detail="rectoverso">
+
+                    <div
+                        class="h-40 bg-blue-50 flex items-center justify-center card-art">
+
+                        <div class="relative w-32 h-20">
+
+                            <div
+                                class="absolute left-0 top-0 w-20 h-20 rounded-lg bg-blue-300 flex items-center justify-center">
+
+                                <span class="font-bold text-white">
+                                    A
+                                </span>
+
+                            </div>
+
+                            <div
+                                class="absolute right-0 top-0 w-20 h-20 rounded-lg bg-blue-500 flex items-center justify-center">
+
+                                <span class="font-bold text-white">
+                                    A
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="p-5">
+
+                        <span
+                            class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">
+
+                            04 — DITERAWANG
+
+                        </span>
+
+
+                        <h3
+                            class="font-bold text-blue-950 mt-2">
+
+                            Rectoverso
+
+                        </h3>
+
+
+                        <p
+                            class="text-xs text-slate-500 mt-2 leading-relaxed">
+
+                            Bagian depan dan belakang saling melengkapi.
+
+                        </p>
+
+
+                        <div
+                            class="mt-4 text-blue-600 text-xs font-bold flex items-center gap-2">
+
+                            Lihat detail
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 05 -->
+                <div
+                    class="security-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
+                    data-detail="texture">
+
+                    <div
+                        class="h-40 bg-blue-50 flex items-center justify-center card-art">
+
+                        <div
+                            class="w-28 h-20 rounded-lg bg-blue-500 flex items-center justify-center shadow-lg">
+
+                            <i
+                                class="fa-solid fa-hand text-white text-3xl">
+                            </i>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="p-5">
+
+                        <span
+                            class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">
+
+                            05 — DIRABA
+
+                        </span>
+
+
+                        <h3
+                            class="font-bold text-blue-950 mt-2">
+
+                            Cetakan Terasa Kasar
+
+                        </h3>
+
+
+                        <p
+                            class="text-xs text-slate-500 mt-2 leading-relaxed">
+
+                            Rabalah bagian tertentu pada Rupiah.
+
+                        </p>
+
+
+                        <div
+                            class="mt-4 text-blue-600 text-xs font-bold flex items-center gap-2">
+
+                            Lihat detail
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 06 -->
+                <div
+                    class="security-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
+                    data-detail="blind-code">
+
+                    <div
+                        class="h-40 bg-blue-50 flex items-center justify-center card-art">
+
+                        <div
+                            class="grid grid-cols-3 gap-2">
+
+                            <span
+                                class="w-4 h-4 rounded-full bg-blue-500">
+                            </span>
+
+                            <span
+                                class="w-4 h-4 rounded-full bg-blue-500">
+                            </span>
+
+                            <span
+                                class="w-4 h-4 rounded-full bg-blue-500">
+                            </span>
+
+                            <span
+                                class="w-4 h-4 rounded-full bg-blue-500">
+                            </span>
+
+                            <span
+                                class="w-4 h-4 rounded-full bg-blue-500">
+                            </span>
+
+                            <span
+                                class="w-4 h-4 rounded-full bg-blue-500">
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="p-5">
+
+                        <span
+                            class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">
+
+                            06 — DIRABA
+
+                        </span>
+
+
+                        <h3
+                            class="font-bold text-blue-950 mt-2">
+
+                            Kode Tuna Netra
+
+                        </h3>
+
+
+                        <p
+                            class="text-xs text-slate-500 mt-2 leading-relaxed">
+
+                            Kenali tanda tertentu melalui sentuhan.
+
+                        </p>
+
+
+                        <div
+                            class="mt-4 text-blue-600 text-xs font-bold flex items-center gap-2">
+
+                            Lihat detail
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 07 -->
+                <div
+                    class="security-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
+                    data-detail="security-thread">
+
+                    <div
+                        class="h-40 bg-blue-50 flex items-center justify-center card-art">
+
+                        <div
+                            class="relative w-32 h-20 bg-gradient-to-br from-blue-300 to-blue-600 rounded-lg">
+
+                            <div
+                                class="absolute left-1/2 top-0 bottom-0 w-1 bg-white/80">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="p-5">
+
+                        <span
+                            class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">
+
+                            07 — DILIHAT
+
+                        </span>
+
+
+                        <h3
+                            class="font-bold text-blue-950 mt-2">
+
+                            Benang Pengaman
+
+                        </h3>
+
+
+                        <p
+                            class="text-xs text-slate-500 mt-2 leading-relaxed">
+
+                            Perhatikan benang pengaman pada Rupiah.
+
+                        </p>
+
+
+                        <div
+                            class="mt-4 text-blue-600 text-xs font-bold flex items-center gap-2">
+
+                            Lihat detail
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 08 -->
+                <div
+                    class="security-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
+                    data-detail="microtext">
+
+                    <div
+                        class="h-40 bg-blue-50 flex items-center justify-center card-art">
+
+                        <div
+                            class="bg-white rounded-lg px-5 py-4 shadow-sm border border-blue-100">
+
+                            <p
+                                class="text-[8px] font-bold text-blue-600 tracking-widest">
+
+                                RUPIAH RUPIAH RUPIAH
+
+                            </p>
+
+                            <p
+                                class="text-[8px] font-bold text-blue-400 tracking-widest mt-2">
+
+                                INDONESIA INDONESIA
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="p-5">
+
+                        <span
+                            class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">
+
+                            08 — DILIHAT
+
+                        </span>
+
+
+                        <h3
+                            class="font-bold text-blue-950 mt-2">
+
+                            Detail Mikro
+
+                        </h3>
+
+
+                        <p
+                            class="text-xs text-slate-500 mt-2 leading-relaxed">
+
+                            Perhatikan detail berukuran kecil.
+
+                        </p>
+
+
+                        <div
+                            class="mt-4 text-blue-600 text-xs font-bold flex items-center gap-2">
+
+                            Lihat detail
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
 
-    <!-- REDESIGNED FOOTER (Logo diperbesar secara signifikan, wadah putih solid, dan responsive) -->
-    <footer class="bg-[#0B3564] text-slate-100 py-16 mt-20 relative overflow-hidden" id="tentang">
-        <!-- Ornamen Dekorasi Background -->
-        <div class="absolute top-0 right-0 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-12 border-b border-blue-900/60">
-                
-                <!-- Kolom Info Utama Brand -->
-                <div class="md:col-span-5 space-y-6">
-                    <a href="../SCANNER/index.html" class="flex items-center gap-4 group" aria-label="Logo Footer RUPANTARA">
-                        <!-- Wadah Putih Solid yang Diperbesar agar Terlihat Sangat Jelas & Jernih -->
-                        <div class="bg-white p-3 rounded-2xl flex items-center justify-center shadow-lg w-24 h-24 sm:w-28 sm:h-28 transition-transform group-hover:scale-105 flex-shrink-0">
-                            <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Rupantara Logo" class="h-16 sm:h-20 w-auto object-contain onerror-fallback">
-                        </div>
-                        <div class="flex items-center text-2xl md:text-3xl tracking-wider uppercase font-black select-none">
-                            <span class="text-white">RUP</span><span class="text-[#4FA1E4] font-semibold">ANTARA</span>
-                        </div>
-                    </a>
-                    <p class="text-slate-300 text-sm leading-relaxed max-w-sm">
-                        Ruang Pintar Nusantara (RUPANTARA) adalah platform edukasi keuangan masa depan yang membantu masyarakat memahami nilai, sejarah, dan fitur keamanan mata uang Rupiah secara interaktif menggunakan teknologi pemindaian cerdas.
-                    </p>
-                </div>
-
-                <!-- Kolom Tautan Navigasi (Edukasi diarahkan ke materimenjagauang.html) -->
-                <div class="md:col-span-3 md:col-start-7 space-y-4">
-                    <h4 class="text-white font-extrabold text-sm tracking-wider uppercase border-b border-blue-900/60 pb-2">NAVIGASI</h4>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="../SCANNER/index.html" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Beranda</a></li>
-                        <li><a href="tentangrupiah.html" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Tentang Rupiah</a></li>
-                        <li><a href="../SCANNER/index.html#scannerInputSection" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Fitur</a></li>
-                        <li><a href="materimenjagauang.html" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Edukasi</a></li>
-                        <li><a href="../SCANNER/index.html" class="text-slate-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-blue-400"></i> Scan</a></li>
-                    </ul>
-                </div>
-
-                <!-- Kolom Hubungi Kami / Bantuan -->
-                <div class="md:col-span-3 space-y-4">
-                    <h4 class="text-white font-extrabold text-sm tracking-wider uppercase border-b border-blue-900/60 pb-2">HUBUNGI KAMI</h4>
-                    <ul class="space-y-2.5 text-sm text-slate-300">
-                        <li class="flex items-center gap-3">
-                            <span class="text-blue-400"><i class="fa-solid fa-envelope"></i></span>
-                            <span>info@rupantara.org</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="text-blue-400"><i class="fa-solid fa-phone"></i></span>
-                            <span>+62 823-4095-0845</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="text-blue-400"><i class="fa-solid fa-location-dot"></i></span>
-                            <span>Purwokerto, Indonesia</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Bottom Footer Bar (Copyright & Kebijakan) -->
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 text-xs text-slate-400">
-                <p>&copy; 2024 RUPANTARA Educational Platform. All rights reserved.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                    <a href="#" class="hover:text-white transition-colors">Help Center</a>
-                </div>
-            </div>
-        </div>
+    <!-- FOOTER -->
+    <footer class="bg-blue-950 text-white/80 py-8 px-6 text-center border-t border-blue-900">
+        <p class="text-xs">&copy; 2024 RUPANTARA. Hak Cipta Dilindungi Undang-Undang.</p>
     </footer>
 
-    <!-- JAVASCRIPT FOR ACCORDION INTERACTIVITY -->
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ACCORDION
+    ===================================================== -->
+
     <script>
+
         function toggleAccordion(id) {
-            const content = document.getElementById(`content-${id}`);
-            const icon = document.getElementById(`icon-${id}`);
-            const btn = document.getElementById(`btn-${id}`);
-            
-            const isOpen = content.classList.contains('open');
-            
-            document.querySelectorAll('.accordion-content').forEach(el => {
-                el.classList.remove('open');
-            });
-            document.querySelectorAll('[id^="icon-"]').forEach(el => {
-                el.classList.remove('rotate-180');
-            });
-            document.querySelectorAll('[id^="btn-"]').forEach(el => {
-                el.classList.remove('bg-blue-600', 'text-white');
-                el.classList.add('bg-blue-50', 'text-blue-600');
-            });
+
+            const content =
+                document.getElementById(`content-${id}`);
+
+            const icon =
+                document.getElementById(`icon-${id}`);
+
+            const btn =
+                document.getElementById(`btn-${id}`);
+
+
+            if (!content || !icon || !btn) {
+                return;
+            }
+
+
+            const isOpen =
+                content.classList.contains('open');
+
+
+            /* Tutup semua accordion */
+
+            document
+                .querySelectorAll('.accordion-content')
+                .forEach(el => {
+
+                    el.classList.remove('open');
+
+                });
+
+
+            /* Reset semua icon */
+
+            document
+                .querySelectorAll('[id^="icon-"]')
+                .forEach(el => {
+
+                    el.classList.remove('rotate-180');
+
+                });
+
+
+            /* Reset semua tombol */
+
+            document
+                .querySelectorAll('[id^="btn-"]')
+                .forEach(el => {
+
+                    el.classList.remove(
+                        'bg-blue-600',
+                        'text-white'
+                    );
+
+                    el.classList.add(
+                        'bg-blue-50',
+                        'text-blue-600'
+                    );
+
+                });
+
+
+            /* Kalau sebelumnya tertutup, buka */
 
             if (!isOpen) {
+
                 content.classList.add('open');
+
                 icon.classList.add('rotate-180');
-                btn.classList.add('bg-blue-600', 'text-white');
-                btn.classList.remove('bg-blue-50', 'text-blue-600');
+
+                btn.classList.add(
+                    'bg-blue-600',
+                    'text-white'
+                );
+
+                btn.classList.remove(
+                    'bg-blue-50',
+                    'text-blue-600'
+                );
+
             }
+
         }
 
-        document.querySelectorAll('.onerror-fallback').forEach(img => {
-            img.onerror = function() {
-                this.style.display = 'none';
-            };
-        });
+
+        /* =====================================================
+           IMAGE FALLBACK
+        ===================================================== */
+
+        document
+            .querySelectorAll('.onerror-fallback')
+            .forEach(img => {
+
+                img.onerror = function () {
+
+                    this.style.display = 'none';
+
+                };
+
+            });
+
     </script>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         SECURITY CARDS
+    ===================================================== -->
+
+    <script>
+
+        /* =====================================================
+           SECURITY CARDS INTERACTION
+        ===================================================== */
+
+        const securityCards =
+            document.querySelectorAll(".security-card");
+
+
+        const securityDetail =
+            document.getElementById("securityDetail");
+
+
+        const closeDetail =
+            document.getElementById("closeDetail");
+
+
+        const detailVisual =
+            document.getElementById("detailVisual");
+
+
+        const detailNumber =
+            document.getElementById("detailNumber");
+
+
+        const detailTitle =
+            document.getElementById("detailTitle");
+
+
+        const detailText =
+            document.getElementById("detailText");
+
+
+
+        /* =====================================================
+           DATA
+        ===================================================== */
+
+        const securityInfo = {
+
+            "main-image": {
+
+                number: "01 — DILIHAT",
+
+                title: "Gambar Utama",
+
+                text:
+                    "Perhatikan gambar utama pada Rupiah. " +
+                    "Kenali karakteristik visualnya sebagai " +
+                    "bagian dari ciri keamanan."
+
+            },
+
+
+            "watermark": {
+
+                number: "02 — DITERAWANG",
+
+                title: "Tanda Air",
+
+                text:
+                    "Terawang Rupiah ke arah sumber cahaya " +
+                    "untuk melihat tanda air yang terdapat " +
+                    "pada bagian tertentu."
+
+            },
+
+
+            "color": {
+
+                number: "03 — DILIHAT",
+
+                title: "Perubahan Warna",
+
+                text:
+                    "Perhatikan bagian tertentu pada Rupiah " +
+                    "yang memiliki efek perubahan warna."
+
+            },
+
+
+            "rectoverso": {
+
+                number: "04 — DITERAWANG",
+
+                title: "Rectoverso",
+
+                text:
+                    "Perhatikan bagian depan dan belakang " +
+                    "yang dapat saling melengkapi ketika " +
+                    "diterawang."
+
+            },
+
+
+            "texture": {
+
+                number: "05 — DIRABA",
+
+                title: "Cetakan Terasa Kasar",
+
+                text:
+                    "Rabalah bagian tertentu pada Rupiah. " +
+                    "Cetakan pada bagian tersebut terasa " +
+                    "lebih kasar."
+
+            },
+
+
+            "blind-code": {
+
+                number: "06 — DIRABA",
+
+                title: "Kode Tuna Netra",
+
+                text:
+                    "Kenali tanda tertentu pada Rupiah " +
+                    "melalui sentuhan."
+
+            },
+
+
+            "security-thread": {
+
+                number: "07 — DILIHAT",
+
+                title: "Benang Pengaman",
+
+                text:
+                    "Perhatikan benang pengaman yang menjadi " +
+                    "salah satu unsur keamanan pada Rupiah."
+
+            },
+
+
+            "microtext": {
+
+                number: "08 — DILIHAT",
+
+                title: "Detail Mikro",
+
+                text:
+                    "Perhatikan detail berukuran kecil yang " +
+                    "menjadi bagian dari unsur keamanan Rupiah."
+
+            }
+
+        };
+
+
+
+        /* =====================================================
+           KLIK SECURITY CARD
+        ===================================================== */
+
+        securityCards.forEach(card => {
+
+            card.addEventListener("click", () => {
+
+                const type =
+                    card.dataset.detail;
+
+
+                const data =
+                    securityInfo[type];
+
+
+                if (!data) {
+                    return;
+                }
+
+
+                /* Nomor */
+
+                detailNumber.textContent =
+                    data.number;
+
+
+                /* Judul */
+
+                detailTitle.textContent =
+                    data.title;
+
+
+                /* Penjelasan */
+
+                detailText.textContent =
+                    data.text;
+
+
+
+                /* Ambil gambar/visual dari kartu */
+
+                const cardArt =
+                    card.querySelector(".card-art");
+
+
+                if (cardArt) {
+
+                    detailVisual.innerHTML =
+                        cardArt.outerHTML;
+
+                }
+
+
+
+                /* Buka popup */
+
+                securityDetail.classList.add("active");
+
+                document.body.style.overflow =
+                    "hidden";
+
+            });
+
+        });
+
+
+
+        /* =====================================================
+           CLOSE POPUP
+        ===================================================== */
+
+        function closeSecurityDetail() {
+
+            securityDetail.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        }
+
+
+
+        /* Tombol X */
+
+        if (closeDetail) {
+
+            closeDetail.addEventListener(
+                "click",
+                closeSecurityDetail
+            );
+
+        }
+
+
+
+        /* Klik background */
+
+        if (securityDetail) {
+
+            securityDetail.addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        event.target === securityDetail
+                    ) {
+
+                        closeSecurityDetail();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* Tombol ESC */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (event.key === "Escape") {
+
+                    closeSecurityDetail();
+
+                }
+
+            }
+        );
+
+    </script>
+
+
 </body>
+
 </html>
