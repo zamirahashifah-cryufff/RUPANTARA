@@ -9,7 +9,7 @@
     <!-- FontAwesome for modern icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Font: Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -91,28 +91,13 @@
                 <p class="text-brand-slate text-base sm:text-lg max-w-xl leading-relaxed">
                     Mengenal Central Bank Digital Currency (CBDC) Indonesia sebagai bentuk transformasi digital mata uang nasional yang aman, efisien, dan inklusif.
                 </p>
-                <div class="flex flex-wrap gap-4 pt-2">
-                    <button class="bg-brand-dark hover:bg-brand-primary text-white text-sm font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transform hover:-translate-y-0.5 custom-transition">
-                        Mulai Belajar
-                    </button>
-                    <button class="bg-white hover:bg-slate-50 border border-slate-200 text-brand-dark text-sm font-semibold px-6 py-3 rounded-xl shadow-sm custom-transition">
-                        Whitepaper
-                    </button>
-                </div>
             </div>
 
-            <!-- Right Visual Image -->
+            <!-- Right Visual Image (Diperbaiki agar proporsi gambar penuh & tulisan CBDC tidak terpotong) -->
             <div class="lg:col-span-5 flex justify-center lg:justify-end">
-                <div class="relative w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 p-3 transform hover:scale-[1.02] custom-transition">
-                    <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-brand-dark to-blue-500 opacity-60"></div>
-                        <div class="z-10 text-center space-y-4 px-6">
-                            <div class="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mx-auto border border-white/20">
-                                <i class="fa-solid fa-microchip text-4xl text-blue-300"></i>
-                            </div>
-                            <span class="block text-white font-extrabold text-lg tracking-wide">CBDC Digital Rupiah</span>
-                            <span class="block text-blue-200 text-xs">Transformasi Finansial Terintegrasi</span>
-                        </div>
+                <div class="relative w-full max-w-md bg-white rounded-3xl shadow-xl border border-slate-100 p-2 transform hover:scale-[1.02] custom-transition">
+                    <div class="relative rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center">
+                        <img src="../GAMBAR_GAMBAR/cbdc_digital.png" alt="CBDC Digital" class="w-full h-auto object-contain rounded-2xl">
                     </div>
                 </div>
             </div>
@@ -151,10 +136,11 @@
                             <i class="fa-solid fa-mobile-screen-button w-5"></i>
                             <span>Rupiah Digital: Masa Depan Kedaulatan Ekonomi</span>
                         </button>
-                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
+                        <!-- Tautan Sidebar "Cara Merawat Rupiah Dengan Metode 5J" (Diubah ke elemen 'a' menuju materimenjagauang.html) -->
+                        <a href="materimenjagauang.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
                             <i class="fa-solid fa-hand-holding-heart w-5"></i>
                             <span>Cara Merawat Rupiah Dengan Metode 5J</span>
-                        </button>
+                        </a>
                     </nav>
                 </div>
             </aside>
@@ -183,9 +169,9 @@
                                     Central Bank Digital Currency adalah representasi digital dari mata uang fiat negara yang diterbitkan dan diatur oleh Bank Sentral. Berbeda dengan kripto, CBDC memiliki nilai yang stabil dan jaminan hukum penuh.
                                 </p>
                             </div>
-                            <a href="#" class="inline-flex items-center gap-2 text-xs font-bold text-brand-primary hover:gap-3 pt-4 custom-transition">
+                            <button onclick="openModal()" class="inline-flex items-center gap-2 text-xs font-bold text-brand-primary hover:text-brand-dark hover:gap-3 pt-4 custom-transition text-left">
                                 Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
-                            </a>
+                            </button>
                         </div>
 
                         <!-- Manfaat Rupiah Digital -->
@@ -237,12 +223,8 @@
                             <span class="bg-brand-light text-brand-primary text-xs px-3 py-1 rounded-full font-semibold">Web 3.0</span>
                         </div>
                     </div>
-                    <div class="md:col-span-5 relative min-h-[160px] bg-slate-900 flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-l from-blue-600/30 to-brand-dark/90"></div>
-                        <div class="z-10 text-center px-4 space-y-2">
-                            <i class="fa-solid fa-city text-3xl text-blue-300"></i>
-                            <span class="block text-white font-extrabold text-xs tracking-wide">Infrastruktur Ekonomi Modern</span>
-                        </div>
+                    <div class="md:col-span-5 relative min-h-[200px] bg-slate-50 overflow-hidden flex items-center justify-center">
+                        <img src="../GAMBAR_GAMBAR/infrastruktur_modern.png" alt="Infrastruktur Modern" class="w-full h-full object-cover">
                     </div>
                 </div>
 
@@ -283,8 +265,8 @@
                         </div>
                     </a>
 
-                    <!-- Selanjutnya -->
-                    <a href="#" class="flex items-center justify-between p-6 bg-white border border-slate-200 rounded-2xl hover:border-brand-primary/40 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 custom-transition group">
+                    <!-- Selanjutnya (Diperbarui tautannya menuju materimenjagauang.html) -->
+                    <a href="materimenjagauang.html" class="flex items-center justify-between p-6 bg-white border border-slate-200 rounded-2xl hover:border-brand-primary/40 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 custom-transition group">
                         <div class="text-left">
                             <span class="text-xs text-slate-400 uppercase font-bold tracking-wider block mb-1">Selanjutnya</span>
                             <span class="text-base font-extrabold text-[#004DB3] group-hover:text-blue-700 custom-transition">Cara Merawat Rupiah Dengan Metode 5J </span>
@@ -325,12 +307,127 @@
         </div>
     </footer>
 
+    <!-- MODAL BOX: DETAIL MATERI CBDC -->
+    <div id="cbdc-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Modal Backdrop Blur -->
+            <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+
+            <!-- Trick browser to center modal content -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!-- Modal Content Panel -->
+            <div class="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full border border-slate-100">
+                <!-- Modal Header -->
+                <div class="bg-brand-dark text-white px-6 py-4 flex justify-between items-center">
+                    <h3 class="text-base sm:text-lg font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-circle-info text-blue-300"></i> Detail Materi: Apa itu CBDC?
+                    </h3>
+                    <button onclick="closeModal()" class="text-white/80 hover:text-white text-xl focus:outline-none transition-colors">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="px-6 py-6 space-y-5 max-h-[65vh] overflow-y-auto text-sm text-slate-700 leading-relaxed scrollbar-thin">
+                    <p>
+                        <strong>Central Bank Digital Currency (CBDC)</strong> adalah representasi digital dari mata uang fiat suatu negara yang diterbitkan dan diatur langsung oleh bank sentral. Di Indonesia, konsep ini dikenal sebagai <strong>Rupiah Digital</strong>, yaitu bentuk digital dari Rupiah yang menjadi bagian dari perkembangan sistem pembayaran nasional.
+                    </p>
+                    <p>
+                        Berbeda dengan aset kripto yang nilainya dapat berubah secara signifikan, CBDC memiliki nilai yang mengacu pada mata uang resmi negara dan diterbitkan berdasarkan kewenangan bank sentral. CBDC juga dirancang untuk menjadi alat pembayaran yang aman, efisien, dan dapat digunakan dalam ekosistem ekonomi digital.
+                    </p>
+                    <p>
+                        CBDC dapat membantu masyarakat melakukan transaksi secara lebih praktis, sekaligus mendukung perkembangan sistem keuangan yang semakin terintegrasi dengan teknologi. Penggunaannya dapat mencakup transaksi ritel, pembayaran, hingga kebutuhan transaksi dalam sistem keuangan yang lebih luas.
+                    </p>
+
+                    <!-- Karakteristik Section -->
+                    <div class="border-t border-slate-100 pt-5">
+                        <h4 class="font-extrabold text-brand-dark text-base mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-brand-primary"></i> Karakteristik Utama CBDC
+                        </h4>
+                        
+                        <div class="space-y-4">
+                            <!-- Karakteristik 01 -->
+                            <div class="flex gap-4 items-start bg-slate-50 p-3.5 rounded-xl border border-slate-100">
+                                <span class="bg-brand-primary text-white font-extrabold text-xs px-2.5 py-1 rounded-md">01</span>
+                                <div>
+                                    <h5 class="font-bold text-brand-dark text-sm">Diterbitkan Bank Sentral</h5>
+                                    <p class="text-xs text-slate-500 mt-1">CBDC merupakan uang digital resmi yang penerbitan dan pengelolaannya berada di bawah kewenangan bank sentral.</p>
+                                </div>
+                            </div>
+                            <!-- Karakteristik 02 -->
+                            <div class="flex gap-4 items-start bg-slate-50 p-3.5 rounded-xl border border-slate-100">
+                                <span class="bg-brand-primary text-white font-extrabold text-xs px-2.5 py-1 rounded-md">02</span>
+                                <div>
+                                    <h5 class="font-bold text-brand-dark text-sm">Nilai Stabil</h5>
+                                    <p class="text-xs text-slate-500 mt-1">Nilainya mengikuti mata uang resmi negara sehingga berbeda dengan aset kripto yang harganya dapat mengalami perubahan besar.</p>
+                                </div>
+                            </div>
+                            <!-- Karakteristik 03 -->
+                            <div class="flex gap-4 items-start bg-slate-50 p-3.5 rounded-xl border border-slate-100">
+                                <span class="bg-brand-primary text-white font-extrabold text-xs px-2.5 py-1 rounded-md">03</span>
+                                <div>
+                                    <h5 class="font-bold text-brand-dark text-sm">Transaksi Digital</h5>
+                                    <p class="text-xs text-slate-500 mt-1">CBDC memungkinkan pembayaran dan perpindahan nilai dilakukan melalui infrastruktur digital secara lebih praktis.</p>
+                                </div>
+                            </div>
+                            <!-- Karakteristik 04 -->
+                            <div class="flex gap-4 items-start bg-slate-50 p-3.5 rounded-xl border border-slate-100">
+                                <span class="bg-brand-primary text-white font-extrabold text-xs px-2.5 py-1 rounded-md">04</span>
+                                <div>
+                                    <h5 class="font-bold text-brand-dark text-sm">Aman dan Terpercaya</h5>
+                                    <p class="text-xs text-slate-500 mt-1">Sistem CBDC dirancang dengan memperhatikan keamanan transaksi, perlindungan sistem, dan keandalan infrastruktur.</p>
+                                </div>
+                            </div>
+                            <!-- Karakteristik 05 -->
+                            <div class="flex gap-4 items-start bg-slate-50 p-3.5 rounded-xl border border-slate-100">
+                                <span class="bg-brand-primary text-white font-extrabold text-xs px-2.5 py-1 rounded-md">05</span>
+                                <div>
+                                    <h5 class="font-bold text-brand-dark text-sm">Mendukung Ekonomi Digital</h5>
+                                    <p class="text-xs text-slate-500 mt-1">CBDC dapat menjadi salah satu bagian dari perkembangan ekosistem ekonomi digital dan sistem pembayaran modern.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="bg-slate-50 px-6 py-4 flex justify-end border-t border-slate-100">
+                    <button onclick="closeModal()" class="bg-brand-dark hover:bg-brand-primary text-white text-xs font-bold px-5 py-2.5 rounded-xl custom-transition">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- INTERACTIVE SCRIPTS -->
     <script>
+        // Fallback jika terjadi error pemuatan gambar
         document.querySelectorAll('.onerror-fallback').forEach(img => {
             img.onerror = function() {
                 this.style.display = 'none';
             };
+        });
+
+        // Kontrol Aktivitas Modal
+        function openModal() {
+            const modal = document.getElementById('cbdc-modal');
+            modal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden'); // Kunci scroll halaman belakang
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('cbdc-modal');
+            modal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden'); // Kembalikan scroll
+        }
+
+        // Tutup modal jika pengguna menekan tombol Escape di keyboard
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 </body>

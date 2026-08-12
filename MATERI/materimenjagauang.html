@@ -9,7 +9,7 @@
     <!-- FontAwesome for modern icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Font: Plus Jakarta Sans for a clean, professional look -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -132,10 +132,11 @@
                             <i class="fa-solid fa-clock-rotate-left w-5"></i>
                             <span>Menelusuri jejak sejarah rupiah</span>
                         </button>
-                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
+                        <!-- Sidebar Tautan Rupiah Digital (Diubah ke elemen 'a' mengarah ke materiuangdigital.html) -->
+                        <a href="materiuangdigital.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
                             <i class="fa-solid fa-mobile-screen-button w-5"></i>
                             <span>Rupiah Digital: Masa Depan Kedaulatan Ekonomi</span>
-                        </button>
+                        </a>
                         <!-- Halaman Aktif Merawat Rupiah -->
                         <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-brand-light text-brand-primary custom-transition text-left">
                             <i class="fa-solid fa-hand-holding-heart w-5"></i>
@@ -247,10 +248,10 @@
                     </div>
                 </div>
 
-                <!-- Navigation Previous/Next Buttons -->
+                <!-- Navigation Previous/Next Buttons (Diubah tautan Sebelumnya mengarah ke materiuangdigital.html) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-slate-200">
                     <!-- Previous -->
-                    <a href="#" class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-2xl hover:border-brand-primary/40 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 custom-transition group">
+                    <a href="materiuangdigital.html" class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-2xl hover:border-brand-primary/40 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 custom-transition group">
                         <div class="flex items-center gap-3">
                             <span class="text-slate-400 group-hover:text-brand-primary custom-transition"><i class="fa-solid fa-arrow-left"></i></span>
                             <div class="text-left">
@@ -264,7 +265,7 @@
         </section>
     </main>
 
-    <!-- FOOTER (Diperbarui sesuai dengan Gambar Acuan) -->
+    <!-- FOOTER -->
     <footer class="bg-[#E9ECF0] py-14 mt-16 text-slate-600 text-sm">
         <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
             <div class="flex flex-col md:flex-row justify-between items-start gap-8">
@@ -292,8 +293,8 @@
 
     <!-- INTERACTIVE SCRIPTS -->
     <script>
-        // Add interactive dynamic styling on active side nav items
-        const sideNavButtons = document.querySelectorAll('aside nav button');
+        // Update selektor JS untuk mendukung tombol (button) maupun elemen tautan (a) di dalam sidebar
+        const sideNavButtons = document.querySelectorAll('aside nav button, aside nav a');
         sideNavButtons.forEach(button => {
             button.addEventListener('click', () => {
                 sideNavButtons.forEach(btn => {
