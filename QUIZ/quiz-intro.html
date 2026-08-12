@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUPANTARA - Uji Pengetahuanmu tentang Rupiah</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #17325C;
+            --navy-dark: #10233F;
+            --navy-soft: #E7EDF7;
+            --bg: #FAF8FF;
+            --card: #FFFFFF;
+            --border: #E3E7EF;
+            --text-main: #1E2A3A;
+            --text-sub: #7A8494;
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --header-border: #ECE9F3;
+            --footer-bg: #E9E7F2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            background: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===================== HEADER / NAVBAR ===================== */
+        .site-header {
+            background: var(--card);
+            border-bottom: 1px solid var(--header-border);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: .2px;
+            white-space: nowrap;
+            justify-self: start;
+        }
+
+        .nav-links {
+            justify-self: center;
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4B5566;
+            text-decoration: none;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a.active {
+            color: var(--navy);
+            border-bottom-color: var(--navy);
+        }
+
+        .header-right {
+            justify-self: end;
+            display: flex;
+            align-items: center;
+        }
+
+        .login-btn {
+            background: var(--navy-dark);
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            padding: 10px 22px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        @media (max-width:820px) {
+            .nav-links {
+                display: none;
+            }
+
+            .header-inner {
+                grid-template-columns: 1fr auto;
+            }
+        }
+
+        /* ===================== PAGE ===================== */
+        .page-content {
+            flex: 1;
+            padding: 32px 16px 8px;
+        }
+
+        .page-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* ===================== HERO ===================== */
+        .hero {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: linear-gradient(135deg, #EEF3FC 0%, #F8FAFF 55%, #FDFCFF 100%);
+            padding: 56px 48px;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 560px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .hero-title {
+            font-size: 52px;
+            font-weight: 800;
+            font-style: italic;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            background: linear-gradient(90deg, #0F2547 0%, #3D63A6 60%, #8FADD9 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .hero-desc {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-sub);
+            line-height: 1.7;
+            max-width: 460px;
+        }
+
+        .hero-cta {
+            margin-top: 8px;
+            align-self: flex-start;
+            background: var(--navy);
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            padding: 14px 30px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero-cta:hover {
+            background: var(--navy-dark);
+        }
+
+        .hero-meta {
+            font-size: 12px;
+            font-weight: 600;
+            color: #9AA3B4;
+            letter-spacing: .2px;
+        }
+
+        /* skyline illustration (SVG asli, bukan foto) */
+        .hero-illustration {
+            position: absolute;
+            right: -40px;
+            bottom: 0;
+            top: 0;
+            width: 62%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-illustration svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-dots {
+            position: absolute;
+            top: 24px;
+            right: 36px;
+            z-index: 1;
+            opacity: .5;
+        }
+
+        /* ===================== FEATURES CARD ===================== */
+        .features-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 10px 30px rgba(23, 50, 92, 0.06);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            margin-top: -40px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 28px 30px;
+            border-right: 1px solid var(--border);
+        }
+
+        .feature-item:last-child {
+            border-right: none;
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--navy-soft);
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-sub);
+        }
+
+        @media (max-width:820px) {
+            .hero {
+                padding: 40px 28px;
+            }
+
+            .hero-title {
+                font-size: 38px;
+            }
+
+            .hero-illustration {
+                width: 80%;
+                opacity: .5;
+            }
+
+            .features-card {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .feature-item:last-child {
+                border-bottom: none;
+            }
+        }
+
+        /* ===================== FOOTER ===================== */
+        .site-footer {
+            background: var(--footer-bg);
+            margin-top: 56px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 28px 24px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .footer-logo {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .footer-tagline {
+            font-size: 13px;
+            color: #5B6373;
+            font-weight: 500;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: #8A8FA0;
+            font-weight: 500;
+            margin-top: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            font-weight: 600;
+            color: #4B5566;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--navy);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="logo">RUPANTARA</div>
+            <nav class="nav-links">
+                <a href="#">Beranda</a>
+                <a href="#">Tentang Rupiah</a>
+                <a href="#" class="active">Fitur</a>
+                <a href="#">Materi</a>
+                <a href="#">Quiz</a>
+                <a href="#">Scan</a>
+            </nav>
+            <div class="header-right" id="authArea">
+                <a href="../LOGIN/login.html" class="login-btn" id="headerLoginBtn">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-content">
+        <div class="page-wrapper">
+
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-title">RUPANTARA</div>
+                    <div class="hero-subtitle">Uji pengetahuanmu tentang Rupiah Indonesia</div>
+                    <div class="hero-desc">
+                        Jawab 10 soal pilihan ganda untuk menguji seberapa jauh pengetahuanmu tentang Rupiah,
+                        sejarah, simbol, dan perannya dalam perekonomian Indonesia.
+                    </div>
+                    <a href="quiz.html" class="hero-cta" id="startBtn">Mulai Sekarang</a>
+                    <div class="hero-meta">10 soal &nbsp;&middot;&nbsp; Pilihan Ganda &nbsp;&middot;&nbsp; Skor Otomatis
+                    </div>
+                </div>
+
+                <div class="hero-dots">
+                    <svg width="90" height="70" viewBox="0 0 90 70" fill="none">
+                        <g fill="#B9CBEA">
+                            <circle cx="4" cy="4" r="3" />
+                            <circle cx="20" cy="4" r="3" />
+                            <circle cx="36" cy="4" r="3" />
+                            <circle cx="4" cy="20" r="3" />
+                            <circle cx="20" cy="20" r="3" />
+                            <circle cx="36" cy="20" r="3" />
+                            <circle cx="4" cy="36" r="3" />
+                            <circle cx="20" cy="36" r="3" />
+                            <circle cx="36" cy="36" r="3" />
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="hero-illustration">
+                    <svg viewBox="0 0 640 420" preserveAspectRatio="xMaxYMax slice" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="skyFade" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#EEF3FC" />
+                                <stop offset="100%" stop-color="#F8FAFF" />
+                            </linearGradient>
+                            <linearGradient id="waterFade" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#D9E4F5" />
+                                <stop offset="100%" stop-color="#F8FAFF" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+
+                        <!-- water -->
+                        <rect x="0" y="330" width="640" height="90" fill="url(#waterFade)" />
+
+                        <!-- back buildings (lighter) -->
+                        <g fill="#AFC3E4">
+                            <rect x="80" y="200" width="46" height="140" />
+                            <rect x="140" y="230" width="34" height="110" />
+                            <rect x="430" y="210" width="40" height="130" />
+                            <rect x="490" y="180" width="34" height="160" />
+                        </g>
+
+                        <!-- mid buildings -->
+                        <g fill="#7C99C9">
+                            <rect x="30" y="240" width="38" height="100" />
+                            <rect x="180" y="150" width="50" height="190" />
+                            <rect x="370" y="230" width="46" height="110" />
+                            <rect x="540" y="150" width="42" height="190" />
+                            <rect x="590" y="200" width="36" height="140" />
+                        </g>
+
+                        <!-- tv tower -->
+                        <g stroke="#4E6EA0" stroke-width="3">
+                            <line x1="255" y1="60" x2="255" y2="230" />
+                            <line x1="235" y1="100" x2="275" y2="100" />
+                            <line x1="240" y1="140" x2="270" y2="140" />
+                        </g>
+                        <circle cx="255" cy="55" r="6" fill="#4E6EA0" />
+
+                        <!-- foreground buildings (darkest, with windows) -->
+                        <g fill="#3E5D93">
+                            <rect x="230" y="160" width="60" height="180" />
+                            <rect x="300" y="120" width="54" height="220" />
+                            <rect x="290" y="230" width="26" height="110" />
+                        </g>
+                        <g fill="#CFDCF3" opacity=".8">
+                            <rect x="238" y="172" width="6" height="10" />
+                            <rect x="252" y="172" width="6" height="10" />
+                            <rect x="266" y="172" width="6" height="10" />
+                            <rect x="238" y="192" width="6" height="10" />
+                            <rect x="252" y="192" width="6" height="10" />
+                            <rect x="266" y="192" width="6" height="10" />
+                            <rect x="238" y="212" width="6" height="10" />
+                            <rect x="252" y="212" width="6" height="10" />
+                            <rect x="266" y="212" width="6" height="10" />
+                            <rect x="308" y="132" width="6" height="10" />
+                            <rect x="322" y="132" width="6" height="10" />
+                            <rect x="336" y="132" width="6" height="10" />
+                            <rect x="308" y="152" width="6" height="10" />
+                            <rect x="322" y="152" width="6" height="10" />
+                            <rect x="336" y="152" width="6" height="10" />
+                            <rect x="308" y="172" width="6" height="10" />
+                            <rect x="322" y="172" width="6" height="10" />
+                            <rect x="336" y="172" width="6" height="10" />
+                            <rect x="308" y="192" width="6" height="10" />
+                            <rect x="322" y="192" width="6" height="10" />
+                            <rect x="336" y="192" width="6" height="10" />
+                        </g>
+
+                        <!-- reflection -->
+                        <g opacity=".18" transform="translate(0,680) scale(1,-1)">
+                            <g fill="#7C99C9">
+                                <rect x="230" y="160" width="60" height="180" />
+                                <rect x="300" y="120" width="54" height="220" />
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="features-card">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="3" width="16" height="18" rx="2" />
+                            <line x1="8" y1="8" x2="16" y2="8" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                            <line x1="8" y1="16" x2="13" y2="16" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="feature-title">10 Soal</div>
+                        <div class="feature-desc">Pilihan ganda</div>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="9" />
+                            <polyline points="12 7 12 12 15.5 14" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="feature-title">Waktu Fleksibel</div>
+                        <div class="feature-desc">Kerjakan sesuai kecepatanmu</div>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8 21h8" />
+                            <path d="M12 17v4" />
+                            <path d="M7 4h10v5a5 5 0 0 1-10 0V4Z" />
+                            <path d="M7 6H4a2 2 0 0 0 2 4" />
+                            <path d="M17 6h3a2 2 0 0 1-2 4" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="feature-title">Skor &amp; Peringkat</div>
+                        <div class="feature-desc">Lihat hasil setelah selesai</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="footer-logo">RUPANTARA</div>
+                <div class="footer-tagline">Platform Edukasi Literasi Keuangan Masa Depan</div>
+                <div class="footer-copy">&copy; 2024 RUPANTARA Educational Platform. All rights reserved.</div>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Help Center</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Kalau user udah login (nickname ada di URL), teruskan ke halaman quiz
+        // sambil bawa nickname-nya juga, dan ganti tombol Login jadi avatar.
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const nickname = params.get('nickname');
+            const startBtn = document.getElementById('startBtn');
+            const authArea = document.getElementById('authArea');
+
+            if (nickname) {
+                startBtn.href = 'quiz.html?nickname=' + encodeURIComponent(nickname);
+
+                const inisial = (() => {
+                    const kata = nickname.trim().split(/\s+/);
+                    return kata.length === 1 ? kata[0].substring(0, 2).toUpperCase() : (kata[0][0] + kata[1][0]).toUpperCase();
+                })();
+                authArea.innerHTML = `<div class="user-avatar" title="${nickname}">${inisial}</div>`;
+            }
+        })();
+    </script>
+</body>
+
+</html>
