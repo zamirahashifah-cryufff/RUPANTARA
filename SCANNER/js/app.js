@@ -1,0 +1,291 @@
+/* ==========================================================================
+   RUPANTARA - MAIN APPLICATION INTERACTIVITY & SAFE DATA LOADER
+   ========================================================================== */
+
+// Embedded Fallback Dataset to prevent CORS / file:// protocol errors
+const defaultRupiahData = [
+  {
+    id: "2000",
+    nominal: 2000,
+    nominalFormatted: "Rp2.000",
+    jenis: "Rupiah Kertas",
+    image: "https://images.unsplash.com/photo-1596489375836-7c093a5a782b?auto=format&fit=crop&w=800&q=80",
+    pahlawan: "Mohammad Husni Thamrin",
+    pahlawanTtl: "16 Februari 1894 – 11 Januari 1941",
+    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Mohammad_Husni_Thamrin.jpg/220px-Mohammad_Husni_Thamrin.jpg",
+    maknaVisual: [
+      { icon: "👤", text: "Tokoh Utama: Mohammad Husni Thamrin, pahlawan nasional pejuang hak rakyat Indonesia." },
+      { icon: "🎨", text: "Motif Batik: Melambangkan kekayaan budaya Indonesia." },
+      { icon: "🛡️", text: "Garuda Pancasila: Simbol persatuan dan dasar negara." },
+      { icon: "✍️", text: "Bank Indonesia: Menandakan uang diterbitkan oleh Bank Indonesia." },
+      { icon: "🎨", text: "Warna Abu-abu: Menjadi ciri khas pecahan Rp2.000." }
+    ],
+    sejarahTokoh: "Mohammad Husni Thamrin adalah Pahlawan Nasional asal Batavia yang memperjuangkan hak-hak rakyat Indonesia melalui Volksraad. Atas jasa-jasanya, beliau diabadikan pada uang Rupiah pecahan Rp2.000.",
+    faktaMenarik: [
+      "💡 Mulai diedarkan sejak tahun 2016 (Emisi Tahun 2016).",
+      "📜 Terbuat dari 100% serat kapas sehingga lebih kuat dibanding kertas biasa.",
+      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh wilayah Indonesia.",
+      "🏛️ Diterbitkan langsung oleh Bank Indonesia.",
+      "💰 Termasuk salah satu pecahan yang paling sering digunakan dalam transaksi sehari-hari."
+    ],
+    ciriKeaslian: [
+      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang untuk mencegah pemalsuan." },
+      { title: "Watermark MH Thamrin", desc: "Gambar wajah Mohammad Husni Thamrin yang terlihat saat diterawang." },
+      { title: "Rectoverso", desc: "Gambar pada kedua sisi uang akan menyatu saat diterawang." },
+      { title: "Cetak Timbul", desc: "Bagian tertentu terasa kasar saat diraba sebagai ciri keaslian." },
+      { title: "Invisible Ink", desc: "Tinta khusus yang hanya tampak di bawah sinar ultraviolet (UV)." }
+    ]
+  },
+  {
+    id: "1000",
+    nominal: 1000,
+    nominalFormatted: "Rp1.000",
+    jenis: "Rupiah Kertas",
+    image: "https://images.unsplash.com/photo-1580519542036-c47de6196ba5?auto=format&fit=crop&w=800&q=80",
+    pahlawan: "Tjut Meutia",
+    pahlawanTtl: "1870 – 24 Oktober 1910",
+    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Cut_Nyak_Meutia.jpg/220px-Cut_Nyak_Meutia.jpg",
+    maknaVisual: [
+      { icon: "👤", text: "Tokoh Utama: Tjut Meutia, pahlawan nasional perempuan dari Aceh yang dikenal atas perjuangannya melawan penjajah Belanda." },
+      { icon: "🏝️", text: "Panorama: Kepulauan Banda Neira, salah satu destinasi bersejarah sekaligus penghasil rempah-rempah dunia." },
+      { icon: "🌺", text: "Flora: Anggrek Larat, bunga khas Maluku yang menjadi identitas keanekaragaman hayati Indonesia." },
+      { icon: "🎨", text: "Warna Hijau: Menjadi ciri khas pecahan Rp1.000 sekaligus melambangkan kehidupan dan kesegaran." }
+    ],
+    sejarahTokoh: "Tjut Meutia merupakan Pahlawan Nasional asal Aceh yang memimpin perjuangan melawan penjajah Belanda. Atas keberanian dan semangat juangnya, beliau diabadikan pada uang Rupiah pecahan Rp1.000.",
+    faktaMenarik: [
+      "💡 Mulai diedarkan sejak Tahun Emisi 2022.",
+      "📜 Terbuat dari 100% serat kapas, sehingga lebih awet dibanding kertas biasa.",
+      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh wilayah Indonesia.",
+      "🏛️ Menjadi pecahan kertas dengan nominal terkecil yang masih beredar."
+    ],
+    ciriKeaslian: [
+      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang sebagai pelindung dari pemalsuan." },
+      { title: "Watermark Tjut Meutia", desc: "Terlihat jelas saat diterawang ke arah cahaya." },
+      { title: "Rectoverso", desc: "Gambar pada kedua sisi uang akan menyatu sempurna saat diterawang." },
+      { title: "Cetak Timbul", desc: "Bagian gambar tokoh dan tulisan terasa kasar saat diraba." },
+      { title: "Invisible Ink", desc: "Tinta khusus yang hanya terlihat menggunakan sinar ultraviolet (UV)." }
+    ]
+  },
+  {
+    id: "5000",
+    nominal: 5000,
+    nominalFormatted: "Rp5.000",
+    jenis: "Rupiah Kertas",
+    image: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=800&q=80",
+    pahlawan: "K.H. Idham Chalid",
+    pahlawanTtl: "",
+    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Idham_Chalid.jpg/220px-Idham_Chalid.jpg",
+    maknaVisual: [
+      { icon: "👤", text: "Tokoh Utama: K.H. Idham Chalid, Pahlawan Nasional Indonesia." },
+      { icon: "🌺", text: "Motif Batik: Melambangkan kekayaan budaya Nusantara." },
+      { icon: "🛡️", text: "Lambang Garuda Pancasila: Simbol persatuan dan identitas bangsa." },
+      { icon: "✍️", text: "Tulisan \"Bank Indonesia\": Menunjukkan penerbit resmi uang Rupiah." },
+      { icon: "🎨", text: "Dominasi Warna Cokelat: Menjadi ciri khas uang pecahan Rp5.000." }
+    ],
+    sejarahTokoh: "K.H. Idham Chalid merupakan Pahlawan Nasional Indonesia yang lahir di Kalimantan Selatan. Beliau dikenal sebagai tokoh agama, pendidik, dan negarawan yang berjasa dalam pembangunan bangsa. Selain aktif di bidang pendidikan Islam, beliau juga pernah menjabat sebagai Ketua DPR dan Ketua MPR. Atas jasa-jasanya, wajah beliau diabadikan pada uang Rupiah pecahan Rp5.000.",
+    faktaMenarik: [
+      "💡 Diterbitkan dalam Emisi Tahun 2016.",
+      "📜 Terbuat dari 100% serat kapas sehingga lebih kuat dan tahan lama.",
+      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh Indonesia.",
+      "🏛️ Diterbitkan oleh Bank Indonesia.",
+      "🌄 Bagian belakang menampilkan Gunung Bromo, Tari Gambyong, dan bunga Sedap Malam sebagai simbol kekayaan alam dan budaya Indonesia."
+    ],
+    ciriKeaslian: [
+      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang sebagai pengaman untuk mencegah pemalsuan." },
+      { title: "Watermark K.H. Idham Chalid", desc: "Gambar wajah K.H. Idham Chalid akan terlihat jelas saat diterawang ke arah cahaya." },
+      { title: "Rectoverso", desc: "Gambar pada sisi depan dan belakang akan menyatu dengan sempurna saat diterawang." },
+      { title: "Cetak Timbul", desc: "Bagian tertentu terasa kasar saat diraba karena menggunakan teknik cetak khusus." },
+      { title: "Invisible Ink", desc: "Tinta khusus yang hanya akan terlihat jika disinari menggunakan sinar ultraviolet (UV)." }
+    ]
+  },
+  {
+    id: "10000",
+    nominal: 10000,
+    nominalFormatted: "Rp10.000",
+    jenis: "Rupiah Kertas",
+    image: "https://images.unsplash.com/photo-1596489375836-7c093a5a782b?auto=format&fit=crop&w=800&q=80",
+    pahlawan: "Frans Kaisiepo",
+    pahlawanTtl: "",
+    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Frans_Kaisiepo.jpg/220px-Frans_Kaisiepo.jpg",
+    maknaVisual: [
+      { icon: "👤", text: "Tokoh Utama: Frans Kaisiepo, Pahlawan Nasional dari Papua." },
+      { icon: "🌺", text: "Motif Batik: Melambangkan kekayaan budaya Indonesia." },
+      { icon: "🛡️", text: "Lambang Garuda Pancasila: Simbol persatuan bangsa." },
+      { icon: "✍️", text: "Tulisan \"Bank Indonesia\": Menunjukkan penerbit resmi uang Rupiah." },
+      { icon: "🎨", text: "Dominasi Warna Ungu: Menjadi ciri khas uang pecahan Rp10.000." }
+    ],
+    sejarahTokoh: "Frans Kaisiepo merupakan Pahlawan Nasional yang berasal dari Papua. Beliau dikenal sebagai tokoh yang memperjuangkan bergabungnya Papua ke dalam Negara Kesatuan Republik Indonesia (NKRI). Atas jasa dan pengabdiannya, wajah beliau diabadikan pada uang Rupiah pecahan Rp10.000.",
+    faktaMenarik: [
+      "💡 Diterbitkan dalam Emisi Tahun 2016.",
+      "📜 Terbuat dari bahan serat kapas agar lebih awet.",
+      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh Indonesia.",
+      "🏛️ Diterbitkan oleh Bank Indonesia.",
+      "🏝️ Menampilkan keindahan Taman Nasional Wakatobi, Tari Pakarena, dan bunga Cempaka Hutan Kasar pada bagian belakang."
+    ],
+    ciriKeaslian: [
+      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang sebagai pengaman untuk mencegah pemalsuan." },
+      { title: "Watermark Frans Kaisiepo", desc: "Gambar wajah Frans Kaisiepo akan terlihat jelas saat diterawang ke arah cahaya." },
+      { title: "Rectoverso", desc: "Gambar pada sisi depan dan belakang akan menyatu dengan sempurna saat diterawang." },
+      { title: "Cetak Timbul", desc: "Bagian tertentu terasa kasar saat diraba karena menggunakan teknik cetak khusus." },
+      { title: "Invisible Ink", desc: "Tinta khusus yang hanya akan terlihat jika disinari menggunakan sinar ultraviolet (UV)." }
+    ]
+  },
+  {
+    id: "20000",
+    nominal: 20000,
+    nominalFormatted: "Rp20.000",
+    jenis: "Rupiah Kertas",
+    image: "https://images.unsplash.com/photo-1596489375836-7c093a5a782b?auto=format&fit=crop&w=800&q=80",
+    pahlawan: "Dr. G.S.S.J. Ratulangi",
+    pahlawanTtl: "",
+    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Sam_Ratulangi.jpg/220px-Sam_Ratulangi.jpg",
+    maknaVisual: [
+      { icon: "👤", text: "Tokoh Utama: Dr. G.S.S.J. Ratulangi, Pahlawan Nasional Indonesia." },
+      { icon: "🌺", text: "Motif Batik: Melambangkan kekayaan budaya Indonesia." },
+      { icon: "🛡️", text: "Lambang Garuda Pancasila: Simbol persatuan dan identitas bangsa." },
+      { icon: "✍️", text: "Tulisan \"Bank Indonesia\": Menunjukkan penerbit resmi uang Rupiah." },
+      { icon: "🎨", text: "Dominasi Warna Hijau: Menjadi ciri khas uang pecahan Rp20.000." }
+    ],
+    sejarahTokoh: "Dr. G.S.S.J. Ratulangi atau Sam Ratulangi merupakan Pahlawan Nasional yang berasal dari Sulawesi Utara. Beliau dikenal sebagai tokoh pendidikan, ilmuwan, dan pejuang kemerdekaan yang berperan penting dalam memperjuangkan persatuan bangsa. Atas jasa-jasanya, beliau diabadikan pada uang Rupiah pecahan Rp20.000.",
+    faktaMenarik: [
+      "💡 Diterbitkan dalam Emisi Tahun 2016.",
+      "📜 Terbuat dari 100% serat kapas sehingga lebih kuat dan tahan lama.",
+      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh Indonesia.",
+      "🏛️ Diterbitkan oleh Bank Indonesia.",
+      "🏝️ Bagian belakang menampilkan Derawan, Tari Gong, dan bunga Anggrek Hitam sebagai simbol kekayaan alam dan budaya Indonesia."
+    ],
+    ciriKeaslian: [
+      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang sebagai pengaman untuk mencegah pemalsuan." },
+      { title: "Watermark Dr. G.S.S.J. Ratulangi", desc: "Gambar wajah Dr. G.S.S.J. Ratulangi akan terlihat jelas saat diterawang ke arah cahaya." },
+      { title: "Rectoverso", desc: "Gambar pada sisi depan dan belakang akan menyatu dengan sempurna saat diterawang." },
+      { title: "Cetak Timbul", desc: "Bagian tertentu terasa kasar saat diraba karena menggunakan teknik cetak khusus." },
+      { title: "Invisible Ink", desc: "Tinta khusus yang hanya akan terlihat jika disinari menggunakan sinar ultraviolet (UV)." }
+    ]
+  },
+  {
+    id: "50000",
+    nominal: 50000,
+    nominalFormatted: "Rp50.000",
+    jenis: "Rupiah Kertas",
+    image: "https://images.unsplash.com/photo-1596489375836-7c093a5a782b?auto=format&fit=crop&w=800&q=80",
+    pahlawan: "Ir. H. Djuanda Kartawidjaja",
+    pahlawanTtl: "",
+    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Djuanda_Kartawidjaja.jpg/220px-Djuanda_Kartawidjaja.jpg",
+    maknaVisual: [
+      { icon: "👤", text: "Tokoh Utama: Ir. H. Djuanda Kartawidjaja, Pahlawan Nasional Indonesia." },
+      { icon: "🌺", text: "Motif Batik: Melambangkan kekayaan budaya Nusantara." },
+      { icon: "🛡️", text: "Lambang Garuda Pancasila: Simbol persatuan dan identitas bangsa." },
+      { icon: "✍️", text: "Tulisan \"Bank Indonesia\": Menunjukkan penerbit resmi uang Rupiah." },
+      { icon: "🎨", text: "Dominasi Warna Biru: Menjadi ciri khas uang pecahan Rp50.000." }
+    ],
+    sejarahTokoh: "Ir. H. Djuanda Kartawidjaja merupakan Pahlawan Nasional Indonesia yang dikenal sebagai Perdana Menteri terakhir Indonesia. Beliau berjasa dalam memperjuangkan konsep negara kepulauan melalui Deklarasi Djuanda pada tahun 1957, yang menjadi dasar penetapan wilayah laut Indonesia. Atas jasa-jasanya, beliau diabadikan pada uang Rupiah pecahan Rp50.000.",
+    faktaMenarik: [
+      "💡 Diterbitkan dalam Emisi Tahun 2016.",
+      "📜 Terbuat dari 100% serat kapas sehingga lebih kuat dan tahan lama.",
+      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh Indonesia.",
+      "🏛️ Diterbitkan oleh Bank Indonesia.",
+      "🏝️ Bagian belakang menampilkan Taman Nasional Komodo, Tari Legong, dan bunga Jepun (Kamboja) sebagai simbol kekayaan alam dan budaya Indonesia."
+    ],
+    ciriKeaslian: [
+      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang sebagai pengaman untuk mencegah pemalsuan." },
+      { title: "Watermark Ir. H. Djuanda Kartawidjaja", desc: "Gambar wajah Ir. H. Djuanda Kartawidjaja akan terlihat jelas saat diterawang ke arah cahaya." },
+      { title: "Rectoverso", desc: "Gambar pada sisi depan dan belakang akan menyatu dengan sempurna saat diterawang." },
+      { title: "Cetak Timbul", desc: "Bagian tertentu terasa kasar saat diraba karena menggunakan teknik cetak khusus." },
+      { title: "Invisible Ink", desc: "Tinta khusus yang hanya akan terlihat jika disinari menggunakan sinar ultraviolet (UV)." }
+    ]
+  },
+  {
+    id: "100000",
+    nominal: 100000,
+    nominalFormatted: "Rp100.000",
+    jenis: "Rupiah Kertas",
+    image: "https://images.unsplash.com/photo-1596489375836-7c093a5a782b?auto=format&fit=crop&w=800&q=80",
+    pahlawan: "Ir. Soekarno & Dr. Mohammad Hatta",
+    pahlawanTtl: "",
+    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Presiden_Sukarno.jpg/220px-Presiden_Sukarno.jpg",
+    maknaVisual: [
+      { icon: "👤", text: "Tokoh Utama: Ir. Soekarno dan Dr. Mohammad Hatta, Proklamator Kemerdekaan Indonesia." },
+      { icon: "🌺", text: "Motif Batik: Melambangkan kekayaan budaya Nusantara." },
+      { icon: "🛡️", text: "Lambang Garuda Pancasila: Simbol persatuan dan identitas bangsa." },
+      { icon: "✍️", text: "Tulisan \"Bank Indonesia\": Menunjukkan penerbit resmi uang Rupiah." },
+      { icon: "🎨", text: "Dominasi Warna Merah: Menjadi ciri khas uang pecahan Rp100.000." }
+    ],
+    sejarahTokoh: "Ir. Soekarno dan Dr. Mohammad Hatta merupakan Proklamator Kemerdekaan Republik Indonesia. Pada tanggal 17 Agustus 1945, keduanya membacakan dan menandatangani Teks Proklamasi Kemerdekaan Indonesia, yang menandai lahirnya bangsa Indonesia sebagai negara yang merdeka dan berdaulat. Atas jasa dan perjuangan mereka, kedua tokoh tersebut diabadikan pada uang Rupiah pecahan Rp100.000.",
+    faktaMenarik: [
+      "💡 Diterbitkan dalam Emisi Tahun 2016.",
+      "📜 Terbuat dari 100% serat kapas sehingga lebih kuat dan tahan lama.",
+      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh Indonesia.",
+      "🏛️ Diterbitkan oleh Bank Indonesia.",
+      "🏝️ Bagian belakang menampilkan Raja Ampat, Tari Topeng Betawi, dan bunga Anggrek Bulan sebagai simbol kekayaan alam dan budaya Indonesia."
+    ],
+    ciriKeaslian: [
+      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang sebagai pengaman untuk mencegah pemalsuan." },
+      { title: "Watermark Soekarno & Mohammad Hatta", desc: "Gambar kedua tokoh akan terlihat jelas saat diterawang ke arah cahaya." },
+      { title: "Rectoverso", desc: "Gambar pada sisi depan dan belakang akan menyatu dengan sempurna saat diterawang." },
+      { title: "Cetak Timbul", desc: "Bagian tertentu terasa kasar saat diraba karena menggunakan teknik cetak khusus." },
+      { title: "Invisible Ink", desc: "Tinta khusus yang hanya akan terlihat jika disinari menggunakan sinar ultraviolet (UV)." }
+    ]
+  }
+];
+
+// Global Data Store
+window.rupantaraData = {
+  banknotes: defaultRupiahData
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  initApp();
+});
+
+async function initApp() {
+  await loadAppData();
+  setupNavigation();
+}
+
+/* Load Data JSON safely with Fallback */
+async function loadAppData() {
+  try {
+    const res = await fetch('data/rupiah.json');
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        window.rupantaraData.banknotes = data;
+      }
+    }
+  } catch (err) {
+    console.log('Menggunakan data embedded Rupantara (Fail-safe mode).');
+  }
+}
+
+/* Setup Header Navigation & Mobile Menu Toggle */
+function setupNavigation() {
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navMenu = document.getElementById('navMenu');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      if (navMenu) navMenu.classList.remove('active');
+    });
+  });
+
+  // Sticky Navbar Box Shadow
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+      if (window.scrollY > 40) {
+        navbar.style.boxShadow = '0 10px 30px rgba(2, 132, 199, 0.12)';
+      } else {
+        navbar.style.boxShadow = 'none';
+      }
+    }
+  });
+}
