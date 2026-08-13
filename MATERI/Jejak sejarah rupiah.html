@@ -1,0 +1,2138 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RUPANTARA - Materi Rupiah</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .active-nav {
+            border-bottom: 2px solid #1e3a8a;
+            color: #1e3a8a;
+            font-weight: 700;
+        }
+
+        .sidebar-item:hover {
+            background-color: #f3f4f6;
+            transition: 0.3s;
+        }
+
+        .sidebar-active {
+            background-color: white;
+            box-shadow:
+                0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border-radius: 12px;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+
+        .timeline-line {
+            width: 2px;
+            background: #cbd5e1;
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="bg-slate-50 text-slate-800">
+
+
+    <!-- ==================================================
+         NAVBAR
+    ================================================== -->
+
+    <nav class="bg-white border-b sticky top-0 z-50">
+
+        <div
+            class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between"
+        >
+
+            <!-- LOGO -->
+
+            <div
+                class="text-2xl font-bold text-blue-900 tracking-tighter"
+            >
+                RUPANTARA
+            </div>
+
+
+            <!-- MENU -->
+
+            <div
+                class="hidden md:flex space-x-8 text-sm font-medium text-gray-500"
+            >
+
+                <a
+                    href="#"
+                    class="hover:text-blue-900"
+                >
+                    Beranda
+                </a>
+
+                <a
+                    href="#"
+                    class="active-nav pb-1"
+                >
+                    Materi
+                </a>
+
+                <a
+                    href="#"
+                    class="hover:text-blue-900"
+                >
+                    Fitur
+                </a>
+
+                <a
+                    href="#"
+                    class="hover:text-blue-900"
+                >
+                    Quiz
+                </a>
+
+                <a
+                    href="#"
+                    class="hover:text-blue-900"
+                >
+                    Scan
+                </a>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <button
+                class="bg-blue-900 text-white px-8 py-2 rounded-lg font-bold hover:bg-blue-800 transition"
+            >
+                Login
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==================================================
+         MAIN
+    ================================================== -->
+
+    <main
+        class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row gap-10"
+    >
+
+
+        <!-- ==================================================
+             SIDEBAR / DAFTAR ISI
+        ================================================== -->
+
+        <aside class="w-full md:w-1/4">
+
+            <div class="bg-slate-100/50 p-6 rounded-2xl">
+
+                <h2
+                    class="text-2xl font-bold text-blue-900 mb-1"
+                >
+                    Materi
+                </h2>
+
+                <p
+                    class="text-xs text-gray-500 mb-8 font-medium"
+                >
+                    Panduan Merawat Uang
+                </p>
+
+
+                <div class="space-y-2">
+
+
+                    <!-- 1 -->
+
+                    <button
+                        onclick="changeContent('mengenal')"
+                        class="sidebar-active w-full flex items-center gap-4 p-4 text-left text-blue-900 rounded-xl shadow-sm transition font-bold"
+                    >
+
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            ></path>
+
+                        </svg>
+
+
+                        <span class="text-sm">
+                            Mengenal Rupiah
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- 2 -->
+
+                    <button
+                        onclick="changeContent('bi')"
+                        class="sidebar-item w-full flex items-center gap-4 p-4 text-left text-gray-600 rounded-xl transition"
+                    >
+
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            ></path>
+
+                        </svg>
+
+
+                        <span class="text-sm font-medium">
+                            Bank Indonesia
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- 3 -->
+
+                    <button
+                        onclick="changeContent('keamanan')"
+                        class="sidebar-item w-full flex items-center gap-4 p-4 text-left text-gray-600 rounded-xl transition"
+                    >
+
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            ></path>
+
+                        </svg>
+
+
+                        <span class="text-sm font-medium">
+                            Ciri Keamanan Rupiah
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- 4 -->
+
+                    <button
+                        onclick="changeContent('sejarah')"
+                        class="sidebar-item w-full flex items-center gap-4 p-4 text-left text-gray-600 rounded-xl transition"
+                    >
+
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            ></path>
+
+                        </svg>
+
+
+                        <span class="text-sm font-medium">
+                            Menelusuri jejak sejarah rupiah
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- 5 -->
+
+                    <button
+                        onclick="changeContent('merawat')"
+                        class="sidebar-item w-full flex items-center gap-4 p-4 text-left text-gray-600 rounded-xl transition"
+                    >
+
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            ></path>
+
+                        </svg>
+
+
+                        <span class="text-sm font-medium">
+                            Cara Merawat Rupiah
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- ==================================================
+             KONTEN UTAMA
+        ================================================== -->
+
+        <section
+            id="content"
+            class="w-full md:w-3/4 fade-in"
+        >
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==================================================
+         FOOTER
+    ================================================== -->
+
+    <footer
+        class="bg-slate-100 border-t mt-20 py-12"
+    >
+
+        <div
+            class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+
+            <div>
+
+                <div
+                    class="text-xl font-bold text-blue-900"
+                >
+                    RUPANTARA
+                </div>
+
+                <p
+                    class="text-xs text-gray-400 mt-1"
+                >
+                    Platform Edukasi Literasi Keuangan Masa Depan
+                </p>
+
+            </div>
+
+
+            <div
+                class="flex gap-8 text-[10px] font-bold text-gray-500 uppercase tracking-widest"
+            >
+
+                <a
+                    href="#"
+                    class="hover:text-blue-900"
+                >
+                    Privacy Policy
+                </a>
+
+                <a
+                    href="#"
+                    class="hover:text-blue-900"
+                >
+                    Terms of Service
+                </a>
+
+                <a
+                    href="#"
+                    class="hover:text-blue-900"
+                >
+                    Help Center
+                </a>
+
+                <a
+                    href="#"
+                    class="hover:text-blue-900"
+                >
+                    Contact Us
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="text-center text-[10px] text-gray-400 mt-10"
+        >
+            © 2024-2025 RUPANTARA Educational Nation.
+            All rights reserved.
+        </div>
+
+    </footer>
+
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script>
+
+
+        /* ==================================================
+           FUNGSI CHANGE CONTENT
+        ================================================== */
+
+        function changeContent(topic) {
+
+
+            const content =
+                document.getElementById("content");
+
+
+            const buttons =
+                document.querySelectorAll(
+                    ".sidebar-item, .sidebar-active"
+                );
+
+
+            /*
+             * RESET SEMUA BUTTON
+             */
+
+            buttons.forEach(function(btn) {
+
+                btn.className =
+                    "sidebar-item w-full flex items-center gap-4 p-4 text-left text-gray-600 rounded-xl transition";
+
+            });
+
+
+
+            /*
+             * CARI BUTTON YANG SESUAI
+             */
+
+            buttons.forEach(function(btn) {
+
+                const text =
+                    btn.innerText
+                        .trim()
+                        .toLowerCase();
+
+
+                if (
+                    (topic === "mengenal" &&
+                        text.includes("mengenal rupiah"))
+                    ||
+
+                    (topic === "bi" &&
+                        text.includes("bank indonesia"))
+                    ||
+
+                    (topic === "keamanan" &&
+                        text.includes("ciri keamanan"))
+                    ||
+
+                    (topic === "sejarah" &&
+                        text.includes("menelusuri"))
+                    ||
+
+                    (topic === "merawat" &&
+                        text.includes("merawat rupiah"))
+                ) {
+
+                    btn.className =
+                        "sidebar-active w-full flex items-center gap-4 p-4 text-left text-blue-900 rounded-xl shadow-sm bg-white transition font-bold";
+
+                }
+
+            });
+
+
+
+            /* ==================================================
+               MATERI 1
+               MENGENAL RUPIAH
+            ================================================== */
+
+            if (topic === "mengenal") {
+
+
+                content.innerHTML = `
+
+                    <div class="fade-in">
+
+
+                        <!-- HERO -->
+
+                        <div
+                            class="relative rounded-3xl overflow-hidden mb-10 h-64"
+                        >
+
+                            <img
+                                src="uang.jpg"
+                                alt="Rupiah"
+                                class="w-full h-full object-cover"
+                            >
+
+
+                            <div
+                                class="absolute inset-0 bg-black/40 flex flex-col justify-center px-10 text-white"
+                            >
+
+                                <span
+                                    class="text-xs uppercase tracking-widest font-bold mb-3"
+                                >
+                                    Materi Literasi Keuangan
+                                </span>
+
+
+                                <h1
+                                    class="text-4xl font-bold"
+                                >
+                                    Mengenal Rupiah
+                                </h1>
+
+
+                                <p
+                                    class="mt-3 text-sm"
+                                >
+                                    Simbol kedaulatan dan
+                                    identitas bangsa Indonesia.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- ISI -->
+
+                        <span
+                            class="bg-blue-900 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-md font-bold"
+                        >
+                            Definisi
+                        </span>
+
+
+                        <h2
+                            class="text-3xl font-bold text-blue-900 mt-5 mb-4"
+                        >
+                            Apa itu Rupiah?
+                        </h2>
+
+
+                        <p
+                            class="text-sm text-gray-600 leading-relaxed"
+                        >
+                            Rupiah adalah mata uang resmi
+                            yang berlaku di seluruh wilayah
+                            Negara Kesatuan Republik Indonesia
+                            (NKRI). Sebagai alat pembayaran
+                            yang sah, Rupiah bukan sekadar
+                            lembaran kertas atau kepingan logam,
+                            melainkan representasi dari sejarah
+                            panjang dan kemandirian ekonomi bangsa.
+                        </p>
+
+
+
+                        <!-- QUOTE -->
+
+                        <div
+                            class="border-l-4 border-blue-900 bg-slate-100 p-5 mt-8 italic text-sm text-gray-600"
+                        >
+                            "Rupiah adalah simbol kedaulatan
+                            negara yang wajib kita hormati
+                            dan gunakan di setiap transaksi
+                            di dalam negeri."
+                        </div>
+
+
+
+                        <!-- CARD -->
+
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10"
+                        >
+
+
+                            <div
+                                class="bg-white border p-6 rounded-2xl hover:shadow-lg transition"
+                            >
+
+                                <div
+                                    class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-900 mb-5"
+                                >
+                                    💰
+                                </div>
+
+                                <h3
+                                    class="font-bold text-blue-900 mb-2"
+                                >
+                                    Fungsi Rupiah
+                                </h3>
+
+                                <p
+                                    class="text-sm text-gray-500"
+                                >
+                                    Memahami peran dasar uang
+                                    dalam sistem keuangan kita.
+                                </p>
+
+                            </div>
+
+
+
+                            <div
+                                class="bg-white border p-6 rounded-2xl hover:shadow-lg transition"
+                            >
+
+                                <div
+                                    class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-900 mb-5"
+                                >
+                                    📈
+                                </div>
+
+                                <h3
+                                    class="font-bold text-blue-900 mb-2"
+                                >
+                                    Peran Ekonomi
+                                </h3>
+
+                                <p
+                                    class="text-sm text-gray-500"
+                                >
+                                    Kontribusi Rupiah terhadap
+                                    stabilitas makroekonomi.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- NAVIGASI -->
+
+                        <div
+                            class="flex justify-end items-center border-t pt-8 mt-12"
+                        >
+
+                            <button
+                                onclick="changeContent('bi')"
+                                class="flex items-center gap-3 text-right text-gray-400 hover:text-blue-900 transition font-medium text-sm"
+                            >
+
+                                <span>
+                                    Materi Selanjutnya
+                                    <br>
+
+                                    <b class="text-blue-900">
+                                        Bank Indonesia
+                                    </b>
+                                </span>
+
+                                <div
+                                    class="w-10 h-10 bg-blue-900 text-white rounded-full flex items-center justify-center"
+                                >
+                                    →
+                                </div>
+
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+            }
+
+
+
+            /* ==================================================
+               MATERI 2
+               BANK INDONESIA
+            ================================================== */
+
+            else if (topic === "bi") {
+
+
+                content.innerHTML = `
+
+                    <div class="fade-in">
+
+
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12"
+                        >
+
+
+                            <div>
+
+                                <span
+                                    class="bg-blue-100 text-blue-700 text-[10px] uppercase tracking-widest px-3 py-2 rounded-md font-bold"
+                                >
+                                    Lembaga Negara Independen
+                                </span>
+
+
+                                <h1
+                                    class="text-4xl font-bold text-blue-900 mt-5"
+                                >
+                                    Bank Indonesia
+                                </h1>
+
+
+                                <p
+                                    class="text-sm text-gray-500 mt-4 leading-relaxed"
+                                >
+                                    Mengenal lebih dekat bank
+                                    sentral Republik Indonesia
+                                    yang memiliki peran penting
+                                    dalam menjaga stabilitas
+                                    nilai Rupiah dan sistem
+                                    keuangan nasional.
+                                </p>
+
+                            </div>
+
+
+
+                            <div
+                                class="rounded-3xl overflow-hidden shadow-xl"
+                            >
+
+                                <img
+                                    src="bank indo.jpg"
+                                    alt="Bank Indonesia"
+                                    class="w-full h-64 object-cover"
+                                >
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- BI -->
+
+                        <div class="mb-12">
+
+                            <h2
+                                class="text-2xl font-bold text-blue-900 mb-4"
+                            >
+                                BI sebagai Bank Sentral
+                            </h2>
+
+
+                            <p
+                                class="text-sm text-gray-500 leading-relaxed"
+                            >
+                                Bank Indonesia adalah lembaga
+                                negara yang independen dalam
+                                melaksanakan tugas dan wewenangnya,
+                                bebas dari campur tangan Pemerintah
+                                dan/atau pihak lain, kecuali untuk
+                                hal-hal yang secara tegas diatur
+                                dalam undang-undang.
+                            </p>
+
+
+                            <div
+                                class="bg-slate-100 border-l-4 border-blue-600 p-6 mt-6 rounded-r-xl"
+                            >
+
+                                <h3
+                                    class="font-bold text-blue-900 mb-2"
+                                >
+                                    Tujuan Tunggal
+                                </h3>
+
+
+                                <p
+                                    class="text-sm text-gray-500 leading-relaxed"
+                                >
+                                    Mencapai dan memelihara
+                                    kestabilan nilai Rupiah.
+                                    Kestabilan ini mencakup
+                                    kestabilan nilai mata uang
+                                    terhadap barang dan jasa
+                                    serta terhadap mata uang
+                                    negara lain.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- TUGAS -->
+
+                        <div class="mb-12">
+
+                            <h2
+                                class="text-2xl font-bold text-blue-900 mb-6"
+                            >
+                                Tugas & Wewenang
+                            </h2>
+
+
+                            <div
+                                class="grid grid-cols-1 md:grid-cols-2 gap-6"
+                            >
+
+
+                                <div
+                                    class="bg-white border p-7 rounded-2xl"
+                                >
+
+                                    <div
+                                        class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-5"
+                                    >
+                                        📊
+                                    </div>
+
+
+                                    <h3
+                                        class="font-bold text-blue-900 mb-4"
+                                    >
+                                        Tugas BI
+                                    </h3>
+
+
+                                    <ol
+                                        class="list-decimal ml-5 text-sm text-gray-500 space-y-3"
+                                    >
+
+                                        <li>
+                                            Menetapkan dan
+                                            melaksanakan
+                                            kebijakan moneter.
+                                        </li>
+
+                                        <li>
+                                            Mengatur dan menjaga
+                                            kelancaran sistem
+                                            pembayaran.
+                                        </li>
+
+                                        <li>
+                                            Menjaga stabilitas
+                                            sistem keuangan.
+                                        </li>
+
+                                    </ol>
+
+                                </div>
+
+
+
+                                <div
+                                    class="bg-white border p-7 rounded-2xl"
+                                >
+
+                                    <div
+                                        class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-5"
+                                    >
+                                        ⚖️
+                                    </div>
+
+
+                                    <h3
+                                        class="font-bold text-blue-900 mb-4"
+                                    >
+                                        Wewenang BI
+                                    </h3>
+
+
+                                    <ul
+                                        class="list-disc ml-5 text-sm text-gray-500 space-y-3"
+                                    >
+
+                                        <li>
+                                            Menetapkan sasaran
+                                            moneter dengan
+                                            memperhatikan
+                                            laju inflasi.
+                                        </li>
+
+                                        <li>
+                                            Melakukan pengendalian
+                                            moneter menggunakan
+                                            berbagai instrumen.
+                                        </li>
+
+                                        <li>
+                                            Memberikan dan mencabut
+                                            izin atas penyelenggaraan
+                                            jasa sistem pembayaran.
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- NAVIGASI -->
+
+                        <div
+                            class="flex justify-between items-center border-t pt-8 mt-12"
+                        >
+
+
+                            <button
+                                onclick="changeContent('mengenal')"
+                                class="flex items-center gap-3 text-gray-400 hover:text-blue-900 transition font-medium text-sm"
+                            >
+
+                                <div
+                                    class="w-10 h-10 border rounded-full flex items-center justify-center"
+                                >
+                                    ←
+                                </div>
+
+                                <span>
+                                    Materi Sebelumnya
+                                    <br>
+
+                                    <b class="text-blue-900">
+                                        Mengenal Rupiah
+                                    </b>
+                                </span>
+
+                            </button>
+
+
+
+                            <button
+                                onclick="changeContent('keamanan')"
+                                class="flex items-center gap-3 text-right text-gray-400 hover:text-blue-900 transition font-medium text-sm"
+                            >
+
+                                <span>
+                                    Materi Selanjutnya
+                                    <br>
+
+                                    <b class="text-blue-900">
+                                        Ciri Keamanan Rupiah
+                                    </b>
+                                </span>
+
+
+                                <div
+                                    class="w-10 h-10 bg-blue-900 text-white rounded-full flex items-center justify-center"
+                                >
+                                    →
+                                </div>
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+            }
+
+
+
+            /* ==================================================
+               MATERI 3
+               CIRI KEAMANAN RUPIAH
+            ================================================== */
+
+            else if (topic === "keamanan") {
+
+
+                content.innerHTML = `
+
+                    <div class="fade-in">
+
+
+                        <span
+                            class="bg-blue-100 text-blue-700 text-[10px] uppercase tracking-widest px-3 py-2 rounded-md font-bold"
+                        >
+                            Keamanan Moneter
+                        </span>
+
+
+                        <h1
+                            class="text-4xl font-bold text-blue-900 mt-5"
+                        >
+                            Ciri Keamanan Rupiah
+                        </h1>
+
+
+                        <p
+                            class="text-sm text-gray-500 mt-4 leading-relaxed max-w-2xl"
+                        >
+                            Bank Indonesia telah melengkapi
+                            uang Rupiah dengan berbagai unsur
+                            pengaman untuk menghindari pemalsuan.
+                            Masyarakat dapat mengenali ciri
+                            keamanan Rupiah melalui metode
+                            sederhana yang dikenal dengan
+                            <b>3D: Dilihat, Diraba, Diterawang.</b>
+                        </p>
+
+
+
+                        <!-- 3D -->
+
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10"
+                        >
+
+
+                            <!-- DILIHAT -->
+
+                            <div
+                                class="bg-white border p-7 rounded-2xl text-center hover:shadow-lg transition"
+                            >
+
+                                <div
+                                    class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-5 text-2xl"
+                                >
+                                    👁️
+                                </div>
+
+
+                                <h3
+                                    class="font-bold text-blue-900 mb-3"
+                                >
+                                    Dilihat
+                                </h3>
+
+
+                                <p
+                                    class="text-sm text-gray-500 leading-relaxed"
+                                >
+                                    Perhatikan warna, gambar,
+                                    benang pengaman, dan unsur
+                                    pengaman lain yang dapat
+                                    terlihat secara langsung.
+                                </p>
+
+                            </div>
+
+
+
+                            <!-- DIRABA -->
+
+                            <div
+                                class="bg-white border p-7 rounded-2xl text-center hover:shadow-lg transition"
+                            >
+
+                                <div
+                                    class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-5 text-2xl"
+                                >
+                                    ✋
+                                </div>
+
+
+                                <h3
+                                    class="font-bold text-blue-900 mb-3"
+                                >
+                                    Diraba
+                                </h3>
+
+
+                                <p
+                                    class="text-sm text-gray-500 leading-relaxed"
+                                >
+                                    Rasakan bagian uang yang
+                                    terasa kasar pada gambar
+                                    utama, angka nominal,
+                                    dan bagian tertentu lainnya.
+                                </p>
+
+                            </div>
+
+
+
+                            <!-- DITERAWANG -->
+
+                            <div
+                                class="bg-white border p-7 rounded-2xl text-center hover:shadow-lg transition"
+                            >
+
+                                <div
+                                    class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-5 text-2xl"
+                                >
+                                    ☀️
+                                </div>
+
+
+                                <h3
+                                    class="font-bold text-blue-900 mb-3"
+                                >
+                                    Diterawang
+                                </h3>
+
+
+                                <p
+                                    class="text-sm text-gray-500 leading-relaxed"
+                                >
+                                    Arahkan uang ke sumber
+                                    cahaya untuk melihat
+                                    tanda air atau watermark
+                                    dan unsur pengaman lainnya.
+                                </p>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- UNSUR PENGAMAN -->
+
+                        <div
+                            class="bg-slate-100 p-8 rounded-2xl mt-10"
+                        >
+
+                            <h2
+                                class="text-2xl font-bold text-blue-900 mb-7"
+                            >
+                                Unsur Pengaman Utama
+                            </h2>
+
+
+                            <div
+                                class="grid grid-cols-1 md:grid-cols-2 gap-7"
+                            >
+
+
+                                <div class="flex gap-4">
+
+                                    <div
+                                        class="text-green-500 text-xl"
+                                    >
+                                        ✓
+                                    </div>
+
+                                    <div>
+
+                                        <h4
+                                            class="font-bold text-gray-800"
+                                        >
+                                            Color Shifting Ink
+                                        </h4>
+
+                                        <p
+                                            class="text-sm text-gray-500 mt-1"
+                                        >
+                                            Tinta yang dapat
+                                            berubah warna ketika
+                                            dilihat dari sudut
+                                            pandang berbeda.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="flex gap-4">
+
+                                    <div
+                                        class="text-green-500 text-xl"
+                                    >
+                                        ✓
+                                    </div>
+
+                                    <div>
+
+                                        <h4
+                                            class="font-bold text-gray-800"
+                                        >
+                                            Security Thread
+                                        </h4>
+
+                                        <p
+                                            class="text-sm text-gray-500 mt-1"
+                                        >
+                                            Benang pengaman yang
+                                            terdapat pada uang
+                                            kertas.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="flex gap-4">
+
+                                    <div
+                                        class="text-green-500 text-xl"
+                                    >
+                                        ✓
+                                    </div>
+
+                                    <div>
+
+                                        <h4
+                                            class="font-bold text-gray-800"
+                                        >
+                                            Latent Image
+                                        </h4>
+
+                                        <p
+                                            class="text-sm text-gray-500 mt-1"
+                                        >
+                                            Gambar tersembunyi yang
+                                            dapat terlihat dari
+                                            sudut pandang tertentu.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="flex gap-4">
+
+                                    <div
+                                        class="text-green-500 text-xl"
+                                    >
+                                        ✓
+                                    </div>
+
+                                    <div>
+
+                                        <h4
+                                            class="font-bold text-gray-800"
+                                        >
+                                            Watermark
+                                        </h4>
+
+                                        <p
+                                            class="text-sm text-gray-500 mt-1"
+                                        >
+                                            Tanda air berupa gambar
+                                            yang dapat terlihat ketika
+                                            uang diterawang.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- NAVIGASI -->
+
+                        <div
+                            class="flex justify-between items-center border-t pt-8 mt-12"
+                        >
+
+
+                            <button
+                                onclick="changeContent('bi')"
+                                class="flex items-center gap-3 text-gray-400 hover:text-blue-900 transition font-medium text-sm"
+                            >
+
+                                <div
+                                    class="w-10 h-10 border rounded-full flex items-center justify-center"
+                                >
+                                    ←
+                                </div>
+
+                                <span>
+                                    Materi Sebelumnya
+                                    <br>
+
+                                    <b class="text-blue-900">
+                                        Bank Indonesia
+                                    </b>
+                                </span>
+
+                            </button>
+
+
+
+                            <button
+                                onclick="changeContent('sejarah')"
+                                class="flex items-center gap-3 text-right text-gray-400 hover:text-blue-900 transition font-medium text-sm"
+                            >
+
+                                <span>
+                                    Materi Selanjutnya
+                                    <br>
+
+                                    <b class="text-blue-900">
+                                        Jejak Sejarah Rupiah
+                                    </b>
+                                </span>
+
+
+                                <div
+                                    class="w-10 h-10 bg-blue-900 text-white rounded-full flex items-center justify-center"
+                                >
+                                    →
+                                </div>
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+            }
+
+
+
+            /* ==================================================
+               MATERI 4
+               SEJARAH RUPIAH
+            ================================================== */
+
+            else if (topic === "sejarah") {
+
+
+                content.innerHTML = `
+
+                    <div class="fade-in">
+
+
+                        <!-- HERO -->
+
+                        <div class="mb-12">
+
+
+                            <span
+                                class="bg-blue-900 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-md font-bold"
+                            >
+                                Materi Literasi Keuangan
+                            </span>
+
+
+                            <h1
+                                class="text-4xl font-bold text-blue-900 mt-5 leading-tight max-w-lg"
+                            >
+                                Menelusuri Jejak
+                                Sejarah Rupiah
+                            </h1>
+
+
+                            <p
+                                class="text-gray-500 mt-4 text-sm leading-relaxed max-w-xl"
+                            >
+                                Perjalanan panjang mata uang
+                                Indonesia, dari koin emas
+                                kerajaan kuno hingga
+                                perkembangan Rupiah sebagai
+                                simbol kedaulatan dan identitas
+                                bangsa.
+                            </p>
+
+
+                            <div
+                                class="mt-8 rounded-3xl overflow-hidden shadow-2xl"
+                            >
+
+                                <img
+                                    src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=1000"
+                                    alt="History"
+                                    class="w-full h-64 object-cover"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- QUOTE -->
+
+                        <div
+                            class="border-l-4 border-blue-900 pl-6 my-10 italic text-gray-600 text-sm"
+                        >
+                            "Uang bukan sekadar alat tukar,
+                            melainkan saksi bisu perjuangan
+                            dan perkembangan sebuah bangsa
+                            untuk merdeka secara ekonomi."
+                        </div>
+
+
+
+                        <!-- SECTION 1 -->
+
+                        <div class="mb-16">
+
+
+                            <h3
+                                class="text-2xl font-bold text-blue-900 mb-6"
+                            >
+                                1. Masa Kerajaan (Abad ke-9)
+                            </h3>
+
+
+                            <p
+                                class="text-sm text-gray-600 mb-8"
+                            >
+                                Evolusi mata uang Rupiah diawali
+                                jauh sebelum kemerdekaan melalui
+                                logam mulia yang diedarkan secara
+                                lokal oleh kerajaan-kerajaan besar.
+                            </p>
+
+
+                            <div
+                                class="grid grid-cols-1 md:grid-cols-2 gap-6"
+                            >
+
+
+                                <!-- KOIN EMAS -->
+
+                                <div
+                                    class="bg-white p-2 rounded-2xl border hover:shadow-lg transition"
+                                >
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1621506821199-a996ee0bb44c?auto=format&fit=crop&q=80&w=400"
+                                        class="w-full h-40 object-cover rounded-xl mb-4"
+                                        alt="Koin Kuno"
+                                    >
+
+
+                                    <div class="p-4">
+
+                                        <h4
+                                            class="font-bold text-blue-900 text-sm"
+                                        >
+                                            Koin Emas Dinara
+                                        </h4>
+
+
+                                        <p
+                                            class="text-xs text-gray-500 mt-2 leading-relaxed"
+                                        >
+                                            Digunakan pada masa
+                                            Kerajaan Mataram Kuno
+                                            dan Jenggala. Terbuat
+                                            dari emas murni dan
+                                            perak dengan satuan
+                                            "Masa" dan "Kupang".
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <!-- GOBOG -->
+
+                                <div
+                                    class="bg-white p-2 rounded-2xl border hover:shadow-lg transition"
+                                >
+
+                                    <img
+                                        src="https://images.unsplash.com/photo-1589231014560-643070624300?auto=format&fit=crop&q=80&w=400"
+                                        class="w-full h-40 object-cover rounded-xl mb-4"
+                                        alt="Koin Majapahit"
+                                    >
+
+
+                                    <div class="p-4">
+
+                                        <h4
+                                            class="font-bold text-blue-900 text-sm"
+                                        >
+                                            Uang Gobog Majapahit
+                                        </h4>
+
+
+                                        <p
+                                            class="text-xs text-gray-500 mt-2 leading-relaxed"
+                                        >
+                                            Merupakan koin perunggu
+                                            yang sangat populer
+                                            pada masa Kerajaan
+                                            Majapahit, terinspirasi
+                                            dari uang koin berlubang
+                                            dari Tiongkok.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- SECTION 2 -->
+
+                        <div class="mb-16">
+
+
+                            <h3
+                                class="text-2xl font-bold text-blue-900 mb-6"
+                            >
+                                2. Era Kolonialisme
+                            </h3>
+
+
+                            <div
+                                class="bg-white p-6 rounded-2xl border flex flex-col md:flex-row gap-8 items-center"
+                            >
+
+
+                                <img
+                                    src="https://upload.wikimedia.org/wikipedia/commons/4/4e/1000_Gulden_1930.jpg"
+                                    alt="Gulden"
+                                    class="w-full md:w-48 h-32 object-cover rounded-lg shadow-sm"
+                                >
+
+
+                                <div>
+
+                                    <span
+                                        class="text-[10px] text-blue-600 font-bold uppercase"
+                                    >
+                                        De Javasche Bank
+                                    </span>
+
+
+                                    <h4
+                                        class="text-xl font-bold text-blue-900 mt-1"
+                                    >
+                                        Gulden Hindia Belanda
+                                    </h4>
+
+
+                                    <p
+                                        class="text-sm text-gray-500 mt-3 leading-relaxed"
+                                    >
+                                        Pada masa VOC hingga
+                                        Pemerintah Hindia Belanda,
+                                        Gulden menjadi mata uang
+                                        utama. Ini ditandai dengan
+                                        munculnya bank sentral di
+                                        Indonesia dengan berdirinya
+                                        De Javasche Bank.
+                                    </p>
+
+
+                                    <div
+                                        class="flex gap-2 mt-4 flex-wrap"
+                                    >
+
+                                        <span
+                                            class="px-3 py-1 bg-slate-100 text-[10px] font-bold rounded-full text-slate-600"
+                                        >
+                                            VOC
+                                        </span>
+
+                                        <span
+                                            class="px-3 py-1 bg-slate-100 text-[10px] font-bold rounded-full text-slate-600"
+                                        >
+                                            Gulden
+                                        </span>
+
+                                        <span
+                                            class="px-3 py-1 bg-slate-100 text-[10px] font-bold rounded-full text-slate-600"
+                                        >
+                                            Standar Emas
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- SECTION 3 -->
+
+                        <div class="mb-16">
+
+
+                            <h3
+                                class="text-2xl font-bold text-blue-900 mb-8"
+                            >
+                                3. Lahirnya Rupiah
+                                (Kemerdekaan)
+                            </h3>
+
+
+                            <div
+                                class="space-y-8 relative"
+                            >
+
+
+                                <!-- 1946 -->
+
+                                <div
+                                    class="flex gap-6 relative"
+                                >
+
+                                    <div
+                                        class="relative flex flex-col items-center"
+                                    >
+
+                                        <div
+                                            class="w-4 h-4 bg-blue-900 rounded-full z-10"
+                                        ></div>
+
+                                        <div
+                                            class="timeline-line"
+                                        ></div>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <span
+                                            class="text-blue-900 font-bold text-xs"
+                                        >
+                                            30 Oktober 1946
+                                        </span>
+
+
+                                        <h4
+                                            class="font-bold text-gray-800"
+                                        >
+                                            Penerbitan ORI
+                                            (Oeang Republik Indonesia)
+                                        </h4>
+
+
+                                        <p
+                                            class="text-sm text-gray-500 mt-1"
+                                        >
+                                            Mata uang pertama yang
+                                            diterbitkan Pemerintah
+                                            Indonesia sebagai simbol
+                                            kedaulatan ekonomi pasca
+                                            proklamasi.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <!-- 1953 -->
+
+                                <div
+                                    class="flex gap-6 relative"
+                                >
+
+                                    <div
+                                        class="relative flex flex-col items-center"
+                                    >
+
+                                        <div
+                                            class="w-4 h-4 bg-blue-900 rounded-full z-10"
+                                        ></div>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <span
+                                            class="text-blue-900 font-bold text-xs"
+                                        >
+                                            1953
+                                        </span>
+
+
+                                        <h4
+                                            class="font-bold text-gray-800"
+                                        >
+                                            Nasionalisasi Bank Indonesia
+                                        </h4>
+
+
+                                        <p
+                                            class="text-sm text-gray-500 mt-1"
+                                        >
+                                            Bank Indonesia resmi
+                                            berdiri menggantikan
+                                            De Javasche Bank dan
+                                            memegang hak eksklusif
+                                            sebagai Bank Sentral
+                                            Indonesia.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- NAVIGASI -->
+
+                        <div
+                            class="flex justify-between items-center border-t pt-10"
+                        >
+
+
+                            <button
+                                onclick="changeContent('keamanan')"
+                                class="flex items-center gap-3 text-gray-400 hover:text-blue-900 transition font-medium text-sm"
+                            >
+
+                                <div
+                                    class="w-10 h-10 border rounded-full flex items-center justify-center"
+                                >
+                                    ←
+                                </div>
+
+
+                                <span>
+
+                                    Materi Sebelumnya
+                                    <br>
+
+                                    <b class="text-blue-900">
+                                        Ciri Keamanan Rupiah
+                                    </b>
+
+                                </span>
+
+                            </button>
+
+
+
+                            <button
+                                onclick="changeContent('merawat')"
+                                class="flex items-center gap-3 text-right text-gray-400 hover:text-blue-900 transition font-medium text-sm"
+                            >
+
+                                <span>
+
+                                    Materi Selanjutnya
+                                    <br>
+
+                                    <b class="text-blue-900">
+                                        Cara Merawat Rupiah
+                                    </b>
+
+                                </span>
+
+
+                                <div
+                                    class="w-10 h-10 bg-blue-900 text-white rounded-full flex items-center justify-center"
+                                >
+                                    →
+                                </div>
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+            }
+
+
+
+            /* ==================================================
+               MATERI 5
+               CARA MERAWAT RUPIAH
+            ================================================== */
+
+            else if (topic === "merawat") {
+
+
+                content.innerHTML = `
+
+                    <div class="fade-in">
+
+
+                        <span
+                            class="bg-blue-100 text-blue-700 text-[10px] uppercase tracking-widest px-3 py-2 rounded-md font-bold"
+                        >
+                            Peduli Rupiah
+                        </span>
+
+
+                        <h1
+                            class="text-4xl font-bold text-blue-900 mt-5"
+                        >
+                            Cara Merawat Rupiah
+                        </h1>
+
+
+                        <p
+                            class="text-sm text-gray-500 mt-4 leading-relaxed max-w-2xl"
+                        >
+                            Materi tentang cara menjaga dan
+                            memperlakukan uang Rupiah dengan
+                            baik agar tetap bersih, rapi,
+                            dan dapat digunakan dengan layak.
+                        </p>
+
+
+
+                        <!-- CARD 3 -->
+
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10"
+                        >
+
+
+                            <div
+                                class="bg-white border p-7 rounded-2xl"
+                            >
+
+                                <div
+                                    class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-5"
+                                >
+                                    💵
+                                </div>
+
+
+                                <h3
+                                    class="font-bold text-blue-900 mb-3"
+                                >
+                                    Jangan Dilipat
+                                </h3>
+
+
+                                <p
+                                    class="text-sm text-gray-500 leading-relaxed"
+                                >
+                                    Usahakan tidak melipat uang
+                                    secara berulang agar kondisi
+                                    fisiknya tetap terjaga.
+                                </p>
+
+                            </div>
+
+
+
+                            <div
+                                class="bg-white border p-7 rounded-2xl"
+                            >
+
+                                <div
+                                    class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-5"
+                                >
+                                    🧼
+                                </div>
+
+
+                                <h3
+                                    class="font-bold text-blue-900 mb-3"
+                                >
+                                    Jaga Kebersihan
+                                </h3>
+
+
+                                <p
+                                    class="text-sm text-gray-500 leading-relaxed"
+                                >
+                                    Simpan uang di tempat yang
+                                    bersih dan hindari mencoret
+                                    permukaan uang.
+                                </p>
+
+                            </div>
+
+
+
+                            <div
+                                class="bg-white border p-7 rounded-2xl"
+                            >
+
+                                <div
+                                    class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-5"
+                                >
+                                    ☀️
+                                </div>
+
+
+                                <h3
+                                    class="font-bold text-blue-900 mb-3"
+                                >
+                                    Hindari Air
+                                </h3>
+
+
+                                <p
+                                    class="text-sm text-gray-500 leading-relaxed"
+                                >
+                                    Hindari menyimpan uang
+                                    di tempat yang lembap
+                                    atau terkena air.
+                                </p>
+
+                            </div>
+
+
+
+                            <div
+                                class="bg-white border p-7 rounded-2xl"
+                            >
+
+                                <div
+                                    class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-5"
+                                >
+                                    ❤️
+                                </div>
+
+
+                                <h3
+                                    class="font-bold text-blue-900 mb-3"
+                                >
+                                    Perlakukan dengan Baik
+                                </h3>
+
+
+                                <p
+                                    class="text-sm text-gray-500 leading-relaxed"
+                                >
+                                    Gunakan Rupiah dengan
+                                    bijak dan hargai sebagai
+                                    simbol kedaulatan negara.
+                                </p>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- CATATAN -->
+
+                        <div
+                            class="bg-blue-900 text-white p-8 rounded-2xl mt-10"
+                        >
+
+                            <h3
+                                class="font-bold text-lg mb-3"
+                            >
+                                Ingat!
+                            </h3>
+
+
+                            <p
+                                class="text-sm opacity-90 leading-relaxed"
+                            >
+                                Merawat Rupiah merupakan salah
+                                satu bentuk kepedulian kita
+                                terhadap mata uang dan simbol
+                                kedaulatan Negara Kesatuan
+                                Republik Indonesia.
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- NAVIGASI -->
+
+                        <div
+                            class="flex justify-between items-center border-t pt-10 mt-12"
+                        >
+
+
+                            <button
+                                onclick="changeContent('sejarah')"
+                                class="flex items-center gap-3 text-gray-400 hover:text-blue-900 transition font-medium text-sm"
+                            >
+
+                                <div
+                                    class="w-10 h-10 border rounded-full flex items-center justify-center"
+                                >
+                                    ←
+                                </div>
+
+
+                                <span>
+
+                                    Materi Sebelumnya
+                                    <br>
+
+                                    <b class="text-blue-900">
+                                        Jejak Sejarah Rupiah
+                                    </b>
+
+                                </span>
+
+                            </button>
+
+
+
+                            <button
+                                onclick="alert('Menuju Quiz')"
+                                class="flex items-center gap-3 text-right text-gray-400 hover:text-blue-900 transition font-medium text-sm"
+                            >
+
+                                <span>
+
+                                    Materi Selesai
+                                    <br>
+
+                                    <b class="text-blue-900">
+                                        Mulai Quiz
+                                    </b>
+
+                                </span>
+
+
+                                <div
+                                    class="w-10 h-10 bg-blue-900 text-white rounded-full flex items-center justify-center"
+                                >
+                                    →
+                                </div>
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+            }
+
+
+        }
+
+
+
+        /* ==================================================
+           TAMPILKAN HALAMAN PERTAMA SAAT WEBSITE DIBUKA
+        ================================================== */
+
+        changeContent("mengenal");
+
+
+    </script>
+
+
+</body>
+
+</html>
