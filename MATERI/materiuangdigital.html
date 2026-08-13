@@ -8,8 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for modern icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Font: Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     
     <script>
         tailwind.config = {
@@ -33,6 +36,66 @@
     <style>
         .custom-transition {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ================= DESAIN SIDEBAR SESUAI BANK INDONESIA.HTML ================= */
+        .sidebar-materi {
+            font-family: 'Inter', sans-serif !important;
+            background: #F4F7FC;
+            border-radius: 20px;
+            padding: 25px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            box-sizing: border-box;
+        }
+        .sidebar-materi h2 {
+            font-family: 'Inter', sans-serif !important;
+            color: #003087; /* --primary-navy */
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .sidebar-materi .subtitle {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 14px;
+            color: #64748B; /* --text-muted */
+            margin-bottom: 25px;
+        }
+        .materi-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .materi-item {
+            font-family: 'Inter', sans-serif !important;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 15px;
+            background: transparent;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #1E293B; /* --text-dark */
+            font-weight: 500;
+            font-size: 15px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .materi-item:hover {
+            background: rgba(0, 48, 135, 0.05);
+        }
+        .materi-item.active {
+            background: #ffffff; /* --white */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            font-weight: 700;
+        }
+        .materi-item.active i {
+            color: #003087; /* --primary-navy */
+        }
+        .materi-item i {
+            color: #94A3B8;
+            min-width: 20px;
         }
     </style>
 </head>
@@ -85,15 +148,15 @@
                 <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-brand-light text-brand-primary">
                     <i class="fa-solid fa-graduation-cap"></i> Evolusi Mata Uang
                 </span>
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-dark leading-tight">
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-dark text-left leading-tight">
                     Rupiah Digital: Masa Depan Kedaulatan Ekonomi
                 </h1>
-                <p class="text-brand-slate text-base sm:text-lg max-w-xl leading-relaxed">
+                <p class="text-brand-slate text-left text-base sm:text-lg max-w-xl leading-relaxed">
                     Mengenal Central Bank Digital Currency (CBDC) Indonesia sebagai bentuk transformasi digital mata uang nasional yang aman, efisien, dan inklusif.
                 </p>
             </div>
 
-            <!-- Right Visual Image (Diperbaiki agar proporsi gambar penuh & tulisan CBDC tidak terpotong) -->
+            <!-- Right Visual Image -->
             <div class="lg:col-span-5 flex justify-center lg:justify-end">
                 <div class="relative w-full max-w-md bg-white rounded-3xl shadow-xl border border-slate-100 p-2 transform hover:scale-[1.02] custom-transition">
                     <div class="relative rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center">
@@ -106,51 +169,54 @@
 
     <!-- MAIN LAYOUT: SIDEBAR + CONTENT -->
     <main class="max-w-7xl mx-auto px-6 lg:px-12 py-16 flex-grow w-full">
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Menggunakan lg:grid-cols-[320px_1fr] dan gap-10 agar ukuran kolom persis sama dengan desain Bank Indonesia.html -->
+        <section class="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-10">
             
             <!-- Left Sidebar -->
-            <aside class="lg:col-span-3">
-                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 sticky top-24">
-                    <h3 class="text-lg font-bold text-brand-dark mb-1">Materi</h3>
-                    <p class="text-xs text-brand-slate mb-6">Cara Merawat Rupiah Dengan Metode 5J</p>
-
-                    <nav class="space-y-2">
-                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
-                            <i class="fa-solid fa-circle-info w-5"></i>
-                            <span>Mengenal Rupiah</span>
-                        </button>
-                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
-                            <i class="fa-solid fa-building-columns w-5"></i>
-                            <span>Bank Indonesia</span>
-                        </button>
-                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
-                            <i class="fa-solid fa-shield-halved w-5"></i>
-                            <span>Ciri Keamanan Rupiah</span>
-                        </button>
-                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
-                            <i class="fa-solid fa-clock-rotate-left w-5"></i>
-                            <span>Menelusuri jejak sejarah rupiah</span>
-                        </button>
-                        <!-- Menu Rupiah Digital Aktif Disorot -->
-                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-brand-light text-brand-primary custom-transition text-left">
-                            <i class="fa-solid fa-mobile-screen-button w-5"></i>
-                            <span>Rupiah Digital: Masa Depan Kedaulatan Ekonomi</span>
-                        </button>
-                        <!-- Tautan Sidebar "Cara Merawat Rupiah Dengan Metode 5J" (Diubah ke elemen 'a' menuju materimenjagauang.html) -->
-                        <a href="materimenjagauang.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-brand-primary custom-transition text-left">
-                            <i class="fa-solid fa-hand-holding-heart w-5"></i>
-                            <span>Cara Merawat Rupiah Dengan Metode 5J</span>
+            <aside>
+                <div class="sidebar-materi w-full">
+                    <h2>Materi</h2>
+                    <p class="subtitle">Panduan Merawat Uang</p>
+                        
+                        <!-- 2. Bank Indonesia -->
+                        <a href="Bank Indonesia.html" class="materi-item">
+                            <i data-lucide="list"></i>
+                            Bank Indonesia
                         </a>
-                    </nav>
+                        
+                        <!-- 3. Ciri Keamanan Rupiah -->
+                        <a href="cara keaslian.html" class="materi-item">
+                            <i data-lucide="list"></i>
+                            Ciri Keamanan Rupiah
+                        </a>
+                        
+                        <!-- 4. Sejarah Rupiah -->
+                        <a href="Jejak sejarah rupiah.html" class="materi-item">
+                            <i data-lucide="list"></i>
+                            Menelusuri jejak sejarah rupiah
+                        </a>
+                        
+                        <!-- 5. Rupiah Digital (Aktif) -->
+                        <a href="materiuangdigital.html" class="materi-item active">
+                            <i data-lucide="list"></i>
+                            Rupiah Digital: Masa Depan Kedaulatan Ekonomi
+                        </a>
+                        
+                        <!-- 6. Cara Merawat -->
+                        <a href="materimenjagauang.html" class="materi-item">
+                            <i data-lucide="list"></i>
+                            Cara Merawat Rupiah Dengan Metode 5J
+                        </a>
+                    </div>
                 </div>
             </aside>
 
             <!-- Right Content Area -->
-            <div class="lg:col-span-9 space-y-12">
+            <div class="space-y-12">
                 
                 <!-- Memahami Ekosistem Digital -->
                 <div class="space-y-8">
-                    <div class="space-y-2">
+                    <div class="space-y-2 text-left">
                         <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-dark">Memahami Ekosistem Digital</h2>
                         <p class="text-brand-slate text-sm leading-relaxed">
                             Pelajari bagaimana Rupiah Digital akan mengubah cara kita berinteraksi dengan nilai dan aset di era Web 3.0.
@@ -164,8 +230,8 @@
                                 <div class="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand-primary">
                                     <i class="fa-solid fa-circle-info text-lg"></i>
                                 </div>
-                                <h3 class="text-lg font-bold text-brand-dark">Apa itu CBDC?</h3>
-                                <p class="text-brand-slate text-xs sm:text-sm leading-relaxed">
+                                <h3 class="text-lg font-bold text-brand-dark text-left">Apa itu CBDC?</h3>
+                                <p class="text-brand-slate text-left text-xs sm:text-sm leading-relaxed">
                                     Central Bank Digital Currency adalah representasi digital dari mata uang fiat negara yang diterbitkan dan diatur oleh Bank Sentral. Berbeda dengan kripto, CBDC memiliki nilai yang stabil dan jaminan hukum penuh.
                                 </p>
                             </div>
@@ -180,8 +246,8 @@
                                 <div class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
                                     <i class="fa-solid fa-bolt text-lg"></i>
                                 </div>
-                                <h3 class="text-lg font-bold">Manfaat Rupiah Digital!</h3>
-                                <ul class="space-y-3 text-xs sm:text-sm text-blue-50/90">
+                                <h3 class="text-lg font-bold text-left">Manfaat Rupiah Digital!</h3>
+                                <ul class="space-y-3 text-left text-xs sm:text-sm text-blue-50/90">
                                     <li class="flex items-center gap-3">
                                         <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-[10px]"><i class="fa-solid fa-check"></i></span>
                                         Efisiensi Pembayaran Real-time
@@ -210,7 +276,7 @@
 
                 <!-- Masa Depan Pembayaran -->
                 <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md custom-transition grid grid-cols-1 md:grid-cols-12">
-                    <div class="p-8 md:col-span-7 flex flex-col justify-between space-y-6">
+                    <div class="p-8 md:col-span-7 flex flex-col justify-between space-y-6 text-left">
                         <div class="space-y-4">
                             <h3 class="text-xl font-bold text-brand-dark">Masa Depan Pembayaran</h3>
                             <p class="text-brand-slate text-xs sm:text-sm leading-relaxed">
@@ -229,7 +295,7 @@
                 </div>
 
                 <!-- Pro-Tip & Alur Kerja -->
-                <div class="space-y-6">
+                <div class="space-y-6 text-left">
                     <!-- Pro-Tip Box -->
                     <div class="bg-brand-light border-l-4 border-brand-primary rounded-r-2xl p-5 shadow-sm">
                         <div class="flex gap-3.5 items-start">
@@ -252,10 +318,10 @@
                     </div>
                 </div>
 
-                <!-- TOMBOL NAVIGASI DUAL (Sesuai Gambar Acuan Baru) -->
+                <!-- TOMBOL NAVIGASI DUAL -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8 border-t border-slate-200">
                     <!-- Sebelumnya -->
-                    <a href="#" class="flex items-center gap-4 p-6 bg-white border border-slate-200 rounded-2xl hover:border-brand-primary/40 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 custom-transition group">
+                    <a href="Jejak sejarah rupiah.html" class="flex items-center gap-4 p-6 bg-white border border-slate-200 rounded-2xl hover:border-brand-primary/40 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 custom-transition group">
                         <span class="text-blue-600 text-lg group-hover:-translate-x-1 custom-transition">
                             <i class="fa-solid fa-arrow-left"></i>
                         </span>
@@ -265,7 +331,7 @@
                         </div>
                     </a>
 
-                    <!-- Selanjutnya (Diperbarui tautannya menuju materimenjagauang.html) -->
+                    <!-- Selanjutnya -->
                     <a href="materimenjagauang.html" class="flex items-center justify-between p-6 bg-white border border-slate-200 rounded-2xl hover:border-brand-primary/40 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 custom-transition group">
                         <div class="text-left">
                             <span class="text-xs text-slate-400 uppercase font-bold tracking-wider block mb-1">Selanjutnya</span>
@@ -286,7 +352,7 @@
         <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
             <div class="flex flex-col md:flex-row justify-between items-start gap-8">
                 <!-- Sisi Kiri (Brand, Slogan, dan Hak Cipta) -->
-                <div class="space-y-6">
+                <div class="space-y-6 text-left">
                     <div class="space-y-2">
                         <h4 class="text-base font-extrabold text-[#0B3564] tracking-wider uppercase">RUPANTARA</h4>
                         <p class="text-slate-500 font-medium">Platform Edukasi Literasi Keuangan Masa Depan</p>
@@ -329,7 +395,7 @@
                 </div>
 
                 <!-- Modal Body -->
-                <div class="px-6 py-6 space-y-5 max-h-[65vh] overflow-y-auto text-sm text-slate-700 leading-relaxed scrollbar-thin">
+                <div class="px-6 py-6 space-y-5 max-h-[65vh] overflow-y-auto text-sm text-slate-700 leading-relaxed scrollbar-thin text-left">
                     <p>
                         <strong>Central Bank Digital Currency (CBDC)</strong> adalah representasi digital dari mata uang fiat suatu negara yang diterbitkan dan diatur langsung oleh bank sentral. Di Indonesia, konsep ini dikenal sebagai <strong>Rupiah Digital</strong>, yaitu bentuk digital dari Rupiah yang menjadi bagian dari perkembangan sistem pembayaran nasional.
                     </p>
@@ -429,6 +495,9 @@
                 closeModal();
             }
         });
+
+        // Inisialisasi Lucide Icons
+        lucide.createIcons();
     </script>
 </body>
 </html>
