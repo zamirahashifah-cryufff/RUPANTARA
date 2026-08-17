@@ -1,9 +1,14 @@
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION['login']) && $_SESSION['login'] === true;
+$username = $isLoggedIn ? $_SESSION['username'] : '';
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RUPANTARA - Quiz (Versi Interaktif, Tanpa Database)</title>
+<title>RUPANTARA - Quiz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -140,7 +145,6 @@ body{font-family:'Inter',sans-serif;font-weight:500;background:var(--bg);color:v
 .gate-title{ font-size:16px; font-weight:700; color:var(--text-main); }
 .gate-desc{ font-size:13px; color:var(--text-sub); font-weight:500; line-height:1.5; }
 
-/* ===================== LOGIN MODAL ===================== */
 /* ===================== RESULT OVERLAY ===================== */
 .result-overlay{position:fixed;inset:0;background:rgba(16,35,63,.55);display:none;align-items:center;
   justify-content:center;padding:16px;z-index:10;}
@@ -189,7 +193,21 @@ body{font-family:'Inter',sans-serif;font-weight:500;background:var(--bg);color:v
       <a href="#">Scan</a>
     </nav>
     <div class="header-right" id="authArea">
-      <a href="../LOGIN/login.html" class="login-btn" id="headerLoginBtn" style="text-decoration:none;display:inline-block;">Login</a>
+      <?php if ($isLoggedIn): ?>
+        <?php
+          // Mengolah Inisial Pengguna dari Username Database
+          $nama = trim($username);
+          $kata = preg_split('/\s+/', $nama);
+          if (count($kata) === 1) {
+              $inisial = strtoupper(substr($kata[0], 0, 2));
+          } else {
+              $inisial = strtoupper($kata[0][0] . $kata[1][0]);
+          }
+        ?>
+        <div class="user-avatar" title="<?php echo htmlspecialchars($username); ?>"><?php echo htmlspecialchars($inisial); ?></div>
+      <?php else: ?>
+        <a href="../LOGIN/login.php" class="login-btn" id="headerLoginBtn" style="text-decoration:none;display:inline-block;">Login</a>
+      <?php endif; ?>
     </div>
   </div>
 </header>
@@ -197,7 +215,7 @@ body{font-family:'Inter',sans-serif;font-weight:500;background:var(--bg);color:v
 <div class="page-content">
 <div class="quiz-wrapper">
   <div class="topbar">
-    <button class="back-btn">&#8592;</button>
+    <button class="back-btn" onclick="history.back()">&#8592;</button>
     <div class="progress-block">
       <span class="progress-label" id="progressLabel">Soal 1 dari 6</span>
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
@@ -207,14 +225,16 @@ body{font-family:'Inter',sans-serif;font-weight:500;background:var(--bg);color:v
   </div>
 
   <div class="quiz-main-shell">
-    <div class="login-gate" id="loginGate">
-      <div class="gate-card">
-        <div class="gate-icon">&#128274;</div>
-        <div class="gate-title">Login dulu yuk!</div>
-        <div class="gate-desc">Kamu harus login dulu sebelum bisa mulai mengerjakan Quiz ini.</div>
-        <button class="btn btn-primary" style="justify-content:center;margin-top:6px" id="gateLoginBtn">Login Sekarang</button>
+    <?php if (!$isLoggedIn): ?>
+      <div class="login-gate" id="loginGate">
+        <div class="gate-card">
+          <div class="gate-icon">&#128274;</div>
+          <div class="gate-title">Login dulu yuk!</div>
+          <div class="gate-desc">Kamu harus login dulu sebelum bisa mulai mengerjakan Quiz ini.</div>
+          <a href="../LOGIN/login.php" class="btn btn-primary" style="justify-content:center;margin-top:6px;text-decoration:none;display:inline-flex;" id="gateLoginBtn">Login Sekarang</a>
+        </div>
       </div>
-    </div>
+    <?php endif; ?>
 
     <div class="quiz-main">
     <div class="question-card">
@@ -263,16 +283,6 @@ body{font-family:'Inter',sans-serif;font-weight:500;background:var(--bg);color:v
   </div>
 </footer>
 
-<div class="login-modal-overlay" id="loginModal">
-  <div class="login-modal-card">
-    <div class="login-modal-title">Masuk ke RUPANTARA</div>
-    <div class="login-modal-desc">Masukin nama panggilan kamu buat mulai Quiz-nya.</div>
-    <input type="text" class="login-input" id="nicknameInput" placeholder="Nama panggilan, mis. Budi" maxlength="20">
-    <div class="login-error" id="loginError">Nama panggilan wajib diisi ya.</div>
-    <button class="btn btn-primary" style="justify-content:center" id="submitLoginBtn">Masuk &amp; Mulai Quiz</button>
-  </div>
-</div>
-
 <div class="result-overlay" id="resultOverlay">
   <div class="result-card" id="resultCard">
     <div class="result-badge" id="resultBadge">Hasil Quiz Kamu</div>
@@ -284,7 +294,7 @@ body{font-family:'Inter',sans-serif;font-weight:500;background:var(--bg);color:v
 
 <script>
 // ============================================
-// DATA SOAL - nanti diganti fetch() ke database
+// DATA SOAL 
 // ============================================
 const SOAL = [
   { pertanyaan: "Lembaga yang berwenang mengeluarkan dan mengedarkan Rupiah adalah...",
@@ -304,12 +314,15 @@ const SOAL = [
 const WAKTU_AWAL = 5 * 60; // 5 menit, dalam detik
 
 let indexSekarang = 0;
-let jawabanUser = new Array(SOAL.length).fill(null); // {label} atau null
+let jawabanUser = new Array(SOAL.length).fill(null); 
 let hintDipakaiDiSoal = new Array(SOAL.length).fill(false);
 let hintTersisa = 3;
 let sisaWaktu = WAKTU_AWAL;
 let timerInterval = null;
 let sudahSelesai = false;
+
+// Status login dari PHP
+const sudahLogin = <?php echo $isLoggedIn ? 'true' : 'false'; ?>;
 
 const el = {
   questionText: document.getElementById('questionText'),
@@ -330,65 +343,13 @@ const el = {
   resultScore: document.getElementById('resultScore'),
   resultMsg: document.getElementById('resultMsg'),
   authArea: document.getElementById('authArea'),
-  headerLoginBtn: document.getElementById('headerLoginBtn'),
-  gateLoginBtn: document.getElementById('gateLoginBtn'),
-  loginGate: document.getElementById('loginGate'),
-  loginModal: document.getElementById('loginModal'),
-  nicknameInput: document.getElementById('nicknameInput'),
-  loginError: document.getElementById('loginError'),
-  submitLoginBtn: document.getElementById('submitLoginBtn'),
+  loginGate: document.getElementById('loginGate')
 };
 
-
-
-// ============================================
-// LOGIN (simulasi, belum ke database/backend)
-// ============================================
-let sudahLogin = false;
-let quizSudahMulai = false;
-
-function bukaModalLogin(){
-  el.loginError.classList.remove('show');
-  el.nicknameInput.value = '';
-  el.loginModal.classList.add('show');
-  el.nicknameInput.focus();
+// Quiz otomatis berjalan jika status dari PHP menyatakan sudah login
+if (sudahLogin) {
+  mulai();
 }
-
-function tutupModalLogin(){
-  el.loginModal.classList.remove('show');
-}
-
-function ambilInisial(nama){
-  const kata = nama.trim().split(/\s+/);
-  if(kata.length === 1) return kata[0].substring(0,2).toUpperCase();
-  return (kata[0][0] + kata[1][0]).toUpperCase();
-}
-
-function prosesLogin(){
-  const nama = el.nicknameInput.value.trim();
-  if(!nama){
-    el.loginError.classList.add('show');
-    return;
-  }
-  sudahLogin = true;
-  tutupModalLogin();
-
-  // ganti tombol Login di header jadi avatar inisial
-  el.authArea.innerHTML = `<div class="user-avatar" title="${nama}">${ambilInisial(nama)}</div>`;
-
-  // buka akses quiz
-  el.loginGate.classList.add('hidden');
-
-  if(!quizSudahMulai){
-    quizSudahMulai = true;
-    mulai();
-  }
-}
-
-el.headerLoginBtn.addEventListener('click', bukaModalLogin);
-el.gateLoginBtn.addEventListener('click', bukaModalLogin);
-el.submitLoginBtn.addEventListener('click', prosesLogin);
-el.nicknameInput.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') prosesLogin(); });
 
 function mulai(){
   renderNavGrid();
@@ -528,7 +489,6 @@ el.finishBtn.addEventListener('click', ()=> selesaiQuiz(false));
 el.skipBtn.addEventListener('click', lewatiSoal);
 el.hintBtn.addEventListener('click', pakaiHint);
 
-// quiz belum mulai sampai user login lewat gate/modal di atas
 </script>
 </body>
 </html>
