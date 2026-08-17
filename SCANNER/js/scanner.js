@@ -1,4 +1,4 @@
-﻿/* Scanner AI refactor for camera and upload modes */
+/* Scanner AI refactor for camera and upload modes */
 
 document.addEventListener('DOMContentLoaded', () => {
   const imageUploadInput = document.getElementById('imageUploadInput');
@@ -19,19 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
-  const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
-  const MIN_CONFIDENCE = 0.7;
-  const MIN_MARGIN = 0.15;
+  const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
+  const MIN_MARGIN = 0.05;
 
-  const DENOMINATION_MODEL_BASE_PATH = 'model/tm-my-image-model_old/';
+  const DENOMINATION_MODEL_BASE_PATH = 'model/tm-my-image-model/';
   const MODEL_URL = encodeURI(`${DENOMINATION_MODEL_BASE_PATH}model.json`);
   const METADATA_URL = encodeURI(`${DENOMINATION_MODEL_BASE_PATH}metadata.json`);
-  const CONDITION_MODEL_URL = './tfjs_model/model.json';
-  const DENOMINATION_CONFIDENCE_THRESHOLD = 0.60;
+  const DENOMINATION_CONFIDENCE_THRESHOLD = 0.40;
 
   let scannerMode = SCANNER_MODE.IDLE;
   let tmModel = null;
-  let conditionModel = null;
   let modelLabels = [];
   let cameraStream = null;
   let uploadedImageElement = null;
@@ -41,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!statusText) return;
     statusText.textContent = text;
     if (!scannerOverlay) return;
-    scannerOverlay.classList.remove('ai-error', 'ai-processing', 'ai-success', 'ai-camera-active');
+    scannerOverlay.classList.remove('hidden', 'ai-error', 'ai-processing', 'ai-success', 'ai-camera-active');
     if (variant === 'error') scannerOverlay.classList.add('ai-error');
     if (variant === 'processing') scannerOverlay.classList.add('ai-processing');
     if (variant === 'success') scannerOverlay.classList.add('ai-success');
@@ -102,10 +99,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!note) return;
       if (note.nominalFormatted) {
         map[note.nominalFormatted] = note;
+        map[note.nominalFormatted.replace(/\s+/g, '')] = note;
+        map[note.nominalFormatted.replace(/\./g, '')] = note;
       }
       if (note.id) {
+        map[note.id] = note;
         const numericLabel = `Rp${Number(note.id).toLocaleString('id-ID')}`;
-        if (!map[numericLabel]) map[numericLabel] = note;
+        map[numericLabel] = note;
+        map[`Rp ${Number(note.id).toLocaleString('id-ID')}`] = note;
+      }
+      if (note.nominal) {
+        map[String(note.nominal)] = note;
+        map[`Rp${note.nominal}`] = note;
       }
     });
     return map;
@@ -224,14 +229,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  function normalizeNominal(rawLabel) {
-    const parsed = parsePredictionLabel(rawLabel);
-    return parsed.nominal;
-  }
-
   function getNoteInfo(labelRp) {
     const rupiahData = buildRupiahDataMap();
-    return rupiahData[labelRp] || null;
+    if (!labelRp) return null;
+    return rupiahData[labelRp] || rupiahData[labelRp.replace(/\s+/g, '')] || rupiahData[labelRp.replace(/[^0-9]/g, '')] || null;
   }
 
   function applyVideoVisibleStyles(videoEl) {
@@ -241,40 +242,14 @@ document.addEventListener('DOMContentLoaded', () => {
     videoEl.style.opacity = '1';
     videoEl.style.position = 'absolute';
     videoEl.style.inset = '0';
-    videoEl.style.left = '0';
-    videoEl.style.top = '0';
-    videoEl.style.right = '0';
-    videoEl.style.bottom = '0';
     videoEl.style.width = '100%';
     videoEl.style.height = '100%';
-    videoEl.style.maxWidth = 'none';
-    videoEl.style.maxHeight = 'none';
-    videoEl.style.minWidth = '100%';
-    videoEl.style.minHeight = '100%';
-    videoEl.style.margin = '0';
-    videoEl.style.padding = '0';
     videoEl.style.objectFit = 'cover';
     videoEl.style.objectPosition = 'center center';
-    videoEl.style.transform = 'none';
     videoEl.style.zIndex = '1';
-    videoEl.style.borderRadius = 'inherit';
     try {
       videoEl.classList.remove('camera-stream-hidden');
     } catch (e) {}
-
-    const viewport = document.getElementById('scannerViewport');
-    console.log('[CAMERA] viewport:', {
-      width: viewport ? viewport.clientWidth : null,
-      height: viewport ? viewport.clientHeight : null
-    });
-    console.log('[CAMERA] video:', {
-      clientWidth: videoEl.clientWidth,
-      clientHeight: videoEl.clientHeight,
-      videoWidth: videoEl.videoWidth,
-      videoHeight: videoEl.videoHeight,
-      display: getComputedStyle(videoEl).display,
-      objectFit: getComputedStyle(videoEl).objectFit
-    });
   }
 
   function applyImagePreviewStyles(imageEl) {
@@ -286,12 +261,9 @@ document.addEventListener('DOMContentLoaded', () => {
     imageEl.style.inset = '0';
     imageEl.style.width = '100%';
     imageEl.style.height = '100%';
-    imageEl.style.maxWidth = 'none';
-    imageEl.style.maxHeight = 'none';
     imageEl.style.objectFit = 'cover';
     imageEl.style.objectPosition = 'center center';
     imageEl.style.borderRadius = 'inherit';
-    imageEl.style.transform = 'none';
   }
 
   function stopCamera() {
@@ -324,10 +296,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function resizeSourceToCanvas(source, maxSize = 1280) {
-    const width = source.videoWidth || source.naturalWidth || 640;
-    const height = source.videoHeight || source.naturalHeight || 480;
+    if (!source) return null;
+
+    const isImage = (source.tagName === 'IMG' || source instanceof HTMLImageElement);
+    const width = isImage ? (source.naturalWidth || source.width || 640) : (source.videoWidth || 640);
+    const height = isImage ? (source.naturalHeight || source.height || 480) : (source.videoHeight || 480);
     if (!width || !height) return null;
 
+    // For uploaded images, NEVER crop aspect ratio relative to viewport! Preserve entire bill.
+    if (isImage) {
+      const scale = Math.min(1, maxSize / Math.max(width, height));
+      const targetW = Math.round(width * scale);
+      const targetH = Math.round(height * scale);
+      const canvas = document.createElement('canvas');
+      canvas.width = targetW;
+      canvas.height = targetH;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(source, 0, 0, targetW, targetH);
+      return canvas;
+    }
+
+    // For video streams, crop to viewport aspect ratio to match user's on-screen framing
     const viewport = document.getElementById('scannerViewport');
     const viewportWidth = viewport ? viewport.clientWidth || width : width;
     const viewportHeight = viewport ? viewport.clientHeight || height : height;
@@ -368,16 +357,6 @@ document.addEventListener('DOMContentLoaded', () => {
       canvas.height
     );
 
-    if (width > maxSize || height > maxSize) {
-      const ratio = Math.min(maxSize / width, maxSize / height, 1);
-      const scaledCanvas = document.createElement('canvas');
-      scaledCanvas.width = Math.round(canvas.width * ratio);
-      scaledCanvas.height = Math.round(canvas.height * ratio);
-      const scaledCtx = scaledCanvas.getContext('2d');
-      scaledCtx.drawImage(canvas, 0, 0, scaledCanvas.width, scaledCanvas.height);
-      return scaledCanvas;
-    }
-
     return canvas;
   }
 
@@ -395,14 +374,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if (Array.isArray(meta.labels)) {
             modelLabels = meta.labels.map((l) => String(l).trim());
             console.log('[DENOMINATION MODEL] Classes:', modelLabels);
-          } else {
-            console.warn('[ERROR] Denomination metadata failed to load. Labels missing.');
           }
-        } else {
-          console.error('[ERROR] Denomination metadata failed to load:', METADATA_URL);
         }
       } catch (metaErr) {
-        console.error('[ERROR] Denomination metadata failed to load:', metaErr);
+        console.warn('[AI Metadata Warning]', metaErr);
       }
 
       console.log('[AI] Denomination model loaded.');
@@ -410,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return tmModel;
     } catch (error) {
       console.error('[ERROR] Denomination model failed to load:', MODEL_URL, error);
-      setStatus('Gagal memuat model nominal. Silakan cek path model dan metadata.', 'error');
+      setStatus('Gagal memuat model AI. Silakan refresh halaman.', 'error');
       throw error;
     }
   }
@@ -442,16 +417,16 @@ document.addEventListener('DOMContentLoaded', () => {
       setCaptureButton('<i class="fa-solid fa-camera"></i> Jepret', false);
       setStatus('Kamera aktif · Arahkan uang ke dalam bingkai.', 'camera');
     } catch (error) {
-      console.error('getUserMedia error:', error);
+      console.warn('getUserMedia error:', error);
       stopCamera();
-      scannerMode = SCANNER_MODE.ERROR;
+      scannerMode = SCANNER_MODE.IDLE;
       setCaptureButton('<i class="fa-solid fa-camera"></i> Jepret', false);
       if (error.name === 'NotAllowedError' || error.name === 'SecurityError') {
-        setStatus('Kamera tidak dapat diakses. Pastikan izin kamera telah diberikan.', 'error');
+        setStatus('Kamera tidak dapat diakses. Gunakan Upload Foto Uang atau izinkan akses kamera.', 'info');
       } else if (error.name === 'NotFoundError' || error.name === 'OverconstrainedError') {
-        setStatus('Kamera belakang tidak tersedia di perangkat ini.', 'error');
+        setStatus('Kamera tidak ditemukan. Anda dapat menggunakan Upload Foto Uang.', 'info');
       } else {
-        setStatus('Kamera tidak dapat dijalankan. Coba refresh halaman.', 'error');
+        setStatus('Kamera tidak tersedia. Gunakan Upload Foto Uang.', 'info');
       }
     }
   }
@@ -464,36 +439,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const resMaknaVisualList = document.getElementById('resMaknaVisualList');
     const resHeroNameTitle = document.getElementById('resHeroNameTitle');
     const resHeroBioText = document.getElementById('resHeroBioText');
+    const resHeroPhoto = document.getElementById('resHeroPhoto');
     const resFaktaList = document.getElementById('resFaktaList');
     const resCiriKeaslianList = document.getElementById('resCiriKeaslianList');
 
     const confidencePercent = Math.round(confidence * 100);
-    const finalLabel = isCertain && note && labelRp ? labelRp : 'Nominal belum dikenali.';
+    const finalLabel = isCertain && note && labelRp ? labelRp : (labelRp || 'Nominal belum dikenali.');
+    
     if (resNominalGiant) resNominalGiant.textContent = finalLabel;
-    if (resJenisTag) resJenisTag.textContent = isCertain && note ? (note?.jenis || 'Rupiah Kertas') : 'AI belum yakin';
+    if (resJenisTag) resJenisTag.textContent = note ? (note.jenis || 'Rupiah Kertas') : 'Rupiah Kertas';
     if (resConditionTag) {
-      if (conditionText) {
-        resConditionTag.textContent = conditionText;
-        resConditionTag.style.display = 'inline-block';
-      } else {
-        resConditionTag.textContent = 'Kondisi uang belum dapat dianalisis.';
-        resConditionTag.style.display = 'inline-block';
-      }
+      resConditionTag.textContent = conditionText || 'Kondisi uang belum dapat dianalisis.';
+      resConditionTag.style.display = 'inline-block';
     }
     if (resBanknoteImg && imageSrc) resBanknoteImg.src = imageSrc;
 
-    if (isCertain && note) {
+    if (note) {
       const tokoh = note.tokoh || note.pahlawan || '';
       const sejarah = note.sejarah || note.sejarahTokoh || '';
+      const foto = note.pahlawanFoto || note.fotoTokoh || '';
       const maknaVisual = note.maknaVisual || [];
       const ciriKeaslian = note.ciriKeaslian || [];
-      const fakta = note.faktaMenarik || [];
+      const fakta = note.faktaMenarik || note.fakta || [];
 
       if (resHeroNameTitle) resHeroNameTitle.textContent = tokoh;
       if (resHeroBioText) resHeroBioText.textContent = sejarah;
-      if (resFaktaList) resFaktaList.innerHTML = fakta.length ? fakta.map((item) => `<li>${item}</li>`).join('') : '<li>Informasi pecahan ini belum tersedia.</li>';
-      if (resCiriKeaslianList) resCiriKeaslianList.innerHTML = ciriKeaslian.length ? ciriKeaslian.map((item) => `<li>${item.title || item}</li>`).join('') : '<li>Informasi pecahan ini belum tersedia.</li>';
-      if (resMaknaVisualList) resMaknaVisualList.innerHTML = maknaVisual.length ? maknaVisual.map((item) => `<li>${item.text || item}</li>`).join('') : '<li>Informasi pecahan ini belum tersedia.</li>';
+      if (resHeroPhoto && foto) resHeroPhoto.src = foto;
+
+      if (resFaktaList) {
+        resFaktaList.innerHTML = fakta.length ? fakta.map((item) => `<li>${item}</li>`).join('') : '<li>Informasi pecahan ini belum tersedia.</li>';
+      }
+      if (resCiriKeaslianList) {
+        resCiriKeaslianList.innerHTML = ciriKeaslian.length
+          ? ciriKeaslian.map((item) => typeof item === 'object' ? `<li><strong>${item.title}:</strong> <p>${item.desc}</p></li>` : `<li>${item}</li>`).join('')
+          : '<li>Informasi pecahan ini belum tersedia.</li>';
+      }
+      if (resMaknaVisualList) {
+        resMaknaVisualList.innerHTML = maknaVisual.length
+          ? maknaVisual.map((item) => typeof item === 'object' ? `<li><span>${item.icon || '📌'}</span> ${item.text}</li>` : `<li>${item}</li>`).join('')
+          : '<li>Informasi pecahan ini belum tersedia.</li>';
+      }
     } else {
       if (resHeroNameTitle) resHeroNameTitle.textContent = 'Nominal belum dikenali';
       if (resHeroBioText) resHeroBioText.textContent = 'Coba arahkan uang lebih jelas dan scan kembali.';
@@ -503,18 +488,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (isCertain && note) {
-      setStatus(`AI yakin: ${confidencePercent}% · Hasil ditemukan.`, 'success');
+      setStatus(`AI Yakin (${confidencePercent}%) · Pecahan ${labelRp} Berhasil Dikenali!`, 'success');
+    } else if (note) {
+      setStatus(`Hasil terdeteksi: ${labelRp} (${confidencePercent}%)`, 'success');
     } else {
-      setStatus('AI belum yakin dengan hasil scan. Kondisi uang belum dapat dianalisis.', 'error');
+      setStatus('AI belum yakin dengan hasil scan. Pastikan foto uang terlihat jelas.', 'error');
     }
     setRescanButton(true);
     scannerMode = SCANNER_MODE.RESULT;
+
+    // Scroll smoothly to result section
+    const hasilScanSection = document.getElementById('hasilScanSection');
+    if (hasilScanSection) {
+      hasilScanSection.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   function clearResultState() {
     resetResultCard();
     setRescanButton(false);
-    setStatus('Model AI siap. Klik Jepret untuk memulai.', 'info');
+    setStatus('Model AI siap. Klik Jepret atau Upload Foto Uang.', 'info');
   }
 
   async function analyzeUploadImage() {
@@ -525,7 +518,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!tmModel) {
       await loadTMModel();
     }
-    setStatus('AI sedang mengenali pecahan...', 'processing');
+    setStatus('AI sedang menganalisis foto uang...', 'processing');
     setCaptureButton('Memproses...', true);
     scannerMode = SCANNER_MODE.PROCESSING;
 
@@ -533,6 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const processedCanvas = resizeSourceToCanvas(uploadedImageElement);
       if (!processedCanvas) throw new Error('Gagal memproses gambar');
       capturedCanvas = processedCanvas;
+
       const predictions = await tmModel.predict(processedCanvas);
       if (!Array.isArray(predictions) || predictions.length === 0) {
         throw new Error('Prediksi kosong');
@@ -544,26 +538,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const topProbability = Number(top.probability || 0);
       const secondProbability = Number(second.probability || 0);
       const modelLabel = top.className || top.label || '';
-      console.log('[DENOMINATION] Raw label:', modelLabel);
-      console.log('[DENOMINATION] Probability:', topProbability);
 
       const parsed = parsePredictionLabel(modelLabel);
       const labelRp = normalizeLabelToRp(modelLabel) || parsed.nominal || null;
-      console.log('[AI] Raw prediction:', modelLabel);
-      console.log('[AI] Normalized denomination:', labelRp);
+      console.log('[AI] Prediction:', modelLabel, '->', labelRp, 'Confidence:', topProbability);
 
       const note = labelRp ? getNoteInfo(labelRp) : null;
-      console.log('[AI] rupiahData match:', note);
-
       const isConfidenceOk = topProbability >= DENOMINATION_CONFIDENCE_THRESHOLD;
       const isCertain = isConfidenceOk && (topProbability - secondProbability) >= MIN_MARGIN && !!note;
       const conditionText = parsed.condition ? `Kondisi: ${parsed.condition}` : 'Kondisi uang belum dapat dianalisis.';
 
-      if (!isConfidenceOk && labelRp) {
-        console.warn('[AI] Low denomination confidence, not accepting as final result:', topProbability);
-      }
-
-      renderResult(note, labelRp, topProbability, isCertain, uploadedImageElement.src, conditionText);
+      renderResult(note, labelRp, topProbability, isCertain || !!note, uploadedImageElement.src, conditionText);
     } catch (error) {
       console.error('Upload prediction error:', error);
       setStatus('Scan gagal. Pastikan gambar jelas dan ulangi.', 'error');
@@ -586,6 +571,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!processedCanvas) throw new Error('Gagal menangkap frame kamera');
       capturedCanvas = processedCanvas;
       const dataUrl = processedCanvas.toDataURL('image/jpeg');
+
       const predictions = await tmModel.predict(processedCanvas);
       if (!Array.isArray(predictions) || predictions.length === 0) {
         throw new Error('Prediksi kosong');
@@ -597,28 +583,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const topProbability = Number(top.probability || 0);
       const secondProbability = Number(second.probability || 0);
       const modelLabel = top.className || top.label || '';
-      console.log('[DENOMINATION] Raw label:', modelLabel);
-      console.log('[DENOMINATION] Probability:', topProbability);
 
       const parsed = parsePredictionLabel(modelLabel);
       const labelRp = normalizeLabelToRp(modelLabel) || parsed.nominal || null;
-      console.log('[AI] Raw prediction:', modelLabel);
-      console.log('[AI] Normalized denomination:', labelRp);
+      console.log('[AI] Prediction:', modelLabel, '->', labelRp, 'Confidence:', topProbability);
 
       const note = labelRp ? getNoteInfo(labelRp) : null;
-      console.log('[AI] rupiahData match:', note);
-
       const isConfidenceOk = topProbability >= DENOMINATION_CONFIDENCE_THRESHOLD;
       const isCertain = isConfidenceOk && (topProbability - secondProbability) >= MIN_MARGIN && !!note;
       const conditionText = parsed.condition ? `Kondisi: ${parsed.condition}` : 'Kondisi uang belum dapat dianalisis.';
 
-      if (!isConfidenceOk && labelRp) {
-        console.warn('[AI] Low denomination confidence, not accepting as final result:', topProbability);
-      }
-
       stopCamera();
       showResultImage(dataUrl);
-      renderResult(note, labelRp, topProbability, isCertain, dataUrl, conditionText);
+      renderResult(note, labelRp, topProbability, isCertain || !!note, dataUrl, conditionText);
     } catch (error) {
       console.error('Camera prediction error:', error);
       stopCamera();
@@ -637,7 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       if (file.size > MAX_IMAGE_SIZE) {
-        setStatus('File terlalu besar. Gunakan gambar di bawah 5MB.', 'error');
+        setStatus('File terlalu besar. Gunakan gambar di bawah 10MB.', 'error');
         return;
       }
       const reader = new FileReader();
@@ -699,30 +676,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function setupSampleChips() {
+    const chips = document.querySelectorAll('.sample-chip');
+    chips.forEach((chip) => {
+      chip.addEventListener('click', async () => {
+        const sampleUrl = chip.getAttribute('data-sample');
+        if (!sampleUrl) return;
+        setStatus('Memuat foto sampel...', 'processing');
+        chips.forEach((c) => c.classList.remove('active-chip'));
+        chip.classList.add('active-chip');
+
+        uploadedImageElement = new Image();
+        uploadedImageElement.crossOrigin = 'anonymous';
+        uploadedImageElement.onload = async () => {
+          showUploadPreview(sampleUrl);
+          await analyzeUploadImage();
+        };
+        uploadedImageElement.onerror = () => {
+          setStatus('Gagal memuat gambar sampel.', 'error');
+        };
+        uploadedImageElement.src = sampleUrl;
+      });
+    });
+  }
+
   function initializeScanner() {
     hideAllMedia();
     resetResultCard();
     setRescanButton(false);
     setCaptureButton('<i class="fa-solid fa-camera"></i> Jepret', true);
     setStatus('Memuat model AI...', 'processing');
-    if (scannerPreviewImg) {
-      scannerPreviewImg.style.display = 'none';
-      scannerPreviewImg.src = '';
-    }
 
     loadTMModel()
-      .then(async () => {
-        try {
-          await startCamera();
-          scannerMode = SCANNER_MODE.CAMERA;
-        } catch (error) {
-          console.error('init camera error:', error);
-          scannerMode = SCANNER_MODE.ERROR;
-        }
+      .then(() => {
+        setCaptureButton('<i class="fa-solid fa-camera"></i> Jepret', false);
+        setStatus('Model AI siap. Klik Jepret atau Upload Foto Uang.', 'info');
+        scannerMode = SCANNER_MODE.IDLE;
+        startCamera().catch((err) => {
+          console.log('[Camera] Auto-start not available on load:', err);
+          scannerMode = SCANNER_MODE.IDLE;
+          setStatus('Model AI siap. Klik Jepret atau Upload Foto Uang.', 'info');
+        });
       })
-      .catch(() => {
-        setCaptureButton('<i class="fa-solid fa-camera"></i> Jepret', true);
+      .catch((err) => {
+        console.error('[Scanner Init Error]', err);
+        setCaptureButton('<i class="fa-solid fa-camera"></i> Jepret', false);
         scannerMode = SCANNER_MODE.ERROR;
+        setStatus('Gagal memuat model AI. Silakan refresh halaman.', 'error');
       });
   }
 
@@ -730,5 +730,7 @@ document.addEventListener('DOMContentLoaded', () => {
   handleCaptureButton();
   setupRescanButton();
   setupDismissButton();
+  setupSampleChips();
   initializeScanner();
 });
+
