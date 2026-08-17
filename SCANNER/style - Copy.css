@@ -1,0 +1,105 @@
+.ai-scanner-frame {
+  margin: 2rem auto;
+  padding: 1.5rem 0;
+}
+
+.ai-scanner-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 24px;
+  padding: 1.8rem;
+  max-width: 980px;
+  margin: 0 auto;
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.ai-scanner-header h1 {
+  font-size: clamp(2rem, 2.6vw, 2.75rem);
+  margin-bottom: 0.5rem;
+  color: #111827;
+}
+
+.ai-scanner-header p {
+  margin: 0;
+  color: #374151;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.ai-scanner-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin: 1.25rem 0;
+}
+
+.ai-preview-box {
+  display: grid;
+  gap: 1rem;
+}
+
+.ai-preview-image,
+.ai-video-preview {
+  width: 100%;
+  max-width: 460px;
+  border-radius: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: #f8fafc;
+  display: none;
+}
+
+.ai-video-preview {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.ai-status-text {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.ai-result-area {
+  margin-top: 1.25rem;
+  padding: 1.15rem 1.25rem;
+  background: #f8fafc;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  min-height: 84px;
+}
+
+.ai-result-row {
+  margin-bottom: 0.65rem;
+  font-size: 1rem;
+  color: #111827;
+}
+
+.ai-result-row strong {
+  color: #0f172a;
+}
+
+.ai-error {
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+.file-upload-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.file-upload-button input[type="file"] {
+  display: none;
+}
+
+.ai-preview-box .ai-preview-image.loaded {
+  display: block;
+}
+
+@media (max-width: 760px) {
+  .ai-scanner-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
