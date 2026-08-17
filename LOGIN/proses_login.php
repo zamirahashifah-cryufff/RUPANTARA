@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
             
             echo "<script>
                     alert('Login berhasil! Selamat datang " . $row['username'] . "');
-                    window.location.href = 'index.php'; 
+                    window.location.href = '../QUIZ/quiz.php'; 
                   </script>";
             exit;
         } else {
