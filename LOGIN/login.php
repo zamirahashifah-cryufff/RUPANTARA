@@ -271,46 +271,201 @@
             }
         }
 
-        /* --- MEDIA QUERIES UNTUK LAYAR HP --- */
-        @media (max-width: 576px) {
-            .login-card {
-                padding: 30px 20px;
-                border-radius: 16px;
+        /* =====================================================
+           NAVBAR (FLOATING GLASSMORPHISM STYLE)
+        ===================================================== */
+        nav {
+            width: 90%;
+            max-width: 1300px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            display: flex;
+            align-items: center;
+            padding: 0 28px;
+            gap: 20px;
+            position: sticky;
+            top: 20px;
+            margin: 0 auto;
+            border-radius: 20px;
+            z-index: 999;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 12px 30px rgba(0, 48, 135, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo {
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.03);
+        }
+
+        .nav-logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-left: auto;
+            background: rgba(244, 247, 252, 0.6);
+            padding: 5px;
+            border-radius: 14px;
+            border: 1px solid rgba(226, 232, 240, 0.4);
+        }
+
+        .nav-links a {
+            position: relative;
+            text-decoration: none;
+            color: #64748B;
+            font-size: 13.5px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            white-space: nowrap;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+        }
+
+        .nav-links a:hover {
+            color: #174C84;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-links a.active {
+            color: #174C84;
+            background: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(0, 48, 135, 0.05);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .notification-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(244, 247, 252, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: #64748B;
+            transition: all 0.3s ease;
+        }
+
+        .notification-btn:hover {
+            background: #EAF2FF;
+            color: #174C84;
+            transform: translateY(-2px);
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 6px;
+            height: 6px;
+            background: #EF4444;
+            border-radius: 50%;
+        }
+
+        .nav-divider {
+            width: 1px;
+            height: 34px;
+            background: #D9E2EC;
+        }
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(244, 247, 252, 0.8);
+            padding: 4px 12px 4px 4px;
+            border-radius: 12px;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .user-area:hover {
+            background: #EAF2FF;
+            border-color: rgba(89, 169, 232, 0.3);
+        }
+
+        .user-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: white;
+            color: #174C84;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+
+        .user-greeting {
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                width: 95%;
+                padding: 0 16px;
+            }
+
+            .nav-links {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR (Tanpa Button Login) -->
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-blue-50 py-3 px-6 md:px-12 flex justify-between items-center w-full">
-        <!-- Logo & Brand Name -->
-        <div class="flex items-center gap-3">
-            <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Rupantara Logo" class="h-14 md:h-16 w-auto object-contain onerror-fallback">
-            <div class="flex items-center text-xl md:text-2xl tracking-wider uppercase font-black select-none">
-                <span class="text-[#0D3268]">RUP</span><span class="text-[#4FA1E4] font-semibold">ANTARA</span>
+    <!-- NAVBAR HEADER (Floating Glassmorphism Style) -->
+    <nav>
+        <a href="#" style="display:flex; align-items:center; text-decoration:none;">
+            <div class="nav-logo">
+                <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Logo RUPANTARA" class="onerror-fallback">
             </div>
-        </div>
-        
-        <!-- Menu Items (Tombol Login Dihilangkan) -->
-        <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-            <a href="#" class="hover:text-blue-600 transition-colors">Beranda</a>
-            <a href="#" class="hover:text-blue-600 transition-colors">Tentang kami</a>
-            <a href="#" class="hover:text-blue-600 transition-colors">Fitur</a>
-            <a href="#" class="hover:text-blue-600 transition-colors">Edukasi</a>
-        </div>
-        
-        <!-- Icons & User Info -->
-        <div class="flex items-center gap-4">
-            <button class="text-slate-500 hover:text-blue-600 relative">
-                <i class="fa-regular fa-bell text-lg"></i>
-                <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-            </button>
-            <div class="flex items-center gap-2 border-l pl-4 border-slate-200">
-                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700">
-                    <i class="fa-regular fa-user"></i>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="../BERANDA/beranda.html">Beranda</a></li>
+            <li><a href="../TENTANG RUPIAH/tentangrupiah.html">Tentang Rupiah</a></li>
+            <li><a href="../MATERI/edukasi.html">Edukasi</a></li>
+            <li><a href="../SCANNER/index.html">Scan</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <a href="#" class="notification-btn">
+                <i class="fa-regular fa-bell" style="font-size:16px;"></i>
+                <span class="notification-dot"></span>
+            </a>
+            <div class="nav-divider"></div>
+            <div class="user-area">
+                <div class="user-icon">
+                    <i class="fa-regular fa-user" style="font-size:14px;"></i>
                 </div>
-                <span class="text-xs font-semibold text-slate-500 hidden sm:inline">Halo, User</span>
+                <span class="user-greeting">Halo, User</span>
             </div>
         </div>
     </nav>
