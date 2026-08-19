@@ -1,3 +1,9 @@
+<?php
+session_start();
+// Memeriksa apakah pengguna sudah login
+$is_logged_in = isset($_SESSION['login']) && $_SESSION['login'] === true;
+$display_username = $is_logged_in ? $_SESSION['username'] : 'User';
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -357,6 +363,30 @@
             gap: 14px;
         }
 
+        /* STYLING TOMBOL LOGIN */
+        .btn-login {
+            min-width: 95px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+            background: linear-gradient(135deg, #174C84, #1d5fa3);
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(23, 76, 132, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(23, 76, 132, 0.25);
+            background: linear-gradient(135deg, #123D70, #174C84);
+        }
+
         .notification-btn {
             width: 38px;
             height: 38px;
@@ -456,6 +486,11 @@
         </ul>
 
         <div class="nav-actions">
+            <!-- Menampilkan tombol login secara kondisional menggunakan PHP -->
+            <?php if (!$is_logged_in): ?>
+                <a href="../LOGIN/login.php" class="btn-login">Login</a>
+            <?php endif; ?>
+
             <a href="#" class="notification-btn">
                 <i class="fa-regular fa-bell" style="font-size:16px;"></i>
                 <span class="notification-dot"></span>
@@ -465,7 +500,8 @@
                 <div class="user-icon">
                     <i class="fa-regular fa-user" style="font-size:14px;"></i>
                 </div>
-                <span class="user-greeting">Halo, User</span>
+                <!-- Menampilkan Username Asli dari Database/Session -->
+                <span class="user-greeting">Halo, <?php echo htmlspecialchars($display_username); ?></span>
             </div>
         </div>
     </nav>

@@ -1,3 +1,9 @@
+<?php
+session_start();
+// Memeriksa status login pengguna
+$is_logged_in = isset($_SESSION['login']) && $_SESSION['login'] === true;
+$display_username = $is_logged_in ? $_SESSION['username'] : 'User';
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -450,26 +456,196 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         /* =====================================================
-           FOOTER
+           FOOTER (Desain Baru, Modern & Interaktif)
         ===================================================== */
-        footer { margin-top: 80px; background: #0E3F6B; color: #D9E9F8; padding: 55px 8% 20px; }
-        .footer-main { display: grid; grid-template-columns: 1.45fr .85fr 1fr; gap: 90px; padding-bottom: 55px; }
-
-        .footer-brand-card {
-            width: 142px; height: 145px; background: white; border-radius: 22px;
-            display: flex; align-items: center; justify-content: center; margin-bottom: 35px; overflow: hidden;
+        footer {
+            margin-top: 100px;
+            background: linear-gradient(180deg, #0A1E3F 0%, #051021 100%);
+            color: #E2E8F0;
+            padding: 80px 8% 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
         }
 
-        .footer-brand-card img { width: 100%; height: 100%; object-fit: contain; padding: 10px; }
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.3fr 0.8fr 1fr;
+            gap: 70px;
+            padding-bottom: 50px;
+        }
 
-        .footer-title { color: white; font-size: 36px; font-weight: 800; margin-bottom: 10px; }
-        .footer-title span { color: var(--blue); }
+        /* BRAND COLUMN */
+        .footer-brand-card {
+            width: 150px; /* Lebar disesuaikan agar lebih proporsional */
+            height: 54px; /* Tinggi disesuaikan */
+            background: #FFFFFF; /* Diubah ke Putih Solid agar logo terlihat jelas */
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            padding: 6px 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Ditambahkan bayangan lembut untuk efek dimensi */
+            transition: all 0.3s ease;
+        }
+
+        .footer-brand-card:hover {
+            background: #FFFFFF;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .footer-brand-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .footer-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #FFFFFF;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .footer-title span {
+            color: var(--blue);
+        }
+
+        .footer-desc {
+            font-size: 13.5px;
+            color: #94A3B8;
+            line-height: 1.6;
+            max-width: 320px;
+        }
+
+        /* HEADER KOLOM FOOTER */
+        .footer-column h3 {
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--blue);
+            border-radius: 2px;
+        }
+
+        /* LINK NAVIGASI FOOTER */
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .footer-nav a {
+            color: #94A3B8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #FFFFFF;
+            transform: translateX(6px);
+        }
+
+        /* HUBUNGI KAMI */
+        .footer-contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: #94A3B8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact-item:hover {
+            color: #FFFFFF;
+        }
+
+        .footer-contact-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue);
+            transition: all 0.3s ease;
+        }
+
+        .footer-contact-item:hover .footer-contact-icon {
+            background: var(--blue-dark);
+            border-color: var(--blue);
+            color: #FFFFFF;
+            transform: scale(1.05);
+        }
+
+        /* SUB-FOOTER BOTTOM */
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copy {
+            font-size: 13px;
+            color: #64748B;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-bottom-links a {
+            color: #64748B;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.25s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #94A3B8;
+        }
 
         @media(max-width:900px) {
             nav { width: 95%; padding: 0 16px; }
             .container { grid-template-columns: 1fr; margin-top: 30px; }
             .nav-links { display: none; }
             .footer-main { grid-template-columns: 1fr; gap: 45px; }
+            .footer-bottom { justify-content: center; text-align: center; flex-direction: column-reverse; }
         }
     </style>
 </head>
@@ -480,7 +656,6 @@
 <nav>
     <a href="#" style="display:flex; align-items:center; text-decoration:none;">
         <div class="nav-logo">
-            <!-- LOGO DIAMBIL DARI FOLDER GAMBAR_GAMBAR -->
             <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA">
         </div>
     </a>
@@ -488,12 +663,17 @@
     <ul class="nav-links">
         <li><a href="#">Beranda</a></li>
         <li><a href="../TENTANG RUPIAH/tentangrupiah.html">Tentang Rupiah</a></li>
-        <li><a href="../MATERI/edukasi.html" class="active">Edukasi</a></li>
+        <li><a href="../MATERI/edukasi.php" class="active">Edukasi</a></li>
         <li><a href="../SCANNER/index.html">Scan</a></li>
+        <li><a href="../QUIZ/quiz_intro.html">Quiz</a></li>
     </ul>
 
     <div class="nav-actions">
-        <a href="#" class="btn-login">Login</a>
+        <!-- Menggunakan PHP untuk menentukan apakah tombol Login perlu ditampilkan -->
+        <?php if (!$is_logged_in): ?>
+            <a href="../LOGIN/login.php" class="btn-login">Login</a>
+        <?php endif; ?>
+
         <a href="#" class="notification-btn">
             <i data-lucide="bell" style="width:18px; height:18px;"></i>
             <span class="notification-dot"></span>
@@ -503,7 +683,8 @@
             <div class="user-icon">
                 <i data-lucide="user-round" style="width:16px; height:16px;"></i>
             </div>
-            <span class="user-greeting">Halo, User</span>
+            <!-- Nama pengguna ditampilkan secara dinamis dari Session -->
+            <span class="user-greeting">Halo, <?php echo htmlspecialchars($display_username); ?></span>
         </div>
     </div>
 </nav>
@@ -535,23 +716,50 @@
                 <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA">
             </div>
             <div class="footer-title">RUP<span>ANTARA</span></div>
-            <p>Ruang Pintar Nusantara (RUPANTARA) adalah platform edukasi keuangan masa depan.</p>
+            <p class="footer-desc">Ruang Pintar Nusantara (RUPANTARA) adalah platform edukasi keuangan masa depan yang membantu mengenali kedaulatan, nilai, dan keamanan mata uang Rupiah secara interaktif.</p>
         </div>
         <div class="footer-column">
             <h3>NAVIGASI</h3>
-            <div class="footer-nav" style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
-                <a href="#" style="color:white; text-decoration:none;">Beranda</a>
-                <a href="../TENTANG RUPIAH/tentangrupiah.html" style="color:white; text-decoration:none;">Tentang Rupiah</a>
-                <a href="../MATERI/edukasi.html" style="color:white; text-decoration:none;">Edukasi</a>
-                <a href="../SCANNER/index.html" style="color:white; text-decoration:none;">Scan</a>
+            <div class="footer-nav">
+                <a href="#"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Beranda</a>
+                <a href="../TENTANG RUPIAH/tentangrupiah.html"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Tentang Rupiah</a>
+                <a href="../MATERI/edukasi.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Edukasi</a>
+                <a href="../QUIZ/quiz_intro.html"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Quiz</a>
+                <a href="../SCANNER/index.html"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Scan</a>
             </div>
         </div>
         <div class="footer-column">
             <h3>HUBUNGI KAMI</h3>
-            <div style="margin-top:20px;">
-                <p>info@rupantara.org</p>
-                <p>+62 823-4095-0845</p>
+            <div class="footer-contact-list">
+                <a href="mailto:info@rupantara.org" class="footer-contact-item">
+                    <div class="footer-contact-icon">
+                        <i data-lucide="mail" style="width:16px; height:16px;"></i>
+                    </div>
+                    <span>info@rupantara.org</span>
+                </a>
+                <a href="tel:+6282340950845" class="footer-contact-item">
+                    <div class="footer-contact-icon">
+                        <i data-lucide="phone" style="width:16px; height:16px;"></i>
+                    </div>
+                    <span>+62 823-4095-0845</span>
+                </a>
+                <div class="footer-contact-item">
+                    <div class="footer-contact-icon">
+                        <i data-lucide="map-pin" style="width:16px; height:16px;"></i>
+                    </div>
+                    <span>Purwokerto, Indonesia</span>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <!-- SUB-FOOTER BOTTOM -->
+    <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2024 RUPANTARA Educational Platform. All rights reserved.</p>
+        <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Help Center</a>
         </div>
     </div>
 </footer>
@@ -730,7 +938,7 @@ function showMateri(page) {
                         </div>
                         <div style="background:var(--blue-dark); border-radius:16px; padding:24px; color:#fff; display:flex; flex-direction:column; justify-content:center;">
                             <span style="font-weight:800; font-size:15px; margin-bottom:8px;">Tahukah Kamu?</span>
-                            <p style="font-size:13.5px; color:#CFE3FA; font-style:italic;">"Bank Indonesia merupakan lembaga negara yang independen dan bebas dari campur tangan pemerintah dalam pelaksanaan tugasnya."</p>
+                            <p style="font-size:13.5px; color:#CFE3FA; font-style:italic;">"Bank Indonesia merupakan lembaga negara yang independen and bebas dari campur tangan pemerintah dalam pelaksanaan tugasnya."</p>
                         </div>
                     </div>
 
@@ -924,7 +1132,7 @@ function showMateri(page) {
                 <div class="care-card highlight">
                     <div class="icon-circle"><i data-lucide="wallet"></i></div>
                     <h4 style="font-size:17px; margin-bottom:8px;">Simpan dengan Baik</h4>
-                    <p style="font-size:13.5px;">Simpan uang di tempat yang kering dan bersih, terpisah dari benda tajam atau bahan kimia yang dapat merusak permukaannya.</p>
+                    <p style="font-size:13.5px;">Simpan uang di tempat yang kering and bersih, terpisah dari benda tajam atau bahan kimia yang dapat merusak permukaannya.</p>
                     <div class="care-tags">
                         <span>Dompet Khusus</span>
                         <span>Tempat Kering</span>
