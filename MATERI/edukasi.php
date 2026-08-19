@@ -666,6 +666,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         <li><a href="../TENTANG RUPIAH/tentangrupiah.html">Tentang Rupiah</a></li>
         <li><a href="../MATERI/edukasi.php" class="active">Edukasi</a></li>
         <li><a href="../SCANNER/index.html">Scan</a></li>
+        <li><a href="../QUIZ/quiz_intro.html">Quiz</a></li>
     </ul>
 
     <div class="nav-actions">
@@ -724,6 +725,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
                 <a href="#"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Beranda</a>
                 <a href="../TENTANG RUPIAH/tentangrupiah.html"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Tentang Rupiah</a>
                 <a href="../MATERI/edukasi.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Edukasi</a>
+                <a href="../QUIZ/quiz_intro.html"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Quiz</a>
                 <a href="../SCANNER/index.html"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Scan</a>
             </div>
         </div>
