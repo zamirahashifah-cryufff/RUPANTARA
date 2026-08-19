@@ -97,13 +97,17 @@
 
         .logo {
 
-            font-weight: 800;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
 
-            font-size: 24px;
+        }
 
-            color: var(--primary-navy);
+        .logo img {
 
-            letter-spacing: -0.5px;
+            height: 70px; /* Ukuran tinggi logo di navbar sudah diperbesar */
+            width: auto;
+            object-fit: contain;
 
         }
 
@@ -1536,44 +1540,17 @@
 
     <nav>
 
-        <div class="logo">
-            RUPANTARA
-        </div>
+        <a href="#" class="logo">
+            <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA">
+        </a>
 
 
         <ul class="nav-links">
 
-            <li>
-                <a href="#">
-                    Beranda
-                </a>
-            </li>
-
-            <li>
-                <a href="#" class="active">
-                    Materi
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    Fitur
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    Quiz
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    Scan
-                </a>
-            </li>
-
-        </ul>
+           <a href="../BERANDA/beranda.html">Beranda</a>
+           <a href="../MATERI/materi.html">Materi</a>
+           <a href="../QUIZ/quiz_intro.html">Quiz</a>
+           <a href="../SCANNER/index.html">Scan</a>
 
 
         <a href="#" class="btn-login">
@@ -1724,11 +1701,8 @@
 
             <div>
 
-                <div
-                    class="logo"
-                    style="font-size:18px;"
-                >
-                    RUPANTARA
+                <div class="logo">
+                    <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA" style="height: 60px; width: auto;">
                 </div>
 
 
