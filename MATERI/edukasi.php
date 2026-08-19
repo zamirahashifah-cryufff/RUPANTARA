@@ -656,7 +656,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 <nav>
     <a href="#" style="display:flex; align-items:center; text-decoration:none;">
         <div class="nav-logo">
-            <!-- LOGO DIAMBIL DARI FOLDER GAMBAR_GAMBAR -->
             <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA">
         </div>
     </a>
