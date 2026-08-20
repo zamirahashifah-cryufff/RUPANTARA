@@ -22,6 +22,8 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../navbar_responsive.css">
+    <script src="../navbar_responsive.js" defer></script>
     
     <style>
         :root {
@@ -484,12 +486,12 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
                 <span class="notification-dot"></span>
             </a>
             <div class="nav-divider"></div>
-            <div class="user-area">
+            <a href="../PROFIL/profil.php" class="user-area" title="Profil Pengguna">
                 <div class="user-icon">
                     <i data-lucide="user-round" style="width:16px; height:16px;"></i>
                 </div>
                 <span class="user-greeting">Halo, <?php echo htmlspecialchars($display_username); ?></span>
-            </div>
+            </a>
         </div>
     </nav>
 

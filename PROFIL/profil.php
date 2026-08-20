@@ -10,6 +10,8 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
 }
 
 $username_session = $_SESSION['username'];
+$profile_return_to = $_SESSION['last_page'] ?? '../BERANDA/beranda.php';
+$profile_return_to = (strpos($profile_return_to, '://') === false && strpos($profile_return_to, '//') !== 0) ? $profile_return_to : '../BERANDA/beranda.php';
 $is_logged_in = true;
 $display_username = $username_session;
 
@@ -31,9 +33,6 @@ if (isset($_POST['update_profile'])) {
     $email = mysqli_real_escape_string($conn, trim($_POST['email']));
     $status_pengguna = mysqli_real_escape_string($conn, trim($_POST['status_pengguna']));
     $password_baru = trim($_POST['password_baru']);
-    
-    // Default foto adalah foto lama
-    $nama_file_foto = $user['foto_profil'];
 
     // Proses Upload Foto Profil jika ada file baru yang diunggah
     if (isset($_FILES['foto_profil_upload']) && $_FILES['foto_profil_upload']['error'] === UPLOAD_ERR_OK) {
@@ -72,7 +71,7 @@ if (isset($_POST['update_profile'])) {
 
     if (empty($error_message)) {
         // Update query dasar
-        $query_update = "UPDATE register SET email = '$email', status_pengguna = '$status_pengguna', foto_profil = '$nama_file_foto'";
+        $query_update = "UPDATE register SET email = '$email', status_pengguna = '$status_pengguna'";
 
         // Jika pengguna ingin mengubah password
         if (!empty($password_baru)) {
@@ -88,7 +87,8 @@ if (isset($_POST['update_profile'])) {
 
         if (empty($error_message)) {
             if (mysqli_query($conn, $query_update)) {
-                $success_message = "Profil Anda berhasil diperbarui!";
+                header("Location: " . $profile_return_to);
+                exit;
                 // Refresh data pengguna setelah update
                 $result = mysqli_query($conn, $query);
                 $user = mysqli_fetch_assoc($result);
@@ -113,6 +113,8 @@ if (isset($_POST['update_profile'])) {
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../navbar_responsive.css">
+    <script src="../navbar_responsive.js" defer></script>
 
     <style>
         :root {

@@ -3,6 +3,7 @@ session_start();
 
 // Menyimpan URL halaman ini ke dalam session agar setelah login berhasil, pengguna dikembalikan ke sini
 $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
+$_SESSION['last_page'] = $_SERVER['REQUEST_URI'];
 
 // Memeriksa status login pengguna
 $is_logged_in = isset($_SESSION['login']) && $_SESSION['login'] === true;
@@ -22,6 +23,8 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../navbar_responsive.css">
+    <script src="../navbar_responsive.js" defer></script>
 
     <style>
         :root {
