@@ -348,11 +348,11 @@ nav {
     </a>
 
     <ul class="nav-links">
-        <li><a href="#">Beranda</a></li>
-        <li><a href="../TENTANG RUPIAH/tentangrupiah.html">Tentang Rupiah</a></li>
+        <li><a href="../BERANDA/beranda.php">Beranda</a></li>
+        <li><a href="../TENTANG RUPIAH/tentangrupiah.php">Tentang Rupiah</a></li>
         <li><a href="../MATERI/edukasi.php">Edukasi</a></li>
-        <li><a href="../QUIZ/quiz_intro.html" class="active">Quiz</a></li>
-        <li><a href="../SCANNER/index.html">Scan</a></li>
+        <li><a href="../QUIZ/quiz_intro.php" class="active">Quiz</a></li>
+        <li><a href="../SCANNER/index.php">Scan</a></li>
     </ul>
 
     <div class="nav-actions">

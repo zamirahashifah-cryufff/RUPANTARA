@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = $_POST['password'];
 
-    // MENGGUNAKAN TABEL 'register' (Bukan users)
+    // MENGGUNAKAN TABEL 'register'
     $query  = "SELECT * FROM register WHERE username = '$username'";
     $result = mysqli_query($conn, $query);
 
@@ -18,10 +18,16 @@ if (isset($_POST['submit'])) {
             $_SESSION['login'] = true;
             $_SESSION['username'] = $row['username'];
             
-            echo "<script>
-                    alert('Login berhasil! Selamat datang " . $row['username'] . "');
-                    window.location.href = '../QUIZ/quiz.php'; 
-                  </script>";
+            // Cek apakah ada riwayat halaman terakhir yang disimpan
+            if (isset($_SESSION['redirect_to'])) {
+                $redirect_page = $_SESSION['redirect_to'];
+                unset($_SESSION['redirect_to']); // Hapus session agar tidak mengarah ke sana terus menerus
+                header("Location: " . $redirect_page);
+            } else {
+                // Arahkan ke beranda default jika tidak ada riwayat halaman sebelumnya
+                // Disarankan mengubah beranda menjadi beranda.php
+                header("Location: ../BERANDA/beranda.php");
+            }
             exit;
         } else {
             echo "<script>

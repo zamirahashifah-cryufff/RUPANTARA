@@ -14,17 +14,16 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome Icons (Untuk ikon halaman login selain navbar jika diperlukan) -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Font yang digunakan pada Edukasi & Login -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons (Sama seperti edukasi.php) -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* Variabel CSS untuk menyamakan warna & tema navbar */
         :root {
             --navy: #0E3F6B;
             --navy-dark: #0A3458;
@@ -37,7 +36,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             --border: #E2E8F0;
         }
 
-        /* Reset CSS dasar untuk area di luar navbar */
         * {
             margin: 0;
             padding: 0;
@@ -58,13 +56,11 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             font-family: "Plus Jakarta Sans", "Inter", sans-serif;
         }
 
-        /* --- STYLING KHUSUS LOGIN CARD (Menggunakan Font Poppins) --- */
         .login-font-family, 
         .login-font-family * {
             font-family: 'Poppins', sans-serif;
         }
 
-        /* --- KONTEN UTAMA --- */
         .main-container {
             display: flex;
             flex: 1;
@@ -74,12 +70,10 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             gap: 50px;
         }
 
-        /* Spacer kiri untuk menyeimbangkan posisi kartu login di kanan */
         .left-spacer {
             flex: 1.2;
         }
 
-        /* Bagian Kanan: Kartu Login */
         .login-card-wrapper {
             flex: 1;
             display: flex;
@@ -99,7 +93,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             text-align: center;
         }
 
-        /* Logo di dalam Card */
         .card-logo {
             display: inline-flex;
             justify-content: center;
@@ -108,7 +101,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             margin-bottom: 15px;
         }
 
-        /* Gaya logo di dalam kartu login */
         .card-brand-logo {
             height: 75px; 
             width: auto;
@@ -116,7 +108,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             margin-bottom: 15px;
         }
 
-        /* Teks Judul Formulir */
         .login-card h3 {
             font-size: 19px;
             font-weight: 700;
@@ -130,7 +121,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             margin-bottom: 25px;
         }
 
-        /* Gaya Input Form */
         .form-group {
             text-align: left;
             margin-bottom: 18px;
@@ -161,7 +151,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
         }
 
-        /* --- CSS ICON MATA PASSWORD --- */
         .password-wrapper {
             position: relative;
             width: 100%;
@@ -194,7 +183,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             color: #1d4ed8;
         }
 
-        /* Tautan Tambahan */
         .form-links {
             text-align: left;
             margin-bottom: 25px;
@@ -215,7 +203,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             text-decoration: underline;
         }
 
-        /* Tombol Submit */
         .btn-submit {
             width: 100%;
             background-color: #0b2545;
@@ -239,7 +226,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             transform: scale(0.98);
         }
 
-        /* Opsi Login Sosial */
         .social-login {
             display: flex;
             justify-content: center;
@@ -270,7 +256,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             height: 20px;
         }
 
-        /* --- MEDIA QUERIES UNTUK LAYAR TABLET --- */
         @media (max-width: 992px) {
             body {
                 background-size: cover;
@@ -294,9 +279,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             }
         }
 
-        /* =====================================================
-           NAVBAR (SAMA PERSIS DENGAN EDUKASI.PHP)
-        ===================================================== */
         nav {
             width: 90%;
             max-width: 1300px;
@@ -480,7 +462,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 </head>
 <body>
 
-    <!-- NAVBAR HEADER (Floating Glassmorphism Style) -->
+    <!-- NAVBAR HEADER -->
     <nav>
         <a href="#" style="display:flex; align-items:center; text-decoration:none;">
             <div class="nav-logo">
@@ -489,15 +471,14 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         </a>
 
         <ul class="nav-links">
-            <li><a href="#">Beranda</a></li>
-            <li><a href="../TENTANG RUPIAH/tentangrupiah.html">Tentang Rupiah</a></li>
+            <li><a href="../BERANDA/beranda.php">Beranda</a></li>
+            <li><a href="../TENTANG RUPIAH/tentangrupiah.php">Tentang Rupiah</a></li>
             <li><a href="../MATERI/edukasi.php">Edukasi</a></li>
-            <li><a href="../SCANNER/index.html">Scan</a></li>
-            <li><a href="../QUIZ/quiz_intro.html">Quiz</a></li>
+            <li><a href="../SCANNER/index.php">Scan</a></li>
+            <li><a href="../QUIZ/quiz_intro.php">Quiz</a></li>
         </ul>
 
         <div class="nav-actions">
-
             <a href="#" class="notification-btn">
                 <i data-lucide="bell" style="width:18px; height:18px;"></i>
                 <span class="notification-dot"></span>
@@ -507,7 +488,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
                 <div class="user-icon">
                     <i data-lucide="user-round" style="width:16px; height:16px;"></i>
                 </div>
-                <!-- Menampilkan Username Asli dari Database/Session -->
                 <span class="user-greeting">Halo, <?php echo htmlspecialchars($display_username); ?></span>
             </div>
         </div>
@@ -515,13 +495,10 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 
     <!-- Konten Utama (Login Form) -->
     <main class="main-container login-font-family">
-        <!-- Spacer Kiri -->
         <div class="left-spacer"></div>
 
-        <!-- Bagian Kanan (Formulir Login) -->
         <section class="login-card-wrapper">
             <div class="login-card">
-                <!-- Memuat logo asli di dalam Card -->
                 <div class="card-logo">
                     <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo Rupantara" class="card-brand-logo">
                 </div>
@@ -556,15 +533,12 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
                     <button type="submit" name="submit" class="btn-submit">MULAI!</button>
                 </form>
 
-                <!-- Opsi Login Sosial -->
                 <div class="social-login">
-                    <!-- Facebook Button -->
                     <button class="social-btn" title="Login dengan Facebook">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1877F2">
                             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                         </svg>
                     </button>
-                    <!-- Google Button -->
                     <button class="social-btn" title="Login dengan Google">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.859-3.578-7.859-8s3.53-8 7.859-8c2.46 0 4.105 1.025 5.047 1.926l3.245-3.125C18.29 1.55 15.492 0 12.24 0 5.58 0 0 5.37 0 12s5.58 12 12.24 12c6.96 0 11.57-4.89 11.57-11.79 0-.795-.085-1.4-.195-1.925H12.24z"/>
@@ -576,10 +550,8 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     </main>
 
     <script>
-        // Inisialisasi Lucide Icons
         lucide.createIcons();
 
-        // Toggle view/hide password
         const togglePassword = document.querySelector('#togglePassword');
         const passwordInput = document.querySelector('#password');
 

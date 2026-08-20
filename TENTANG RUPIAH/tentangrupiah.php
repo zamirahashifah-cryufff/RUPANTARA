@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Menyimpan URL halaman ini ke dalam session agar jika pengguna login, mereka dapat dikembalikan ke sini
+$_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
+
+// Memeriksa status login pengguna
+$is_logged_in = isset($_SESSION['login']) && $_SESSION['login'] === true;
+$display_username = $is_logged_in ? $_SESSION['username'] : 'User';
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -16,6 +26,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
 
@@ -368,10 +381,191 @@
 
 
         /* =====================================================
+           FOOTER (Modern & Interaktif)
+        ===================================================== */
+        footer {
+            margin-top: 100px;
+            background: linear-gradient(180deg, #0A1E3F 0%, #051021 100%);
+            color: #E2E8F0;
+            padding: 80px 8% 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.3fr 0.8fr 1fr;
+            gap: 70px;
+            padding-bottom: 50px;
+        }
+
+        .footer-brand-card {
+            width: 150px;
+            height: 54px;
+            background: #FFFFFF;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            padding: 6px 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .footer-brand-card:hover {
+            background: #FFFFFF;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .footer-brand-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .footer-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #FFFFFF;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .footer-title span {
+            color: #59A9E8;
+        }
+
+        .footer-desc {
+            font-size: 13.5px;
+            color: #94A3B8;
+            line-height: 1.6;
+            max-width: 320px;
+        }
+
+        .footer-column h3 {
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            height: 2px;
+            background: #59A9E8;
+            border-radius: 2px;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .footer-nav a {
+            color: #94A3B8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #FFFFFF;
+            transform: translateX(6px);
+        }
+
+        .footer-contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: #94A3B8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact-item:hover {
+            color: #FFFFFF;
+        }
+
+        .footer-contact-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #59A9E8;
+            transition: all 0.3s ease;
+        }
+
+        .footer-contact-item:hover .footer-contact-icon {
+            background: #174C84;
+            border-color: #59A9E8;
+            color: #FFFFFF;
+            transform: scale(1.05);
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copy {
+            font-size: 13px;
+            color: #64748B;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-bottom-links a {
+            color: #64748B;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.25s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #94A3B8;
+        }
+
+
+        /* =====================================================
            MOBILE
         ===================================================== */
 
-        @media (max-width: 640px) {
+        @media (max-width: 900px) {
             nav {
                 width: 95%;
                 padding: 0 16px;
@@ -390,6 +584,24 @@
             .nav-links {
                 display: none;
             }
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+            .footer-bottom {
+                justify-content: center;
+                text-align: center;
+                flex-direction: column-reverse;
+            }
+        }
+
+        @media (max-width: 576px) {
+            nav {
+                height: 70px;
+            }
+            .user-greeting {
+                display: none;
+            }
         }
 
     </style>
@@ -403,26 +615,42 @@
          NAVBAR (Floating Glassmorphism)
     ===================================================== -->
     <nav>
-        <a href="#" style="display:flex; align-items:center; text-decoration:none;">
+        <a href="../BERANDA/beranda.php" style="display:flex; align-items:center; text-decoration:none;">
             <div class="nav-logo">
-                <!-- LOGO DIAMBIL DARI FOLDER GAMBAR_GAMBAR -->
                 <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA" class="onerror-fallback">
             </div>
         </a>
 
         <ul class="nav-links">
-            <li><a href="../BERANDA/beranda.html">Beranda</a></li>
-            <li><a href="../TENTANG RUPIAH/tentangrupiah.html" class="active">Tentang Rupiah</a></li>
+            <li><a href="../BERANDA/beranda.php">Beranda</a></li>
+            <li><a href="../TENTANG RUPIAH/tentangrupiah.php" class="active">Tentang Rupiah</a></li>
             <li><a href="../MATERI/edukasi.php">Edukasi</a></li>
             <li><a href="../QUIZ/quiz_intro.php">Quiz</a></li>
-            <li><a href="../SCANNER/index - Copy.html">Scan</a></li>
+            <li><a href="../SCANNER/index_copy.php">Scan</a></li>
         </ul>
+
+        <div class="nav-actions">
+            <?php if (!$is_logged_in): ?>
+                <a href="../LOGIN/login.php" class="btn-login">Login</a>
+            <?php endif; ?>
+
+            <a href="#" class="notification-btn">
+                <i data-lucide="bell" style="width:18px; height:18px;"></i>
+                <span class="notification-dot"></span>
+            </a>
+            <div class="nav-divider"></div>
+            <div class="user-area">
+                <div class="user-icon">
+                    <i data-lucide="user-round" style="width:16px; height:16px;"></i>
+                </div>
+                <span class="user-greeting">Halo, <?php echo htmlspecialchars($display_username); ?></span>
+            </div>
+        </div>
     </nav>
 
 
-
     <!-- =====================================================
-         HERO (Padding top disesuaikan untuk mengimbangi floating navbar)
+         HERO
     ===================================================== -->
 
     <header
@@ -577,7 +805,7 @@
 
 
 
-            <!-- KOTAK INFO LANGSING -->
+            <!-- KOTAK INFO -->
             <div
                 class="max-w-3xl mx-auto mb-10">
 
@@ -821,7 +1049,7 @@
                                     class="text-xs md:text-sm text-amber-800 leading-relaxed">
 
                                     Rupiah digunakan dalam setiap aktivitas
-                                    ekonomi masyarakat Indonesia dan menjadi
+                                    ekonomi masyarakat Indonesia and menjadi
                                     salah satu simbol utama kedaulatan negara.
 
                                 </p>
@@ -1265,7 +1493,7 @@
                                         class="text-xs text-slate-500 mb-4">
 
                                         Digunakan dalam transaksi internasional,
-                                        perbankan, dan sistem keuangan global.
+                                        perbankan, and sistem keuangan global.
 
                                     </p>
 
@@ -1577,7 +1805,7 @@
 
 
         <!-- =====================================================
-             CIRi KEAMANAN RUPIAH
+             CIRI KEAMANAN RUPIAH
         ===================================================== -->
 
         <section id="keamanan-rupiah">
@@ -2134,62 +2362,53 @@
     <!-- =====================================================
          FOOTER
     ===================================================== -->
-
-    <footer class="bg-blue-950 text-white/80 pt-14 pb-6 px-6 md:px-12">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 pb-10">
-
-            <!-- LOGO & DESKRIPSI -->
-            <div class="md:col-span-6">
-                <div class="flex items-center gap-3 mb-5">
-                    <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Rupantara Logo" class="h-14 w-auto object-contain bg-white/5 rounded-xl p-1 onerror-fallback">
+    <footer>
+        <div class="footer-main">
+            <div class="footer-column">
+                <div class="footer-brand-card">
+                    <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA">
                 </div>
-                <p class="text-sm text-white/60 leading-relaxed max-w-md">
-                    Ruang Pintar Nusantara (RUPANTARA) adalah platform edukasi keuangan
-                    masa depan yang membantu masyarakat memahami nilai, sejarah, dan fitur
-                    keamanan mata uang Rupiah secara interaktif menggunakan teknologi
-                    pemindaian cerdas.
-                </p>
+                <p class="footer-desc">Rupiah Nusantara (RUPANTARA) adalah platform edukasi keuangan masa depan yang membantu mengenali kedaulatan, nilai, dan keamanan mata uang Rupiah secara interaktif.</p>
             </div>
-
-            <!-- NAVIGASI -->
-            <div class="md:col-span-3">
-                <h4 class="text-sm font-bold text-white tracking-wider mb-4">NAVIGASI</h4>
-                <ul class="space-y-3 text-sm text-white/60">
-                    <li><a href="#" class="hover:text-blue-300 transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs"></i> Beranda</a></li>
-                    <li><a href="../TENTANG RUPIAH/tentangrupiah.html" class="hover:text-blue-300 transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs"></i> Tentang Rupiah</a></li>
-                    <li><a href="../QUIZ/quiz_intro.php" class="hover:text-blue-300 transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs"></i> Quiz</a></li>
-                    <li><a href="../MATERI/edukasi.php" class="hover:text-blue-300 transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs"></i> Edukasi</a></li>
-                    <li><a href="../SCANNER/index.html" class="hover:text-blue-300 transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs"></i> Scan</a></li>
-                </ul>
+            <div class="footer-column">
+                <h3>NAVIGASI</h3>
+                <div class="footer-nav">
+                    <a href="../BERANDA/beranda.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Beranda</a>
+                    <a href="../TENTANG RUPIAH/tentangrupiah.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Tentang Rupiah</a>
+                    <a href="../MATERI/edukasi.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Edukasi</a>
+                    <a href="../QUIZ/quiz_intro.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Quiz</a>
+                    <a href="../SCANNER/index_copy.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Scan</a>
+                </div>
             </div>
-
-            <!-- HUBUNGI KAMI -->
-            <div class="md:col-span-3">
-                <h4 class="text-sm font-bold text-white tracking-wider mb-4">HUBUNGI KAMI</h4>
-                <ul class="space-y-3 text-sm text-white/60">
-                    <li class="flex items-center gap-3">
-                        <i class="fa-solid fa-phone text-blue-300"></i>
-                        +62 823-4095-0845
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <i class="fa-solid fa-location-dot text-blue-300"></i>
-                        Purwokerto, Indonesia
-                    </li>
-                </ul>
+            <div class="footer-column">
+                <h3>HUBUNGI KAMI</h3>
+                <div class="footer-contact-list">
+                    <a href="tel:+6282340950845" class="footer-contact-item">
+                        <div class="footer-contact-icon">
+                            <i data-lucide="phone" style="width:16px; height:16px;"></i>
+                        </div>
+                        <span>+62 823-4095-0845</span>
+                    </a>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">
+                            <i data-lucide="map-pin" style="width:16px; height:16px;"></i>
+                        </div>
+                        <span>Purwokerto, Indonesia</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- BOTTOM BAR -->
-        <div class="max-w-7xl mx-auto border-t border-blue-900 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-white/50">
-            <p>&copy; 2024 RUPANTARA Educational Platform. All rights reserved.</p>
-            <div class="flex items-center gap-5">
-                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" class="hover:text-white transition-colors">Help Center</a>
+        <!-- SUB-FOOTER BOTTOM -->
+        <div class="footer-bottom">
+            <p class="footer-copy">&copy; 2024 RUPANTARA Educational Platform. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Help Center</a>
             </div>
         </div>
     </footer>
-
 
 
     <!-- =====================================================
@@ -2198,6 +2417,8 @@
     ===================================================== -->
 
     <script>
+        // Inisialisasi Ikon Lucide
+        lucide.createIcons();
 
         function toggleAccordion(id) {
 
