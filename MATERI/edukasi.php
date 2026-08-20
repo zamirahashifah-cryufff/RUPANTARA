@@ -1033,14 +1033,14 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 
 <!-- HEADER (Floating Glassmorphism) -->
 <nav>
-    <a href="#" style="display:flex; align-items:center; text-decoration:none;">
+    <a href="../BERANDA/beranda.html" style="display:flex; align-items:center; text-decoration:none;">
         <div class="nav-logo">
             <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA">
         </div>
     </a>
 
     <ul class="nav-links">
-        <li><a href="#">Beranda</a></li>
+        <li><a href="../BERANDA/beranda.html">Beranda</a></li>
         <li><a href="../TENTANG RUPIAH/tentangrupiah.html">Tentang Rupiah</a></li>
         <li><a href="../MATERI/edukasi.php" class="active">Edukasi</a></li>
         <li><a href="../QUIZ/quiz_intro.html">Quiz</a></li>
