@@ -205,6 +205,8 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             border-radius: 12px;
             border: 1px solid rgba(226, 232, 240, 0.5);
             transition: all 0.3s ease;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         .user-area:hover {
@@ -1159,12 +1161,12 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             <span class="notification-dot"></span>
         </a>
         <div class="nav-divider"></div>
-        <div class="user-area">
+        <a href="../PROFIL/profil.php" class="user-area" title="Profil Pengguna">
             <div class="user-icon">
                 <i data-lucide="user-round" style="width:16px; height:16px;"></i>
             </div>
             <span class="user-greeting">Halo, <?php echo htmlspecialchars($display_username); ?></span>
-        </div>
+        </a>
     </div>
 </nav>
 
@@ -1250,26 +1252,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
                 </div>
                 <span class="feature-link">Jelajahi <i data-lucide="arrow-right" style="width:15px; height:15px;"></i></span>
             </a>
-        </div>
-    </section>
-
-    <!-- 3. ANIMATED STATS BAR -->
-    <section class="stats-grid">
-        <div class="stat-item">
-            <div class="stat-number" data-target="10">0</div>
-            <div class="stat-label">Soal Quiz Interaktif</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number" data-target="6">0</div>
-            <div class="stat-label">Modul Materi Edukasi</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number" data-target="1000">0</div>
-            <div class="stat-label">Pengguna Terdaftar</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number" data-target="99">0</div>
-            <div class="stat-label">% Akurasi Scanner AI</div>
         </div>
     </section>
 
