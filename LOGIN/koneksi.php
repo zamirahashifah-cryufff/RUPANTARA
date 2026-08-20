@@ -1,12 +1,14 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = "";
-$db   = "rupantara";
+$pass = ""; // Kosongkan jika menggunakan pengaturan bawaan XAMPP
+$db   = "rupantara"; // Nama database sesuai screenshot phpMyAdmin Anda
 
-$conn = mysqli_connect($host, $user, $pass, $db);
+// Membuat koneksi ke MySQL
+$koneksi = mysqli_connect($host, $user, $pass, $db);
 
-if (!$conn) {
+// Memeriksa apakah koneksi berhasil
+if (!$koneksi) {
     die("Koneksi ke database gagal: " . mysqli_connect_error());
 }
 ?>

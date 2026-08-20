@@ -11,7 +11,11 @@ $username = $isLoggedIn ? $_SESSION['username'] : '';
 <title>RUPANTARA - Quiz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Pustaka Ikon Lucide (Sama seperti edukasi.php) -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
 <style>
 :root{
   --navy:#17325C; --navy-dark:#10233F; --navy-soft:#E7EDF7; --bg:#FAF8FF;
@@ -21,49 +25,204 @@ $username = $isLoggedIn ? $_SESSION['username'] : '';
   --header-border:#ECE9F3; --footer-bg:#E9E7F2;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Inter',sans-serif;font-weight:500;background:var(--bg);color:var(--text-main);
+body{font-family:'Plus Jakarta Sans','Inter',sans-serif;font-weight:500;background:var(--bg);color:var(--text-main);
   min-height:100vh;display:flex;flex-direction:column;}
 
-/* ===================== HEADER / NAVBAR ===================== */
-.site-header{
-  background:var(--card);
-  border-bottom:1px solid var(--header-border);
-}
-.header-inner{
-  max-width:1200px;margin:0 auto;padding:16px 24px;
-  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;
-}
-.logo{
-  font-size:20px;font-weight:800;color:var(--navy);letter-spacing:.2px;white-space:nowrap;
-  justify-self:start;
-}
-.nav-links{
-  justify-self:center;display:flex;align-items:center;gap:28px;
-}
-.nav-links a{
-  font-size:14px;font-weight:600;color:#4B5566;text-decoration:none;padding-bottom:4px;
-  border-bottom:2px solid transparent;
-}
-.nav-links a.active{ color:var(--navy); border-bottom-color:var(--navy); }
-.header-right{ justify-self:end; display:flex; align-items:center; }
-.login-btn{
-  background:var(--navy-dark);color:#fff;border:none;border-radius:999px;
-  padding:10px 22px;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap;
-}
-.user-avatar{
-  width:38px;height:38px;border-radius:50%;background:var(--navy);color:#fff;
-  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;
-  cursor:default;white-space:nowrap;
+/* =====================================================
+   HEADER (Floating Glassmorphism style - Sama seperti edukasi.php)
+===================================================== */
+nav {
+    --nav-navy: #0E3F6B;
+    --nav-navy-dark: #0A3458;
+    --nav-blue: #59A9E8;
+    --nav-blue-dark: #174C84;
+    --nav-text: #1E293B;
+    --nav-muted: #64748B;
+    --nav-border: #E2E8F0;
+
+    width: 90%;
+    max-width: 1300px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    gap: 20px;
+    position: sticky;
+    top: 20px;
+    margin: 20px auto 0;
+    border-radius: 20px;
+    z-index: 999;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 12px 30px rgba(0, 48, 135, 0.06);
+    transition: all 0.3s ease;
 }
 
-@media (max-width:820px){
-  .nav-links{ display:none; }
-  .header-inner{ grid-template-columns:1fr auto; }
+.nav-logo {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.03);
+}
+
+.nav-logo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-left: auto;
+    background: rgba(244, 247, 252, 0.6);
+    padding: 5px;
+    border-radius: 14px;
+    border: 1px solid rgba(226, 232, 240, 0.4);
+}
+
+.nav-links a {
+    position: relative;
+    text-decoration: none;
+    color: #64748B;
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    white-space: nowrap;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+.nav-links a:hover {
+    color: var(--nav-blue-dark);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.nav-links a.active {
+    color: var(--nav-blue-dark);
+    background: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(0, 48, 135, 0.05);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.btn-login {
+    min-width: 95px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    background: linear-gradient(135deg, var(--nav-blue-dark), #1d5fa3);
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(23, 76, 132, 0.15);
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(23, 76, 132, 0.25);
+    background: linear-gradient(135deg, #123D70, #174C84);
+}
+
+.notification-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(244, 247, 252, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #64748B;
+    transition: all 0.3s ease;
+}
+
+.notification-btn:hover {
+    background: #EAF2FF;
+    color: var(--nav-blue-dark);
+    transform: translateY(-2px);
+}
+
+.notification-dot {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 6px;
+    height: 6px;
+    background: #EF4444;
+    border-radius: 50%;
+}
+
+.nav-divider {
+    width: 1px;
+    height: 34px;
+    background: #D9E2EC;
+}
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(244, 247, 252, 0.8);
+    padding: 4px 12px 4px 4px;
+    border-radius: 12px;
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    transition: all 0.3s ease;
+}
+
+.user-area:hover {
+    background: #EAF2FF;
+    border-color: rgba(89, 169, 232, 0.3);
+}
+
+.user-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: white;
+    color: var(--nav-blue-dark);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.user-greeting {
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+}
+
+@media (max-width: 900px) {
+    nav { width: 95%; padding: 0 16px; }
+    .nav-links { display: none; }
 }
 
 /* ===================== MAIN QUIZ AREA ===================== */
 .page-content{
   flex:1;display:flex;align-items:flex-start;justify-content:center;padding:32px 16px;
+  margin-top: 10px;
 }
 .quiz-wrapper{width:100%;max-width:1000px;display:flex;flex-direction:column;gap:20px;}
 .topbar{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
@@ -180,37 +339,42 @@ body{font-family:'Inter',sans-serif;font-weight:500;background:var(--bg);color:v
 </head>
 <body>
 
-<!-- ===================== NAVBAR ===================== -->
-<header class="site-header">
-  <div class="header-inner">
-    <div class="logo">RUPANTARA</div>
-    <nav class="nav-links">
-      <a href="#">Beranda</a>
-      <a href="#">Tentang Rupiah</a>
-      <a href="#" class="active">Fitur</a>
-      <a href="#">Materi</a>
-      <a href="#">Quiz</a>
-      <a href="#">Scan</a>
-    </nav>
-    <div class="header-right" id="authArea">
-      <?php if ($isLoggedIn): ?>
-        <?php
-          // Mengolah Inisial Pengguna dari Username Database
-          $nama = trim($username);
-          $kata = preg_split('/\s+/', $nama);
-          if (count($kata) === 1) {
-              $inisial = strtoupper(substr($kata[0], 0, 2));
-          } else {
-              $inisial = strtoupper($kata[0][0] . $kata[1][0]);
-          }
-        ?>
-        <div class="user-avatar" title="<?php echo htmlspecialchars($username); ?>"><?php echo htmlspecialchars($inisial); ?></div>
-      <?php else: ?>
-        <a href="../LOGIN/login.php" class="login-btn" id="headerLoginBtn" style="text-decoration:none;display:inline-block;">Login</a>
-      <?php endif; ?>
+<!-- ===================== NAVBAR (Floating Glassmorphism) ===================== -->
+<nav>
+    <a href="#" style="display:flex; align-items:center; text-decoration:none;">
+        <div class="nav-logo">
+            <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA">
+        </div>
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="#">Beranda</a></li>
+        <li><a href="../TENTANG RUPIAH/tentangrupiah.html">Tentang Rupiah</a></li>
+        <li><a href="../MATERI/edukasi.php">Edukasi</a></li>
+        <li><a href="../QUIZ/quiz_intro.html" class="active">Quiz</a></li>
+        <li><a href="../SCANNER/index.html">Scan</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <!-- Menggunakan PHP untuk menentukan apakah tombol Login perlu ditampilkan -->
+        <?php if (!$isLoggedIn): ?>
+            <a href="../LOGIN/login.php" class="btn-login">Login</a>
+        <?php endif; ?>
+
+        <a href="#" class="notification-btn">
+            <i data-lucide="bell" style="width:18px; height:18px;"></i>
+            <span class="notification-dot"></span>
+        </a>
+        <div class="nav-divider"></div>
+        <div class="user-area">
+            <div class="user-icon">
+                <i data-lucide="user-round" style="width:16px; height:16px;"></i>
+            </div>
+            <!-- Nama pengguna ditampilkan secara dinamis dari Session -->
+            <span class="user-greeting">Halo, <?php echo htmlspecialchars($isLoggedIn ? $username : 'User'); ?></span>
+        </div>
     </div>
-  </div>
-</header>
+</nav>
 
 <div class="page-content">
 <div class="quiz-wrapper">
@@ -489,6 +653,8 @@ el.finishBtn.addEventListener('click', ()=> selesaiQuiz(false));
 el.skipBtn.addEventListener('click', lewatiSoal);
 el.hintBtn.addEventListener('click', pakaiHint);
 
+// Inisialisasi ikon Lucide
+lucide.createIcons();
 </script>
 </body>
 </html>
