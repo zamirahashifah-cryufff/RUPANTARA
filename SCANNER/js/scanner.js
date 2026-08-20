@@ -502,12 +502,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hasilScanSection) {
       hasilScanSection.scrollIntoView({ behavior: 'smooth' });
     }
-  }
-
-  function clearResultState() {
+    function clearResultState() {
     resetResultCard();
     setRescanButton(false);
-    setStatus('Model AI siap. Klik Jepret atau Upload Foto Uang.', 'info');
+    setStatus('Model AI siap. Silakan upload foto uang Rupiah.', 'info');
   }
 
   async function analyzeUploadImage() {
@@ -519,7 +517,6 @@ document.addEventListener('DOMContentLoaded', () => {
       await loadTMModel();
     }
     setStatus('AI sedang menganalisis foto uang...', 'processing');
-    setCaptureButton('Memproses...', true);
     scannerMode = SCANNER_MODE.PROCESSING;
 
     try {
@@ -552,55 +549,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       console.error('Upload prediction error:', error);
       setStatus('Scan gagal. Pastikan gambar jelas dan ulangi.', 'error');
-    } finally {
-      setCaptureButton('Scan Foto', false);
-    }
-  }
-
-  async function analyzeCameraFrame() {
-    if (!videoPreview) return;
-    if (!tmModel) {
-      await loadTMModel();
-    }
-    setStatus('Mengambil gambar...', 'processing');
-    setCaptureButton('Memproses...', true);
-    scannerMode = SCANNER_MODE.PROCESSING;
-
-    try {
-      const processedCanvas = resizeSourceToCanvas(videoPreview);
-      if (!processedCanvas) throw new Error('Gagal menangkap frame kamera');
-      capturedCanvas = processedCanvas;
-      const dataUrl = processedCanvas.toDataURL('image/jpeg');
-
-      const predictions = await tmModel.predict(processedCanvas);
-      if (!Array.isArray(predictions) || predictions.length === 0) {
-        throw new Error('Prediksi kosong');
-      }
-      const sortedPredictions = [...predictions].sort((a, b) => b.probability - a.probability);
-      console.table(sortedPredictions);
-      const top = sortedPredictions[0];
-      const second = sortedPredictions[1] || { probability: 0 };
-      const topProbability = Number(top.probability || 0);
-      const secondProbability = Number(second.probability || 0);
-      const modelLabel = top.className || top.label || '';
-
-      const parsed = parsePredictionLabel(modelLabel);
-      const labelRp = normalizeLabelToRp(modelLabel) || parsed.nominal || null;
-      console.log('[AI] Prediction:', modelLabel, '->', labelRp, 'Confidence:', topProbability);
-
-      const note = labelRp ? getNoteInfo(labelRp) : null;
-      const isConfidenceOk = topProbability >= DENOMINATION_CONFIDENCE_THRESHOLD;
-      const isCertain = isConfidenceOk && (topProbability - secondProbability) >= MIN_MARGIN && !!note;
-      const conditionText = parsed.condition ? `Kondisi: ${parsed.condition}` : 'Kondisi uang belum dapat dianalisis.';
-
-      stopCamera();
-      showResultImage(dataUrl);
-      renderResult(note, labelRp, topProbability, isCertain || !!note, dataUrl, conditionText);
-    } catch (error) {
-      console.error('Camera prediction error:', error);
-      stopCamera();
-      setStatus('Scan gagal. Pastikan posisi uang jelas dan ulangi.', 'error');
-      setCaptureButton('<i class="fa-solid fa-camera"></i> Jepret', false);
     }
   }
 
@@ -625,10 +573,9 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
         uploadedImageElement = new Image();
-        uploadedImageElement.onload = () => {
+        uploadedImageElement.onload = async () => {
           showUploadPreview(dataUrl);
-          setStatus('Foto siap. Tekan Scan Foto untuk mengenali.', 'info');
-          setCaptureButton('Scan Foto', false);
+          await analyzeUploadImage();
         };
         uploadedImageElement.onerror = () => {
           setStatus('Gagal memuat gambar. Pilih file lain.', 'error');
@@ -642,29 +589,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function handleCaptureButton() {
-    if (!captureBtn) return;
-    captureBtn.addEventListener('click', async () => {
-      if (scannerMode === SCANNER_MODE.UPLOAD) {
-        await analyzeUploadImage();
-        return;
-      }
-      if (scannerMode === SCANNER_MODE.CAMERA) {
-        await analyzeCameraFrame();
-        return;
-      }
-      if (scannerMode === SCANNER_MODE.RESULT || scannerMode === SCANNER_MODE.IDLE || scannerMode === SCANNER_MODE.ERROR) {
-        await startCamera();
-        return;
-      }
-    });
-  }
-
   function setupRescanButton() {
     if (!rescanBtn) return;
-    rescanBtn.addEventListener('click', async () => {
+    rescanBtn.addEventListener('click', () => {
       clearResultState();
-      await startCamera();
+      if (imageUploadInput) imageUploadInput.value = '';
+      const scannerInputSection = document.getElementById('scannerInputSection');
+      if (scannerInputSection) {
+        scannerInputSection.scrollIntoView({ behavior: 'smooth' });
+      }
     });
   }
 
@@ -704,30 +637,21 @@ document.addEventListener('DOMContentLoaded', () => {
     hideAllMedia();
     resetResultCard();
     setRescanButton(false);
-    setCaptureButton('<i class="fa-solid fa-camera"></i> Jepret', true);
     setStatus('Memuat model AI...', 'processing');
 
     loadTMModel()
       .then(() => {
-        setCaptureButton('<i class="fa-solid fa-camera"></i> Jepret', false);
-        setStatus('Model AI siap. Klik Jepret atau Upload Foto Uang.', 'info');
+        setStatus('Model AI siap. Silakan upload foto uang Rupiah.', 'info');
         scannerMode = SCANNER_MODE.IDLE;
-        startCamera().catch((err) => {
-          console.log('[Camera] Auto-start not available on load:', err);
-          scannerMode = SCANNER_MODE.IDLE;
-          setStatus('Model AI siap. Klik Jepret atau Upload Foto Uang.', 'info');
-        });
       })
       .catch((err) => {
         console.error('[Scanner Init Error]', err);
-        setCaptureButton('<i class="fa-solid fa-camera"></i> Jepret', false);
         scannerMode = SCANNER_MODE.ERROR;
         setStatus('Gagal memuat model AI. Silakan refresh halaman.', 'error');
       });
   }
 
   setupUploadInput();
-  handleCaptureButton();
   setupRescanButton();
   setupDismissButton();
   setupSampleChips();

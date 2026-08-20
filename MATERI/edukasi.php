@@ -1040,11 +1040,11 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     </a>
 
     <ul class="nav-links">
-        <li><a href="../BERANDA/beranda.html">Beranda</a></li>
-        <li><a href="../TENTANG RUPIAH/tentangrupiah.html">Tentang Rupiah</a></li>
+        <li><a href="../BERANDA/beranda.php">Beranda</a></li>
+        <li><a href="../TENTANG RUPIAH/tentangrupiah.php">Tentang Rupiah</a></li>
         <li><a href="../MATERI/edukasi.php" class="active">Edukasi</a></li>
-        <li><a href="../QUIZ/quiz_intro.html">Quiz</a></li>
-        <li><a href="../SCANNER/index.html">Scan</a></li>
+        <li><a href="../QUIZ/quiz_intro.php">Quiz</a></li>
+        <li><a href="../SCANNER/index_copy.php">Scan</a></li>
     </ul>
 
     <div class="nav-actions">
