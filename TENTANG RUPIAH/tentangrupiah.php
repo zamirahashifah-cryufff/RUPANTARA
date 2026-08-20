@@ -3,6 +3,7 @@ session_start();
 
 // Menyimpan URL halaman ini ke dalam session agar jika pengguna login, mereka dapat dikembalikan ke sini
 $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
+$_SESSION['last_page'] = $_SERVER['REQUEST_URI'];
 
 // Memeriksa status login pengguna
 $is_logged_in = isset($_SESSION['login']) && $_SESSION['login'] === true;
@@ -29,6 +30,8 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../navbar_responsive.css">
+    <script src="../navbar_responsive.js" defer></script>
     
     <style>
 
@@ -634,17 +637,20 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
                 <a href="../LOGIN/login.php" class="btn-login">Login</a>
             <?php endif; ?>
 
+            <a href="../qr.php" class="notification-btn" title="Buka di HP / QR Code" style="text-decoration:none;">
+                <i data-lucide="qr-code" style="width:18px; height:18px;"></i>
+            </a>
             <a href="#" class="notification-btn">
                 <i data-lucide="bell" style="width:18px; height:18px;"></i>
                 <span class="notification-dot"></span>
             </a>
             <div class="nav-divider"></div>
-            <div class="user-area">
+            <a href="../PROFIL/profil.php" class="user-area" title="Profil Pengguna">
                 <div class="user-icon">
                     <i data-lucide="user-round" style="width:16px; height:16px;"></i>
                 </div>
                 <span class="user-greeting">Halo, <?php echo htmlspecialchars($display_username); ?></span>
-            </div>
+            </a>
         </div>
     </nav>
 

@@ -3,6 +3,7 @@ session_start();
 
 // Menyimpan URL halaman ini ke dalam session agar setelah login berhasil, pengguna dikembalikan ke sini
 $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
+$_SESSION['last_page'] = $_SERVER['REQUEST_URI'];
 
 // Memeriksa status login pengguna
 $is_logged_in = isset($_SESSION['login']) && $_SESSION['login'] === true;
@@ -22,6 +23,8 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../navbar_responsive.css">
+    <script src="../navbar_responsive.js" defer></script>
 
     <style>
         :root {
@@ -1156,6 +1159,9 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             <a href="../LOGIN/login.php" class="btn-login">Login</a>
         <?php endif; ?>
 
+        <a href="../qr.php" class="notification-btn" title="Buka di HP / QR Code" style="text-decoration:none;">
+            <i data-lucide="qr-code" style="width:18px; height:18px;"></i>
+        </a>
         <a href="#" class="notification-btn" onclick="showToast('Tidak ada notifikasi baru')">
             <i data-lucide="bell" style="width:18px; height:18px;"></i>
             <span class="notification-dot"></span>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['last_page'] = $_SERVER['REQUEST_URI'];
 $isLoggedIn = isset($_SESSION['login']) && $_SESSION['login'] === true;
 $username = $isLoggedIn ? $_SESSION['username'] : '';
 ?>
@@ -15,6 +16,8 @@ $username = $isLoggedIn ? $_SESSION['username'] : '';
 
 <!-- Pustaka Ikon Lucide (Sama seperti edukasi.php) -->
 <script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="../navbar_responsive.css">
+<script src="../navbar_responsive.js" defer></script>
 
 <style>
 :root{
@@ -366,13 +369,13 @@ nav {
             <span class="notification-dot"></span>
         </a>
         <div class="nav-divider"></div>
-        <div class="user-area">
+        <a href="../PROFIL/profil.php" class="user-area" title="Profil Pengguna">
             <div class="user-icon">
                 <i data-lucide="user-round" style="width:16px; height:16px;"></i>
             </div>
             <!-- Nama pengguna ditampilkan secara dinamis dari Session -->
             <span class="user-greeting">Halo, <?php echo htmlspecialchars($isLoggedIn ? $username : 'User'); ?></span>
-        </div>
+        </a>
     </div>
 </nav>
 

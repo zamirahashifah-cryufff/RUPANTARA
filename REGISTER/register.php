@@ -6,6 +6,8 @@
     <title>Rupantara - Daftar Akun</title>
     <!-- Menggunakan Font Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../navbar_responsive.css">
+    <script src="../navbar_responsive.js" defer></script>
     <style>
         /* Reset CSS dasar */
         * {
@@ -419,11 +421,13 @@
         </div>
         
         <div class="navigation-group">
-            <nav>
-                <a href="#">Beranda</a>
-                <a href="#">Tentang kami</a>
-                <a href="#">Fitur</a>
-                <a href="#">Edukasi</a>
+            <nav class="register-nav">
+                <div class="nav-links">
+                    <a href="../BERANDA/beranda.php">Beranda</a>
+                    <a href="../TENTANG RUPIAH/tentangrupiah.php">Tentang kami</a>
+                    <a href="../SCANNER/index.php">Fitur</a>
+                    <a href="../MATERI/edukasi.php">Edukasi</a>
+                </div>
                 <span class="divider">|</span>
                 <a href="../LOGIN/login.php" class="btn-login-nav">Login</a>
             </nav>
@@ -433,7 +437,7 @@
                         <path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/>
                     </svg>
                 </div>
-                <div class="user-profile">
+                <a href="../PROFIL/profil.php" class="user-profile user-area" title="Profil Pengguna">
                     <div class="user-avatar">
                         <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px">
                             <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-240v-32q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q30 15 47 43.5t17 62.5v32H160Z"/>
@@ -442,7 +446,7 @@
                     <div class="user-info">
                         <strong>Hallo, User</strong>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </header>
