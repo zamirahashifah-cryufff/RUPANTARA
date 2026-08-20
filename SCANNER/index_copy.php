@@ -486,6 +486,9 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             <a href="../LOGIN/login.php" class="btn-login">Login</a>
         <?php endif; ?>
 
+        <a href="../qr.php" class="notification-btn" title="Buka di HP / QR Code" style="text-decoration:none;">
+            <i data-lucide="qr-code" style="width:18px; height:18px;"></i>
+        </a>
         <a href="#" class="notification-btn">
             <i data-lucide="bell" style="width:18px; height:18px;"></i>
             <span class="notification-dot"></span>
