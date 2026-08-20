@@ -41,6 +41,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             background: var(--body);
             color: var(--text);
             line-height: 1.6;
+            font-size: 15px;
         }
 
         /* =====================================================
@@ -49,7 +50,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         nav {
             width: 90%;
             max-width: 1300px;
-            height: 80px; /* Desain lebih ramping dan dinamis */
+            height: 80px;
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -58,7 +59,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             padding: 0 28px;
             gap: 20px;
             position: sticky;
-            top: 20px; /* Melayang dari batas atas */
+            top: 20px;
             margin: 0 auto;
             border-radius: 20px;
             z-index: 999;
@@ -67,7 +68,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             transition: all 0.3s ease;
         }
 
-        /* LOGO HEADER */
         .nav-logo {
             height: 44px;
             display: flex;
@@ -86,7 +86,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             object-fit: contain;
         }
 
-        /* MENU (Dengan Desain Pill Bar) */
         .nav-links {
             list-style: none;
             display: flex;
@@ -125,14 +124,12 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             box-shadow: 0 4px 12px rgba(0, 48, 135, 0.05);
         }
 
-        /* ACTION HEADER */
         .nav-actions {
             display: flex;
             align-items: center;
             gap: 14px;
         }
 
-        /* LOGIN BUTTON (Lebih presisi & berefek hover interaktif) */
         .btn-login {
             min-width: 95px;
             height: 38px;
@@ -156,7 +153,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             background: linear-gradient(135deg, #123D70, #174C84);
         }
 
-        /* NOTIFICATION */
         .notification-btn {
             width: 38px;
             height: 38px;
@@ -192,7 +188,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             background: #D9E2EC;
         }
 
-        /* USER AREA (Pill design) */
         .user-area {
             display: flex;
             align-items: center;
@@ -228,50 +223,53 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         }
 
         /* =====================================================
-           LAYOUT & CONTENT (Disesuaikan untuk navbar melayang)
+           LAYOUT & CONTENT (Responsive Layout Grid)
         ===================================================== */
         .container {
-            max-width: 1200px;
-            margin: 60px auto 40px; /* Jarak atas ditambah agar tidak tertutup navbar */
+            width: 100%;
+            max-width: 1300px;
+            margin: 50px auto;
             display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 40px;
-            padding: 0 20px;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            padding: 0 24px;
         }
 
         .sidebar-materi {
             background: #F4F7FC;
             border-radius: 20px;
-            padding: 25px;
+            padding: 24px;
             height: fit-content;
             position: sticky;
-            top: 130px; /* Diturunkan sedikit menyesuaikan tinggi baru navbar */
+            top: 130px;
+            transition: all 0.3s ease;
         }
 
         .sidebar-materi h2 { color: #003087; font-size: 24px; font-weight: 800; }
         .sidebar-materi .subtitle { font-size: 14px; color: var(--muted); margin-top: 4px; }
 
-        .materi-list { display: flex; flex-direction: column; gap: 10px; margin-top: 15px;}
+        .materi-list { display: flex; flex-direction: column; gap: 8px; margin-top: 15px;}
 
         .materi-item {
-            display: flex; align-items: center; gap: 20px; padding: 15px 20px;
-            border-radius: 14px; color: var(--text); text-decoration: none;
-            font-size: 14px; font-weight: 500; cursor: pointer; transition: .3s;
+            display: flex; align-items: center; gap: 15px; padding: 12px 18px;
+            border-radius: 12px; color: var(--text); text-decoration: none;
+            font-size: 14px; font-weight: 500; cursor: pointer; transition: .25s ease;
         }
 
-        .materi-item.active { background: white; box-shadow: 0 5px 15px rgba(0,0,0,.06); font-weight: 700; color: var(--blue-dark); }
+        .materi-item.active { background: white; box-shadow: 0 5px 15px rgba(0,0,0,.04); font-weight: 700; color: var(--blue-dark); }
         .materi-item:hover { background: rgba(255,255,255,.6); }
 
         .content-card { background: white; border-radius: 20px; padding: 35px; box-shadow: 0 5px 25px rgba(0,0,0,.02); animation: fadeIn .5s ease; }
 
         .hero-banner {
-            width: 100%; min-height: 250px; border-radius: 15px;
+            width: 100%; min-height: 260px; border-radius: 15px;
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center;
             padding: 40px; color: white; margin-bottom: 30px;
         }
 
-        .hero-banner h1 { font-size: 36px; font-weight: 800; }
+        .hero-banner h1 { font-size: 36px; font-weight: 800; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .hero-banner p { font-size: 16px; text-shadow: 0 2px 6px rgba(0,0,0,0.3); }
 
         .title-h1 { font-size: 34px; font-weight: 800; color: #003087; margin-bottom: 15px; }
 
@@ -310,7 +308,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         }
 
         .top-grid { display: grid; grid-template-columns: 1fr 260px; gap: 35px; align-items: start; }
-        @media (max-width: 900px) { .top-grid { grid-template-columns: 1fr; } }
 
         .toc-box { background: #F4F7FC; border-radius: 18px; padding: 22px; }
         .toc-box h4 { font-size: 12px; text-transform: uppercase; color: var(--muted); letter-spacing: .5px; margin-bottom: 14px; }
@@ -324,7 +321,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         .card-grid { display: grid; gap: 20px; margin: 26px 0; }
         .card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
         .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-        @media (max-width: 700px) { .card-grid.cols-2, .card-grid.cols-3 { grid-template-columns: 1fr; } }
 
         .info-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
         .icon-circle {
@@ -344,7 +340,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 
         .split-block { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; align-items: center; margin: 24px 0; }
         .split-block img { width: 100%; border-radius: 16px; object-fit: cover; }
-        @media (max-width: 800px) { .split-block { grid-template-columns: 1fr; } }
 
         .illus-box {
             border-radius: 18px; min-height: 220px; position: relative;
@@ -375,7 +370,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         .method-3d .box .icon-circle { width: 34px; height: 34px; border-radius: 9px; margin-bottom: 10px; }
         .method-3d .box strong { display: block; color: var(--navy); margin-bottom: 6px; font-size: 13.5px; }
         .method-3d .box p { font-size: 12px; color: var(--muted); }
-        @media (max-width: 700px) { .method-3d { grid-template-columns: 1fr; } }
 
         .cta-banner {
             background: linear-gradient(120deg, var(--navy), var(--blue-dark)); border-radius: 20px;
@@ -412,13 +406,12 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         .sub-events .ev-desc { font-size: 12.5px; color: var(--muted); }
 
         .prevnext { display: flex; justify-content: space-between; margin-top: 35px; padding-top: 22px; border-top: 1px solid var(--border); }
-        .prevnext a { text-decoration: none; color: var(--muted); font-size: 12px; }
+        .prevnext a { text-decoration: none; color: var(--muted); font-size: 12px; cursor: pointer; } /* Ditambahkan cursor: pointer agar interaktif */
         .prevnext a strong { display: block; color: var(--blue-dark); font-size: 14px; margin-top: 3px; }
         .prevnext .next { text-align: right; }
         .prevnext .disabled { opacity: .4; pointer-events: none; }
 
         .care-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 26px 0; }
-        @media (max-width: 700px) { .care-grid { grid-template-columns: 1fr; } }
         .care-card { border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
         .care-card.highlight { grid-column: 1 / -1; background: var(--navy); color: #fff; border: none; }
         .care-card.highlight .icon-circle { background: rgba(255,255,255,.15); color: #fff; }
@@ -431,7 +424,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         .tip-box strong { color: #92650A; }
 
         .digital-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 20px; margin: 26px 0; }
-        @media (max-width: 800px) { .digital-grid { grid-template-columns: 1fr; } }
         .digital-card { border-radius: 16px; padding: 26px; }
         .digital-card.white { background: #fff; border: 1px solid var(--border); }
         .digital-card.blue { background: var(--blue-dark); color: #fff; }
@@ -441,7 +433,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         .read-more { color: var(--blue-dark); font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; }
 
         .payment-section { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; align-items: center; margin: 28px 0; }
-        @media (max-width: 800px) { .payment-section { grid-template-columns: 1fr; } }
         .payment-section img { width: 100%; border-radius: 16px; }
 
         .hero-photo-caption {
@@ -474,18 +465,17 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             padding-bottom: 50px;
         }
 
-        /* BRAND COLUMN */
         .footer-brand-card {
-            width: 150px; /* Lebar disesuaikan agar lebih proporsional */
-            height: 54px; /* Tinggi disesuaikan */
-            background: #FFFFFF; /* Diubah ke Putih Solid agar logo terlihat jelas */
+            width: 150px;
+            height: 54px;
+            background: #FFFFFF;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 24px;
             padding: 6px 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Ditambahkan bayangan lembut untuk efek dimensi */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
         }
 
@@ -520,7 +510,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             max-width: 320px;
         }
 
-        /* HEADER KOLOM FOOTER */
         .footer-column h3 {
             color: #FFFFFF;
             font-size: 14px;
@@ -543,7 +532,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             border-radius: 2px;
         }
 
-        /* LINK NAVIGASI FOOTER */
         .footer-nav {
             display: flex;
             flex-direction: column;
@@ -566,7 +554,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             transform: translateX(6px);
         }
 
-        /* HUBUNGI KAMI */
         .footer-contact-list {
             display: flex;
             flex-direction: column;
@@ -607,7 +594,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             transform: scale(1.05);
         }
 
-        /* SUB-FOOTER BOTTOM */
         .footer-bottom {
             margin-top: 40px;
             padding-top: 24px;
@@ -640,12 +626,133 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             color: #94A3B8;
         }
 
-        @media(max-width:900px) {
-            nav { width: 95%; padding: 0 16px; }
-            .container { grid-template-columns: 1fr; margin-top: 30px; }
-            .nav-links { display: none; }
-            .footer-main { grid-template-columns: 1fr; gap: 45px; }
-            .footer-bottom { justify-content: center; text-align: center; flex-direction: column-reverse; }
+        /* =====================================================
+           RESPONSIVE MEDIA QUERIES (HP, Tablet, Desktop, TV)
+        ===================================================== */
+        
+        /* Layar Sangat Besar & TV (>= 1500px) */
+        @media (min-width: 1500px) {
+            .container {
+                max-width: 1440px;
+                gap: 50px;
+                margin: 70px auto;
+            }
+            body {
+                font-size: 16px;
+            }
+            .hero-banner {
+                min-height: 320px;
+            }
+            .content-card {
+                padding: 45px;
+            }
+        }
+
+        /* Layar Sedang & Tablet Landscape/Potret (<= 1024px) */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 260px 1fr;
+                gap: 24px;
+                padding: 0 16px;
+            }
+            .sidebar-materi {
+                padding: 16px;
+            }
+            .materi-item {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+            .content-card {
+                padding: 24px;
+            }
+        }
+
+        /* Mode HP & Tablet Kecil (<= 900px) */
+        @media (max-width: 900px) {
+            nav {
+                width: 95%;
+                padding: 0 16px;
+            }
+            .nav-links {
+                display: none; /* Sembunyikan link menu utama di HP */
+            }
+            .container {
+                grid-template-columns: 1fr;
+                margin-top: 30px;
+                gap: 20px;
+            }
+            .sidebar-materi {
+                position: static;
+                width: 100%;
+                padding: 15px;
+                border-radius: 16px;
+            }
+            /* Ubah navigasi list materi samping menjadi navigasi horizontal scroll di HP */
+            .materi-list {
+                flex-direction: row;
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 10px;
+                gap: 10px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .materi-item {
+                flex: 0 0 auto;
+                padding: 10px 16px;
+            }
+            .top-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .toc-box {
+                order: -1; /* Pindahkan daftar isi ke atas konten di mobile */
+            }
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+            .footer-bottom {
+                justify-content: center;
+                text-align: center;
+                flex-direction: column-reverse;
+            }
+        }
+
+        /* Layar HP Kecil (<= 576px) */
+        @media (max-width: 576px) {
+            nav {
+                height: 70px;
+            }
+            .user-greeting {
+                display: none; /* Sembunyikan sapaan teks di layar sangat sempit */
+            }
+            .hero-banner {
+                padding: 24px;
+                min-height: 200px;
+            }
+            .hero-banner h1 {
+                font-size: 26px;
+            }
+            .hero-banner p {
+                font-size: 13px;
+            }
+            .title-h1 {
+                font-size: 24px;
+            }
+            .content-card {
+                padding: 16px;
+                border-radius: 16px;
+            }
+            .card-grid.cols-2, .card-grid.cols-3 {
+                grid-template-columns: 1fr;
+            }
+            .split-block {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .method-3d {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -669,7 +776,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     </ul>
 
     <div class="nav-actions">
-        <!-- Menggunakan PHP untuk menentukan apakah tombol Login perlu ditampilkan -->
         <?php if (!$is_logged_in): ?>
             <a href="../LOGIN/login.php" class="btn-login">Login</a>
         <?php endif; ?>
@@ -683,7 +789,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             <div class="user-icon">
                 <i data-lucide="user-round" style="width:16px; height:16px;"></i>
             </div>
-            <!-- Nama pengguna ditampilkan secara dinamis dari Session -->
             <span class="user-greeting">Halo, <?php echo htmlspecialchars($display_username); ?></span>
         </div>
     </div>
@@ -712,11 +817,10 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     <div class="footer-main">
         <div class="footer-column">
             <div class="footer-brand-card">
-                <!-- LOGO DIAMBIL DARI FOLDER GAMBAR_GAMBAR -->
                 <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA">
             </div>
             <div class="footer-title">RUP<span>ANTARA</span></div>
-            <p class="footer-desc">Ruang Pintar Nusantara (RUPANTARA) adalah platform edukasi keuangan masa depan yang membantu mengenali kedaulatan, nilai, dan keamanan mata uang Rupiah secara interaktif.</p>
+            <p class="footer-desc">Rupiah Nusantara (RUPANTARA) adalah platform edukasi keuangan masa depan yang membantu mengenali kedaulatan, nilai, dan keamanan mata uang Rupiah secara interaktif.</p>
         </div>
         <div class="footer-column">
             <h3>NAVIGASI</h3>
@@ -735,7 +839,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
                     <div class="footer-contact-icon">
                         <i data-lucide="mail" style="width:16px; height:16px;"></i>
                     </div>
-                    <span>info@rupantara.org</span>
                 </a>
                 <a href="tel:+6282340950845" class="footer-contact-item">
                     <div class="footer-contact-icon">
@@ -846,7 +949,7 @@ function showMateri(page) {
                     <div class="split-block">
                         <div>
                             <h3 class="section-heading" style="margin-top:0;">Kedaulatan dalam Genggaman</h3>
-                            <p class="lead-text">Penggunaan Rupiah di wilayah NKRI merupakan kewajiban hukum yang diatur dalam Undang-Undang No. 7 Tahun 2011. Hal ini bertujuan untuk mendukung terciptanya stabilitas nilai Rupiah dan memperkuat integritas nasional melalui kedaulatan moneter.</p>
+                            <p class="lead-text">Penggunaan Rupiah di wilayah NKRI merupakan kewajiban hukum yang diatur dalam Undang-Undang No. 7 Tahun 2011. Hal ini bertujuan untuk mendukung terciptanya stabilitas nilai Rupiah and memperkuat integritas nasional melalui kedaulatan moneter.</p>
                         </div>
                         <div class="illus-box"><i data-lucide="map"></i></div>
                     </div>
@@ -856,49 +959,31 @@ function showMateri(page) {
 
                 <aside class="toc-box">
                     <h4>Daftar Isi</h4>
-                    <a class="active" href="#">Apa itu Rupiah?</a>
+                    <a href="#">Apa itu Rupiah?</a>
                     <a href="#">Fungsi Rupiah</a>
                     <a href="#">Peran Ekonomi</a>
                     <div class="toc-progress">
-                        <span class="label">Progres Belajar &nbsp; 35%</span>
-                        <div class="progress-track"><div class="progress-fill" style="width:35%;"></div></div>
+                        <span class="label">Progres Belajar &nbsp; 16%</span>
+                        <div class="progress-track"><div class="progress-fill" style="width:16%;"></div></div>
                     </div>
                 </aside>
             </div>
         `;
 
     // ======================================================
-    // 1. BANK INDONESIA
+    // 1. BANK INDONESIA (Diperbarui dengan Banner bank_indonesia.png & Logo bank asli)
     // ======================================================
     } else if (page === 1) {
         content.innerHTML = `
-            <span class="page-badge"><i data-lucide="landmark"></i>Lembaga Negara Independen</span>
-
-            <div class="split-block" style="margin-top:0;">
-                <div>
-                    <h1 class="title-h1">Bank Indonesia</h1>
-                    <p class="lead-text">Mengenal lebih dekat bank sentral Republik Indonesia yang memiliki peran krusial dalam menjaga stabilitas nilai Rupiah dan sistem keuangan nasional.</p>
-                </div>
-                <div class="hero-split-photo" style="position:relative;">
-                    <img src="${imgPath}bank indo.jpg" alt="Gedung Bank Indonesia" style="min-height:220px;">
-                    <div class="float-badge">
-                        <div class="icon-circle" style="margin-bottom:0;"><i data-lucide="shield-check"></i></div>
-                        Status Resmi
-                    </div>
-                </div>
+            <div class="hero-banner" style="background-image: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url('${imgPath}bank_indonesia.png');">
+                <h1>Bank Indonesia</h1>
+                <p>Mengenal lebih dekat bank sentral Republik Indonesia, penjaga stabilitas nilai Rupiah.</p>
             </div>
 
-            <div class="top-grid" style="grid-template-columns: 260px 1fr; margin-top:20px;">
-                <aside class="mini-nav">
-                    <h4>Materi BI</h4>
-                    <a class="active"><i data-lucide="landmark"></i>Bank Sentral</a>
-                    <a><i data-lucide="list-checks"></i>Tugas BI</a>
-                    <a><i data-lucide="shield"></i>Wewenang BI</a>
-                    <a><i data-lucide="clock"></i>Riwayat Digital</a>
-                </aside>
-
+            <div class="top-grid">
                 <div>
-                    <h3 class="section-heading" style="margin-top:0;">BI sebagai Bank Sentral</h3>
+                    <span class="page-badge"><i data-lucide="landmark"></i>Lembaga Negara Independen</span>
+                    <h2 class="title-h1">Bank Sentral Kita</h2>
                     <p class="lead-text">Bank Indonesia adalah lembaga negara yang independen dalam melaksanakan tugas dan wewenangnya, bebas dari campur tangan Pemerintah dan/atau pihak lain, kecuali untuk hal-hal yang secara tegas diatur dalam undang-undang.</p>
 
                     <div class="callout-box">
@@ -930,20 +1015,29 @@ function showMateri(page) {
                     </div>
 
                     <div class="card-grid cols-2">
-                        <div style="background:var(--navy); border-radius:16px; display:flex; align-items:center; justify-content:center; min-height:150px;">
-                            <div style="width:110px; height:110px; border-radius:50%; background:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--navy-dark); font-weight:800;">
-                                <span style="font-size:22px;">BI</span>
-                                <span style="font-size:10px; letter-spacing:1px;">BANK INDONESIA</span>
-                            </div>
+                        <!-- Kotak kiri yang diperbarui dengan logo_BI.png asli -->
+                        <div style="background:var(--navy); border-radius:16px; display:flex; align-items:center; justify-content:center; min-height:150px; padding:20px;">
+                            <img src="${imgPath}logo_BI.png" alt="Logo Bank Indonesia" style="max-height:100px; width:auto; object-fit:contain;">
                         </div>
                         <div style="background:var(--blue-dark); border-radius:16px; padding:24px; color:#fff; display:flex; flex-direction:column; justify-content:center;">
                             <span style="font-weight:800; font-size:15px; margin-bottom:8px;">Tahukah Kamu?</span>
-                            <p style="font-size:13.5px; color:#CFE3FA; font-style:italic;">"Bank Indonesia merupakan lembaga negara yang independen and bebas dari campur tangan pemerintah dalam pelaksanaan tugasnya."</p>
+                            <p style="font-size:13.5px; color:#CFE3FA; font-style:italic;">"Bank Indonesia merupakan lembaga negara yang independen dan bebas dari campur tangan pemerintah dalam pelaksanaan tugasnya."</p>
                         </div>
                     </div>
 
                     ${prevNextHTML(1)}
                 </div>
+                
+                <aside class="toc-box">
+                    <h4>Daftar Isi</h4>
+                    <a href="#">Bank Sentral</a>
+                    <a href="#">Tugas BI</a>
+                    <a href="#">Wewenang BI</a>
+                    <div class="toc-progress">
+                        <span class="label">Progres Belajar &nbsp; 35%</span>
+                        <div class="progress-track"><div class="progress-fill" style="width:35%;"></div></div>
+                    </div>
+                </aside>
             </div>
         `;
 

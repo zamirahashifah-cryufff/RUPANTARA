@@ -14,13 +14,29 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome Icons (Untuk ikon halaman login selain navbar jika diperlukan) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Menggunakan Font Poppins untuk tampilan kartu login yang modern -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font yang digunakan pada Edukasi & Login -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons (Sama seperti edukasi.php) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
+        /* Variabel CSS untuk menyamakan warna & tema navbar */
+        :root {
+            --navy: #0E3F6B;
+            --navy-dark: #0A3458;
+            --blue: #59A9E8;
+            --blue-dark: #174C84;
+            --body: #F8FAFF;
+            --white: #FFFFFF;
+            --text: #1E293B;
+            --muted: #64748B;
+            --border: #E2E8F0;
+        }
+
         /* Reset CSS dasar untuk area di luar navbar */
         * {
             margin: 0;
@@ -39,6 +55,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             background-size: cover;
             background-position: left center;
             color: #1a365d;
+            font-family: "Plus Jakarta Sans", "Inter", sans-serif;
         }
 
         /* --- STYLING KHUSUS LOGIN CARD (Menggunakan Font Poppins) --- */
@@ -278,7 +295,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         }
 
         /* =====================================================
-           NAVBAR (FLOATING GLASSMORPHISM STYLE)
+           NAVBAR (SAMA PERSIS DENGAN EDUKASI.PHP)
         ===================================================== */
         nav {
             width: 90%;
@@ -347,12 +364,12 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         }
 
         .nav-links a:hover {
-            color: #174C84;
+            color: var(--blue-dark);
             background: rgba(255, 255, 255, 0.8);
         }
 
         .nav-links a.active {
-            color: #174C84;
+            color: var(--blue-dark);
             background: #FFFFFF;
             box-shadow: 0 4px 12px rgba(0, 48, 135, 0.05);
         }
@@ -363,7 +380,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             gap: 14px;
         }
 
-        /* STYLING TOMBOL LOGIN */
         .btn-login {
             min-width: 95px;
             height: 38px;
@@ -371,7 +387,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             align-items: center;
             justify-content: center;
             padding: 0 16px;
-            background: linear-gradient(135deg, #174C84, #1d5fa3);
+            background: linear-gradient(135deg, var(--blue-dark), #1d5fa3);
             color: white;
             border-radius: 10px;
             text-decoration: none;
@@ -402,7 +418,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 
         .notification-btn:hover {
             background: #EAF2FF;
-            color: #174C84;
+            color: var(--blue-dark);
             transform: translateY(-2px);
         }
 
@@ -446,7 +462,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             justify-content: center;
             border-radius: 8px;
             background: white;
-            color: #174C84;
+            color: var(--blue-dark);
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
         }
 
@@ -456,15 +472,9 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             color: #475569;
         }
 
-        @media (max-width: 640px) {
-            nav {
-                width: 95%;
-                padding: 0 16px;
-            }
-
-            .nav-links {
-                display: none;
-            }
+        @media(max-width: 900px) {
+            nav { width: 95%; padding: 0 16px; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -474,31 +484,28 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     <nav>
         <a href="#" style="display:flex; align-items:center; text-decoration:none;">
             <div class="nav-logo">
-                <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Logo RUPANTARA" class="onerror-fallback">
+                <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA">
             </div>
         </a>
 
         <ul class="nav-links">
-            <li><a href="../BERANDA/beranda.html">Beranda</a></li>
+            <li><a href="#">Beranda</a></li>
             <li><a href="../TENTANG RUPIAH/tentangrupiah.html">Tentang Rupiah</a></li>
-            <li><a href="../MATERI/edukasi.html">Edukasi</a></li>
+            <li><a href="../MATERI/edukasi.php">Edukasi</a></li>
             <li><a href="../SCANNER/index.html">Scan</a></li>
+            <li><a href="../QUIZ/quiz_intro.html">Quiz</a></li>
         </ul>
 
         <div class="nav-actions">
-            <!-- Menampilkan tombol login secara kondisional menggunakan PHP -->
-            <?php if (!$is_logged_in): ?>
-                <a href="../LOGIN/login.php" class="btn-login">Login</a>
-            <?php endif; ?>
 
             <a href="#" class="notification-btn">
-                <i class="fa-regular fa-bell" style="font-size:16px;"></i>
+                <i data-lucide="bell" style="width:18px; height:18px;"></i>
                 <span class="notification-dot"></span>
             </a>
             <div class="nav-divider"></div>
             <div class="user-area">
                 <div class="user-icon">
-                    <i class="fa-regular fa-user" style="font-size:14px;"></i>
+                    <i data-lucide="user-round" style="width:16px; height:16px;"></i>
                 </div>
                 <!-- Menampilkan Username Asli dari Database/Session -->
                 <span class="user-greeting">Halo, <?php echo htmlspecialchars($display_username); ?></span>
@@ -516,7 +523,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             <div class="login-card">
                 <!-- Memuat logo asli di dalam Card -->
                 <div class="card-logo">
-                    <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Logo Rupantara" class="card-brand-logo">
+                    <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo Rupantara" class="card-brand-logo">
                 </div>
 
                 <h3>Masuk ke akun anda</h3>
@@ -569,6 +576,9 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     </main>
 
     <script>
+        // Inisialisasi Lucide Icons
+        lucide.createIcons();
+
         // Toggle view/hide password
         const togglePassword = document.querySelector('#togglePassword');
         const passwordInput = document.querySelector('#password');
@@ -590,13 +600,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
                     </svg>
                 `;
             }
-        });
-
-        // Error Image Fallback
-        document.querySelectorAll('.onerror-fallback').forEach(img => {
-            img.onerror = function() {
-                this.style.display = 'none';
-            };
         });
     </script>
 </body>
