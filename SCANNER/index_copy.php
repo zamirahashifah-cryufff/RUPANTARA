@@ -640,48 +640,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 
         </div>
 
-        <!-- 4. BOTTOM CARD: CARA MERAWAT RUPIAH (5 Responsive Circle Items) -->
-        <div class="hasil-sub-card mt-6 text-center" id="edukasi">
-          <h3 class="card-italic-title text-center">Cara merawat Rupiah</h3>
-          
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 mt-6 justify-items-center">
-            <div class="care-circle-item">
-              <div class="circle-icon-box mx-auto">
-                <i class="fa-solid fa-house-chimney-crack"></i>
-              </div>
-              <p class="mt-2 text-xs sm:text-sm">Jangan simpan<br>di tempat<br>Lembab</p>
-            </div>
-
-            <div class="care-circle-item">
-              <div class="circle-icon-box mx-auto">
-                <i class="fa-solid fa-receipt"></i>
-              </div>
-              <p class="mt-2 text-xs sm:text-sm">Jangan melipat<br>Uang</p>
-            </div>
-
-            <div class="care-circle-item">
-              <div class="circle-icon-box mx-auto">
-                <i class="fa-solid fa-pen-line"></i>
-              </div>
-              <p class="mt-2 text-xs sm:text-sm">Jangan<br>Mencoret Uang</p>
-            </div>
-
-            <div class="care-circle-item">
-              <div class="circle-icon-box mx-auto">
-                <i class="fa-solid fa-sun"></i>
-              </div>
-              <p class="mt-2 text-xs sm:text-sm">Jangan Terkena<br>sinar Matahari<br>langsung</p>
-            </div>
-
-            <div class="care-circle-item">
-              <div class="circle-icon-box mx-auto">
-                <i class="fa-solid fa-wallet"></i>
-              </div>
-              <p class="mt-2 text-xs sm:text-sm">Simpan di<br>tempat aman<br>dan bersih</p>
-            </div>
-          </div>
-        </div>
-
       </section>
 
     </div>
