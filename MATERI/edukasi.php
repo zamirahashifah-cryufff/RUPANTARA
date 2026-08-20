@@ -292,6 +292,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             background: var(--blue-dark); color: #fff; text-decoration: none;
             padding: 13px 26px; border-radius: 30px; font-weight: 700; font-size: 14px;
             transition: .25s;
+            cursor: pointer;
         }
         .btn-fill:hover { background: var(--navy-dark); }
         .btn-outline {
@@ -754,6 +755,277 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
                 grid-template-columns: 1fr;
             }
         }
+
+        /* =====================================================
+           INTERACTIVE TABS FOR BANK INDONESIA (NEW STYLE)
+        ===================================================== */
+        .bi-tabs-container {
+            margin: 30px 0;
+        }
+        .bi-tabs-headers {
+            display: flex;
+            gap: 12px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 24px;
+        }
+        .bi-tab-btn {
+            background: none;
+            border: none;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--muted);
+            padding: 8px 20px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.25s ease;
+            border-radius: 8px;
+        }
+        .bi-tab-btn:hover {
+            color: var(--blue-dark);
+            background: #F4F7FC;
+        }
+        .bi-tab-btn.active {
+            color: var(--blue-dark);
+            background: #EAF2FF;
+        }
+        .bi-tab-btn.active::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--blue-dark);
+            border-radius: 3px;
+        }
+        .tugas-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .tugas-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .tugas-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(23, 76, 132, 0.08);
+            border-color: var(--blue);
+        }
+        .tugas-card h4 {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tugas-card p {
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .wewenang-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        .wewenang-item {
+            background: #F8FAFF;
+            border: 1px solid #EAF2FF;
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.25s ease;
+        }
+        .wewenang-item:hover {
+            background: #fff;
+            border-color: var(--blue);
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .wewenang-badge-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #EAF2FF;
+            color: var(--blue-dark);
+            font-weight: 800;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+        }
+        .wewenang-item:hover .wewenang-badge-num {
+            background: var(--blue-dark);
+            color: #fff;
+        }
+        .wewenang-text-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .wewenang-title {
+            font-size: 14.5px;
+            color: var(--text);
+            font-weight: 700;
+        }
+        .wewenang-desc {
+            font-size: 12.5px;
+            color: var(--muted);
+        }
+
+        /* =====================================================
+           INTERACTIVE TABS FOR CIRI KEAMANAN (NEW STYLE)
+        ===================================================== */
+        .keamanan-tabs-wrapper {
+            margin-top: 24px;
+            background: #F4F7FC;
+            padding: 8px;
+            border-radius: 16px;
+            display: flex;
+            gap: 8px;
+        }
+        .keamanan-tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.25s ease;
+        }
+        .keamanan-tab-btn:hover {
+            color: var(--blue-dark);
+            background: rgba(255,255,255,0.5);
+        }
+        .keamanan-tab-btn.active {
+            background: #fff;
+            color: var(--blue-dark);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .keamanan-content-box {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+        }
+        .keamanan-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 15px;
+        }
+        .keamanan-detail-item {
+            background: #F8FAFF;
+            border-left: 4px solid var(--blue-dark);
+            padding: 16px 20px;
+            border-radius: 0 12px 12px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .keamanan-detail-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--navy);
+        }
+        .keamanan-detail-desc {
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* =====================================================
+           INTERACTIVE TABS FOR SEJARAH RUPIAH (NEW STYLE)
+        ===================================================== */
+        .sejarah-tabs-wrapper {
+            margin-top: 24px;
+            background: #F4F7FC;
+            padding: 8px;
+            border-radius: 16px;
+            display: flex;
+            gap: 8px;
+        }
+        .sejarah-tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.25s ease;
+        }
+        .sejarah-tab-btn:hover {
+            color: var(--blue-dark);
+            background: rgba(255,255,255,0.5);
+        }
+        .sejarah-tab-btn.active {
+            background: #fff;
+            color: var(--blue-dark);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .sejarah-content-box {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+        }
+        .sejarah-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 15px;
+        }
+        .sejarah-detail-item {
+            background: #F8FAFF;
+            border-left: 4px solid var(--blue-dark);
+            padding: 16px 20px;
+            border-radius: 0 12px 12px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .sejarah-detail-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--navy);
+        }
+        .sejarah-detail-desc {
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
     </style>
 </head>
 
@@ -771,8 +1043,8 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         <li><a href="#">Beranda</a></li>
         <li><a href="../TENTANG RUPIAH/tentangrupiah.html">Tentang Rupiah</a></li>
         <li><a href="../MATERI/edukasi.php" class="active">Edukasi</a></li>
-        <li><a href="../SCANNER/index.html">Scan</a></li>
         <li><a href="../QUIZ/quiz_intro.html">Quiz</a></li>
+        <li><a href="../SCANNER/index.html">Scan</a></li>
     </ul>
 
     <div class="nav-actions">
@@ -819,7 +1091,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             <div class="footer-brand-card">
                 <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA">
             </div>
-            <div class="footer-title">RUP<span>ANTARA</span></div>
             <p class="footer-desc">Rupiah Nusantara (RUPANTARA) adalah platform edukasi keuangan masa depan yang membantu mengenali kedaulatan, nilai, dan keamanan mata uang Rupiah secara interaktif.</p>
         </div>
         <div class="footer-column">
@@ -835,11 +1106,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         <div class="footer-column">
             <h3>HUBUNGI KAMI</h3>
             <div class="footer-contact-list">
-                <a href="mailto:info@rupantara.org" class="footer-contact-item">
-                    <div class="footer-contact-icon">
-                        <i data-lucide="mail" style="width:16px; height:16px;"></i>
-                    </div>
-                </a>
                 <a href="tel:+6282340950845" class="footer-contact-item">
                     <div class="footer-contact-icon">
                         <i data-lucide="phone" style="width:16px; height:16px;"></i>
@@ -897,6 +1163,58 @@ function prevNextHTML(page) {
     `;
 }
 
+// Fungsi global untuk berpindah tab Bank Indonesia
+function switchBiTab(tabIndex) {
+    const tabs = document.querySelectorAll(".bi-tab-btn");
+    const contents = document.querySelectorAll(".bi-tab-content");
+    
+    tabs.forEach((tab, index) => {
+        if (index === tabIndex) {
+            tab.classList.add("active");
+            contents[index].style.display = "block";
+        } else {
+            tab.classList.remove("active");
+            contents[index].style.display = "none";
+        }
+    });
+    // Render ulang ikon Lucide agar ikon dinamis di dalam tab muncul
+    lucide.createIcons();
+}
+
+// Fungsi global untuk berpindah tab Ciri Keamanan (3D)
+function switchKeamananTab(tabIndex) {
+    const tabs = document.querySelectorAll(".keamanan-tab-btn");
+    const contents = document.querySelectorAll(".keamanan-tab-content");
+    
+    tabs.forEach((tab, index) => {
+        if (index === tabIndex) {
+            tab.classList.add("active");
+            contents[index].style.display = "block";
+        } else {
+            tab.classList.remove("active");
+            contents[index].style.display = "none";
+        }
+    });
+    lucide.createIcons();
+}
+
+// Fungsi global untuk berpindah tab Sejarah Rupiah
+function switchSejarahTab(tabIndex) {
+    const tabs = document.querySelectorAll(".sejarah-tab-btn");
+    const contents = document.querySelectorAll(".sejarah-tab-content");
+    
+    tabs.forEach((tab, index) => {
+        if (index === tabIndex) {
+            tab.classList.add("active");
+            contents[index].style.display = "block";
+        } else {
+            tab.classList.remove("active");
+            contents[index].style.display = "none";
+        }
+    });
+    lucide.createIcons();
+}
+
 function showMateri(page) {
     const content = document.getElementById("content");
 
@@ -951,7 +1269,8 @@ function showMateri(page) {
                             <h3 class="section-heading" style="margin-top:0;">Kedaulatan dalam Genggaman</h3>
                             <p class="lead-text">Penggunaan Rupiah di wilayah NKRI merupakan kewajiban hukum yang diatur dalam Undang-Undang No. 7 Tahun 2011. Hal ini bertujuan untuk mendukung terciptanya stabilitas nilai Rupiah and memperkuat integritas nasional melalui kedaulatan moneter.</p>
                         </div>
-                        <div class="illus-box"><i data-lucide="map"></i></div>
+                        <!-- Bagian ilustrasi di bawah diganti dengan gambar tangan_uang.png -->
+                        <img src="${imgPath}tangan_uang.png" alt="Kedaulatan dalam Genggaman" style="width:100%; border-radius:18px; object-fit:cover;">
                     </div>
 
                     ${prevNextHTML(0)}
@@ -984,33 +1303,96 @@ function showMateri(page) {
                 <div>
                     <span class="page-badge"><i data-lucide="landmark"></i>Lembaga Negara Independen</span>
                     <h2 class="title-h1">Bank Sentral Kita</h2>
-                    <p class="lead-text">Bank Indonesia adalah lembaga negara yang independen dalam melaksanakan tugas dan wewenangnya, bebas dari campur tangan Pemerintah dan/atau pihak lain, kecuali untuk hal-hal yang secara tegas diatur dalam undang-undang.</p>
+                    <p class="lead-text">Bank Indonesia (BI) adalah bank sentral Republik Indonesia yang memiliki kedudukan sebagai lembaga negara independen. Dalam menjalankan tugas dan wewenangnya, Bank Indonesia bebas dari campur tangan pemerintah maupun pihak lain, kecuali dalam hal-hal yang secara tegas diatur dalam undang-undang. Independensi ini diperlukan agar BI dapat mengambil kebijakan secara objektif demi menjaga stabilitas perekonomian nasional.</p>
 
                     <div class="callout-box">
                         <i data-lucide="target"></i>
                         <div>
                             <h4>Tujuan Tunggal</h4>
-                            <p>Mencapai dan memelihara kestabilan nilai Rupiah. Kestabilan ini mengandung dua aspek, yaitu kestabilan nilai mata uang terhadap barang dan jasa, serta kestabilan terhadap mata uang negara lain.</p>
+                            <p>Tujuan utama Bank Indonesia adalah mencapai dan memelihara kestabilan nilai Rupiah. Untuk mencapai tujuan tersebut, BI merancang berbagai kebijakan yang berkaitan dengan pengendalian inflasi, pengaturan sistem pembayaran, serta menjaga stabilitas sistem keuangan.</p>
                         </div>
                     </div>
 
                     <h3 class="section-heading">Tugas &amp; Wewenang</h3>
-                    <div class="card-grid cols-2" style="margin-top:14px;">
-                        <div class="info-card">
-                            <h4>Tugas BI</h4>
-                            <ol style="margin-top:10px; padding-left:18px; color:var(--muted); font-size:13.5px; display:flex; flex-direction:column; gap:8px;">
-                                <li>Menetapkan dan melaksanakan kebijakan moneter</li>
-                                <li>Mengatur dan menjaga kelancaran sistem pembayaran</li>
-                                <li>Menjaga stabilitas sistem keuangan untuk mendukung pertumbuhan ekonomi</li>
-                            </ol>
+                    
+                    <!-- TAB CONTAINER INTERAKTIF (BARU & LEBIH MENARIK) -->
+                    <div class="bi-tabs-container">
+                        <div class="bi-tabs-headers">
+                            <button class="bi-tab-btn active" onclick="switchBiTab(0)">3 Tugas Utama</button>
+                            <button class="bi-tab-btn" onclick="switchBiTab(1)">7 Wewenang Strategis</button>
                         </div>
-                        <div class="info-card">
-                            <h4>Wewenang BI</h4>
-                            <ul class="checklist" style="margin-top:10px;">
-                                <li><i data-lucide="check-circle"></i>Menetapkan sasaran moneter dengan memperhatikan laju inflasi</li>
-                                <li><i data-lucide="check-circle"></i>Melakukan pengendalian moneter menggunakan instrumen kebijakan</li>
-                                <li><i data-lucide="check-circle"></i>Memberikan izin penyelenggaraan jasa sistem pembayaran</li>
-                            </ul>
+
+                        <!-- TAB CONTENT 1: TUGAS UTAMA -->
+                        <div class="bi-tab-content" id="tab-tugas" style="display: block;">
+                            <div class="tugas-card-grid">
+                                <div class="tugas-card">
+                                    <h4><i data-lucide="trending-up" style="color:#3B82F6;"></i>Kebijakan Moneter</h4>
+                                    <p>BI mengatur jumlah uang yang beredar and menetapkan suku bunga acuan untuk menjaga stabilitas inflasi. Kebijakan ini bertujuan menjaga harga barang and jasa agar daya beli masyarakat tetap stabil.</p>
+                                </div>
+                                <div class="tugas-card">
+                                    <h4><i data-lucide="credit-card" style="color:#F59E0B;"></i>Sistem Pembayaran</h4>
+                                    <p>BI memastikan seluruh transaksi pembayaran berjalan aman, cepat, and efisien. BI mengelola uang kartal (Rupiah kertas & logam) serta mengawasi layanan transfer, QRIS, kartu debit, and dompet digital.</p>
+                                </div>
+                                <div class="tugas-card">
+                                    <h4><i data-lucide="shield-check" style="color:#10B981;"></i>Stabilitas Sistem Keuangan</h4>
+                                    <p>BI bekerja sama dengan pemerintah untuk meminimalkan risiko krisis ekonomi melalui kebijakan makroprudensial demi menjaga kesehatan ekosistem keuangan nasional tetap kokoh.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB CONTENT 2: WEWENANG STRATEGIS -->
+                        <div class="bi-tab-content" id="tab-wewenang" style="display: none;">
+                            <div class="wewenang-grid">
+                                <div class="wewenang-item">
+                                    <div class="wewenang-badge-num">1</div>
+                                    <div class="wewenang-text-container">
+                                        <div class="wewenang-title">Menetapkan Sasaran Moneter</div>
+                                        <div class="wewenang-desc">Menentukan arah target inflasi jangka pendek and menengah.</div>
+                                    </div>
+                                </div>
+                                <div class="wewenang-item">
+                                    <div class="wewenang-badge-num">2</div>
+                                    <div class="wewenang-text-container">
+                                        <div class="wewenang-title">Menentukan Suku Bunga Acuan</div>
+                                        <div class="wewenang-desc">Menetapkan tingkat suku bunga perbankan nasional (BI-Rate).</div>
+                                    </div>
+                                </div>
+                                <div class="wewenang-item">
+                                    <div class="wewenang-badge-num">3</div>
+                                    <div class="wewenang-text-container">
+                                        <div class="wewenang-title">Menerbitkan & Mengedarkan Uang</div>
+                                        <div class="wewenang-desc">Memiliki hak tunggal menerbitkan serta mendistribusikan uang Rupiah yang sah.</div>
+                                    </div>
+                                </div>
+                                <div class="wewenang-item">
+                                    <div class="wewenang-badge-num">4</div>
+                                    <div class="wewenang-text-container">
+                                        <div class="wewenang-title">Menarik & Memusnahkan Uang</div>
+                                        <div class="wewenang-desc">Menarik kembali uang lusuh atau tidak layak edar dari pasar untuk dimusnahkan secara aman.</div>
+                                    </div>
+                                </div>
+                                <div class="wewenang-item">
+                                    <div class="wewenang-badge-num">5</div>
+                                    <div class="wewenang-text-container">
+                                        <div class="wewenang-title">Mengatur Sistem Pembayaran</div>
+                                        <div class="wewenang-desc">Mengevaluasi and memberikan izin operasional kepada penyedia jasa transfer and fintech.</div>
+                                    </div>
+                                </div>
+                                <div class="wewenang-item">
+                                    <div class="wewenang-badge-num">6</div>
+                                    <div class="wewenang-text-container">
+                                        <div class="wewenang-title">Mengelola Cadangan Devisa</div>
+                                        <div class="wewenang-desc">Menjaga likuiditas serta keamanan cadangan mata uang asing milik negara.</div>
+                                    </div>
+                                </div>
+                                <div class="wewenang-item">
+                                    <div class="wewenang-badge-num">7</div>
+                                    <div class="wewenang-text-container">
+                                        <div class="wewenang-title">Memberikan Rekomendasi Kajian Ekonomi</div>
+                                        <div class="wewenang-desc">Menyediakan analisis berkala kondisi ekonomi makro kepada jajaran Pemerintah.</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -1050,13 +1432,15 @@ function showMateri(page) {
             <div class="split-block" style="margin-top:0;">
                 <div>
                     <h1 class="title-h1">Ciri Keamanan<br>Rupiah</h1>
-                    <p class="lead-text">Mengenali keaslian uang Rupiah adalah langkah awal melindungi diri dari peredaran uang palsu. Pelajari fitur canggih yang tersemat di setiap lembar uang kita.</p>
+                    <p class="lead-text">Setiap lembar Rupiah memiliki berbagai unsur pengaman yang dirancang untuk menjaga keaslian uang dan membantu masyarakat membedakan uang asli dari uang palsu.</p>
                     <div class="btn-row">
-                        <a class="btn-fill" href="#">Mulai Belajar <i data-lucide="arrow-right"></i></a>
+                        <!-- Tombol Mulai Belajar diubah untuk scroll ke bawah secara halus -->
+                        <a class="btn-fill" onclick="document.getElementById('section-keamanan').scrollIntoView({ behavior: 'smooth', block: 'start' });">Mulai Belajar <i data-lucide="arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="hero-split-photo" style="position:relative;">
-                    <div class="illus-box" style="min-height:220px;"><i data-lucide="scan-line"></i></div>
+                    <!-- Bagian ilustrasi ini diganti dengan gambar memeriksa_uang.jpg -->
+                    <img src="${imgPath}memeriksa_uang.jpg" alt="Memeriksa Uang" style="width: 100%; height: 220px; object-fit: cover; border-radius: 18px;">
                     <div class="float-badge">
                         <div class="icon-circle" style="margin-bottom:0;"><i data-lucide="lock"></i></div>
                         Aman &amp; Terverifikasi
@@ -1064,37 +1448,72 @@ function showMateri(page) {
                 </div>
             </div>
 
-            <div class="top-grid" style="grid-template-columns: 260px 1fr; margin-top:20px;">
-                <aside class="mini-nav">
-                    <h4>Navigasi Materi</h4>
-                    <a class="active"><i data-lucide="scan"></i>3D Methodology</a>
-                    <a><i data-lucide="minus"></i>Benang Pengaman</a>
-                    <a><i data-lucide="printer"></i>Cetak Intaglio</a>
-                </aside>
-
+            <!-- Bagian ini diubah menjadi grid yang serasi dengan section lain (menghapus mini-nav samping) -->
+            <div class="top-grid">
                 <div>
-                    <h3 class="section-heading" style="margin-top:0;">Metode 3D</h3>
+                    <h3 class="section-heading" id="section-keamanan" style="margin-top:0; scroll-margin-top: 130px;">Metode 3D</h3>
                     <p class="lead-text">Langkah paling mendasar dan mudah untuk mengecek keaslian uang Rupiah adalah dengan metode 3D: Dilihat, Diraba, dan Diterawang.</p>
 
-                    <div class="method-3d">
-                        <div class="box">
-                            <div class="icon-circle"><i data-lucide="eye"></i></div>
-                            <strong>Dilihat</strong>
-                            <p>Perhatikan perubahan warna benang pengaman dan gambar khusus dari sudut pandang berbeda.</p>
+                    <!-- TAB UNTUK CIRI KEAMANAN (LEBIH INTERAKTIF & MENARIK) -->
+                    <div class="keamanan-tabs-wrapper">
+                        <button class="keamanan-tab-btn active" onclick="switchKeamananTab(0)"><i data-lucide="eye"></i> Dilihat</button>
+                        <button class="keamanan-tab-btn" onclick="switchKeamananTab(1)"><i data-lucide="hand"></i> Diraba</button>
+                        <button class="keamanan-tab-btn" onclick="switchKeamananTab(2)"><i data-lucide="sun"></i> Diterawang</button>
+                    </div>
+
+                    <!-- KONTEN DETIL 3D -->
+                    <div class="keamanan-content-box">
+                        <!-- 1. Dilihat -->
+                        <div class="keamanan-tab-content" style="display: block;">
+                            <h4 style="font-size: 16.5px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Unsur Pengaman yang Tampak Langsung</h4>
+                            <div class="keamanan-detail-grid">
+                                <div class="keamanan-detail-item">
+                                    <span class="keamanan-detail-title">Warna Cerah</span>
+                                    <span class="keamanan-detail-desc">Uang Rupiah asli dicetak menggunakan kombinasi warna kontras yang tajam dan presisi, sehingga sangat sulit ditiru oleh mesin cetak/printer biasa.</span>
+                                </div>
+                                <div class="keamanan-detail-item">
+                                    <span class="keamanan-detail-title">Optically Variable Ink (OVI)</span>
+                                    <span class="keamanan-detail-desc">Terdapat logo Bank Indonesia (BI) di dalam perisai yang akan berubah warna dari hijau menjadi emas secara visual jika dilihat dari sudut pandang yang berbeda.</span>
+                                </div>
+                                <div class="keamanan-detail-item">
+                                    <span class="keamanan-detail-title">Benang Pengaman rajutan</span>
+                                    <span class="keamanan-detail-desc">Disematkan seperti dianyam pada kertas uang, benang pengaman ini akan memantulkan warna berbeda jika digoyang-goyangkan.</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="box">
-                            <div class="icon-circle"><i data-lucide="hand"></i></div>
-                            <strong>Diraba</strong>
-                            <p>Rasakan tekstur kasar pada bagian tertentu hasil cetak intaglio saat diraba dengan jari.</p>
+
+                        <!-- 2. Diraba -->
+                        <div class="keamanan-tab-content" style="display: none;">
+                            <h4 style="font-size: 16.5px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Tekstur Kasar dari Hasil Cetak Intaglio</h4>
+                            <div class="keamanan-detail-grid">
+                                <div class="keamanan-detail-item">
+                                    <span class="keamanan-detail-title">Cetak Intaglio</span>
+                                    <span class="keamanan-detail-desc">Uang asli menggunakan teknik cetak timbul khusus. Bagian pahlawan utama, Garuda Pancasila, nominal angka, dan tulisan "BANK INDONESIA" akan terasa kasar ketika Anda meraba permukaannya.</span>
+                                </div>
+                                <div class="keamanan-detail-item">
+                                    <span class="keamanan-detail-title">Kode Tuna Netra (Blind Code)</span>
+                                    <span class="keamanan-detail-desc">Sepasang garis timbul di sisi kanan dan kiri ujung uang kertas yang dapat diraba dengan jari untuk mempermudah saudara-saudara tuna netra mengenali nominal uang.</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="box">
-                            <div class="icon-circle"><i data-lucide="sun"></i></div>
-                            <strong>Diterawang</strong>
-                            <p>Lihat gambar tersembunyi (watermark) dan benang pengaman saat diterawangkan ke cahaya.</p>
+
+                        <!-- 3. Diterawang -->
+                        <div class="keamanan-tab-content" style="display: none;">
+                            <h4 style="font-size: 16.5px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Tanda Air dan Gambar Saling Isi (Rectoverso)</h4>
+                            <div class="keamanan-detail-grid">
+                                <div class="keamanan-detail-item">
+                                    <span class="keamanan-detail-title">Tanda Air (Watermark)</span>
+                                    <span class="keamanan-detail-desc">Saat diarahkan ke arah cahaya, akan muncul gambar pahlawan nasional yang sangat detail, lengkap dengan ornamen logo BI di bawahnya.</span>
+                                </div>
+                                <div class="keamanan-detail-item">
+                                    <span class="keamanan-detail-title">Rectoverso (Gambar Saling Isi)</span>
+                                    <span class="keamanan-detail-desc">Potongan logo BI di sisi depan dan belakang akan tampak menyatu dengan sempurna membentuk logo BI utuh tanpa ada celah atau potongan saat diterawang ke arah cahaya.</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="card-grid cols-2">
+                    <div class="card-grid cols-2" style="margin-top: 30px;">
                         <div class="info-card">
                             <img src="${imgPath}uang_50000.jpg" alt="Benang Pengaman" style="width:100%; border-radius:12px; height:110px; object-fit:cover; margin-bottom:14px;">
                             <div class="icon-circle" style="margin-bottom:8px;"><i data-lucide="minus"></i></div>
@@ -1119,11 +1538,21 @@ function showMateri(page) {
 
                     ${prevNextHTML(2)}
                 </div>
+
+                <aside class="toc-box">
+                    <h4>Daftar Isi</h4>
+                    <a href="#">Metode 3D</a>
+                    <a href="#">Fitur Detail</a>
+                    <div class="toc-progress">
+                        <span class="label">Progres Belajar &nbsp; 50%</span>
+                        <div class="progress-track"><div class="progress-fill" style="width:50%;"></div></div>
+                    </div>
+                </aside>
             </div>
         `;
 
     // ======================================================
-    // 3. SEJARAH RUPIAH
+    // 3. SEJARAH RUPIAH (Diperbarui dengan gambar kumpulan_uang_lama.jpg & Konten Interaktif)
     // ======================================================
     } else if (page === 3) {
         content.innerHTML = `
@@ -1132,69 +1561,106 @@ function showMateri(page) {
                 <div>
                     <h1 class="title-h1">Menelusuri Jejak<br>Sejarah Rupiah</h1>
                     <p class="lead-text">Perjalanan panjang mata uang Indonesia, dari koin kerajaan hingga menjadi lambang kedaulatan bangsa yang kita kenal sekarang.</p>
+                    <div class="btn-row">
+                        <!-- Tombol Mulai Belajar diubah untuk scroll ke bawah secara halus -->
+                        <a class="btn-fill" onclick="document.getElementById('section-sejarah').scrollIntoView({ behavior: 'smooth', block: 'start' });">Mulai Belajar <i data-lucide="arrow-right"></i></a>
+                    </div>
                 </div>
-                <div class="illus-box" style="min-height:200px;"><i data-lucide="coins"></i></div>
+                <div class="hero-split-photo" style="position:relative; width: 100%;">
+                    <!-- Gambar ilustrasi diganti dengan gambar kumpulan_uang_lama.jpg -->
+                    <img src="${imgPath}kumpulan_uang_lama.jpg" alt="Sejarah Rupiah" style="width: 100%; height: 250px; object-fit: cover; border-radius: 18px;">
+                    <div class="float-badge">
+                        <div class="icon-circle" style="margin-bottom:0;"><i data-lucide="history"></i></div>
+                        Edisi Sejarah
+                    </div>
+                </div>
             </div>
 
-            <div class="top-grid" style="grid-template-columns: 260px 1fr; margin-top:10px;">
-                <aside class="mini-nav">
-                    <h4>Navigasi Materi</h4>
-                    <a class="active"><i data-lucide="landmark"></i>Masa Kerajaan</a>
-                    <a><i data-lucide="ship"></i>Masa Kolonial</a>
-                    <a><i data-lucide="flag"></i>Kemerdekaan</a>
-                </aside>
-
+            <!-- Bagian ini diubah menjadi grid yang serasi dengan section lain (menghapus mini-nav samping) -->
+            <div class="top-grid">
                 <div>
-                    <div class="quote-box">
-                        "Yang lama tak akan dilupakan, dan yang baru akan menyambut masa depan."
+                    <h3 class="section-heading" id="section-sejarah" style="margin-top:0; scroll-margin-top: 130px;">Linimasa Sejarah</h3>
+                    <p class="lead-text">Pilih era sejarah di bawah ini untuk mempelajari bagaimana alat pembayaran berkembang di Nusantara dari masa ke masa secara dinamis.</p>
+
+                    <!-- TAB UNTUK SEJARAH RUPIAH (INTERAKTIF & MENARIK) -->
+                    <div class="sejarah-tabs-wrapper">
+                        <button class="sejarah-tab-btn active" onclick="switchSejarahTab(0)"><i data-lucide="coins"></i> Masa Kerajaan</button>
+                        <button class="sejarah-tab-btn" onclick="switchSejarahTab(1)"><i data-lucide="ship"></i> Era Kolonial</button>
+                        <button class="sejarah-tab-btn" onclick="switchSejarahTab(2)"><i data-lucide="flag"></i> Era Kemerdekaan</button>
                     </div>
 
-                    <div class="timeline-block">
-                        <h3><span class="num">1</span>Masa Kerajaan (Abad ke-9)</h3>
-                        <p class="desc">Sebelum kata Rupiah dikenal, kerajaan-kerajaan di Nusantara telah menggunakan alat tukar berupa koin logam sebagai bagian dari aktivitas ekonomi dan perdagangan.</p>
-                        <div class="timeline-photos">
-                            <figure>
-                                <div class="ph-icon"><i data-lucide="circle-dollar-sign"></i></div>
-                                <figcaption>Uang Koin Kerajaan Mataram</figcaption>
-                            </figure>
-                            <figure>
-                                <div class="ph-icon"><i data-lucide="coins"></i></div>
-                                <figcaption>Uang Koin Majapahit</figcaption>
-                            </figure>
+                    <!-- KONTEN DETIL SEJARAH -->
+                    <div class="sejarah-content-box">
+                        <!-- 1. Masa Kerajaan -->
+                        <div class="sejarah-tab-content" style="display: block;">
+                            <h4 style="font-size: 16.5px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Masa Kerajaan Nusantara (Abad ke-9)</h4>
+                            <p class="lead-text">Sebelum Indonesia mengenal uang kertas modern, kerajaan-kerajaan besar di Nusantara telah menggunakan keping uang logam mulia sebagai simbol kedaulatan transaksi.</p>
+                            
+                            <div class="timeline-photos" style="margin-top:20px;">
+                                <figure style="background: #F4F7FC; border-radius: 14px; overflow: hidden; text-align: center; padding: 15px;">
+                                    <!-- Ikon lingkaran diganti dengan uang_acehkuno.png -->
+                                    <img src="${imgPath}uang_acehkuno.png" alt="Uang Aceh Kuno" style="width: 100%; height: 120px; object-fit: contain; border-radius: 8px;">
+                                    <figcaption style="font-size: 12px; font-weight: 600; color: var(--muted); margin-top: 8px;">Uang Koin Emas & Perak Kerajaan Mataram Kuno</figcaption>
+                                </figure>
+                                <figure style="background: #F4F7FC; border-radius: 14px; overflow: hidden; text-align: center; padding: 15px;">
+                                    <!-- Ikon koin diganti dengan uang_gobog.png -->
+                                    <img src="${imgPath}uang_gobog.png" alt="Uang Gobog" style="width: 100%; height: 120px; object-fit: contain; border-radius: 8px;">
+                                    <figcaption style="font-size: 12px; font-weight: 600; color: var(--muted); margin-top: 8px;">Uang Gobog Tembaga Kerajaan Majapahit</figcaption>
+                                </figure>
+                            </div>
+                            <p style="font-size: 13.5px; color: var(--muted); margin-top: 20px; line-height: 1.6;">
+                                Penggunaan koin-koin ini membuktikan bahwa sistem kemandirian moneter and hubungan niaga internasional Nusantara dengan pedagang Tiongkok, India, and Arab telah terjalin kuat sejak berabad-abad lalu.
+                            </p>
                         </div>
-                    </div>
 
-                    <div class="timeline-block">
-                        <h3><span class="num">2</span>Era Kolonialisme</h3>
-                        <div class="colonial-card">
-                            <div class="ph-icon"><i data-lucide="landmark"></i></div>
-                            <div>
-                                <h5>Gulden Hindia Belanda</h5>
-                                <p>Pada masa penjajahan VOC hingga Pemerintah Hindia Belanda, transaksi ekonomi masyarakat didominasi oleh mata uang Gulden.</p>
-                                <span class="tag-pill">Devaluasi</span>
-                                <span class="tag-pill blue">Krisis</span>
+                        <!-- 2. Era Kolonial -->
+                        <div class="sejarah-tab-content" style="display: none;">
+                            <h4 style="font-size: 16.5px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Era Kolonialisme & Dominasi Gulden Belanda</h4>
+                            <p class="lead-text">Masuknya VOC dan imperialisme pemerintah Hindia Belanda menggeser uang logam lokal and memperkenalkan sistem keuangan monopoli barat.</p>
+                            
+                            <div class="colonial-card" style="margin-top:20px;">
+                                <!-- Ikon perbankan diganti dengan gambar gulden.jpg -->
+                                <img src="${imgPath}gulden.jpg" alt="Gulden Hindia Belanda" style="width: 110px; height: 80px; object-fit: cover; border-radius: 10px; flex-shrink: 0;">
+                                <div>
+                                    <h5>Gulden Hindia Belanda</h5>
+                                    <p>Seluruh sistem sirkulasi keuangan diatur secara terpusat oleh De Javasche Bank. Penggunaan Gulden kolonial ini memonopoli komoditas perkebunan and sangat membatasi kesejahteraan perdagangan rakyat pribumi.</p>
+                                    <span class="tag-pill" style="background:#FEE2E2; color:#B91C1C;">Sistem Monopoli</span>
+                                    <span class="tag-pill blue" style="background:#DBEAFE; color:#174C84;">De Javasche Bank</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="timeline-block">
-                        <h3><span class="num">3</span>Lahirnya Rupiah (Kemerdekaan)</h3>
-                        <div class="sub-events">
-                            <div>
-                                <div class="ev-date">29 OKTOBER 1946</div>
-                                <div class="ev-title">Penerbitan ORI (Oeang Republik Indonesia)</div>
-                                <p class="ev-desc">Baru pada tahun 1946, pemerintah Republik Indonesia menerbitkan mata uang resmi sebagai wujud kedaulatan ekonomi bangsa yang baru merdeka.</p>
-                            </div>
-                            <div>
-                                <div class="ev-date">1953</div>
-                                <div class="ev-title">Nasionalisasi Bank Indonesia</div>
-                                <p class="ev-desc">Bank Indonesia resmi dinasionalisasi dari De Javasche Bank dan menjadi bank sentral Republik Indonesia.</p>
+                        <!-- 3. Era Kemerdekaan -->
+                        <div class="sejarah-tab-content" style="display: none;">
+                            <h4 style="font-size: 16.5px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Lahirnya Rupiah & Kedaulatan Finansial Bangsa</h4>
+                            <p class="lead-text">Pasca proklamasi kemerdekaan, negara Indonesia mengambil langkah berani untuk menegaskan integritas nasionalnya melalui alat pembayaran resmi yang berdaulat.</p>
+                            
+                            <div class="sejarah-detail-grid" style="margin-top: 20px;">
+                                <div class="sejarah-detail-item">
+                                    <span class="sejarah-detail-title">Penerbitan ORI (30 Oktober 1946)</span>
+                                    <span class="sejarah-detail-desc">Pemerintah meresmikan Oeang Republik Indonesia (ORI) sebagai alat transaksi yang sah. Hal ini melambangkan pernyataan politik penting bahwa Indonesia berdaulat penuh atas wilayah and ekonominya sendiri.</span>
+                                </div>
+                                <div class="sejarah-detail-item" style="border-left-color: var(--navy);">
+                                    <span class="sejarah-detail-title">Nasionalisasi Bank Indonesia (1953)</span>
+                                    <span class="sejarah-detail-desc">De Javasche Bank resmi dinasionalisasi oleh Pemerintah Indonesia menjadi Bank Indonesia (BI), memegang mandat tunggal untuk mengendalikan, merancang, and mengedarkan mata uang Rupiah pemersatu bangsa.</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     ${prevNextHTML(3)}
                 </div>
+
+                <aside class="toc-box">
+                    <h4>Daftar Isi</h4>
+                    <a href="#">Masa Kerajaan</a>
+                    <a href="#">Era Kolonial</a>
+                    <a href="#">Era Kemerdekaan</a>
+                    <div class="toc-progress">
+                        <span class="label">Progres Belajar &nbsp; 65%</span>
+                        <div class="progress-track"><div class="progress-fill" style="width:65%;"></div></div>
+                    </div>
+                </aside>
             </div>
         `;
 
