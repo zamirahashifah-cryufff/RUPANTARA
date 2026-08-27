@@ -1,229 +1,246 @@
-/* ==========================================================================
-   RUPANTARA - MAIN APPLICATION INTERACTIVITY & SAFE DATA LOADER
-   ========================================================================== */
+/**
+ * RUPANTARA - MAIN APPLICATION INTERACTIVITY & DATA MANAGEMENT
+ * Dataset terenkapsulasi aman & sinkronisasi data Rupiah Emisi 2022
+ */
 
-// Embedded Fallback Dataset to prevent CORS / file:// protocol errors
+// Dataset Emisi 2022 Lengkap (7 Pecahan)
 const defaultRupiahData = [
-  {
-    id: "2000",
-    nominal: 2000,
-    nominalFormatted: "Rp2.000",
-    jenis: "Rupiah Kertas",
-    image: "https://images.unsplash.com/photo-1596489375836-7c093a5a782b?auto=format&fit=crop&w=800&q=80",
-    pahlawan: "Mohammad Husni Thamrin",
-    pahlawanTtl: "16 Februari 1894 – 11 Januari 1941",
-    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Mohammad_Husni_Thamrin.jpg/220px-Mohammad_Husni_Thamrin.jpg",
-    maknaVisual: [
-      { icon: "👤", text: "Tokoh Utama: Mohammad Husni Thamrin, pahlawan nasional pejuang hak rakyat Indonesia." },
-      { icon: "🎨", text: "Motif Batik: Melambangkan kekayaan budaya Indonesia." },
-      { icon: "🛡️", text: "Garuda Pancasila: Simbol persatuan dan dasar negara." },
-      { icon: "✍️", text: "Bank Indonesia: Menandakan uang diterbitkan oleh Bank Indonesia." },
-      { icon: "🎨", text: "Warna Abu-abu: Menjadi ciri khas pecahan Rp2.000." }
-    ],
-    sejarahTokoh: "Mohammad Husni Thamrin adalah Pahlawan Nasional asal Batavia yang memperjuangkan hak-hak rakyat Indonesia melalui Volksraad. Atas jasa-jasanya, beliau diabadikan pada uang Rupiah pecahan Rp2.000.",
-    faktaMenarik: [
-      "💡 Mulai diedarkan sejak tahun 2016 (Emisi Tahun 2016).",
-      "📜 Terbuat dari 100% serat kapas sehingga lebih kuat dibanding kertas biasa.",
-      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh wilayah Indonesia.",
-      "🏛️ Diterbitkan langsung oleh Bank Indonesia.",
-      "💰 Termasuk salah satu pecahan yang paling sering digunakan dalam transaksi sehari-hari."
-    ],
-    ciriKeaslian: [
-      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang untuk mencegah pemalsuan." },
-      { title: "Watermark MH Thamrin", desc: "Gambar wajah Mohammad Husni Thamrin yang terlihat saat diterawang." },
-      { title: "Rectoverso", desc: "Gambar pada kedua sisi uang akan menyatu saat diterawang." },
-      { title: "Cetak Timbul", desc: "Bagian tertentu terasa kasar saat diraba sebagai ciri keaslian." },
-      { title: "Invisible Ink", desc: "Tinta khusus yang hanya tampak di bawah sinar ultraviolet (UV)." }
-    ]
-  },
   {
     id: "1000",
     nominal: 1000,
-    nominalFormatted: "Rp1.000",
+    nominalFormatted: "Rp 1.000",
+    nominalShort: "1.000",
     jenis: "Rupiah Kertas",
-    image: "https://images.unsplash.com/photo-1580519542036-c47de6196ba5?auto=format&fit=crop&w=800&q=80",
-    pahlawan: "Tjut Meutia",
-    pahlawanTtl: "1870 – 24 Oktober 1910",
-    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Cut_Nyak_Meutia.jpg/220px-Cut_Nyak_Meutia.jpg",
+    emisi: "Tahun Emisi 2022",
+    warna: "Kuning-Kehijauan / Hijau Zaitun",
+    dimensi: "121 mm × 65 mm",
+    kondisi: "Uang Layak Edar (ULE)",
+    image: "../GAMBAR_GAMBAR/uang_1000.jpg",
+    pahlawan: "Cut Nyak Meutia",
+    pahlawanTtl: "1870 – 1910",
+    pahlawanFoto: "../GAMBAR_GAMBAR/cut_mutia.jpg",
     maknaVisual: [
-      { icon: "👤", text: "Tokoh Utama: Tjut Meutia, pahlawan nasional perempuan dari Aceh yang dikenal atas perjuangannya melawan penjajah Belanda." },
-      { icon: "🏝️", text: "Panorama: Kepulauan Banda Neira, salah satu destinasi bersejarah sekaligus penghasil rempah-rempah dunia." },
-      { icon: "🌺", text: "Flora: Anggrek Larat, bunga khas Maluku yang menjadi identitas keanekaragaman hayati Indonesia." },
-      { icon: "🎨", text: "Warna Hijau: Menjadi ciri khas pecahan Rp1.000 sekaligus melambangkan kehidupan dan kesegaran." }
+      { type: "tokoh", icon_class: "fa-solid fa-user-tie", title: "Tokoh Utama", text: "Cut Nyak Meutia, pahlawan nasional wanita pemberani dari tanah rencong Aceh." },
+      { type: "alam", icon_class: "fa-solid fa-mountain-sun", title: "Keindahan Alam", text: "Pemandangan Banda Neira di Maluku dengan pesona bahari dan benteng bersejarah." },
+      { type: "tari", icon_class: "fa-solid fa-masks-theater", title: "Seni Budaya", text: "Tari Tifa khas Maluku dan Papua yang melambangkan kebersamaan dan sukacita." },
+      { type: "flora", icon_class: "fa-solid fa-seedling", title: "Flora Khas", text: "Bunga Anggrek Larat, puspa langka anggun khas Maluku Tenggara." }
     ],
-    sejarahTokoh: "Tjut Meutia merupakan Pahlawan Nasional asal Aceh yang memimpin perjuangan melawan penjajah Belanda. Atas keberanian dan semangat juangnya, beliau diabadikan pada uang Rupiah pecahan Rp1.000.",
+    sejarahTokoh: "Cut Nyak Meutia adalah pahlawan nasional wanita asal Aceh yang gigih memimpin perlawanan gerilya melawan penjajah Belanda di pedalaman hutan Pasai hingga gugur dalam pertempuran pada tahun 1910.",
     faktaMenarik: [
-      "💡 Mulai diedarkan sejak Tahun Emisi 2022.",
-      "📜 Terbuat dari 100% serat kapas, sehingga lebih awet dibanding kertas biasa.",
-      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh wilayah Indonesia.",
-      "🏛️ Menjadi pecahan kertas dengan nominal terkecil yang masih beredar."
+      "Merupakan nominal pecahan kertas terkecil dalam Emisi 2022.",
+      "Memiliki dimensi fisik paling mungil (121 mm × 65 mm) untuk mempermudah identifikasi tuna netra.",
+      "Dibuat dari bahan serat kapas murni berkualitas tinggi dengan daya tahan lipat optimal.",
+      "Diterbitkan langsung oleh Bank Indonesia sebagai alat pembayaran sah di seluruh NKRI."
     ],
     ciriKeaslian: [
-      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang sebagai pelindung dari pemalsuan." },
-      { title: "Watermark Tjut Meutia", desc: "Terlihat jelas saat diterawang ke arah cahaya." },
-      { title: "Rectoverso", desc: "Gambar pada kedua sisi uang akan menyatu sempurna saat diterawang." },
-      { title: "Cetak Timbul", desc: "Bagian gambar tokoh dan tulisan terasa kasar saat diraba." },
-      { title: "Invisible Ink", desc: "Tinta khusus yang hanya terlihat menggunakan sinar ultraviolet (UV)." }
+      { type: "intaglio", icon_class: "fa-solid fa-fingerprint", title: "Cetakan Terasa Kasar (Intaglio)", desc: "Hasil cetak timbul dan kasar pada gambar pahlawan, angka nominal, dan teks NKRI." },
+      { type: "watermark", icon_class: "fa-solid fa-eye", title: "Watermark Cut Meutia", desc: "Tanda air gambar pahlawan Cut Meutia tampak jelas bersama electrotype angka 1 saat diterawang." },
+      { type: "blind_code", icon_class: "fa-solid fa-braille", title: "Kode Tuna Netra (Blind Code)", desc: "Dua pasang garis diagonal timbul di sudut uang untuk identifikasi penyandang tunanetra." },
+      { type: "rectoverso", icon_class: "fa-solid fa-shapes", title: "Rectoverso Logo BI", desc: "Logo Bank Indonesia saling mengisi presisi di sisi depan dan belakang saat diterawang." }
+    ]
+  },
+  {
+    id: "2000",
+    nominal: 2000,
+    nominalFormatted: "Rp 2.000",
+    nominalShort: "2.000",
+    jenis: "Rupiah Kertas",
+    emisi: "Tahun Emisi 2022",
+    warna: "Abu-abu / Gray",
+    dimensi: "126 mm × 65 mm",
+    kondisi: "Uang Layak Edar (ULE)",
+    image: "../GAMBAR_GAMBAR/uang_2000.jpg",
+    pahlawan: "Mohammad Husni Thamrin",
+    pahlawanTtl: "1894 – 1941",
+    pahlawanFoto: "../GAMBAR_GAMBAR/Mohammad_Husni_Tamrin.jpeg",
+    maknaVisual: [
+      { type: "tokoh", icon_class: "fa-solid fa-user-tie", title: "Tokoh Utama", text: "Mohammad Husni Thamrin, tokoh pergerakan nasional pembela rakyat asal Betawi." },
+      { type: "alam", icon_class: "fa-solid fa-mountain-sun", title: "Keindahan Alam", text: "Pemandangan Ngarai Sianok yang megah di Bukittinggi, Sumatra Barat." },
+      { type: "tari", icon_class: "fa-solid fa-masks-theater", title: "Seni Budaya", text: "Tari Piring, tarian tradisional Minangkabau yang atraktif dan lincah." },
+      { type: "flora", icon_class: "fa-solid fa-seedling", title: "Flora Khas", text: "Bunga Jeumpa (Cempaka Wangi) yang harum dan sarat filosofi budaya." }
+    ],
+    sejarahTokoh: "Mohammad Husni Thamrin adalah tokoh pergerakan nasional asal Betawi yang memperjuangkan nasib rakyat melalui Volksraad dan memelopori perbaikan fasilitas kampung di Batavia.",
+    faktaMenarik: [
+      "Tokoh pergerakan nasional asal Betawi yang memperjuangkan nasib rakyat melalui Volksraad.",
+      "Dilapisi pelindung khusus untuk memperpanjang masa edar uang pecahan kecil di masyarakat.",
+      "Tampil dengan dominasi warna abu-abu elegan berpadu aksen emas modern berstandar global.",
+      "Menjadi salah satu pecahan uang yang paling sering digunakan dalam transaksi harian."
+    ],
+    ciriKeaslian: [
+      { type: "benang", icon_class: "fa-solid fa-shield-halved", title: "Benang Pengaman", desc: "Benang pengaman takar silang khusus tertanam di dalam uang untuk mencegah pemalsuan." },
+      { type: "watermark", icon_class: "fa-solid fa-eye", title: "Watermark MH Thamrin", desc: "Gambar wajah Mohammad Husni Thamrin dan electrotype angka 2 terlihat saat diterawang." },
+      { type: "intaglio", icon_class: "fa-solid fa-fingerprint", title: "Cetakan Kasar Intaglio", desc: "Bagian tertentu terasa kasar saat diraba sebagai bukti keaslian cetak Bank Indonesia." },
+      { type: "rectoverso", icon_class: "fa-solid fa-shapes", title: "Rectoverso BI", desc: "Potongan gambar logo BI pada kedua sisi uang akan menyatu sempurna saat diterawang." }
     ]
   },
   {
     id: "5000",
     nominal: 5000,
-    nominalFormatted: "Rp5.000",
+    nominalFormatted: "Rp 5.000",
+    nominalShort: "5.000",
     jenis: "Rupiah Kertas",
-    image: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=800&q=80",
-    pahlawan: "K.H. Idham Chalid",
-    pahlawanTtl: "",
-    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Idham_Chalid.jpg/220px-Idham_Chalid.jpg",
+    emisi: "Tahun Emisi 2022",
+    warna: "Cokelat / Brown",
+    dimensi: "131 mm × 65 mm",
+    kondisi: "Uang Layak Edar (ULE)",
+    image: "../GAMBAR_GAMBAR/uang_5000.jpg",
+    pahlawan: "DR. K.H. Idham Chalid",
+    pahlawanTtl: "1921 – 2010",
+    pahlawanFoto: "../GAMBAR_GAMBAR/KH_Idham_Khalid.jpeg",
     maknaVisual: [
-      { icon: "👤", text: "Tokoh Utama: K.H. Idham Chalid, Pahlawan Nasional Indonesia." },
-      { icon: "🌺", text: "Motif Batik: Melambangkan kekayaan budaya Nusantara." },
-      { icon: "🛡️", text: "Lambang Garuda Pancasila: Simbol persatuan dan identitas bangsa." },
-      { icon: "✍️", text: "Tulisan \"Bank Indonesia\": Menunjukkan penerbit resmi uang Rupiah." },
-      { icon: "🎨", text: "Dominasi Warna Cokelat: Menjadi ciri khas uang pecahan Rp5.000." }
+      { type: "tokoh", icon_class: "fa-solid fa-user-tie", title: "Tokoh Utama", text: "DR. K.H. Idham Chalid, ulama besar pemersatu bangsa dan negarawan terkemuka." },
+      { type: "alam", icon_class: "fa-solid fa-mountain-sun", title: "Keindahan Alam", text: "Keindahan spektakuler Gunung Bromo di Jawa Timur dengan kaldera pasir berbisik." },
+      { type: "tari", icon_class: "fa-solid fa-masks-theater", title: "Seni Budaya", text: "Tari Gambyong dari Jawa Tengah, tarian penyambut tamu bernuansa luwes nan anggun." },
+      { type: "flora", icon_class: "fa-solid fa-seedling", title: "Flora Khas", text: "Bunga Sedap Malam yang semerbak melambangkan kesucian budi pekerti." }
     ],
-    sejarahTokoh: "K.H. Idham Chalid merupakan Pahlawan Nasional Indonesia yang lahir di Kalimantan Selatan. Beliau dikenal sebagai tokoh agama, pendidik, dan negarawan yang berjasa dalam pembangunan bangsa. Selain aktif di bidang pendidikan Islam, beliau juga pernah menjabat sebagai Ketua DPR dan Ketua MPR. Atas jasa-jasanya, wajah beliau diabadikan pada uang Rupiah pecahan Rp5.000.",
+    sejarahTokoh: "DR. K.H. Idham Chalid adalah salah satu tokoh ulama dan pahlawan nasional terlama di kabinet Indonesia. Beliau menjabat Wakil Perdana Menteri serta memimpin MPR/DPR RI.",
     faktaMenarik: [
-      "💡 Diterbitkan dalam Emisi Tahun 2016.",
-      "📜 Terbuat dari 100% serat kapas sehingga lebih kuat dan tahan lama.",
-      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh Indonesia.",
-      "🏛️ Diterbitkan oleh Bank Indonesia.",
-      "🌄 Bagian belakang menampilkan Gunung Bromo, Tari Gambyong, dan bunga Sedap Malam sebagai simbol kekayaan alam dan budaya Indonesia."
+      "Idham Chalid adalah salah satu tokoh ulama dan pahlawan nasional terlama di kabinet Indonesia.",
+      "Dibuat dari 100% serat kapas murni sehingga lebih kuat, lentur, dan tahan lama.",
+      "Tampil dengan gradasi warna cokelat hangat yang kontras dan mudah dikenali.",
+      "Dilengkapi kode tuna netra garis tactile ganda untuk kemudahan aksesibilitas."
     ],
     ciriKeaslian: [
-      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang sebagai pengaman untuk mencegah pemalsuan." },
-      { title: "Watermark K.H. Idham Chalid", desc: "Gambar wajah K.H. Idham Chalid akan terlihat jelas saat diterawang ke arah cahaya." },
-      { title: "Rectoverso", desc: "Gambar pada sisi depan dan belakang akan menyatu dengan sempurna saat diterawang." },
-      { title: "Cetak Timbul", desc: "Bagian tertentu terasa kasar saat diraba karena menggunakan teknik cetak khusus." },
-      { title: "Invisible Ink", desc: "Tinta khusus yang hanya akan terlihat jika disinari menggunakan sinar ultraviolet (UV)." }
+      { type: "intaglio", icon_class: "fa-solid fa-fingerprint", title: "Hasil Cetak Timbul (Intaglio)", desc: "Permukaan terasa kasar saat diraba pada potret pahlawan, teks BI, dan angka nominal 5000." },
+      { type: "watermark", icon_class: "fa-solid fa-eye", title: "Watermark K.H. Idham Chalid", desc: "Gambar wajah K.H. Idham Chalid dan electrotype angka 5 terlihat jelas saat diarahkan ke cahaya." },
+      { type: "blind_code", icon_class: "fa-solid fa-braille", title: "Kode Tuna Netra (Blind Code)", desc: "Garis tactile timbul ganda di pinggir uang khusus untuk penyandang tuna netra." },
+      { type: "rectoverso", icon_class: "fa-solid fa-shapes", title: "Rectoverso Logo BI", desc: "Ornamen logo BI di sisi depan dan belakang saling mengisi presisi tanpa celah." }
     ]
   },
   {
     id: "10000",
     nominal: 10000,
-    nominalFormatted: "Rp10.000",
+    nominalFormatted: "Rp 10.000",
+    nominalShort: "10.000",
     jenis: "Rupiah Kertas",
-    image: "https://images.unsplash.com/photo-1596489375836-7c093a5a782b?auto=format&fit=crop&w=800&q=80",
+    emisi: "Tahun Emisi 2022",
+    warna: "Ungu / Purple",
+    dimensi: "136 mm × 65 mm",
+    kondisi: "Uang Layak Edar (ULE)",
+    image: "../GAMBAR_GAMBAR/uang_10000.jpg",
     pahlawan: "Frans Kaisiepo",
-    pahlawanTtl: "",
-    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Frans_Kaisiepo.jpg/220px-Frans_Kaisiepo.jpg",
+    pahlawanTtl: "1921 – 1979",
+    pahlawanFoto: "../GAMBAR_GAMBAR/frans_kaisepo.jpeg",
     maknaVisual: [
-      { icon: "👤", text: "Tokoh Utama: Frans Kaisiepo, Pahlawan Nasional dari Papua." },
-      { icon: "🌺", text: "Motif Batik: Melambangkan kekayaan budaya Indonesia." },
-      { icon: "🛡️", text: "Lambang Garuda Pancasila: Simbol persatuan bangsa." },
-      { icon: "✍️", text: "Tulisan \"Bank Indonesia\": Menunjukkan penerbit resmi uang Rupiah." },
-      { icon: "🎨", text: "Dominasi Warna Ungu: Menjadi ciri khas uang pecahan Rp10.000." }
+      { type: "tokoh", icon_class: "fa-solid fa-user-tie", title: "Tokoh Utama", text: "Frans Kaisiepo, pahlawan nasional asal Biak Papua pejuang tegaknya kedaulatan NKRI." },
+      { type: "alam", icon_class: "fa-solid fa-mountain-sun", title: "Keindahan Alam", text: "Taman Nasional Wakatobi di Sulawesi Tenggara, surga terumbu karang tropis dunia." },
+      { type: "tari", icon_class: "fa-solid fa-masks-theater", title: "Seni Budaya", text: "Tari Pakarena dari Sulawesi Selatan yang mencerminkan kelembutan dan kesabaran." },
+      { type: "flora", icon_class: "fa-solid fa-seedling", title: "Flora Khas", text: "Bunga Cempaka Hutan Kasar (Magnolia candollei) flora eksotis hutan Sulawesi." }
     ],
-    sejarahTokoh: "Frans Kaisiepo merupakan Pahlawan Nasional yang berasal dari Papua. Beliau dikenal sebagai tokoh yang memperjuangkan bergabungnya Papua ke dalam Negara Kesatuan Republik Indonesia (NKRI). Atas jasa dan pengabdiannya, wajah beliau diabadikan pada uang Rupiah pecahan Rp10.000.",
+    sejarahTokoh: "Frans Kaisiepo adalah pahlawan nasional dari Papua yang memimpin delegasi Konferensi Malino 1946 dan menjadi Gubernur Papua pertama penjaga kedaulatan NKRI.",
     faktaMenarik: [
-      "💡 Diterbitkan dalam Emisi Tahun 2016.",
-      "📜 Terbuat dari bahan serat kapas agar lebih awet.",
-      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh Indonesia.",
-      "🏛️ Diterbitkan oleh Bank Indonesia.",
-      "🏝️ Menampilkan keindahan Taman Nasional Wakatobi, Tari Pakarena, dan bunga Cempaka Hutan Kasar pada bagian belakang."
+      "Frans Kaisiepo mengusulkan nama 'Irian' yang berasal dari bahasa Biak (Ikut Republik Indonesia Anti Nederlands).",
+      "Tampil memukau dengan dominasi warna ungu berdimensi 136 mm × 65 mm.",
+      "Memuat tulisan mikroteks resolusi tinggi 'BANK INDONESIA 10000' yang sangat tajam.",
+      "Dilengkapi tinta pengaman berubah warna (Optically Variable Ink) di bagian ornamen."
     ],
     ciriKeaslian: [
-      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang sebagai pengaman untuk mencegah pemalsuan." },
-      { title: "Watermark Frans Kaisiepo", desc: "Gambar wajah Frans Kaisiepo akan terlihat jelas saat diterawang ke arah cahaya." },
-      { title: "Rectoverso", desc: "Gambar pada sisi depan dan belakang akan menyatu dengan sempurna saat diterawang." },
-      { title: "Cetak Timbul", desc: "Bagian tertentu terasa kasar saat diraba karena menggunakan teknik cetak khusus." },
-      { title: "Invisible Ink", desc: "Tinta khusus yang hanya akan terlihat jika disinari menggunakan sinar ultraviolet (UV)." }
+      { type: "ovi", icon_class: "fa-solid fa-wand-magic-sparkles", title: "Tinta Berubah Warna (OVI)", desc: "Tinta khusus pada ornamen perisai yang berubah warna saat dilihat dari sudut berbeda." },
+      { type: "watermark", icon_class: "fa-solid fa-eye", title: "Watermark Frans Kaisiepo", desc: "Gambar pahlawan Frans Kaisiepo dan electrotype angka 10 menyala terang saat diterawang." },
+      { type: "intaglio", icon_class: "fa-solid fa-fingerprint", title: "Cetak Timbul Intaglio", desc: "Tekstur cetak terasa bergerigi kasar pada gambar pahlawan dan tulisan nominal." },
+      { type: "microtext", icon_class: "fa-solid fa-magnifying-glass", title: "Microtext Angka 10000", desc: "Tulisan mikro tersembunyi yang hanya dapat terbaca menggunakan kaca pembesar." }
     ]
   },
   {
     id: "20000",
     nominal: 20000,
-    nominalFormatted: "Rp20.000",
+    nominalFormatted: "Rp 20.000",
+    nominalShort: "20.000",
     jenis: "Rupiah Kertas",
-    image: "https://images.unsplash.com/photo-1596489375836-7c093a5a782b?auto=format&fit=crop&w=800&q=80",
-    pahlawan: "Dr. G.S.S.J. Ratulangi",
-    pahlawanTtl: "",
-    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Sam_Ratulangi.jpg/220px-Sam_Ratulangi.jpg",
+    emisi: "Tahun Emisi 2022",
+    warna: "Hijau / Green",
+    dimensi: "141 mm × 65 mm",
+    kondisi: "Uang Layak Edar (ULE)",
+    image: "../GAMBAR_GAMBAR/uang_20000.jpg",
+    pahlawan: "Dr. G.S.S.J. Ratulangi (Sam Ratulangi)",
+    pahlawanTtl: "1890 – 1949",
+    pahlawanFoto: "../GAMBAR_GAMBAR/ratulangi.jpg",
     maknaVisual: [
-      { icon: "👤", text: "Tokoh Utama: Dr. G.S.S.J. Ratulangi, Pahlawan Nasional Indonesia." },
-      { icon: "🌺", text: "Motif Batik: Melambangkan kekayaan budaya Indonesia." },
-      { icon: "🛡️", text: "Lambang Garuda Pancasila: Simbol persatuan dan identitas bangsa." },
-      { icon: "✍️", text: "Tulisan \"Bank Indonesia\": Menunjukkan penerbit resmi uang Rupiah." },
-      { icon: "🎨", text: "Dominasi Warna Hijau: Menjadi ciri khas uang pecahan Rp20.000." }
+      { type: "tokoh", icon_class: "fa-solid fa-user-tie", title: "Tokoh Utama", text: "Dr. G.S.S.J. Ratulangi (Sam Ratulangi), cendekiawan dan Gubernur pertama Sulawesi." },
+      { type: "alam", icon_class: "fa-solid fa-mountain-sun", title: "Keindahan Alam", text: "Keindahan Kepulauan Derawan di Kalimantan Timur, habitat penyu dan ubur-ubur langka." },
+      { type: "tari", icon_class: "fa-solid fa-masks-theater", title: "Seni Budaya", text: "Tari Gong (Kancet Ledo) dari suku Dayak Kalimantan ditarikan anggun di atas gong." },
+      { type: "flora", icon_class: "fa-solid fa-seedling", title: "Flora Khas", text: "Bunga Anggrek Hitam (Coelogyne pandurata) puspa eksotis nan langka asal Kalimantan." }
     ],
-    sejarahTokoh: "Dr. G.S.S.J. Ratulangi atau Sam Ratulangi merupakan Pahlawan Nasional yang berasal dari Sulawesi Utara. Beliau dikenal sebagai tokoh pendidikan, ilmuwan, dan pejuang kemerdekaan yang berperan penting dalam memperjuangkan persatuan bangsa. Atas jasa-jasanya, beliau diabadikan pada uang Rupiah pecahan Rp20.000.",
+    sejarahTokoh: "Dr. G.S.S.J. Ratulangi adalah ilmuwan, politisi, jurnalis, dan doktor matematika pertama Indonesia yang memimpin perjuangan kemerdekaan di Sulawesi.",
     faktaMenarik: [
-      "💡 Diterbitkan dalam Emisi Tahun 2016.",
-      "📜 Terbuat dari 100% serat kapas sehingga lebih kuat dan tahan lama.",
-      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh Indonesia.",
-      "🏛️ Diterbitkan oleh Bank Indonesia.",
-      "🏝️ Bagian belakang menampilkan Derawan, Tari Gong, dan bunga Anggrek Hitam sebagai simbol kekayaan alam dan budaya Indonesia."
+      "Terkenal dengan semboyan 'Si Tou Timou Tumou Tou' (Manusia baru dapat dikatakan manusia jika dapat memanusiakan manusia lain).",
+      "Merupakan doktor sains pertama Indonesia yang meraih gelar doktor di Universitas Zurich, Swiss.",
+      "Mengusung kekayaan alam Kalimantan dan kearifan budaya Dayak pada sisi belakang uang.",
+      "Mengadopsi teknologi benang pengaman berunsur dinamik berstandar mata uang dunia."
     ],
     ciriKeaslian: [
-      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang sebagai pengaman untuk mencegah pemalsuan." },
-      { title: "Watermark Dr. G.S.S.J. Ratulangi", desc: "Gambar wajah Dr. G.S.S.J. Ratulangi akan terlihat jelas saat diterawang ke arah cahaya." },
-      { title: "Rectoverso", desc: "Gambar pada sisi depan dan belakang akan menyatu dengan sempurna saat diterawang." },
-      { title: "Cetak Timbul", desc: "Bagian tertentu terasa kasar saat diraba karena menggunakan teknik cetak khusus." },
-      { title: "Invisible Ink", desc: "Tinta khusus yang hanya akan terlihat jika disinari menggunakan sinar ultraviolet (UV)." }
+      { type: "benang", icon_class: "fa-solid fa-shield-halved", title: "Benang Pengaman Dinamik", desc: "Benang anyaman yang memancarkan kilau dan efek gerak saat uang digerak-gerakkan." },
+      { type: "watermark", icon_class: "fa-solid fa-eye", title: "Watermark Sam Ratulangi", desc: "Tanda air wajah pahlawan Dr. Sam Ratulangi dan electrotype angka 20 tampak saat diterawang." },
+      { type: "intaglio", icon_class: "fa-solid fa-fingerprint", title: "Cetakan Kasar Intaglio", desc: "Efek timbul sangat terasa kasar pada tulisan BANK INDONESIA dan nominal Rp 20.000." },
+      { type: "rectoverso", icon_class: "fa-solid fa-shapes", title: "Rectoverso Logo BI", desc: "Logo BI di kedua sisi tampak menyatu utuh dan sempurna ketika diarahkan ke cahaya." }
     ]
   },
   {
     id: "50000",
     nominal: 50000,
-    nominalFormatted: "Rp50.000",
+    nominalFormatted: "Rp 50.000",
+    nominalShort: "50.000",
     jenis: "Rupiah Kertas",
-    image: "https://images.unsplash.com/photo-1596489375836-7c093a5a782b?auto=format&fit=crop&w=800&q=80",
+    emisi: "Tahun Emisi 2022",
+    warna: "Biru / Blue",
+    dimensi: "146 mm × 65 mm",
+    kondisi: "Uang Layak Edar (ULE)",
+    image: "../GAMBAR_GAMBAR/uang_50000.jpg",
     pahlawan: "Ir. H. Djuanda Kartawidjaja",
-    pahlawanTtl: "",
-    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Djuanda_Kartawidjaja.jpg/220px-Djuanda_Kartawidjaja.jpg",
+    pahlawanTtl: "1911 – 1963",
+    pahlawanFoto: "../GAMBAR_GAMBAR/Djuanda-Kartawidjaja.png",
     maknaVisual: [
-      { icon: "👤", text: "Tokoh Utama: Ir. H. Djuanda Kartawidjaja, Pahlawan Nasional Indonesia." },
-      { icon: "🌺", text: "Motif Batik: Melambangkan kekayaan budaya Nusantara." },
-      { icon: "🛡️", text: "Lambang Garuda Pancasila: Simbol persatuan dan identitas bangsa." },
-      { icon: "✍️", text: "Tulisan \"Bank Indonesia\": Menunjukkan penerbit resmi uang Rupiah." },
-      { icon: "🎨", text: "Dominasi Warna Biru: Menjadi ciri khas uang pecahan Rp50.000." }
+      { type: "tokoh", icon_class: "fa-solid fa-user-tie", title: "Tokoh Utama", text: "Ir. H. Djuanda Kartawidjaja, pencetus Deklarasi Djuanda penyatu lautan Nusantara." },
+      { type: "alam", icon_class: "fa-solid fa-mountain-sun", title: "Keindahan Alam", text: "Taman Nasional Komodo di NTT, habitat kadal purba terbesar peninggalan prasejarah." },
+      { type: "tari", icon_class: "fa-solid fa-masks-theater", title: "Seni Budaya", text: "Tari Legong dari Keraton Bali dengan gerak mata dan kelenturan jemari yang memesona." },
+      { type: "flora", icon_class: "fa-solid fa-seedling", title: "Flora Khas", text: "Bunga Jepun Bali (Kamboja), simbol keharuman dan persembahan suci budaya Nusantara." }
     ],
-    sejarahTokoh: "Ir. H. Djuanda Kartawidjaja merupakan Pahlawan Nasional Indonesia yang dikenal sebagai Perdana Menteri terakhir Indonesia. Beliau berjasa dalam memperjuangkan konsep negara kepulauan melalui Deklarasi Djuanda pada tahun 1957, yang menjadi dasar penetapan wilayah laut Indonesia. Atas jasa-jasanya, beliau diabadikan pada uang Rupiah pecahan Rp50.000.",
+    sejarahTokoh: "Ir. H. Djuanda Kartawidjaja adalah Perdana Menteri terakhir Indonesia yang mencetuskan Deklarasi Djuanda 1957, menyatukan seluruh wilayah perairan kepulauan Indonesia menjadi kedaulatan mutlak NKRI.",
     faktaMenarik: [
-      "💡 Diterbitkan dalam Emisi Tahun 2016.",
-      "📜 Terbuat dari 100% serat kapas sehingga lebih kuat dan tahan lama.",
-      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh Indonesia.",
-      "🏛️ Diterbitkan oleh Bank Indonesia.",
-      "🏝️ Bagian belakang menampilkan Taman Nasional Komodo, Tari Legong, dan bunga Jepun (Kamboja) sebagai simbol kekayaan alam dan budaya Indonesia."
+      "Pencetus Deklarasi Djuanda 1957 yang menyatukan wilayah laut kepulauan Indonesia menjadi konsep 'Nusantara' utuh.",
+      "Melipatgandakan luas wilayah laut kedaulatan Indonesia hingga diakui hukum laut internasional UNCLOS 1982.",
+      "Tampil dengan warna biru laut megah berdimensi 146 mm × 65 mm.",
+      "Dilengkapi fitur pengaman tingkat tinggi pencegah pemalsuan modern."
     ],
     ciriKeaslian: [
-      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang sebagai pengaman untuk mencegah pemalsuan." },
-      { title: "Watermark Ir. H. Djuanda Kartawidjaja", desc: "Gambar wajah Ir. H. Djuanda Kartawidjaja akan terlihat jelas saat diterawang ke arah cahaya." },
-      { title: "Rectoverso", desc: "Gambar pada sisi depan dan belakang akan menyatu dengan sempurna saat diterawang." },
-      { title: "Cetak Timbul", desc: "Bagian tertentu terasa kasar saat diraba karena menggunakan teknik cetak khusus." },
-      { title: "Invisible Ink", desc: "Tinta khusus yang hanya akan terlihat jika disinari menggunakan sinar ultraviolet (UV)." }
+      { type: "ovi", icon_class: "fa-solid fa-wand-magic-sparkles", title: "Tinta Berubah Warna Dinamis", desc: "Ornamen motif perisai berganti warna dari hijau ke biru berkilau saat uang dimiringkan." },
+      { type: "watermark", icon_class: "fa-solid fa-eye", title: "Watermark Ir. H. Djuanda", desc: "Tanda air potret Ir. H. Djuanda dan electrotype angka 50 terlihat jernih di bawah cahaya." },
+      { type: "intaglio", icon_class: "fa-solid fa-fingerprint", title: "Efek Intaglio Terasa Kasar", desc: "Tekstur timbul yang tebal pada lambang Garuda Pancasila dan angka nominal 50.000." },
+      { type: "benang", icon_class: "fa-solid fa-shield-halved", title: "Benang Pengaman Anyam", desc: "Benang pengaman kinetik berlogo BI 50000 yang berpendar jika disinari sinar UV." }
     ]
   },
   {
     id: "100000",
     nominal: 100000,
-    nominalFormatted: "Rp100.000",
+    nominalFormatted: "Rp 100.000",
+    nominalShort: "100.000",
     jenis: "Rupiah Kertas",
-    image: "https://images.unsplash.com/photo-1596489375836-7c093a5a782b?auto=format&fit=crop&w=800&q=80",
-    pahlawan: "Ir. Soekarno & Dr. Mohammad Hatta",
-    pahlawanTtl: "",
-    pahlawanFoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Presiden_Sukarno.jpg/220px-Presiden_Sukarno.jpg",
+    emisi: "Tahun Emisi 2022",
+    warna: "Merah / Red",
+    dimensi: "151 mm × 65 mm",
+    kondisi: "Uang Layak Edar (ULE)",
+    image: "../GAMBAR_GAMBAR/uang_100000.jpg",
+    pahlawan: "Dr. (H.C.) Ir. Soekarno & Drs. Mohammad Hatta",
+    pahlawanTtl: "1901 – 1970 & 1902 – 1980",
+    pahlawanFoto: "../GAMBAR_GAMBAR/soekarno_hatta.jpg",
     maknaVisual: [
-      { icon: "👤", text: "Tokoh Utama: Ir. Soekarno dan Dr. Mohammad Hatta, Proklamator Kemerdekaan Indonesia." },
-      { icon: "🌺", text: "Motif Batik: Melambangkan kekayaan budaya Nusantara." },
-      { icon: "🛡️", text: "Lambang Garuda Pancasila: Simbol persatuan dan identitas bangsa." },
-      { icon: "✍️", text: "Tulisan \"Bank Indonesia\": Menunjukkan penerbit resmi uang Rupiah." },
-      { icon: "🎨", text: "Dominasi Warna Merah: Menjadi ciri khas uang pecahan Rp100.000." }
+      { type: "tokoh", icon_class: "fa-solid fa-users", title: "Tokoh Utama", text: "Ir. Soekarno dan Drs. Mohammad Hatta, Dwi-Tunggal Proklamator kemerdekaan RI." },
+      { type: "alam", icon_class: "fa-solid fa-mountain-sun", title: "Keindahan Alam", text: "Kepulauan Raja Ampat di Papua Barat Daya, surga keanekaragaman hayati maritim bumi." },
+      { type: "tari", icon_class: "fa-solid fa-masks-theater", title: "Seni Budaya", text: "Tari Topeng Betawi, tarian teater rakyat Jakarta yang dinamis dan sarat pesan moral." },
+      { type: "flora", icon_class: "fa-solid fa-seedling", title: "Flora Khas", text: "Bunga Anggrek Bulan (Phalaenopsis amabilis), Puspa Pesona Nasional Indonesia." }
     ],
-    sejarahTokoh: "Ir. Soekarno dan Dr. Mohammad Hatta merupakan Proklamator Kemerdekaan Republik Indonesia. Pada tanggal 17 Agustus 1945, keduanya membacakan dan menandatangani Teks Proklamasi Kemerdekaan Indonesia, yang menandai lahirnya bangsa Indonesia sebagai negara yang merdeka dan berdaulat. Atas jasa dan perjuangan mereka, kedua tokoh tersebut diabadikan pada uang Rupiah pecahan Rp100.000.",
+    sejarahTokoh: "Ir. Soekarno dan Drs. Mohammad Hatta adalah Dwi-Tunggal Proklamator kemerdekaan Indonesia pada 17 Agustus 1945, Presiden dan Wakil Presiden pertama yang meletakkan fondasi kedaulatan bangsa.",
     faktaMenarik: [
-      "💡 Diterbitkan dalam Emisi Tahun 2016.",
-      "📜 Terbuat dari 100% serat kapas sehingga lebih kuat dan tahan lama.",
-      "🌏 Berlaku sebagai alat pembayaran yang sah di seluruh Indonesia.",
-      "🏛️ Diterbitkan oleh Bank Indonesia.",
-      "🏝️ Bagian belakang menampilkan Raja Ampat, Tari Topeng Betawi, dan bunga Anggrek Bulan sebagai simbol kekayaan alam dan budaya Indonesia."
+      "Merupakan uang pecahan tertinggi di Indonesia yang menampilkan Dwi-Tunggal Proklamator Kemerdekaan RI.",
+      "Pecahan dengan dimensi fisik paling panjang (151 mm × 65 mm) dan lapisan pelindung anti-lusuh mutakhir.",
+      "Mengusung dominasi warna merah menyala yang melambangkan keberanian dan kedaulatan bangsa.",
+      "Dilengkapi teknologi pengaman terbaik di dunia (SPARK Live) yang sangat sulit ditiru."
     ],
     ciriKeaslian: [
-      { title: "Benang Pengaman", desc: "Benang khusus yang tertanam di dalam uang sebagai pengaman untuk mencegah pemalsuan." },
-      { title: "Watermark Soekarno & Mohammad Hatta", desc: "Gambar kedua tokoh akan terlihat jelas saat diterawang ke arah cahaya." },
-      { title: "Rectoverso", desc: "Gambar pada sisi depan dan belakang akan menyatu dengan sempurna saat diterawang." },
-      { title: "Cetak Timbul", desc: "Bagian tertentu terasa kasar saat diraba karena menggunakan teknik cetak khusus." },
-      { title: "Invisible Ink", desc: "Tinta khusus yang hanya akan terlihat jika disinari menggunakan sinar ultraviolet (UV)." }
+      { type: "spark", icon_class: "fa-solid fa-wand-magic-sparkles", title: "Tinta SPARK Live Berubah Warna", desc: "Logo BI di sudut memancarkan cincin cahaya bergerak dan berubah warna dinamis saat dimiringkan." },
+      { type: "benang", icon_class: "fa-solid fa-shield-halved", title: "Benang Pengaman Anyaman Lebar", desc: "Benang pengaman selebar 5 mm tampak seperti dianyam dengan efek gerak berorientasi optik." },
+      { type: "watermark", icon_class: "fa-solid fa-eye", title: "Watermark Dwi-Tunggal", desc: "Tanda air Bung Karno & Bung Hatta beserta electrotype angka 100 tampak jelas saat diterawang." },
+      { type: "intaglio", icon_class: "fa-solid fa-fingerprint", title: "Cetakan Intaglio Tebal", desc: "Hasil cetak timbul berdaya raba sangat kuat pada potret pahlawan proklamator dan angka nominal." }
     ]
   }
 ];
@@ -239,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function initApp() {
   await loadAppData();
-  setupNavigation();
+  setupGlobalImageFallbacks();
 }
 
 /* Load Data JSON safely with Fallback */
@@ -250,42 +267,25 @@ async function loadAppData() {
       const data = await res.json();
       if (Array.isArray(data) && data.length > 0) {
         window.rupantaraData.banknotes = data;
+        console.log('[RUPANTARA] Data Rupiah Emisi 2022 dimuat dari JSON lokal.');
       }
     }
   } catch (err) {
-    console.log('Menggunakan data embedded Rupantara (Fail-safe mode).');
+    console.log('[RUPANTARA] Menggunakan data embedded Rupantara (Fail-safe mode).');
   }
 }
 
-/* Setup Header Navigation & Mobile Menu Toggle */
-function setupNavigation() {
-  const mobileToggle = document.getElementById('mobileToggle');
-  const navMenu = document.getElementById('navMenu');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-  }
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      if (navMenu) navMenu.classList.remove('active');
-    });
-  });
-
-  // Sticky Navbar Box Shadow
-  window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    if (navbar) {
-      if (window.scrollY > 40) {
-        navbar.style.boxShadow = '0 10px 30px rgba(2, 132, 199, 0.12)';
-      } else {
-        navbar.style.boxShadow = 'none';
-      }
+/* Fallback Global Image Error Handler */
+function setupGlobalImageFallbacks() {
+  document.querySelectorAll('img').forEach((img) => {
+    if (!img.getAttribute('data-fallback-init')) {
+      img.setAttribute('data-fallback-init', 'true');
+      img.addEventListener('error', function () {
+        this.style.opacity = '0.9';
+        if (!this.classList.contains('fallback-applied')) {
+          this.classList.add('fallback-applied');
+        }
+      });
     }
   });
 }
