@@ -1,3 +1,9 @@
+<?php
+session_start();
+// Memeriksa apakah pengguna sudah login
+$is_logged_in = isset($_SESSION['login']) && $_SESSION['login'] === true;
+$display_username = $is_logged_in ? $_SESSION['username'] : 'User';
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -11,11 +17,27 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Menggunakan Font Poppins untuk tampilan kartu login yang modern -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font yang digunakan pada Edukasi & Login -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../navbar_responsive.css">
+    <script src="../navbar_responsive.js" defer></script>
     
     <style>
-        /* Reset CSS dasar untuk area di luar navbar */
+        :root {
+            --navy: #0E3F6B;
+            --navy-dark: #0A3458;
+            --blue: #59A9E8;
+            --blue-dark: #174C84;
+            --body: #F8FAFF;
+            --white: #FFFFFF;
+            --text: #1E293B;
+            --muted: #64748B;
+            --border: #E2E8F0;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -33,15 +55,14 @@
             background-size: cover;
             background-position: left center;
             color: #1a365d;
+            font-family: "Plus Jakarta Sans", "Inter", sans-serif;
         }
 
-        /* --- STYLING KHUSUS LOGIN CARD (Menggunakan Font Poppins) --- */
         .login-font-family, 
         .login-font-family * {
             font-family: 'Poppins', sans-serif;
         }
 
-        /* --- KONTEN UTAMA --- */
         .main-container {
             display: flex;
             flex: 1;
@@ -51,12 +72,10 @@
             gap: 50px;
         }
 
-        /* Spacer kiri untuk menyeimbangkan posisi kartu login di kanan */
         .left-spacer {
             flex: 1.2;
         }
 
-        /* Bagian Kanan: Kartu Login */
         .login-card-wrapper {
             flex: 1;
             display: flex;
@@ -76,7 +95,6 @@
             text-align: center;
         }
 
-        /* Logo di dalam Card */
         .card-logo {
             display: inline-flex;
             justify-content: center;
@@ -85,7 +103,6 @@
             margin-bottom: 15px;
         }
 
-        /* Gaya logo di dalam kartu login */
         .card-brand-logo {
             height: 75px; 
             width: auto;
@@ -93,7 +110,6 @@
             margin-bottom: 15px;
         }
 
-        /* Teks Judul Formulir */
         .login-card h3 {
             font-size: 19px;
             font-weight: 700;
@@ -107,7 +123,6 @@
             margin-bottom: 25px;
         }
 
-        /* Gaya Input Form */
         .form-group {
             text-align: left;
             margin-bottom: 18px;
@@ -138,7 +153,6 @@
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
         }
 
-        /* --- CSS ICON MATA PASSWORD --- */
         .password-wrapper {
             position: relative;
             width: 100%;
@@ -171,7 +185,6 @@
             color: #1d4ed8;
         }
 
-        /* Tautan Tambahan */
         .form-links {
             text-align: left;
             margin-bottom: 25px;
@@ -192,7 +205,6 @@
             text-decoration: underline;
         }
 
-        /* Tombol Submit */
         .btn-submit {
             width: 100%;
             background-color: #0b2545;
@@ -216,7 +228,6 @@
             transform: scale(0.98);
         }
 
-        /* Opsi Login Sosial */
         .social-login {
             display: flex;
             justify-content: center;
@@ -247,7 +258,6 @@
             height: 20px;
         }
 
-        /* --- MEDIA QUERIES UNTUK LAYAR TABLET --- */
         @media (max-width: 992px) {
             body {
                 background-size: cover;
@@ -271,61 +281,228 @@
             }
         }
 
-        /* --- MEDIA QUERIES UNTUK LAYAR HP --- */
-        @media (max-width: 576px) {
-            .login-card {
-                padding: 30px 20px;
-                border-radius: 16px;
-            }
+        nav {
+            width: 90%;
+            max-width: 1300px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            display: flex;
+            align-items: center;
+            padding: 0 28px;
+            gap: 20px;
+            position: sticky;
+            top: 20px;
+            margin: 0 auto;
+            border-radius: 20px;
+            z-index: 999;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 12px 30px rgba(0, 48, 135, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo {
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.03);
+        }
+
+        .nav-logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-left: auto;
+            background: rgba(244, 247, 252, 0.6);
+            padding: 5px;
+            border-radius: 14px;
+            border: 1px solid rgba(226, 232, 240, 0.4);
+        }
+
+        .nav-links a {
+            position: relative;
+            text-decoration: none;
+            color: #64748B;
+            font-size: 13.5px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            white-space: nowrap;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue-dark);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-links a.active {
+            color: var(--blue-dark);
+            background: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(0, 48, 135, 0.05);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .btn-login {
+            min-width: 95px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+            background: linear-gradient(135deg, var(--blue-dark), #1d5fa3);
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(23, 76, 132, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(23, 76, 132, 0.25);
+            background: linear-gradient(135deg, #123D70, #174C84);
+        }
+
+        .notification-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(244, 247, 252, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: #64748B;
+            transition: all 0.3s ease;
+        }
+
+        .notification-btn:hover {
+            background: #EAF2FF;
+            color: var(--blue-dark);
+            transform: translateY(-2px);
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 6px;
+            height: 6px;
+            background: #EF4444;
+            border-radius: 50%;
+        }
+
+        .nav-divider {
+            width: 1px;
+            height: 34px;
+            background: #D9E2EC;
+        }
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(244, 247, 252, 0.8);
+            padding: 4px 12px 4px 4px;
+            border-radius: 12px;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .user-area:hover {
+            background: #EAF2FF;
+            border-color: rgba(89, 169, 232, 0.3);
+        }
+
+        .user-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: white;
+            color: var(--blue-dark);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+
+        .user-greeting {
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        @media(max-width: 900px) {
+            nav { width: 95%; padding: 0 16px; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR (Tanpa Button Login) -->
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-blue-50 py-3 px-6 md:px-12 flex justify-between items-center w-full">
-        <!-- Logo & Brand Name -->
-        <div class="flex items-center gap-3">
-            <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Rupantara Logo" class="h-14 md:h-16 w-auto object-contain onerror-fallback">
-            <div class="flex items-center text-xl md:text-2xl tracking-wider uppercase font-black select-none">
-                <span class="text-[#0D3268]">RUP</span><span class="text-[#4FA1E4] font-semibold">ANTARA</span>
+    <!-- NAVBAR HEADER -->
+    <nav>
+        <a href="#" style="display:flex; align-items:center; text-decoration:none;">
+            <div class="nav-logo">
+                <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA">
             </div>
-        </div>
-        
-        <!-- Menu Items (Tombol Login Dihilangkan) -->
-        <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-            <a href="#" class="hover:text-blue-600 transition-colors">Beranda</a>
-            <a href="#" class="hover:text-blue-600 transition-colors">Tentang kami</a>
-            <a href="#" class="hover:text-blue-600 transition-colors">Fitur</a>
-            <a href="#" class="hover:text-blue-600 transition-colors">Edukasi</a>
-        </div>
-        
-        <!-- Icons & User Info -->
-        <div class="flex items-center gap-4">
-            <button class="text-slate-500 hover:text-blue-600 relative">
-                <i class="fa-regular fa-bell text-lg"></i>
-                <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-            </button>
-            <div class="flex items-center gap-2 border-l pl-4 border-slate-200">
-                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700">
-                    <i class="fa-regular fa-user"></i>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="../BERANDA/beranda.php">Beranda</a></li>
+            <li><a href="../TENTANG RUPIAH/tentangrupiah.php">Tentang Rupiah</a></li>
+            <li><a href="../MATERI/edukasi.php">Edukasi</a></li>
+            <li><a href="../SCANNER/index.php">Scan</a></li>
+            <li><a href="../QUIZ/quiz_intro.php">Quiz</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <a href="#" class="notification-btn">
+                <i data-lucide="bell" style="width:18px; height:18px;"></i>
+                <span class="notification-dot"></span>
+            </a>
+            <div class="nav-divider"></div>
+            <a href="../PROFIL/profil.php" class="user-area" title="Profil Pengguna">
+                <div class="user-icon">
+                    <i data-lucide="user-round" style="width:16px; height:16px;"></i>
                 </div>
-                <span class="text-xs font-semibold text-slate-500 hidden sm:inline">Halo, User</span>
-            </div>
+                <span class="user-greeting">Halo, <?php echo htmlspecialchars($display_username); ?></span>
+            </a>
         </div>
     </nav>
 
     <!-- Konten Utama (Login Form) -->
     <main class="main-container login-font-family">
-        <!-- Spacer Kiri -->
         <div class="left-spacer"></div>
 
-        <!-- Bagian Kanan (Formulir Login) -->
         <section class="login-card-wrapper">
             <div class="login-card">
-                <!-- Memuat logo asli di dalam Card -->
                 <div class="card-logo">
-                    <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Logo Rupantara" class="card-brand-logo">
+                    <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo Rupantara" class="card-brand-logo">
                 </div>
 
                 <h3>Masuk ke akun anda</h3>
@@ -358,15 +535,12 @@
                     <button type="submit" name="submit" class="btn-submit">MULAI!</button>
                 </form>
 
-                <!-- Opsi Login Sosial -->
                 <div class="social-login">
-                    <!-- Facebook Button -->
                     <button class="social-btn" title="Login dengan Facebook">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1877F2">
                             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                         </svg>
                     </button>
-                    <!-- Google Button -->
                     <button class="social-btn" title="Login dengan Google">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.859-3.578-7.859-8s3.53-8 7.859-8c2.46 0 4.105 1.025 5.047 1.926l3.245-3.125C18.29 1.55 15.492 0 12.24 0 5.58 0 0 5.37 0 12s5.58 12 12.24 12c6.96 0 11.57-4.89 11.57-11.79 0-.795-.085-1.4-.195-1.925H12.24z"/>
@@ -378,7 +552,8 @@
     </main>
 
     <script>
-        // Toggle view/hide password
+        lucide.createIcons();
+
         const togglePassword = document.querySelector('#togglePassword');
         const passwordInput = document.querySelector('#password');
 
@@ -399,13 +574,6 @@
                     </svg>
                 `;
             }
-        });
-
-        // Error Image Fallback
-        document.querySelectorAll('.onerror-fallback').forEach(img => {
-            img.onerror = function() {
-                this.style.display = 'none';
-            };
         });
     </script>
 </body>

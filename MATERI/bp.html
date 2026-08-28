@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Learning Kit - Cinta Bangga Paham Rupiah</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+        :root {
+            --blue-light: #E3F2FD;
+            --blue-main: #2196F3;
+            --navy: #0E3F6B;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body { background: #ccc; }
+
+        /* Ukuran Kertas A4 */
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: var(--white);
+            margin: 10mm auto;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        /* --- HALAMAN 1: COVER --- */
+        .cover { padding: 80px; display: flex; flex-direction: column; height: 100%; }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; }
+        .bi-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--navy); }
+        .nfc-tag { text-align: center; color: var(--navy); font-size: 12px; font-weight: 900; }
+
+        .title-container { margin-top: 100px; z-index: 10; }
+        .buku-panduan { font-size: 20px; letter-spacing: 4px; color: var(--navy); margin-bottom: 20px; }
+        .main-title { font-size: 75px; font-weight: 900; color: var(--navy); line-height: 0.9; }
+        .tagline { margin-top: 40px; font-size: 22px; color: #64748B; border-left: 5px solid var(--blue-main); padding-left: 20px; }
+
+        /* Ilustrasi Awan & Kaca Pembesar */
+        .decoration { position: absolute; bottom: 0; width: 100%; height: 40%; }
+        .cloud { position: absolute; background: var(--blue-light); border-radius: 100px; }
+        .cloud-1 { width: 400px; height: 250px; bottom: -50px; left: -100px; }
+        .cloud-2 { width: 500px; height: 300px; bottom: -80px; right: -100px; }
+        
+        .magnifier-icon {
+            position: absolute; bottom: 150px; right: 120px;
+            color: var(--navy); z-index: 20;
+        }
+
+        /* --- HALAMAN 2: INSTRUKSI DIGITAL --- */
+        .content-page { padding: 60px; }
+        .section-title { font-size: 32px; font-weight: 900; color: var(--navy); margin-bottom: 40px; text-align: center; }
+        
+        .grid-kit { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px; }
+        .card { background: var(--blue-light); padding: 40px; border-radius: 30px; text-align: center; }
+        .card i { color: var(--navy); margin-bottom: 20px; }
+        .card h3 { margin-bottom: 15px; color: var(--navy); font-size: 24px; }
+        
+        .qr-box { background: white; width: 180px; height: 180px; margin: 20px auto; border: 10px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; }
+        .nfc-demo { background: var(--navy); color: white; padding: 20px; border-radius: 20px; font-weight: 700; margin-top: 20px; }
+
+        /* Footer Kertas */
+        .page-footer { position: absolute; bottom: 30px; width: 100%; text-align: center; font-size: 12px; color: #94A3B8; }
+
+        @media print {
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HALAMAN 1: COVER -->
+    <div class="page">
+        <div class="cover">
+            <div class="header">
+                <div class="bi-logo">
+                    <i data-lucide="landmark" size="40"></i>
+                    <span style="font-size: 24px;">BANK INDONESIA</span>
+                </div>
+                <div class="nfc-tag">
+                    <i data-lucide="rss" size="40"></i><br>NFC
+                </div>
+            </div>
+
+            <div class="title-container">
+                <p class="buku-panduan">BUKU PANDUAN</p>
+                <h1 class="main-title">CINTA<br>BANGGA<br>PAHAM<br>RUPIAH</h1>
+                <p class="tagline">Mengenal Rupiah,<br>Mencintai Indonesia.</p>
+            </div>
+
+            <div class="decoration">
+                <div class="cloud cloud-1"></div>
+                <div class="cloud cloud-2"></div>
+                <div class="magnifier-icon">
+                    <i data-lucide="search" size="180" stroke-width="1.5"></i>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">RUPANTARA Learning Kit - Edisi Digital 2024</div>
+    </div>
+
+    <!-- HALAMAN 2: AKSES DIGITAL -->
+    <div class="page">
+        <div class="content-page">
+            <h2 class="section-title">Akses Learning Kit Interaktif</h2>
+            <p style="text-align: center; color: #64748B; font-size: 18px;">Gunakan perangkat smartphone Anda untuk berinteraksi dengan kurikulum Rupiah.</p>
+
+            <div class="grid-kit">
+                <div class="card">
+                    <i data-lucide="qr-code" size="60"></i>
+                    <h3>Scan Website</h3>
+                    <p>Akses platform <b>RUPANTARA</b> untuk simulasi scan uang secara real-time.</p>
+                    <div class="qr-box">
+                        <!-- Ini adalah placeholder QR. Anda bisa mengganti source gambarnya -->
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://rupantara.org" alt="QR Code">
+                    </div>
+                    <p style="font-size: 12px; margin-top: 10px;">scan me: rupantara.org</p>
+                </div>
+
+                <div class="card">
+                    <i data-lucide="contactless" size="60"></i>
+                    <h3>Fitur NFC</h3>
+                    <p>Tempelkan ponsel pada stiker NFC di buku fisik untuk memutar audio edukasi.</p>
+                    <div class="nfc-demo">AKTIFKAN NFC ANDA</div>
+                    <ul style="text-align: left; margin-top: 20px; font-size: 14px; padding-left: 20px;">
+                        <li>Tempelkan di bagian belakang ponsel</li>
+                        <li>Pastikan layar ponsel menyala</li>
+                        <li>Otomatis membuka Portal Edukasi</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px; padding: 40px; border: 2px dashed var(--navy); border-radius: 20px;">
+                <h3 style="color: var(--navy); margin-bottom: 20px;">Materi Utama:</h3>
+                <div style="display: flex; gap: 20px; justify-content: space-around;">
+                    <div style="text-align: center;">
+                        <div style="width: 50px; height: 50px; background: var(--navy); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">1</div>
+                        <b>Cinta</b>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 50px; height: 50px; background: var(--navy); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">2</div>
+                        <b>Bangga</b>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 50px; height: 50px; background: var(--navy); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">3</div>
+                        <b>Paham</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">Halaman 2 - Panduan Penggunaan Digital Kit</div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
