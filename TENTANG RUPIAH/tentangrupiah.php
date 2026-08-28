@@ -223,6 +223,103 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         }
 
         /* =====================================================
+           HERO BANKNOTE STACKED 3D VISUAL (BARU & RAPI)
+        ===================================================== */
+        .hero-banknote-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .banknote-card {
+            position: absolute;
+            width: 90%;
+            max-width: 420px;
+            height: 195px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform-origin: center bottom;
+        }
+
+        .banknote-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Kartu 1: Belakang (Rp 20.000) */
+        .card-back {
+            top: 15px;
+            left: 5%;
+            transform: rotate(-8deg) scale(0.94);
+            opacity: 0.75;
+            z-index: 10;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+        }
+
+        /* Kartu 2: Tengah (Rp 50.000) */
+        .card-middle {
+            top: 35px;
+            left: 5%;
+            transform: rotate(4deg) scale(0.97);
+            opacity: 0.90;
+            z-index: 20;
+            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.12);
+        }
+
+        /* Kartu 3: Depan / Utama (Rp 100.000) */
+        .card-front {
+            top: 55px;
+            left: 5%;
+            transform: rotate(-1deg) scale(1);
+            z-index: 30;
+            box-shadow: 0 20px 35px rgba(15, 23, 42, 0.18);
+            animation: heroFloat 4s ease-in-out infinite alternate;
+        }
+
+        /* Efek Hover Mekar */
+        .hero-banknote-wrapper:hover .card-back {
+            transform: rotate(-13deg) translate(-15px, -10px) scale(0.94);
+            opacity: 0.9;
+        }
+
+        .hero-banknote-wrapper:hover .card-middle {
+            transform: rotate(8deg) translate(15px, -5px) scale(0.97);
+            opacity: 0.95;
+        }
+
+        .hero-banknote-wrapper:hover .card-front {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 45px rgba(15, 23, 42, 0.22);
+        }
+
+        @keyframes heroFloat {
+            0% {
+                transform: translateY(0px) rotate(-1deg);
+            }
+            100% {
+                transform: translateY(-12px) rotate(1deg);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-banknote-wrapper {
+                max-width: 330px;
+                height: 230px;
+            }
+            .banknote-card {
+                height: 150px;
+            }
+        }
+
+        /* =====================================================
            ACCORDION
         ===================================================== */
 
@@ -656,106 +753,53 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 
 
     <!-- =====================================================
-         HERO
+         HERO SECTION (REDESIGNED)
     ===================================================== -->
-
-    <header
-        class="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white pt-24 pb-24 px-6 md:px-12 lg:px-24">
+    <header class="relative overflow-hidden bg-gradient-to-b from-blue-50/70 to-white pt-20 pb-20 md:pt-28 md:pb-28 px-6 md:px-12 lg:px-24">
 
         <!-- Background Grid -->
-        <div
-            class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]">
-        </div>
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-        <div
-            class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-
-
-            <!-- LEFT -->
-            <div class="lg:col-span-6 z-10">
-
-                <h1
-                    class="text-4xl md:text-5xl lg:text-6xl font-black text-blue-950 leading-tight mb-4">
-
-                    TENTANG
-                    <br>
-
-                    <span class="text-blue-600">
-                        RUPIAH
-                    </span>
-
+            <!-- LEFT COLUMN: Teks & CTA -->
+            <div class="z-10 flex flex-col items-center lg:items-start text-center lg:text-left">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-blue-950 leading-[1.15] mb-4">
+                    TENTANG <br>
+                    <span class="text-blue-600">RUPIAH</span>
                 </h1>
 
-
-                <p
-                    class="text-slate-600 text-base md:text-lg mb-8 max-w-lg leading-relaxed">
-
-                    Kenali sejarah, pecahan, dan unsur keamanan
-                    mata uang Indonesia secara interaktif.
-
+                <p class="text-slate-600 text-base md:text-lg mb-8 max-w-lg leading-relaxed">
+                    Kenali sejarah, pecahan, dan unsur keamanan mata uang Indonesia secara interaktif.
                 </p>
 
-
-                <a
-                    href="#belajar-section"
-                    class="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-blue-500/20 hover:shadow-xl transition-all duration-300">
-
+                <a href="#belajar-section" class="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-7 py-3.5 rounded-xl shadow-lg shadow-blue-500/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
                     Jelajahi Pecahan
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
                 </a>
-
             </div>
 
+            <!-- RIGHT COLUMN: Stacked 3D Banknotes Visual -->
+            <div class="flex justify-center lg:justify-end relative w-full">
+                <!-- Ambient Glow Background -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] md:w-[400px] h-[280px] bg-blue-400/15 rounded-full blur-3xl -z-10"></div>
 
+                <div class="hero-banknote-wrapper">
+                    <!-- Card 1: Belakang (Rp 20.000) -->
+                    <div class="banknote-card card-back">
+                        <img src="../GAMBAR_GAMBAR/uang_20000.jpg" onerror="this.src='../GAMBAR_GAMBAR/uang_10000.jpg'" alt="Pecahan 20 Ribu Rupiah">
+                    </div>
 
-            <!-- RIGHT -->
-            <div
-                class="lg:col-span-6 flex justify-center lg:justify-end relative">
+                    <!-- Card 2: Tengah (Rp 50.000) -->
+                    <div class="banknote-card card-middle">
+                        <img src="../GAMBAR_GAMBAR/uang_50000.jpg" alt="Pecahan 50 Ribu Rupiah">
+                    </div>
 
-                <div
-                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-blue-400/10 rounded-full blur-3xl -z-10">
+                    <!-- Card 3: Depan / Utama (Rp 100.000) -->
+                    <div class="banknote-card card-front">
+                        <img src="../GAMBAR_GAMBAR/uang_100000.jpg" alt="Pecahan 100 Ribu Rupiah">
+                    </div>
                 </div>
-
-
-                <div
-                    class="relative w-full max-w-[380px] flex flex-col items-end pr-8 select-none">
-
-
-                    <img
-                        src="../GAMBAR_GAMBAR/uang_100000.jpg"
-                        alt="100 Ribu"
-                        class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[-4deg] translate-x-[-15px] relative z-40 hover:scale-105 transition-transform duration-300">
-
-
-                    <img
-                        src="../GAMBAR_GAMBAR/uang_50000.jpg"
-                        alt="50 Ribu"
-                        class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[-3deg] translate-x-[-5px] -mt-[110px] md:-mt-[125px] relative z-30 hover:scale-105 transition-transform duration-300">
-
-
-                    <img
-                        src="../GAMBAR_GAMBAR/uang_1000.jpg"
-                        onerror="this.src='../GAMBAR_GAMBAR/uang_10000.jpg'"
-                        alt="10 Ribu"
-                        class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[-2deg] translate-x-[5px] -mt-[110px] md:-mt-[125px] relative z-20 hover:scale-105 transition-transform duration-300">
-
-
-                    <img
-                        src="../GAMBAR_GAMBAR/uang_5000.jpg"
-                        alt="5 Ribu"
-                        class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[-1deg] translate-x-[15px] -mt-[110px] md:-mt-[125px] relative z-10 hover:scale-105 transition-transform duration-300">
-
-
-                    <img
-                        src="../GAMBAR_GAMBAR/uang_2000.jpg"
-                        alt="2 Ribu"
-                        class="w-[280px] md:w-[310px] rounded shadow-md transform rotate-[0deg] translate-x-[25px] -mt-[110px] md:-mt-[125px] relative z-0 hover:scale-105 transition-transform duration-300">
-
-                </div>
-
             </div>
 
         </div>
@@ -2822,7 +2866,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         );
 
     </script>
-
 
 </body>
 

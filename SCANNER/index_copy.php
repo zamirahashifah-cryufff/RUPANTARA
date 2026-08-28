@@ -522,7 +522,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         <div class="rupantara-scanner-card">
           <div class="scanner-card-header">
             <h1 class="scanner-main-title">SCAN <span>DISINI !</span></h1>
-            <p class="scanner-subtitle">Arahkan uang Rupiah ke dalam bingkai kamera atau unggah gambar untuk memindai pecahan, pahlawan, dan keaslian 3D.</p>
+            <p class="scanner-subtitle">Unggah foto uang Rupiah untuk memindai pecahan dan informasi pahlawan.</p>
           </div>
 
           <!-- BINGKAI VIEWPORT SCANNER DENGAN CORNER RETICLES [ ] -->
@@ -536,22 +536,18 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 
             <div class="viewport-media-area" id="viewportMedia">
               <img src="https://images.unsplash.com/photo-1596489375836-7c093a5a782b?auto=format&fit=crop&w=800&q=80" alt="Sample Rp 2.000 Banknote" class="scanner-preview-img" id="scannerPreviewImg">
-              <video id="cameraStream" autoplay muted playsinline class="camera-stream-hidden" aria-label="Kamera Scanner Uang Rupiah">Kamera tidak didukung pada browser ini.</video>
             </div>
 
             <div class="scanner-status-overlay hidden" id="scannerStatusOverlay">
-              <i class="fa-solid fa-camera-retro"></i>
-              <span id="statusText">Pilih Kamera, Upload Foto, atau Klik Sampel Pecahan</span>
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <span id="statusText">Upload foto uang Rupiah untuk memindai</span>
               <button id="dismissStatusBtn" class="status-dismiss" aria-label="Tutup">✕</button>
             </div>
           </div>
 
-          <!-- KONTROL SCANNER & PILIHAN SAMPEL -->
+                    <!-- KONTROL UPLOAD FOTO -->
           <div class="scanner-controls-panel">
             <div class="control-buttons flex flex-wrap gap-4 justify-center">
-              <button type="button" class="btn btn-primary-sm" id="captureBtn" title="Jepret untuk memindai" aria-label="Jepret">
-                <i class="fa-solid fa-camera"></i> Jepret
-              </button>
               <label class="btn btn-outline btn-md file-upload-label cursor-pointer">
                 <i class="fa-solid fa-cloud-arrow-up"></i> Upload Foto Uang
                 <input type="file" id="imageUploadInput" accept="image/*" class="hidden-input" aria-label="Upload foto uang">

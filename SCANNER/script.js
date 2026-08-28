@@ -5,13 +5,6 @@ const METADATA_URL = encodeURI(`${MODEL_BASE_PATH}metadata.json`);
 let tmModel = null;
 
 const rupiahData = {
-  'Rp1.000': {
-    tokoh: '[Data tokoh belum diisi]',
-    caraMerawat: ['[Data cara merawat belum diisi]'],
-    ciriCiri: ['[Data ciri-ciri belum diisi]'],
-    fakta: ['[Data fakta menarik belum diisi]'],
-    sejarah: '[Data sejarah belum diisi]'
-  },
   'Rp2.000': {
     tokoh: '[Data tokoh belum diisi]',
     caraMerawat: ['[Data cara merawat belum diisi]'],
