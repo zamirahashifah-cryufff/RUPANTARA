@@ -10,7 +10,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RUPANTARA - Uji Pengetahuanmu tentang Rupiah</title>
+  <title>RUPANTARA - Quiz & Game Rupiah</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -29,10 +29,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
       --text: #1E293B;
       --muted: #64748B;
       --border: #E2E8F0;
-      --navy-soft: #E7EDF7;
-      --card: #ffffff;
-      --text-main: #1E2A3A;
-      --text-sub: #7A8494;
+      --card-bg: #FFFFFF;
     }
 
     * {
@@ -46,7 +43,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
       background: var(--body);
       color: var(--text);
       line-height: 1.6;
-      font-size: 15px;
+      font-size: 14.5px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -233,217 +230,245 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     }
 
     /* =====================================================
-       ANIMATIONS
-    ===================================================== */
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    @keyframes typing { from { width: 0; } to { width: 100%; } }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-    @keyframes ripple { to { transform: scale(4); opacity: 0; } }
-
-    /* =====================================================
-       HERO & CONTENT
+       COMPACT PAGE LAYOUT
     ===================================================== */
     .page-content {
       flex: 1;
-      padding: 40px 16px 20px;
+      padding: 30px 16px 20px;
     }
+
     .page-wrapper {
-      max-width: 1200px;
+      max-width: 1240px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
     }
 
-    .hero {
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background-image: linear-gradient(to right, rgba(250,248,255,.94) 0%, rgba(250,248,255,.82) 40%, rgba(250,248,255,.4) 70%, rgba(250,248,255,.1) 100%), url('../GAMBAR_GAMBAR/kumpulan_uang_lama.jpg');
-      background-size: cover;
-      background-position: center;
-      padding: 60px 48px;
-      min-height: 420px;
-      display: flex;
-      align-items: center;
-      transition: transform .3s ease;
-      box-shadow: 0 10px 30px rgba(0, 48, 135, 0.04);
+    .section-header {
+      text-align: center;
+      margin-bottom: 28px;
     }
-    .hero:hover { transform: translateY(-2px); }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 600px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      animation: fadeInUp .8s ease;
-    }
-    .hero-title {
-      font-size: 50px;
-      font-weight: 800;
-      font-style: italic;
-      line-height: 1.05;
-      letter-spacing: -1px;
-      background: linear-gradient(90deg, #0A3458 0%, #174C84 60%, #59A9E8 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: fadeInUp .8s ease .1s both;
-    }
-    .hero-subtitle {
-      font-size: 19px;
-      font-weight: 700;
-      color: var(--blue-dark);
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 3px solid var(--blue-dark);
-      animation: typing 2s steps(40, end), blink .75s step-end infinite;
-      width: 0;
-      animation-fill-mode: forwards;
-    }
-    .hero-desc {
-      font-size: 14.5px;
-      font-weight: 500;
-      color: var(--text-sub);
-      line-height: 1.7;
-      max-width: 500px;
-      animation: fadeInUp .8s ease .3s both;
-    }
-    .hero-cta {
-      margin-top: 10px;
-      align-self: flex-start;
-      background: linear-gradient(135deg, var(--blue-dark), #1d5fa3);
-      color: #fff;
-      border: none;
-      border-radius: 999px;
-      padding: 14px 34px;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 15px;
-      cursor: pointer;
-      text-decoration: none;
+    .section-tag {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      transition: all .3s cubic-bezier(.34, 1.56, .64, 1);
-      position: relative;
-      overflow: hidden;
-      animation: fadeInUp .8s ease .4s both;
-      box-shadow: 0 4px 15px rgba(23, 76, 132, 0.25);
-    }
-    .hero-cta:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 12px 25px rgba(23, 76, 132, 0.35);
-    }
-    .hero-cta:active { transform: scale(.97); }
-    .hero-cta .ripple {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, .4);
-      transform: scale(0);
-      animation: ripple .6s linear;
-      pointer-events: none;
-    }
-    .hero-meta {
-      font-size: 13px;
-      font-weight: 600;
-      color: #8A94A6;
-      letter-spacing: .2px;
-      display: flex;
-      align-items: center;
       gap: 6px;
-      animation: fadeIn .8s ease .5s both;
-    }
-
-    /* =====================================================
-       FEATURES / STATS CARD
-    ===================================================== */
-    .features-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      box-shadow: 0 12px 30px rgba(0, 48, 135, 0.05);
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      margin-top: -30px;
-      position: relative;
-      z-index: 3;
-      animation: fadeInUp .8s ease .3s both;
-    }
-    .feature-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 26px 30px;
-      border-right: 1px solid var(--border);
-      transition: all .3s ease;
-    }
-    .feature-item:last-child { border-right: none; }
-    .feature-item:hover {
-      background: #F4F7FC;
-      border-radius: 20px;
-      transform: translateY(-2px);
-    }
-    .feature-icon {
-      flex-shrink: 0;
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
       background: #EAF2FF;
       color: var(--blue-dark);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* GRID 3 KOLOM RAMPING */
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .game-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 6px 24px rgba(0, 48, 135, 0.04);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(14, 63, 107, 0.1);
+      border-color: rgba(89, 169, 232, 0.4);
+    }
+
+    /* HEADER BANNER DI DALAM KARTU */
+    .card-banner {
+      height: 125px;
+      background-size: cover;
+      background-position: center;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .card-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10, 52, 88, 0.7) 0%, rgba(10, 52, 88, 0.35) 100%);
+    }
+
+    .card-banner.banner-quiz {
+      background-image: url('../GAMBAR_GAMBAR/kumpulan_uang_lama.jpg');
+    }
+
+    .card-banner.banner-tts {
+      background-image: url('../GAMBAR_GAMBAR/TTS_hero.png');
+    }
+
+    .card-banner.banner-runner {
+      background-image: url('../GAMBAR_GAMBAR/rupiahrunner_hero.png');
+    }
+
+    .card-badge {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .card-badge.orange {
+      color: #EA580C;
+    }
+
+    .card-badge.rose {
+      color: #E11D48;
+    }
+
+    .card-icon-circle {
+      position: relative;
+      z-index: 2;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all .3s ease;
-    }
-    .feature-item:hover .feature-icon {
-      background: var(--blue-dark);
-      color: #fff;
-      transform: scale(1.08) rotate(4deg);
-    }
-    .feature-counter {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 2px;
-    }
-    .feature-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-    .feature-desc {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-sub);
     }
 
-    /* Ambient particles */
-    .particle {
-      position: fixed;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--blue);
-      opacity: .15;
-      pointer-events: none;
-      z-index: 0;
-      animation: float 6s ease-in-out infinite;
+    /* BODY KARTU */
+    .card-body {
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 16px;
+      min-height: 40px;
+    }
+
+    /* MINI STATS / PILL DI DALAM KARTU */
+    .card-pills {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .pill-item {
+      background: #F4F7FC;
+      border: 1px solid #E2E8F0;
+      padding: 4px 9px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pill-item i {
+      color: var(--blue-dark);
+      width: 13px;
+      height: 13px;
+    }
+
+    /* TOMBOL AKSI KARTU */
+    .card-footer {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid #F1F5F9;
+    }
+
+    .btn-action {
+      width: 100%;
+      background: linear-gradient(135deg, var(--blue-dark), #1d5fa3);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(23, 76, 132, 0.15);
+    }
+
+    .btn-action.btn-tts {
+      background: linear-gradient(135deg, #0A3458, #0E3F6B);
+      box-shadow: 0 4px 12px rgba(14, 63, 107, 0.15);
+    }
+
+    .btn-action.btn-runner {
+      background: linear-gradient(135deg, #E11D48, #BE123C);
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.2);
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(23, 76, 132, 0.25);
     }
 
     /* =====================================================
        FOOTER
     ===================================================== */
     footer {
-      margin-top: 80px;
+      margin-top: 60px;
       background: #06152B;
       color: #E2E8F0;
-      padding: 70px 8% 30px;
+      padding: 50px 8% 24px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       position: relative;
       overflow: hidden;
@@ -453,8 +478,8 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     .footer-main {
       display: grid;
       grid-template-columns: 1.3fr 0.8fr 1fr;
-      gap: 60px;
-      padding-bottom: 45px;
+      gap: 50px;
+      padding-bottom: 35px;
       position: relative;
       z-index: 2;
     }
@@ -465,46 +490,40 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     }
 
     .footer-brand-card {
-      width: 150px;
-      height: 48px;
-      max-width: 150px;
-      max-height: 48px;
+      width: 140px;
+      height: 44px;
       background: #FFFFFF;
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
-      padding: 6px 12px;
+      margin-bottom: 16px;
+      padding: 5px 10px;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
     .footer-brand-card img {
       max-width: 100%;
       max-height: 100%;
-      width: auto;
-      height: auto;
       object-fit: contain;
-      display: block;
     }
 
     .footer-desc {
-      font-size: 13.5px;
+      font-size: 13px;
       color: #94A3B8;
-      line-height: 1.65;
+      line-height: 1.6;
       max-width: 320px;
     }
 
     .footer-column h3 {
       color: #FFFFFF;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
       position: relative;
-      padding-bottom: 8px;
+      padding-bottom: 6px;
     }
 
     .footer-column h3::after {
@@ -512,7 +531,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
       position: absolute;
       left: 0;
       bottom: 0;
-      width: 28px;
+      width: 24px;
       height: 2px;
       background: var(--blue);
       border-radius: 2px;
@@ -521,13 +540,13 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     .footer-nav {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .footer-nav a {
       color: #94A3B8;
       text-decoration: none;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 500;
       display: flex;
       align-items: center;
@@ -537,23 +556,22 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 
     .footer-nav a:hover {
       color: #FFFFFF;
-      transform: translateX(5px);
+      transform: translateX(4px);
     }
 
     .footer-contact-list {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .footer-contact-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 13.5px;
+      gap: 10px;
+      font-size: 13px;
       color: #94A3B8;
       text-decoration: none;
-      transition: color 0.25s ease;
     }
 
     .footer-contact-item:hover {
@@ -561,11 +579,10 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     }
 
     .footer-contact-icon {
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -574,60 +591,55 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
     }
 
     .footer-bottom {
-      margin-top: 30px;
-      padding-top: 24px;
+      margin-top: 20px;
+      padding-top: 20px;
       border-top: 1px solid rgba(255, 255, 255, 0.06);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 16px;
-      position: relative;
-      z-index: 2;
+      gap: 14px;
     }
 
     .footer-copy {
-      font-size: 13px;
+      font-size: 12.5px;
       color: #64748B;
     }
 
     .footer-bottom-links {
       display: flex;
-      gap: 20px;
+      gap: 18px;
     }
 
     .footer-bottom-links a {
       color: #64748B;
       text-decoration: none;
-      font-size: 13px;
-      transition: color 0.2s;
+      font-size: 12.5px;
     }
 
     .footer-bottom-links a:hover {
       color: #94A3B8;
     }
 
-    /* Responsive */
-    @media(max-width: 900px) {
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+    @media (max-width: 1024px) {
+      .game-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
       nav { width: 95%; padding: 0 16px; }
       .nav-links { display: none; }
-      .hero { padding: 40px 24px; }
-      .hero-title { font-size: 36px; }
-      .hero-subtitle { white-space: normal; border: none; width: auto; }
-      .features-card { grid-template-columns: 1fr; margin-top: 15px; }
-      .feature-item { border-right: none; border-bottom: 1px solid var(--border); }
-      .feature-item:last-child { border-bottom: none; }
-      .footer-main { grid-template-columns: 1fr; gap: 40px; }
+      .game-grid { grid-template-columns: 1fr; }
+      .footer-main { grid-template-columns: 1fr; gap: 35px; }
       .footer-bottom { justify-content: center; text-align: center; flex-direction: column-reverse; }
     }
   </style>
 </head>
 <body>
 
-<!-- Ambient particles -->
-<div id="particles"></div>
-
-<!-- HEADER (Sama persis dengan edukasi.php) -->
+<!-- HEADER -->
 <nav>
     <a href="../BERANDA/beranda.php" style="display:flex; align-items:center; text-decoration:none;">
         <div class="nav-logo">
@@ -639,7 +651,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         <li><a href="../BERANDA/beranda.php">Beranda</a></li>
         <li><a href="../TENTANG RUPIAH/tentangrupiah.php">Tentang Rupiah</a></li>
         <li><a href="../MATERI/edukasi.php">Edukasi</a></li>
-        <li><a href="../QUIZ/quiz_intro.php" class="active">Quiz</a></li>
+        <li><a href="../QUIZ/quiz_intro.php" class="active">Quiz & Game</a></li>
         <li><a href="../SCANNER/index_copy.php">Scan</a></li>
     </ul>
 
@@ -668,55 +680,93 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 <!-- PAGE CONTENT -->
 <div class="page-content">
   <div class="page-wrapper">
-    <div class="hero" id="hero">
-      <div class="hero-content">
-        <div class="hero-title">RUPANTARA</div>
-        <div class="hero-subtitle">Uji pengetahuanmu tentang Rupiah Indonesia</div>
-        <div class="hero-desc">Jawab 10 soal pilihan ganda untuk menguji seberapa jauh pengetahuanmu tentang Rupiah, sejarah, simbol, dan perannya dalam perekonomian Indonesia.</div>
-        
-        <!-- Tombol langsung diarahkan ke quiz.php -->
-        <a href="quiz1.php" class="hero-cta" id="startBtn">
-          Mulai Sekarang <i data-lucide="play-circle" style="width: 18px; height: 18px;"></i>
-        </a>
 
-        <div class="hero-meta">
-          <i data-lucide="check-circle" style="width:16px; height:16px; color:#10B981;"></i>
-          <span>10 Soal Pilihan Ganda &nbsp;&middot;&nbsp; Skor & Pembahasan Otomatis</span>
-        </div>
-      </div>
+    <!-- HEADER JUDUL HALAMAN -->
+    <div class="section-header">
+      <span class="section-tag"><i data-lucide="sparkles" style="width:14px; height:14px;"></i> Arena Belajar & Bermain</span>
+      <h1 class="section-title">Pilih Aktivitas Permainan</h1>
+      <p class="section-subtitle">Asah wawasanmu mengenai kedaulatan, ciri fisik, dan sejarah Rupiah melalui kuis, teka-teki silang, atau game arkade seru.</p>
     </div>
 
-    <!-- FEATURES STATS -->
-    <div class="features-card" id="featuresCard">
-      <div class="feature-item">
-        <div class="feature-icon"><i data-lucide="help-circle"></i></div>
-        <div>
-          <div class="feature-counter">10</div>
-          <div class="feature-title">Soal Interaktif</div>
-          <div class="feature-desc">Pilihan ganda terkurasi</div>
+    <!-- GRID 3 PILIHAN MODE -->
+    <div class="game-grid">
+
+      <!-- 1. KARTU KUIS -->
+      <div class="game-card">
+        <div class="card-banner banner-quiz">
+          <span class="card-badge"><i data-lucide="award" style="width:13px; height:13px;"></i> Pilihan Ganda</span>
+          <div class="card-icon-circle"><i data-lucide="help-circle" style="width:18px; height:18px;"></i></div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Kuis Pengetahuan Rupiah</h2>
+          <p class="card-desc">Uji pemahamanmu tentang kedaulatan moneter, metode 3D, dan peran Bank Indonesia dalam 10 soal.</p>
+          
+          <div class="card-pills">
+            <span class="pill-item"><i data-lucide="list-ordered"></i> 10 Soal</span>
+            <span class="pill-item"><i data-lucide="clock"></i> 5 Menit</span>
+            <span class="pill-item"><i data-lucide="check-circle"></i> Skor Instan</span>
+          </div>
+
+          <div class="card-footer">
+            <a href="quiz1.php" class="btn-action">
+              Mulai Kuis <i data-lucide="play" style="width:15px; height:15px;"></i>
+            </a>
+          </div>
         </div>
       </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i data-lucide="clock"></i></div>
-        <div>
-          <div class="feature-counter">5 Menit</div>
-          <div class="feature-title">Waktu Fleksibel</div>
-          <div class="feature-desc">Santai & mudah diakses</div>
+
+      <!-- 2. KARTU TTS -->
+      <div class="game-card">
+        <div class="card-banner banner-tts">
+          <span class="card-badge orange"><i data-lucide="puzzle" style="width:13px; height:13px;"></i> Teka-Teki Silang</span>
+          <div class="card-icon-circle"><i data-lucide="grid" style="width:18px; height:18px;"></i></div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">TTS Gambar Uang Rupiah</h2>
+          <p class="card-desc">Tebak pahlawan nasional, kesenian nusantara, flora-fauna, dan unsur pengaman pada uang kertas.</p>
+          
+          <div class="card-pills">
+            <span class="pill-item"><i data-lucide="layers"></i> 7 Kata Silang</span>
+            <span class="pill-item"><i data-lucide="lightbulb"></i> Fitur Hint</span>
+            <span class="pill-item"><i data-lucide="timer"></i> Live Timer</span>
+          </div>
+
+          <div class="card-footer">
+            <a href="TTS.php" class="btn-action btn-tts">
+              Mulai TTS <i data-lucide="arrow-right" style="width:15px; height:15px;"></i>
+            </a>
+          </div>
         </div>
       </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i data-lucide="award"></i></div>
-        <div>
-          <div class="feature-counter">100%</div>
-          <div class="feature-title">Skor Akurasi</div>
-          <div class="feature-desc">Hasil langsung keluar</div>
+
+      <!-- 3. KARTU RUPIAH RUNNER -->
+      <div class="game-card">
+        <div class="card-banner banner-runner">
+          <span class="card-badge rose"><i data-lucide="gamepad-2" style="width:13px; height:13px;"></i> Runner Arcade</span>
+          <div class="card-icon-circle"><i data-lucide="zap" style="width:18px; height:18px;"></i></div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Rupiah Runner</h2>
+          <p class="card-desc">Lompat dan kumpulkan lembaran uang Rp100.000 sebanyak mungkin sambil menghindari rintangan!</p>
+          
+          <div class="card-pills">
+            <span class="pill-item"><i data-lucide="trophy"></i> Skor Tertinggi</span>
+          </div>
+
+          <div class="card-footer">
+            <a href="rupiahrunner.php" class="btn-action btn-runner">
+              Mulai Game <i data-lucide="play" style="width:15px; height:15px;"></i>
+            </a>
+          </div>
         </div>
       </div>
+
     </div>
+
   </div>
 </div>
 
-<!-- FOOTER (Sama persis dengan edukasi.php) -->
+<!-- FOOTER -->
 <footer>
     <div class="footer-main">
         <div class="footer-column">
@@ -731,7 +781,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
                 <a href="../BERANDA/beranda.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Beranda</a>
                 <a href="../TENTANG RUPIAH/tentangrupiah.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Tentang Rupiah</a>
                 <a href="../MATERI/edukasi.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Edukasi</a>
-                <a href="../QUIZ/quiz_intro.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Quiz</a>
+                <a href="../QUIZ/quiz_intro.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Quiz & Game</a>
                 <a href="../SCANNER/index_copy.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Scan</a>
             </div>
         </div>
@@ -767,33 +817,6 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
 <script>
 // Inisialisasi ikon Lucide
 lucide.createIcons();
-
-// Efek Ripple saat klik tombol Mulai Sekarang
-document.getElementById('startBtn').addEventListener('click', function(e) {
-  const r = document.createElement('span');
-  r.className = 'ripple';
-  const rect = this.getBoundingClientRect();
-  const size = Math.max(rect.width, rect.height);
-  r.style.width = r.style.height = size + 'px';
-  r.style.left = (e.clientX - rect.left - size/2) + 'px';
-  r.style.top = (e.clientY - rect.top - size/2) + 'px';
-  this.appendChild(r);
-  setTimeout(() => r.remove(), 600);
-});
-
-// Ambient floating particles
-const particles = document.getElementById('particles');
-for (let i = 0; i < 15; i++) {
-  const p = document.createElement('div');
-  p.className = 'particle';
-  p.style.left = Math.random() * 100 + 'vw';
-  p.style.top = Math.random() * 100 + 'vh';
-  p.style.animationDelay = Math.random() * 6 + 's';
-  p.style.animationDuration = (4 + Math.random() * 4) + 's';
-  p.style.width = p.style.height = (4 + Math.random() * 6) + 'px';
-  p.style.opacity = .1 + Math.random() * .1;
-  particles.appendChild(p);
-}
 </script>
 
 </body>

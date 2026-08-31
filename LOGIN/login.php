@@ -477,7 +477,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
             <li><a href="../TENTANG RUPIAH/tentangrupiah.php">Tentang Rupiah</a></li>
             <li><a href="../MATERI/edukasi.php">Edukasi</a></li>
             <li><a href="../SCANNER/index.php">Scan</a></li>
-            <li><a href="../QUIZ/quiz_intro.php">Quiz</a></li>
+            <li><a href="../QUIZ/quiz_intro.php">Quiz & Game</a></li>
         </ul>
 
         <div class="nav-actions">

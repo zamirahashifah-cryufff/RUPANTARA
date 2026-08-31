@@ -464,7 +464,7 @@ $default_url = "http://" . $local_ip . "/RUPANTARA/";
                         <span class="page-pill" onclick="setSubPage('LOGIN/login.php')">Login</span>
                         <span class="page-pill" onclick="setSubPage('REGISTER/register.php')">Register</span>
                         <span class="page-pill" onclick="setSubPage('SCANNER/scanner.php')">Scanner</span>
-                        <span class="page-pill" onclick="setSubPage('QUIZ/quiz.php')">Quiz</span>
+                        <span class="page-pill" onclick="setSubPage('QUIZ/quiz.php')">Quiz & Game</span>
                     </div>
                 </div>
 
