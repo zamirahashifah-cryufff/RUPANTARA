@@ -623,7 +623,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
         <li><a href="../BERANDA/beranda.php">Beranda</a></li>
         <li><a href="../TENTANG RUPIAH/tentangrupiah.php">Tentang Rupiah</a></li>
         <li><a href="../MATERI/edukasi.php">Edukasi</a></li>
-        <li><a href="../QUIZ/quiz_intro.php" class="active">Quiz</a></li>
+        <li><a href="../QUIZ/quiz_intro.php" class="active">Quiz & Game</a></li>
         <li><a href="../SCANNER/index_copy.php">Scan</a></li>
     </ul>
 
@@ -714,7 +714,7 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
                 <a href="../BERANDA/beranda.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Beranda</a>
                 <a href="../TENTANG RUPIAH/tentangrupiah.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Tentang Rupiah</a>
                 <a href="../MATERI/edukasi.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Edukasi</a>
-                <a href="../QUIZ/quiz_intro.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Quiz</a>
+                <a href="../QUIZ/quiz_intro.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Quiz & Game</a>
                 <a href="../SCANNER/index_copy.php"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i>Scan</a>
             </div>
         </div>

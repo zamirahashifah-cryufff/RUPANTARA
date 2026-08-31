@@ -423,10 +423,11 @@
         <div class="navigation-group">
             <nav class="register-nav">
                 <div class="nav-links">
-                    <a href="../BERANDA/beranda.php">Beranda</a>
-                    <a href="../TENTANG RUPIAH/tentangrupiah.php">Tentang kami</a>
-                    <a href="../SCANNER/index.php">Fitur</a>
-                    <a href="../MATERI/edukasi.php">Edukasi</a>
+                  <li><a href="../BERANDA/beranda.php">Beranda</a></li>
+                  <li><a href="../TENTANG RUPIAH/tentangrupiah.php">Tentang Rupiah</a></li>
+                  <li><a href="../MATERI/edukasi.php">Edukasi</a></li>
+                  <li><a href="../QUIZ/quiz_intro.php" class="active">Quiz & Game</a></li>
+                  <li><a href="../SCANNER/index_copy.php">Scan</a></li>
                 </div>
                 <span class="divider">|</span>
                 <a href="../LOGIN/login.php" class="btn-login-nav">Login</a>
