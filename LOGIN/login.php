@@ -508,6 +508,13 @@ $display_username = $is_logged_in ? $_SESSION['username'] : 'User';
                 <h3>Masuk ke akun anda</h3>
                 <p class="sub-info">Isi data di bawah untuk membuat akun baru</p>
 
+                <?php if (isset($_GET['pesan']) && $_GET['pesan'] === 'gagal'): ?>
+                    <div style="background: #FEF2F2; border: 1px solid #FCA5A5; color: #DC2626; padding: 10px 14px; border-radius: 10px; font-size: 13px; font-weight: 600; margin-bottom: 18px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                        <span>Akun tidak ditemukan!</span>
+                    </div>
+                <?php endif; ?>
+
                 <!-- Form Login -->
                 <form action="proses_login.php" method="POST">
                     <div class="form-group">

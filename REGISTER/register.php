@@ -1,20 +1,43 @@
+<?php
+session_start();
+// Memeriksa status login pengguna
+$is_logged_in = isset($_SESSION['login']) && $_SESSION['login'] === true;
+$display_username = $is_logged_in ? $_SESSION['username'] : 'User';
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rupantara - Daftar Akun</title>
-    <!-- Menggunakan Font Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="../navbar_responsive.css">
     <script src="../navbar_responsive.js" defer></script>
+    
     <style>
+        :root {
+            --navy: #0E3F6B;
+            --navy-dark: #0A3458;
+            --blue: #59A9E8;
+            --blue-dark: #174C84;
+            --body: #F8FAFF;
+            --white: #FFFFFF;
+            --text: #1E293B;
+            --muted: #64748B;
+            --border: #E2E8F0;
+        }
+
         /* Reset CSS dasar */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', "Plus Jakarta Sans", "Inter", sans-serif;
         }
 
         body {
@@ -30,119 +53,183 @@
             color: #1a365d;
         }
 
-        /* --- HEADER NAVBAR FIXED --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+        /* =====================================================
+           HEADER (Floating Glassmorphism style) - PERSIS EDUKASI.PHP
+        ===================================================== */
+        nav {
+            width: 90%;
+            max-width: 1300px;
             height: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 4%;
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            z-index: 1000;
-        }
-
-        .logo-container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             display: flex;
             align-items: center;
+            padding: 0 28px;
+            gap: 20px;
+            position: sticky;
+            top: 20px;
+            margin: 0 auto;
+            border-radius: 20px;
+            z-index: 999;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 12px 30px rgba(0, 48, 135, 0.06);
+            transition: all 0.3s ease;
         }
 
-        .brand-logo {
-            height: 55px; 
+        .nav-logo {
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.03);
+        }
+
+        .nav-logo img {
+            height: 100%;
             width: auto;
             object-fit: contain;
         }
 
-        .navigation-group {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #1a365d;
-            font-weight: 500;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #2563eb;
-        }
-
-        .btn-login-nav {
-            background-color: #1d4ed8;
-            color: #ffffff;
-            padding: 8px 24px;
-            border-radius: 20px;
-            font-weight: 600;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .btn-login-nav:hover {
-            background-color: #1e40af;
-            transform: translateY(-1px);
-        }
-
-        .divider {
-            color: #cbd5e1;
-            margin: 0 5px;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .bell-icon {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-        }
-
-        .bell-icon svg {
-            fill: #475569;
-            transition: fill 0.3s;
-        }
-
-        .bell-icon:hover svg {
-            fill: #1e40af;
-        }
-
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 2px solid #cbd5e1;
+        .nav-links {
+            list-style: none;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 6px;
+            margin-left: auto;
+            background: rgba(244, 247, 252, 0.6);
+            padding: 5px;
+            border-radius: 14px;
+            border: 1px solid rgba(226, 232, 240, 0.4);
         }
 
-        .user-info {
-            font-size: 11px;
-            color: #64748b;
+        .nav-links a {
+            position: relative;
+            text-decoration: none;
+            color: #64748B;
+            font-size: 13.5px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            white-space: nowrap;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue-dark);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-links a.active {
+            color: var(--blue-dark);
+            background: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(0, 48, 135, 0.05);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .btn-login {
+            min-width: 95px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+            background: linear-gradient(135deg, var(--blue-dark), #1d5fa3);
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(23, 76, 132, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(23, 76, 132, 0.25);
+            background: linear-gradient(135deg, #123D70, #174C84);
+        }
+
+        .notification-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(244, 247, 252, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: #64748B;
+            transition: all 0.3s ease;
+        }
+
+        .notification-btn:hover {
+            background: #EAF2FF;
+            color: var(--blue-dark);
+            transform: translateY(-2px);
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 6px;
+            height: 6px;
+            background: #EF4444;
+            border-radius: 50%;
+        }
+
+        .nav-divider {
+            width: 1px;
+            height: 34px;
+            background: #D9E2EC;
+        }
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(244, 247, 252, 0.8);
+            padding: 4px 12px 4px 4px;
+            border-radius: 12px;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .user-area:hover {
+            background: #EAF2FF;
+            border-color: rgba(89, 169, 232, 0.3);
+        }
+
+        .user-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: white;
+            color: var(--blue-dark);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+
+        .user-greeting {
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
         }
 
         /* --- KONTEN UTAMA --- */
@@ -151,9 +238,11 @@
             flex: 1;
             justify-content: space-between;
             align-items: center;
-            padding: 40px 4%; 
+            padding: 30px 4% 40px; 
             gap: 50px;
-            margin-top: 80px; 
+            max-width: 1300px;
+            width: 90%;
+            margin: 20px auto 40px; 
         }
 
         /* Spacer kiri untuk menyeimbangkan posisi kartu register di kanan */
@@ -366,23 +455,25 @@
 
         /* --- MEDIA QUERIES UNTUK LAYAR TABLET --- */
         @media (max-width: 992px) {
-            header {
-                padding: 0 4%;
+            nav {
+                width: 95%;
+                padding: 0 16px;
             }
-            
-            .navigation-group {
+
+            .nav-links {
                 display: none;
             }
-            
+
             body {
                 background-position: center center;
             }
 
             .main-container {
                 flex-direction: column;
-                padding: 30px 4%;
+                padding: 20px 4% 30px;
                 justify-content: center;
                 gap: 30px;
+                width: 95%;
             }
             
             .left-spacer {
@@ -397,12 +488,12 @@
 
         /* --- MEDIA QUERIES UNTUK LAYAR HP --- */
         @media (max-width: 576px) {
-            header {
-                padding: 0 4%;
+            nav {
+                height: 70px;
             }
 
-            .brand-logo {
-                height: 40px;
+            .user-greeting {
+                display: none;
             }
 
             .register-card {
@@ -414,43 +505,43 @@
 </head>
 <body>
 
-    <!-- Header / Navbar (Fixed) -->
-    <header>
-        <div class="logo-container">
-            <img src="../GAMBAR_GAMBAR/LOGO_RUPANTARA.png" alt="Logo Rupantara" class="brand-logo">
-        </div>
-        
-        <div class="navigation-group">
-            <nav class="register-nav">
-                <div class="nav-links">
-                  <li><a href="../BERANDA/beranda.php">Beranda</a></li>
-                  <li><a href="../TENTANG RUPIAH/tentangrupiah.php">Tentang Rupiah</a></li>
-                  <li><a href="../MATERI/edukasi.php">Edukasi</a></li>
-                  <li><a href="../QUIZ/quiz_intro.php" class="active">Quiz & Game</a></li>
-                  <li><a href="../SCANNER/index_copy.php">Scan</a></li>
-                </div>
-                <span class="divider">|</span>
-                <a href="../LOGIN/login.php" class="btn-login-nav">Login</a>
-            </nav>
-            <div class="header-right">
-                <div class="bell-icon" title="Notifikasi">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-                        <path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/>
-                    </svg>
-                </div>
-                <a href="../PROFIL/profil.php" class="user-profile user-area" title="Profil Pengguna">
-                    <div class="user-avatar">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px">
-                            <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-240v-32q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q30 15 47 43.5t17 62.5v32H160Z"/>
-                        </svg>
-                    </div>
-                    <div class="user-info">
-                        <strong>Hallo, User</strong>
-                    </div>
-                </a>
+    <!-- HEADER (Floating Glassmorphism style) - PERSIS EDUKASI.PHP -->
+    <nav>
+        <a href="../BERANDA/beranda.php" style="display:flex; align-items:center; text-decoration:none;">
+            <div class="nav-logo">
+                <img src="../GAMBAR_GAMBAR/LOGO.png" alt="Logo RUPANTARA">
             </div>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="../BERANDA/beranda.php">Beranda</a></li>
+            <li><a href="../TENTANG RUPIAH/tentangrupiah.php">Tentang Rupiah</a></li>
+            <li><a href="../MATERI/edukasi.php">Edukasi</a></li>
+            <li><a href="../QUIZ/quiz_intro.php">Quiz & Game</a></li>
+            <li><a href="../SCANNER/index_copy.php">Scan</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <?php if (!$is_logged_in): ?>
+                <a href="../LOGIN/login.php" class="btn-login">Login</a>
+            <?php endif; ?>
+
+            <a href="../qr.php" class="notification-btn" title="Buka di HP / QR Code" style="text-decoration:none;">
+                <i data-lucide="qr-code" style="width:18px; height:18px;"></i>
+            </a>
+            <a href="#" class="notification-btn">
+                <i data-lucide="bell" style="width:18px; height:18px;"></i>
+                <span class="notification-dot"></span>
+            </a>
+            <div class="nav-divider"></div>
+            <a href="../PROFIL/profil.php" class="user-area" title="Profil Pengguna">
+                <div class="user-icon">
+                    <i data-lucide="user-round" style="width:16px; height:16px;"></i>
+                </div>
+                <span class="user-greeting">Halo, <?php echo htmlspecialchars($display_username); ?></span>
+            </a>
         </div>
-    </header>
+    </nav>
 
     <!-- Konten Utama -->
     <main class="main-container">
@@ -596,6 +687,11 @@
 
         passwordInput.addEventListener('input', checkPasswordMatch);
         confirmPasswordInput.addEventListener('input', checkPasswordMatch);
+
+        // Initialize Lucide Icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
     </script>
 </body>
 </html>

@@ -31,15 +31,15 @@ if (isset($_POST['submit'])) {
             exit;
         } else {
             echo "<script>
-                    alert('Password salah!');
-                    window.location.href = 'login.php';
+                    alert('Akun tidak ditemukan!');
+                    window.location.href = 'login.php?pesan=gagal';
                   </script>";
             exit;
         }
     } else {
         echo "<script>
-                alert('Username tidak ditemukan!');
-                window.location.href = 'login.php';
+                alert('Akun tidak ditemukan!');
+                window.location.href = 'login.php?pesan=gagal';
               </script>";
         exit;
     }
