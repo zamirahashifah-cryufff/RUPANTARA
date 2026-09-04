@@ -1,0 +1,19 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/ula5m9mv/public_html/
+    - /bin/cp -R BERANDA $DEPLOYPATH
+    - /bin/cp -R GAMBAR_GAMBAR $DEPLOYPATH
+    - /bin/cp -R LOGIN $DEPLOYPATH
+    - /bin/cp -R MATERI $DEPLOYPATH
+    - /bin/cp -R PROFIL $DEPLOYPATH
+    - /bin/cp -R QUIZ $DEPLOYPATH
+    - /bin/cp -R REGISTER $DEPLOYPATH
+    - /bin/cp -R SCANNER $DEPLOYPATH
+    - /bin/cp -R "TENTANG RUPIAH" $DEPLOYPATH
+    - /bin/cp -R uang $DEPLOYPATH
+    - /bin/cp -R uploads $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp navbar_responsive.css $DEPLOYPATH
+    - /bin/cp navbar_responsive.js $DEPLOYPATH
+    - /bin/cp qr.php $DEPLOYPATH
